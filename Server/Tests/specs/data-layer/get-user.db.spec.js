@@ -1,6 +1,6 @@
 const addNewUser = require('../../../src/data-layer/add-new-user.db')
 const getUserByEmail = require('../../../src/data-layer/get-user-by-email')
-const getUsers = require('../../../src/data-layer/get-users.db')
+const GetUserQuery = require('../../../src/data-layer/get-users.db')
 const { connectToDb } = require('../../helpers/requestsSpecHelper')
 const faker = require('faker')
 
@@ -32,7 +32,8 @@ describe("Users endpoint", function () {
     })
 
     it("should GET All Users ", function (done) {
-        getUsers.getAllUsers(10,0).then(x => {
+        const getUserQuery = new GetUserQuery(10, 0, '')
+        getUserQuery.getUsers().then(x => {
             expect(x.length).toBeTruthy()
             expect(x[0].name).toBeTruthy()
             expect(x[0].email).toBeTruthy()
@@ -42,7 +43,8 @@ describe("Users endpoint", function () {
     })
 
     it("should GET All Regular Users ", function (done) {
-        getUsers.getRegularUsers(10,0).then(x => {
+        const getUserQuery = new GetUserQuery(10, 0, 'regular')
+        getUserQuery.getUsers().then(x => {
             expect(x.length).toBeTruthy()
             expect(x[0].name).toBeTruthy()
             expect(x[0].email).toBeTruthy()
@@ -51,7 +53,8 @@ describe("Users endpoint", function () {
     })
 
     it("should GET All Users count", function (done) {
-        getUsers.getAllUsersCount().then(x => {
+        const getUserQuery = new GetUserQuery(10, 0, '')
+        getUserQuery.getUsersCount().then(x => {
             expect(Number.isInteger(x)).toBe(true)
             expect(x).toBeTruthy()
             done()
@@ -60,7 +63,8 @@ describe("Users endpoint", function () {
 
 
     it("should GET All Regular Users count ", function (done) {
-        getUsers.getRegularUsersCount().then(x => {
+        const getUserQuery = new GetUserQuery(10, 0, 'regular')
+        getUserQuery.getUsersCount().then(x => {
             expect(Number.isInteger(x)).toBe(true)
             expect(x).toBeTruthy()
             done()

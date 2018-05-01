@@ -35,8 +35,8 @@ describe("Users endpoint", function () {
         }
         const newMeal = {
             name: 'meal1',
-            city: 'Cairo',
-            gmtTimeDifference: 6
+            numOfCalories: 600,
+            date: Date.now()
         }
         let id
         let userToken
@@ -64,8 +64,8 @@ describe("Users endpoint", function () {
                     .end((err, res) => {
                         expect(res.status).toEqual(200)
                         expect(res.body.meals[0].name).toBe(newMeal.name)
-                        expect(res.body.meals[0].city).toBe(newMeal.city)
-                        expect(res.body.meals[0].gmtTimeDifference).toBe(newMeal.gmtTimeDifference)
+                        expect(res.body.meals[0].date).toBeTruthy()
+                        expect(res.body.meals[0].numOfCalories).toBe(newMeal.numOfCalories)
                         done();
                     })
             })

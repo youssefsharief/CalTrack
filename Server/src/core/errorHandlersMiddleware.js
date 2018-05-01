@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 module.exports = app => {
 
     app.use(function (err, req, res, next) {
-        console.log(err)        
         if (err.isJoi) {
             err.isJoi = undefined
             err._object = undefined

@@ -23,29 +23,28 @@ describe("Users endpoint", function () {
             expect(x.name).toBe(payload.name)
             expect(x.email).toBe(payload.email)
             id = x._id
-            const newRecord = {
-                name: faker.address.city(),
-                city: faker.address.city(),
-                gmtTimeDifference: 8
+            const newMeal = {
+                name: 'meal1',
+                numOfCalories: 600,
+                date: Date.now()
             }
-            addRecord(id, newRecord).then(x => {
+            addRecord(id, newMeal).then(x => {
                 expect(x.meals.length).toBe(1)
-                expect(x.meals[0].city).toBe(newRecord.city)
-                expect(x.meals[0].name).toBe(newRecord.name)
-                expect(x.meals[0].gmtTimeDifference).toBe(newRecord.gmtTimeDifference)
-                mealId = x._id
+                expect(x.meals[0].name).toBe(newMeal.name)
+                expect(x.meals[0].date).toBeTruthy()
+                expect(x.meals[0].numOfCalories).toBe(newMeal.numOfCalories)
                 done()
             })
         })
     })
 
     it("should update record ", async function (done) {      
-        const updatedRecord = {
-            name: faker.address.city(),
-            city: faker.address.city(),
-            gmtTimeDifference: 5
+        const updatedMeal = {
+            name: 'meal1',
+            numOfCalories: 600,
+            date: Date.now()
         }
-         updateRecord(id, mealId, updatedRecord).then(x=>{
+         updateRecord(id, mealId, updatedMeal).then(x=>{
             done()
             
         })

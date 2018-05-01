@@ -23,13 +23,13 @@ describe("Users endpoint", function () {
         }
         const newMeal = {
             name: 'meal1',
-            city: 'Cairo',
-            gmtTimeDifference: 6
+            numOfCalories: 600,
+            date: Date.now()
         }
-        const updatedTimeZone = {
-            name: 'meal2',
-            city: 'Cairo2',
-            gmtTimeDifference: 9
+        const updatedMeal = {
+            name: 'me2',
+            numOfCalories: 900,
+            date: Date.now()
         }
         let id
         let userToken
@@ -57,13 +57,13 @@ describe("Users endpoint", function () {
             it("should update successfully ", function (done) {
                 request.put(`/users/${id}/meals/${mealId}`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(updatedTimeZone)
+                    .send(updatedMeal)
                     .end((err, res) => {
                         expect(res.status).toEqual(200)
                         expect(res.body.meals.length).toEqual(1)
-                        expect(res.body.meals[0].name).toEqual(updatedTimeZone.name)
-                        expect(res.body.meals[0].city).toEqual(updatedTimeZone.city)
-                        expect(res.body.meals[0].gmtTimeDifference).toEqual(updatedTimeZone.gmtTimeDifference)
+                        expect(res.body.meals[0].name).toEqual(updatedMeal.name)
+                        expect(res.body.meals[0].city).toEqual(updatedMeal.city)
+                        expect(res.body.meals[0].gmtTimeDifference).toEqual(updatedMeal.gmtTimeDifference)
                         done();
                     })
             })

@@ -7,10 +7,6 @@ const mealSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true,
-    },
     date:{
         type: Schema.Types.Date,
         required: true

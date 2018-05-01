@@ -24,8 +24,8 @@ describe("Users endpoint", function () {
         }
         const newMeal = {
             name: 'meal1',
-            city: 'Cairo',
-            gmtTimeDifference: 6
+            numOfCalories: 600,
+            date: Date.now()
         }
         let id
         let userToken

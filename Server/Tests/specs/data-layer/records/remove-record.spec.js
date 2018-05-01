@@ -24,16 +24,15 @@ describe("Users endpoint", function () {
             expect(x.email).toBe(payload.email)
             id = x._id
             const newRecord = {
-                name: faker.address.city(),
-                city: faker.address.city(),
-                gmtTimeDifference: 8
+                name: 'meal1',
+                numOfCalories: 600,
+                date: Date.now()
             }
             addRecord(id, newRecord).then(x => {
                 expect(x.meals.length).toBe(1)
-                expect(x.meals[0].city).toBe(newRecord.city)
                 expect(x.meals[0].name).toBe(newRecord.name)
-                expect(x.meals[0].gmtTimeDifference).toBe(newRecord.gmtTimeDifference)
-                mealId = x._id
+                expect(x.meals[0].date).toBeTruthy()
+                expect(x.meals[0].numOfCalories).toBe(newRecord.numOfCalories)
                 done()
             })
         })
