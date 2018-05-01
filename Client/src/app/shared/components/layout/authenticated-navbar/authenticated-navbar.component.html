@@ -1,0 +1,26 @@
+<app-nav>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a routerLinkActive="active" routerLink='/my-time' class="nav-link">My timings</a>
+            </li>
+            <li class="nav-item">
+                <a routerLinkActive="active" routerLink='/my-profile' class="nav-link">My profile</a>
+            </li>
+            <li *ngIf="isAtleastManager()" class="nav-item">
+                <a routerLinkActive="active" routerLink='/users' class="nav-link">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link" href="javascript:void(0);" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</app-nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

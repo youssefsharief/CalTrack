@@ -1,0 +1,21 @@
+<form [formGroup]="form" *ngIf="form">
+
+    <app-name-input-layout [isNotValid]="form.get('name').dirty && form.get('name').invalid">
+        <input type="text" name="name" class="form-control" formControlName="name">
+    </app-name-input-layout>
+
+    <app-email-input-layout [isNotValid]="form.get('email').dirty && form.get('email').invalid">
+        <input type="email" name="email" class="form-control" formControlName="email">
+    </app-email-input-layout>
+
+    <app-password-input-layout [isNotValid]="form.get('password').dirty && form.get('password').invalid">
+        <input type="password" name="password" placeholder="Enter Password" class="form-control" formControlName="password">
+    </app-password-input-layout>
+
+    <app-confirm-password-input-layout [isNotValid]="form.getError('areEqual')">
+        <input type="password" name="confirmPassword" class="form-control" placeholder="Enter Password" formControlName="confirmPassword">
+    </app-confirm-password-input-layout>
+
+    <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="signup()">Signup</button>
+    <button class="btn btn-default" id="secure-signup-button" [disabled]="!form.valid" type="submit" (click)="signupSecurely()">Signup securely</button>
+</form>
