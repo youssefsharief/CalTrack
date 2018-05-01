@@ -1,8 +1,8 @@
 const usersModel = require('../models/users.model')
 
-module.exports = (userId, timeZoneId) => {
+module.exports = (userId, mealId) => {
     return usersModel.findOneAndUpdate(
         { _id: userId },
-        { $pull: { timeZones: { _id: timeZoneId } } },
+        { $pull: { meals: { _id: mealId } } },
         { new: true })
 }

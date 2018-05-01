@@ -16,7 +16,7 @@ describe("Users endpoint", function () {
         const newUser = {
             name: faker.name.firstName(),
             email: faker.internet.email(),
-            timeZones: [],
+            meals: [],
             password: '456565654ds'
         }
         const newUserCredentials = {
@@ -26,15 +26,15 @@ describe("Users endpoint", function () {
         const newUser2 = {
             name: faker.name.firstName(),
             email: faker.internet.email(),
-            timeZones: [],
+            meals: [],
             password: '3223565689re'
         }
         const newUser2Credentials = {
             email: newUser2.email,
             password: newUser2.password
         }
-        const newTimeZone = {
-            name: 'timeZone1',
+        const newMeal = {
+            name: 'meal1',
             city: 'Cairo',
             gmtTimeDifference: 6
         }
@@ -58,22 +58,22 @@ describe("Users endpoint", function () {
             })
 
             it("should add successfully ", function (done) {
-                request.post(`/users/${id}/timezones`)
+                request.post(`/users/${id}/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newTimeZone)
+                    .send(newMeal)
                     .end((err, res) => {
                         expect(res.status).toEqual(200)
-                        expect(res.body.timeZones[0].name).toBe(newTimeZone.name)
-                        expect(res.body.timeZones[0].city).toBe(newTimeZone.city)
-                        expect(res.body.timeZones[0].gmtTimeDifference).toBe(newTimeZone.gmtTimeDifference)
+                        expect(res.body.meals[0].name).toBe(newMeal.name)
+                        expect(res.body.meals[0].city).toBe(newMeal.city)
+                        expect(res.body.meals[0].gmtTimeDifference).toBe(newMeal.gmtTimeDifference)
                         done();
                     })
             })
 
             it("should respond by 404 error when id is not provided ", function (done) {
-                request.post(`/users/timezones`)
+                request.post(`/users/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newTimeZone)
+                    .send(newMeal)
                     .end((err, res) => {
                         expect(res.status).toEqual(404)
                         done();
@@ -93,9 +93,9 @@ describe("Users endpoint", function () {
             })
 
             it("should not be allowed to add ", function (done) {
-                request.post(`/users/${id}/timezones`)
+                request.post(`/users/${id}/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newTimeZone)
+                    .send(newMeal)
                     .end((err, res) => {
                         expect(res.status).toEqual(403)
                         done();
@@ -103,9 +103,9 @@ describe("Users endpoint", function () {
             })
 
             it("should respond by 404 error when id is not provided ", function (done) {
-                request.post(`/users/timezones`)
+                request.post(`/users/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newTimeZone)
+                    .send(newMeal)
                     .end((err, res) => {
                         expect(res.status).toEqual(404)
                         done();

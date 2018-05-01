@@ -6,7 +6,7 @@ import { SelectedUserService } from './services/selectedUser.service';
 import { AuthGuardService } from './services/auth.guard.service';
 import { PublicInfoService } from './services/public.info.service';
 import { AuthService } from './services/auth.service';
-import { TimingsService } from './services/timings.service';
+import { SelectedMealService } from './services/selected-meal.service';
 import { DataService } from './services/data.service';
 import { AdminClaimsService } from './services/admin-claims.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -25,7 +25,7 @@ import { NgProgressInterceptor } from 'ngx-progressbar';
     providers: [
         AuthService,
         SnackBarService,
-        TimingsService,
+        SelectedMealService,
         SelectedUserService,
         DataService,
         AdminClaimsService,

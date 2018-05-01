@@ -123,10 +123,10 @@ describe('Users Component', () => {
                     authService.getRole = () => 'admin'
                     fixture.detectChanges()
                 })
-                it('should navigate to "update-user-time" route', fakeAsync(() => {
-                    fixture.nativeElement.querySelector('#timingsButton').click()
+                it('should navigate to "update-user-meal" route', fakeAsync(() => {
+                    fixture.nativeElement.querySelector('#mealsButton').click()
                     tick(100)
-                    expect(location.path()).toBe('/users/11/time')
+                    expect(location.path()).toBe('/users/11/meal')
                 }))
                 it('should navigate to "update-user-role" route', fakeAsync(() => {
                     fixture.nativeElement.querySelector('#userRoleButton').click()
@@ -135,8 +135,8 @@ describe('Users Component', () => {
                 }))
             })
             describe('is not admin', () => {
-                it('should not show icon that navigate to "update-user-time" route', () => {
-                    expect(fixture.nativeElement.querySelector('#timingsButton')).toBeFalsy()
+                it('should not show icon that navigate to "update-user-meal" route', () => {
+                    expect(fixture.nativeElement.querySelector('#mealsButton')).toBeFalsy()
                 })
                 it('should not show icon that navigate to "update-user-role" route', () => {
                     expect(fixture.nativeElement.querySelector('#userRoleButton')).toBeFalsy()
@@ -233,7 +233,7 @@ describe('Users Component', () => {
             })
             xit('getUsers api method should have been called with the right arguments', (done) => {
                 const spy = spyOn(dataService, 'getUsers').and.callThrough()
-                setTimeout(() => {
+                setMealout(() => {
                     expect(spy).toHaveBeenCalledWith(Object({ roleFilter: undefined, searchTerm: 'ss', skip: 0 }))
                     done()
                 }, 500)

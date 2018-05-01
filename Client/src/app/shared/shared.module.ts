@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { NavComponent } from './components/layout/nav/nav.component';
-import { TimingsComponent } from './components/timings/view-time/timings.component';
+import { MealsComponent } from './components/meals/view-meal/meals.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { LoginLayoutComponent } from './components/layout/login-layout/login-layout.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
@@ -15,7 +15,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgProgressModule } from 'ngx-progressbar';
-import { TimeZoneFormComponent } from 'app/shared/components/timings/timezone-form/timezone-form.component';
+import { MealZoneFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
 
 @NgModule({
@@ -42,8 +42,8 @@ import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TimingsComponent,
-    TimeZoneFormComponent,
+    MealsComponent,
+    MealZoneFormComponent,
     EditUserComponent,
     BrowserAnimationsModule,
     NgProgressModule,
@@ -54,8 +54,8 @@ import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
   declarations: [
     NavComponent,
     FooterComponent,
-    TimingsComponent,
-    TimeZoneFormComponent,
+    MealsComponent,
+    MealZoneFormComponent,
     EditUserComponent,
     LoginLayoutComponent,
     AuthenticatedNavbarComponent,

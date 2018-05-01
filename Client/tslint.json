@@ -40,8 +40,8 @@
       true,
       "debug",
       "info",
-      "time",
-      "timeEnd",
+      "meal",
+      "mealEnd",
       "trace"
     ],
     "no-construct": true,

@@ -40,7 +40,7 @@ describe("Users endpoint", function () {
 							expect(res.body._id).toBeTruthy()
 							expect(res.body.name).toBeTruthy()
 							expect(res.body.email).toBeTruthy()
-							expect(res.body.timeZones).toBeTruthy()
+							expect(res.body.meals).toBeTruthy()
 							expect(res.body.role).toBeTruthy()
 							expect(res.status).toBe(200)
 							done();

@@ -12,7 +12,7 @@ describe("Users endpoint", function () {
     const payload = {
         name: faker.name.firstName(),
         email: faker.internet.email(),
-        timeZones: [],
+        meals: [],
         password: '1234567a'
     }
     let id 
@@ -32,10 +32,10 @@ describe("Users endpoint", function () {
             gmtTimeDifference: 8
         }
         addRecord(id, newRecord).then(x=>{
-            expect(x.timeZones.length).toBe(1)
-            expect(x.timeZones[0].city).toBe(newRecord.city)
-            expect(x.timeZones[0].name).toBe(newRecord.name)
-            expect(x.timeZones[0].gmtTimeDifference).toBe(newRecord.gmtTimeDifference)
+            expect(x.meals.length).toBe(1)
+            expect(x.meals[0].city).toBe(newRecord.city)
+            expect(x.meals[0].name).toBe(newRecord.name)
+            expect(x.meals[0].gmtTimeDifference).toBe(newRecord.gmtTimeDifference)
             done()
         })
     })

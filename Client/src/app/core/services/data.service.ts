@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserCredentials } from 'app/shared/models/userCredentials';
 import { User } from 'app/shared/models/user.model';
 import { UserInfo } from 'app/shared/models/userInfo.model';
-import { Timezone } from 'app/shared/models/timezone.model';
+import { Meal } from 'app/shared/models/meal.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
@@ -18,11 +18,11 @@ export class DataService {
     }
 
     signup(item: User) {
-        return this.http.post('users', { email: item.email, password: item.password, timeZones: [], name: item.name })
+        return this.http.post('users', { email: item.email, password: item.password, meals: [], name: item.name })
     }
 
     signupSecurely(item: User) {
-        return this.http.post('users/secure', { email: item.email, password: item.password, timeZones: [], name: item.name }, )
+        return this.http.post('users/secure', { email: item.email, password: item.password, meals: [], name: item.name }, )
     }
 
     activateFromBackEnd(code: string, email: string) {
@@ -46,16 +46,16 @@ export class DataService {
         return this.http.get<User>(`users/${userId}`)
     }
 
-    updateTimeZone(userId: string, timeZoneId: string, data: Timezone) {
-        return this.http.put(`users/${userId}/timezones/${timeZoneId}`, data)
+    updateMealZone(userId: string, mealId: string, data: Meal) {
+        return this.http.put(`users/${userId}/meals/${mealId}`, data)
     }
 
-    addTimeZone(userId: string, data: Timezone) {
-        return this.http.post<User>(`users/${userId}/timezones`, data)
+    addMealZone(userId: string, data: Meal) {
+        return this.http.post<User>(`users/${userId}/meals`, data)
     }
 
-    deleteTimeZone(userId: string, timeZoneId: string) {
-        return this.http.delete(`users/${userId}/timezones/${timeZoneId}`)
+    deleteMealZone(userId: string, mealId: string) {
+        return this.http.delete(`users/${userId}/meals/${mealId}`)
     }
 
     assignRole(id: string, data: { role: string }): Observable<any> {

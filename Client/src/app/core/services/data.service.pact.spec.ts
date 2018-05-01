@@ -88,7 +88,7 @@
 //                             'name': like('Esss'),
 //                             'email': like('e@test.com'),
 //                             '_id': like('5ac99bf9fb44c32c104fc4e3'),
-//                             'timeZones': [],
+//                             'meals': [],
 //                             'role': like('regular')
 //                         }
 //                     }

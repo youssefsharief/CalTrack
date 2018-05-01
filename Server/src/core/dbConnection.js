@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 mongoose.Promise = Promise
 function connectToOriginalDb(){
-    return mongoose.connect(process.env.mongodbTimezoneURI, { useMongoClient: true});
+    return mongoose.connect(process.env.mongodbMealURI, { useMongoClient: true});
 }
 function connectToTestDb(){
-    return mongoose.connect(process.env.mongodbTimezoneMockURI, { useMongoClient: true});
+    return mongoose.connect(process.env.mongodbMealMockURI, { useMongoClient: true});
 }
 
 

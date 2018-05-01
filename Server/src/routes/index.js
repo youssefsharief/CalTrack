@@ -63,9 +63,9 @@ router.delete('/users/:id', verifyUser, Authorize.allowAdminAndManager, removeUs
 router.get('/users/', verifyUser, Authorize.preventRegularUsers, getUsers)
 router.get('/users/:id', verifyUser, Authorize.allowSelfAndAdminOnly, getUserDetailsIncludingRecords)
 
-router.post('/users/:id/timezones', verifyUser, validateAddRecord, Authorize.allowSelfAndAdminOnly, addRecord)
-router.delete('/users/:id/timezones/:timeZoneId', verifyUser, Authorize.allowSelfAndAdminOnly, removeRecord)
-router.put('/users/:id/timezones/:timeZoneId', verifyUser, validateUpdateRecord, Authorize.allowSelfAndAdminOnly, updateRecord)
+router.post('/users/:id/meals', verifyUser, validateAddRecord, Authorize.allowSelfAndAdminOnly, addRecord)
+router.delete('/users/:id/meals/:mealId', verifyUser, Authorize.allowSelfAndAdminOnly, removeRecord)
+router.put('/users/:id/meals/:mealId', verifyUser, validateUpdateRecord, Authorize.allowSelfAndAdminOnly, updateRecord)
 
 router.patch('/users/:id/role', verifyUser, validateUpdateRole, Authorize.allowAdminOnly, updateUserRole)
 

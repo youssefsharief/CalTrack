@@ -1,4 +1,4 @@
-import { Timezone } from 'app/shared/models/timezone.model';
+import { Meal } from 'app/shared/models/meal.model';
 
 export interface User {
     name: string
@@ -6,7 +6,7 @@ export interface User {
     password?: string
     role?: string
     _id?: string
-    timeZones?: Timezone[]
+    meals?: Meal[]
 }
 
 

@@ -10,17 +10,17 @@ import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { MyTimeComponent } from 'app/routes/personal/my-time/my-time.component';
-import { AddOtherUserTimeComponent } from 'app/routes/add-other-user-time/add-other-user-time.component';
+import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { AddOtherUserMealComponent } from 'app/routes/add-other-user-meal/add-other-user-meal.component';
 import { UsersComponent } from 'app/routes/users-list/users.component';
 import { SelectedUserService } from 'app/core/services/selectedUser.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
-import { OtherUserTimeComponent } from 'app/routes/other-user-time/other-user-time.component';
+import { OtherUserMealComponent } from 'app/routes/other-user-meal/other-user-meal.component';
 import { User } from 'app/shared/models/user.model';
 
-describe('AddOtherUserTime Component', () => {
-    let comp: AddOtherUserTimeComponent;
-    let fixture: ComponentFixture<AddOtherUserTimeComponent>;
+describe('AddOtherUserMeal Component', () => {
+    let comp: AddOtherUserMealComponent;
+    let fixture: ComponentFixture<AddOtherUserMealComponent>;
     let location: Location
     let dataService: DataService
     let selectedUserService: SelectedUserService
@@ -28,18 +28,18 @@ describe('AddOtherUserTime Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule, PaginationModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'users/:id/time', component: OtherUserTimeComponent },
+                    { path: 'users/:id/meal', component: OtherUserMealComponent },
                     { path: 'users', component: UsersComponent }
                 ]),
             ],
-            declarations: [AddOtherUserTimeComponent, UsersComponent, OtherUserTimeComponent],
+            declarations: [AddOtherUserMealComponent, UsersComponent, OtherUserMealComponent],
             providers: [
                 { provide: SelectedUserService, useValue: {} },
                 { provide: DataService, useValue: {} },
                 SnackBarService,
             ],
         });
-        fixture = TestBed.createComponent(AddOtherUserTimeComponent);
+        fixture = TestBed.createComponent(AddOtherUserMealComponent);
         comp = fixture.componentInstance;
         location = fixture.debugElement.injector.get(Location);
         dataService = fixture.debugElement.injector.get(DataService)
@@ -77,21 +77,21 @@ describe('AddOtherUserTime Component', () => {
                 const cityElement = city.nativeElement
                 cityElement.value = 'cccc'
                 cityElement.dispatchEvent(new Event('input'));
-                const gmtTimeDifference = fixture.debugElement.query(By.css('input[name="gmtTimeDifference"]'));
-                const gmtTimeDifferenceElement = gmtTimeDifference.nativeElement
-                gmtTimeDifferenceElement.value = '3'
-                gmtTimeDifferenceElement.dispatchEvent(new Event('input'));
+                const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
+                const gmtMealDifferenceElement = gmtMealDifference.nativeElement
+                gmtMealDifferenceElement.value = '3'
+                gmtMealDifferenceElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
             describe('Success Scenario', () => {
                 beforeEach(() => {
                     const user = <User>{}
-                    dataService.addTimeZone = (id, payload) => Observable.of(user)
+                    dataService.addMealZone = (id, payload) => Observable.of(user)
                 })
                 describe('api call', () => {
                     let spy
                     beforeEach(() => {
-                        spy = spyOn(dataService, 'addTimeZone').and.callThrough()
+                        spy = spyOn(dataService, 'addMealZone').and.callThrough()
                     })
                     it('should successfully post', () => {
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
@@ -99,20 +99,20 @@ describe('AddOtherUserTime Component', () => {
                     })
                     it('should call with right arguments', () => {
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                        expect(spy).toHaveBeenCalledWith('rr', Object({ name: 'nnnn', city: 'cccc', gmtTimeDifference: 3 }));
+                        expect(spy).toHaveBeenCalledWith('rr', Object({ name: 'nnnn', city: 'cccc', gmtMealDifference: 3 }));
                     })
                 })
 
-                it('should navigate to "users/:id/time" route', fakeAsync(() => {
+                it('should navigate to "users/:id/meal" route', fakeAsync(() => {
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     tick(100)
-                    expect(location.path()).toBe('/users/rr/time')
+                    expect(location.path()).toBe('/users/rr/meal')
                 }))
 
             })
             describe('Error Scenario', () => {
                 beforeEach(() => {
-                    dataService.addTimeZone = (id, payload) => Observable.throw('Error')
+                    dataService.addMealZone = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 })
                 it('should handle error', () => {

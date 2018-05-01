@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.fetchUsers({ page: 1 })
         this.searchSubscription =
-            this.keyUp$.debounceTime(400).distinctUntilChanged().subscribe(() => {
+            this.keyUp$.debounceMeal(400).distinctUntilChanged().subscribe(() => {
                 this.fetchConsideringPaging()
             })
     }
@@ -79,9 +79,9 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.router.navigate(['/users', item._id])
     }
 
-    onTimingsClick(item) {
+    onMealsClick(item) {
         this.selectedUserService.set(item)
-        this.router.navigate(['/users', item._id, 'time'])
+        this.router.navigate(['/users', item._id, 'meal'])
     }
 
     ngOnDestroy() {

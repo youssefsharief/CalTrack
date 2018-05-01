@@ -13,7 +13,7 @@ describe("Users endpoint", function () {
 		const newUser = {
 			name: faker.name.firstName(),
 			email: faker.internet.email(),
-			timeZones:[],
+			meals:[],
 			password: '456565654ds'
 		}
         const loginPayload = {
@@ -85,9 +85,9 @@ describe("Users endpoint", function () {
 				done();
 			})
 		})
-		it("should have timezones", function (done) {
+		it("should have meals", function (done) {
 			request.post('/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user.timeZones.length).toBe(newUser.timeZones.length)
+				expect(res.body.user.meals.length).toBe(newUser.meals.length)
 				done();
 			})
 		})

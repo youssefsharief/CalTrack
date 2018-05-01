@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const timeZoneSchema = require('./timezone.schema')
+const mealSchema = require('./meal.schema')
 const ROLES = require('../config/rolesConstants')
 
 const roles_enum = {
@@ -13,7 +13,7 @@ const usersSchema = new Schema({
     email: { type: String, required: true, unique:true },
     password: { type: String, required: true },
     role: { type: String, enum: roles_enum, required: true, default: 'regular' },
-    timeZones: [timeZoneSchema],
+    meals: [mealSchema],
     recoveryCode: String,
     active: { type: Boolean, required: true, default: false },
     activationCode: String

@@ -48,7 +48,7 @@ describe('ApiService: DataService', () => {
             const dummy = 'ok';
             service.signup({ name: 's', email: 'a', password: 'a' }).subscribe()
             const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users' });
-            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', timeZones: [] }))
+            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', meals: [] }))
             req.flush(dummy);
         });
     });
@@ -59,7 +59,7 @@ describe('ApiService: DataService', () => {
             const dummy = 'ok';
             service.signupSecurely({ name: 's', email: 'a', password: 'a' }).subscribe()
             const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users/secure' });
-            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', timeZones: [] }))
+            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', meals: [] }))
             req.flush(dummy);
         });
     });
@@ -122,52 +122,52 @@ describe('ApiService: DataService', () => {
         });
     });
 
-    describe('Update timezone', () => {
+    describe('Update meal', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
-            service.updateTimeZone('s', 'e', { name: 'a', city: 'q', gmtTimeDifference: 9 }).subscribe()
+            service.updateMealZone('s', 'e', { name: 'a', city: 'q', gmtMealDifference: 9 }).subscribe()
             const req = httpMock.expectOne(req => req.method === 'PUT');
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/timezones/e')
-            expect(req.request.body).toEqual(Object({ name: 'a', city: 'q', gmtTimeDifference: 9 }))
+            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals/e')
+            expect(req.request.body).toEqual(Object({ name: 'a', city: 'q', gmtMealDifference: 9 }))
             req.flush(dummy);
         });
     });
 
-    describe('Add timezone', () => {
+    describe('Add meal', () => {
         let dummy;
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.addTimeZone('s', { name: 'a', city: 'q', gmtTimeDifference: 9 }).subscribe()
+            service.addMealZone('s', { name: 'a', city: 'q', gmtMealDifference: 9 }).subscribe()
             req = httpMock.expectOne(req => req.method === 'POST');
         })
         afterEach(() => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/timezones')
+            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ name: 'a', city: 'q', gmtTimeDifference: 9 }))
+            expect(req.request.body).toEqual(Object({ name: 'a', city: 'q', gmtMealDifference: 9 }))
         });
     });
 
-    describe('Delete timezone', () => {
+    describe('Delete meal', () => {
         let dummy;
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.addTimeZone('s', { name: 'a', city: 'q', gmtTimeDifference: 9 }).subscribe()
+            service.addMealZone('s', { name: 'a', city: 'q', gmtMealDifference: 9 }).subscribe()
             req = httpMock.expectOne(req => req.method === 'POST');
         })
         afterEach(() => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/timezones')
+            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ name: 'a', city: 'q', gmtTimeDifference: 9 }))
+            expect(req.request.body).toEqual(Object({ name: 'a', city: 'q', gmtMealDifference: 9 }))
         });
     });
 

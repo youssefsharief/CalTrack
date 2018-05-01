@@ -1,0 +1,2 @@
+<h3 *ngIf="meal">Update {{meal.name}} Meal</h3>
+<app-meal-form [meal]="meal" (submitted)="onSubmitted($event)"></app-meal-form>

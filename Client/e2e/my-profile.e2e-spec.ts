@@ -2,7 +2,7 @@ import { browser, $$, $, } from 'protractor';
 import { LoginPage } from './login.po';
 import { Layout } from './layout.po';
 import { InfoFormPage } from './info-form.po';
-import { TimingsPage } from './timings.po';
+import { MealsPage } from './meals.po';
 
 describe('My Profile', () => {
 
@@ -20,10 +20,10 @@ describe('My Profile', () => {
             InfoFormPage.clearFormName()
             const randomName: string = Math.random().toString(36).substring(7)
             InfoFormPage.submitForm(randomName)
-            Layout.myTimingsTab().click()
+            Layout.myMealsTab().click()
             Layout.myProfileTab().click()
             expect(InfoFormPage.nameValue()).toBe(randomName)
-            Layout.myTimingsTab().click()
+            Layout.myMealsTab().click()
         })
 
     })

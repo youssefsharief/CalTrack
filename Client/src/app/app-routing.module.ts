@@ -22,18 +22,18 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { AdminClaimsService } from './core/services/admin-claims.service';
 import { UsersComponent } from './routes/users-list/users.component';
-import { OtherUserTimeComponent } from './routes/other-user-time/other-user-time.component';
+import { OtherUserMealComponent } from './routes/other-user-meal/other-user-meal.component';
 import { EditRoleComponent } from './routes/edit-role/edit-role.component';
-import { AddOtherUserTimeComponent } from './routes/add-other-user-time/add-other-user-time.component';
+import { AddOtherUserMealComponent } from './routes/add-other-user-meal/add-other-user-meal.component';
 import { EditUserComponent } from './shared/components/users/edit-user/edit-user.component';
 import { EditOtherUserInfoComponent } from './routes/edit-other-user-info/edit-other-user-info.component';
 import { EmptyComponent } from './routes/empty/empty.component';
 import { LoginLayoutComponent } from './shared/components/layout/login-layout/login-layout.component';
-import { EditOtherUserTimeComponent } from './routes/edit-other-user-time/edit-other-user-time.component';
+import { EditOtherUserMealComponent } from './routes/edit-other-user-meal/edit-other-user-meal.component';
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
-import { MyTimeComponent } from 'app/routes/personal/my-time/my-time.component';
-import { AddMyTimeComponent } from 'app/routes/personal/add-my-time/add-my-time.component';
-import { EditMyTimeComponent } from 'app/routes/personal/edit-my-time/edit-my-time.component';
+import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
+import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
 import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.component';
 
@@ -65,16 +65,16 @@ export const routes: Routes = [
             { path: 'empty', component: EmptyComponent, },
             { path: 'my-profile', component: EditMyInfoComponent, },
             { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent },
-            { path: 'my-time', component: MyTimeComponent, },
-            { path: 'my-time/add', component: AddMyTimeComponent, },
-            { path: 'my-time/edit', component: EditMyTimeComponent },
+            { path: 'my-meal', component: MyMealComponent, },
+            { path: 'my-meal/add', component: AddMyMealComponent, },
+            { path: 'my-meal/edit', component: EditMyMealComponent },
             { path: 'users', component: UsersComponent, },
             { path: 'users/:id', component: EditOtherUserInfoComponent },
             { path: 'users/:id/password', component: ChangeOtherUserPasswordComponent },
             { path: 'users/:id/role', component: EditRoleComponent, canActivate: [AdminClaimsService] },
-            { path: 'users/:id/time', component: OtherUserTimeComponent, canActivate: [AdminClaimsService], },
-            { path: 'users/:id/time/add', component: AddOtherUserTimeComponent },
-            { path: 'users/:id/time/edit', component: EditOtherUserTimeComponent },
+            { path: 'users/:id/meal', component: OtherUserMealComponent, canActivate: [AdminClaimsService], },
+            { path: 'users/:id/meal/add', component: AddOtherUserMealComponent },
+            { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent },
             { path: '', redirectTo: 'empty', pathMatch: 'full' },
             { path: '**', redirectTo: 'empty' }
         ]

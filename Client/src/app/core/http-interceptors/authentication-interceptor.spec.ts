@@ -16,7 +16,7 @@ describe('Auth interceptor', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, DataService, AuthService, SnackBarService, RouterTestingModule,]
+            providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, DataService, AuthService, SnackBarService, RouterTestingModule, ]
         });
         const injector = getTestBed();
         httpMock = injector.get(HttpTestingController);

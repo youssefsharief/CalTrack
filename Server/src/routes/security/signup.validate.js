@@ -6,7 +6,7 @@ module.exports =  (req, res, next) => {
         name: Joi.string().min(3).max(20).required().label('name'),
         password: Joi.string().regex(passwordRegex).required().label('password'),
         email: Joi.string().email().required().label('email'),
-        timeZones: Joi.array().empty().label('timezones')
+        meals: Joi.array().empty().label('meals')
     })
     return Joi.validate(req.body, schema , (err) => next(err))
 }

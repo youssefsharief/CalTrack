@@ -1,35 +1,35 @@
 import { browser, $$, $, } from 'protractor';
-import { TimeFormPage } from './time-form.po'
+import { MealFormPage } from './meal-form.po'
 import { LoginPage } from './login.po';
 import { Layout } from './layout.po';
-import { TimingsPage } from './timings.po';
+import { MealsPage } from './meals.po';
 import { CommonPage } from './common.po';
 
-describe('Time', () => {
+describe('Meal', () => {
     beforeAll(() => {
         browser.get('/login');
         LoginPage.login()
     });
 
-    describe('Timing', () => {
+    describe('Meal', () => {
         beforeEach(() => {
-            Layout.myTimingsTab().click()
+            Layout.myMealsTab().click()
         })
         it('should add', () => {
             CommonPage.plusIcon().click()
-            TimeFormPage.submitForm('NN', 'CN', 5)
+            MealFormPage.submitForm('NN', 'CN', 5)
             browser.sleep(500)
             const t = CommonPage.lastRowCloumns().first().getText()
             expect(t).toBe('NN')
         })
 
         it('should update', () => {
-            TimingsPage.goToEditLastElement()
+            MealsPage.goToEditLastElement()
             const randomName: string = Math.random().toString(36).substring(7)
-            TimeFormPage.clearForm()
-            TimeFormPage.submitForm(randomName, 'CF', 3)
+            MealFormPage.clearForm()
+            MealFormPage.submitForm(randomName, 'CF', 3)
             browser.sleep(50)
-            Layout.myTimingsTab().click()
+            Layout.myMealsTab().click()
             browser.sleep(500)
             const afterEditText = CommonPage.lastRowCloumns().first().getText()
             expect(afterEditText).toBe(randomName)
@@ -37,7 +37,7 @@ describe('Time', () => {
 
         it('should delete', () => {
             const beforeDeleteText = CommonPage.lastRowCloumns().first().getText()
-            TimingsPage.deleteLastElement()
+            MealsPage.deleteLastElement()
             browser.sleep(200)
             const afterDeleteText = CommonPage.lastRowCloumns().first().getText()
             expect(beforeDeleteText).not.toBe(afterDeleteText)

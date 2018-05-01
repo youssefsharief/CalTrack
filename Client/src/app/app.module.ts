@@ -10,22 +10,22 @@ import {
 import { EmptyComponent } from './routes/empty/empty.component';
 import { SharedModule } from './shared/shared.module';
 import { SignupComponent } from './routes/signup/signup.component';
-import { OtherUserTimeComponent } from './routes/other-user-time/other-user-time.component';
+import { OtherUserMealComponent } from './routes/other-user-meal/other-user-meal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { EditOtherUserInfoComponent } from './routes/edit-other-user-info/edit-other-user-info.component';
-import { AddOtherUserTimeComponent } from './routes/add-other-user-time/add-other-user-time.component';
-import { EditOtherUserTimeComponent } from './routes/edit-other-user-time/edit-other-user-time.component';
+import { AddOtherUserMealComponent } from './routes/add-other-user-meal/add-other-user-meal.component';
+import { EditOtherUserMealComponent } from './routes/edit-other-user-meal/edit-other-user-meal.component';
 import { EditRoleComponent } from './routes/edit-role/edit-role.component';
 import { UsersComponent } from './routes/users-list/users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { AddMyTimeComponent } from 'app/routes/personal/add-my-time/add-my-time.component';
-import { EditMyTimeComponent } from 'app/routes/personal/edit-my-time/edit-my-time.component';
+import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
+import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
-import { MyTimeComponent } from 'app/routes/personal/my-time/my-time.component';
+import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
 import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.component';
 import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
@@ -39,18 +39,18 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    AddMyTimeComponent,
-    AddOtherUserTimeComponent,
+    AddMyMealComponent,
+    AddOtherUserMealComponent,
     EditMyInfoComponent,
-    EditMyTimeComponent,
+    EditMyMealComponent,
     EditOtherUserInfoComponent,
-    EditMyTimeComponent,
+    EditMyMealComponent,
     EditOtherUserInfoComponent,
-    EditOtherUserTimeComponent,
+    EditOtherUserMealComponent,
     EditRoleComponent,
     LoginComponent,
-    MyTimeComponent,
-    OtherUserTimeComponent,
+    MyMealComponent,
+    OtherUserMealComponent,
     SignupComponent,
     UsersComponent,
     EmptyComponent,

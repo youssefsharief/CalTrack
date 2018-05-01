@@ -10,26 +10,26 @@ describe("Users endpoint", function () {
     afterAll(() => {
         server.close()
     })
-    describe("delete timezone", function () {
+    describe("delete meal", function () {
 
         const newUser = {
             name: faker.name.firstName(),
             email: faker.internet.email(),
-            timeZones: [],
+            meals: [],
             password: '456565654ds'
         }
         const newUserCredentials = {
             email: newUser.email,
             password: newUser.password
         }
-        const newTimeZone = {
-            name: 'timeZone1',
+        const newMeal = {
+            name: 'meal1',
             city: 'Cairo',
             gmtTimeDifference: 6
         }
         let id
         let userToken
-        let timeZoneId
+        let mealId
         beforeAll((done) => {
             request.post('/users').send(newUser).end((err, res) => {
                 id = res.body._id
@@ -40,28 +40,28 @@ describe("Users endpoint", function () {
             beforeAll((done) => {
                 request.post('/users/login').send(newUserCredentials).end((err, res) => {
                     userToken = res.body.token
-                    request.post(`/users/${id}/timezones`)
+                    request.post(`/users/${id}/meals`)
                         .set({ 'Authorization': `Bearer ${userToken}` })
-                        .send(newTimeZone)
+                        .send(newMeal)
                         .end((err, res) => {
-                            timeZoneId = res.body.timeZones[0]._id
+                            mealId = res.body.meals[0]._id
                             done();
                         })
                 })
             })
 
             it("should delete successfully ", function (done) {
-                request.delete(`/users/${id}/timezones/${timeZoneId}`)
+                request.delete(`/users/${id}/meals/${mealId}`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(200)
-                        expect(res.body.timeZones.length).toEqual(0)
+                        expect(res.body.meals.length).toEqual(0)
                         done();
                     })
             })
 
             it("should respond by 404 error when id is not provided ", function (done) {
-                request.delete(`/users/${id}/timezones/`)
+                request.delete(`/users/${id}/meals/`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(404)
@@ -70,7 +70,7 @@ describe("Users endpoint", function () {
             })
 
             it("should respond by 400 error when wrong id is provided ", function (done) {
-                request.delete(`/users/${id}/timezones/1`)
+                request.delete(`/users/${id}/meals/1`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(422)

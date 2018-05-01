@@ -13,11 +13,11 @@ describe("Users endpoint", function () {
     const payload = {
         name: faker.name.firstName(),
         email: faker.internet.email(),
-        timeZones: [],
+        meals: [],
         password: '1234567a'
     }
     let id
-    let timeZoneId
+    let mealId
     beforeAll((done) => {
         addNewUser(payload, 'regular').then(x => {
             expect(x.name).toBe(payload.name)
@@ -29,24 +29,24 @@ describe("Users endpoint", function () {
                 gmtTimeDifference: 8
             }
             addRecord(id, newRecord).then(x => {
-                expect(x.timeZones.length).toBe(1)
-                expect(x.timeZones[0].city).toBe(newRecord.city)
-                expect(x.timeZones[0].name).toBe(newRecord.name)
-                expect(x.timeZones[0].gmtTimeDifference).toBe(newRecord.gmtTimeDifference)
-                timeZoneId = x._id
+                expect(x.meals.length).toBe(1)
+                expect(x.meals[0].city).toBe(newRecord.city)
+                expect(x.meals[0].name).toBe(newRecord.name)
+                expect(x.meals[0].gmtTimeDifference).toBe(newRecord.gmtTimeDifference)
+                mealId = x._id
                 done()
             })
         })
     })
 
     it("should delete record ", async function (done) {      
-        await deleteRecord(id, timeZoneId)
+        await deleteRecord(id, mealId)
         done()
 
             
-        // expect(updated.timeZones[0].gmtTimeDifference).toBe(5)
-        // expect(updated.timeZones[0].name).toBe(updatedRecord.name)
-        // expect(updated.timeZones[0].city).toBe(updatedRecord.city)
+        // expect(updated.meals[0].gmtTimeDifference).toBe(5)
+        // expect(updated.meals[0].name).toBe(updatedRecord.name)
+        // expect(updated.meals[0].city).toBe(updatedRecord.city)
         
     })
 

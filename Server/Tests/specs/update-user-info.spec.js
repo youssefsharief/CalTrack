@@ -15,7 +15,7 @@ describe("Users endpoint", function () {
         const newUser = {
             name: faker.name.firstName(),
             email: faker.internet.email(),
-            timeZones: [],
+            meals: [],
             password: '456565654ds'
         }
         const loginPayload = {

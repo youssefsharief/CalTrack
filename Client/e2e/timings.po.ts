@@ -1,6 +1,6 @@
 import { $, $$ } from 'protractor';
 
-export class TimingsPage {
+export class MealsPage {
 
 
     static deleteLastElement() {

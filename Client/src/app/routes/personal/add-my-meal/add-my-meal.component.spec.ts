@@ -10,13 +10,13 @@ import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { AddMyTimeComponent } from 'app/routes/personal/add-my-time/add-my-time.component';
-import { MyTimeComponent } from 'app/routes/personal/my-time/my-time.component';
+import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
+import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
 
 
-describe('AddMyTime Component', () => {
-    let comp: AddMyTimeComponent;
-    let fixture: ComponentFixture<AddMyTimeComponent>;
+describe('AddMyMeal Component', () => {
+    let comp: AddMyMealComponent;
+    let fixture: ComponentFixture<AddMyMealComponent>;
     let location: Location
     let authService: AuthService
     let dataService;
@@ -24,17 +24,17 @@ describe('AddMyTime Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'my-time', component: MyTimeComponent }
+                    { path: 'my-meal', component: MyMealComponent }
                 ]),
             ],
-            declarations: [AddMyTimeComponent, MyTimeComponent],
+            declarations: [AddMyMealComponent, MyMealComponent],
             providers: [
                 { provide: AuthService, useValue: { getId() { return 'iiid' } } },
                 { provide: DataService, useValue: {} },
                 SnackBarService
             ],
         });
-        fixture = TestBed.createComponent(AddMyTimeComponent);
+        fixture = TestBed.createComponent(AddMyMealComponent);
         comp = fixture.componentInstance;
         authService = fixture.debugElement.injector.get(AuthService);
         location = fixture.debugElement.injector.get(Location);
@@ -56,40 +56,40 @@ describe('AddMyTime Component', () => {
             const cityElement = city.nativeElement
             cityElement.value = 'cccc'
             cityElement.dispatchEvent(new Event('input'));
-            const gmtTimeDifference = fixture.debugElement.query(By.css('input[name="gmtTimeDifference"]'));
-            const gmtTimeDifferenceElement = gmtTimeDifference.nativeElement
-            gmtTimeDifferenceElement.value = '3'
-            gmtTimeDifferenceElement.dispatchEvent(new Event('input'));
+            const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
+            const gmtMealDifferenceElement = gmtMealDifference.nativeElement
+            gmtMealDifferenceElement.value = '3'
+            gmtMealDifferenceElement.dispatchEvent(new Event('input'));
             fixture.detectChanges()
         })
 
-        describe('Add my time endpoint', () => {
+        describe('Add my meal endpoint', () => {
             describe('Success Scenario', () => {
                 beforeEach(() => {
-                    dataService.addTimeZone = (id, payload) => Observable.of('ok')
+                    dataService.addMealZone = (id, payload) => Observable.of('ok')
                 })
                 describe('api call', () => {
                     let spy;
                     beforeEach(() => {
-                        spy = spyOn(dataService, 'addTimeZone').and.callThrough()
+                        spy = spyOn(dataService, 'addMealZone').and.callThrough()
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     })
                     it('should successfully post', () => {
                         expect(spy).toHaveBeenCalled();
                     })
                     it('should call with right arguments', () => {
-                        expect(spy).toHaveBeenCalledWith('iiid', Object({ name: 'nnnn', city: 'cccc', gmtTimeDifference: 3 }));
+                        expect(spy).toHaveBeenCalledWith('iiid', Object({ name: 'nnnn', city: 'cccc', gmtMealDifference: 3 }));
                     })
                 })
-                xit('should navigate to "my-time" route', fakeAsync(() => {
+                xit('should navigate to "my-meal" route', fakeAsync(() => {
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     tick(100)
-                    expect(location.path()).toBe('/my-time')
+                    expect(location.path()).toBe('/my-meal')
                 }))
             })
             describe('Error Scenario', () => {
                 beforeEach(() => {
-                    dataService.addTimeZone = (id, payload) => Observable.throw('Error')
+                    dataService.addMealZone = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 })
                 it('should handle error', () => {
