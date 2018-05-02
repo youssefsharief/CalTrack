@@ -1,6 +1,6 @@
 const addNewUser = require('../../../../src/data-layer/add-new-user.db')
 const addBulkRecords = require('../../../../src/data-layer/add-bulk-records.db')
-const getRecordsQuery = require('../../../../src/data-layer/get-records.db')
+const getRecords = require('../../../../src/data-layer/get-records.db')
 const { connectToDb } = require('../../../helpers/requestsSpecHelper')
 
 const faker = require('faker')
@@ -42,10 +42,11 @@ fdescribe("Users endpoint", function () {
         })
 
         it('should use skip and limit correctly', (done)=>{
-            const getMealsQuery = new getRecordsQuery(id, 10, 0)
-            getMealsQuery.getMeals().then(x=>{
+            getRecords(id, 10, 0, '2017-05-01', '2019-05-01', '06:30', '10:00').then(x=>{
                 console.log(x)
-                expect(x.length).toBe(10)
+                // expect(x.meals.length).toBe(10)
+                // console.log(x.pageInfo)
+                // // expect(x.meals.length).toBe(10)
                 done()
             })
         })
