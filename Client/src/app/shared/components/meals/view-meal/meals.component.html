@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12 col-12 col-md-2 form-group">
+    <div class="col-xs-12 col-12 col-md-4 form-group">
             <label>Date Range</label>
         <input type="text" placeholder="Date picker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue">
     </div>
@@ -41,8 +41,8 @@
             <tbody>
                 <tr *ngFor="let item of meals">
                     <td>{{item.name}}</td>
-                    <td>{{item.date | date:'mediumDate'}}</td>
-                    <td>{{item.date | date:'shortTime'}}</td>
+                    <td>{{item.date.replace('Z', '') | date:'mediumDate'}}</td>
+                    <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
                     <td>{{item.numOfCalories}}</td>
                     <td class="text-center">
                         <a class="link" (click)="onEditMealClick(item)">

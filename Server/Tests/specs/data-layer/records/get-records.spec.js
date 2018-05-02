@@ -43,7 +43,6 @@ fdescribe("Users endpoint", function () {
 
         it('should use skip and limit correctly', (done)=>{
             getRecords(id, 10, 0, '2017-05-01', '2019-05-01', '06:30', '10:00').then(x=>{
-                console.log(x)
                 // expect(x.meals.length).toBe(10)
                 // console.log(x.pageInfo)
                 // // expect(x.meals.length).toBe(10)
