@@ -85,12 +85,12 @@ describe('EditMyMeal Component', () => {
             describe('Add my meal endpoint', () => {
                 describe('Success Scenario', () => {
                     beforeEach(() => {
-                        dataService.updateMealZone = (id, payload) => Observable.of('ok')
+                        dataService.updateMeal = (id, payload) => Observable.of('ok')
                     })
                     describe('api call', () => {
                         let spy;
                         beforeEach(() => {
-                            spy = spyOn(dataService, 'updateMealZone').and.callThrough()
+                            spy = spyOn(dataService, 'updateMeal').and.callThrough()
                             fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                         })
                         it('should successfully post', () => {
@@ -108,7 +108,7 @@ describe('EditMyMeal Component', () => {
                 })
                 describe('Error Scenario', () => {
                     beforeEach(() => {
-                        dataService.updateMealZone = (id, payload) => Observable.throw('Error')
+                        dataService.updateMeal = (id, payload) => Observable.throw('Error')
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     })
                     it('should handle error', () => {

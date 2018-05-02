@@ -35,7 +35,7 @@ describe('Meals Component', () => {
         meals: fakemeals
     }
     const dataServiceStub = {
-        deleteMealZone(data) {
+        deleteMeal(data) {
             return Observable.of('Ok')
         },
         getmeals() {

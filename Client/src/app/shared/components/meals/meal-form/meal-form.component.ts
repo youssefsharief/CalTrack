@@ -6,7 +6,7 @@ import { Meal } from '../../../models/meal.model';
     selector: 'app-meal-form',
     templateUrl: 'meal-form.component.html',
 })
-export class MealZoneFormComponent implements OnInit {
+export class MealFormComponent implements OnInit {
     form: FormGroup
     @Input() meal?: Meal
     @Output() submitted = new EventEmitter();

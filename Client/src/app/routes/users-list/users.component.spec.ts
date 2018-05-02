@@ -233,7 +233,7 @@ describe('Users Component', () => {
             })
             xit('getUsers api method should have been called with the right arguments', (done) => {
                 const spy = spyOn(dataService, 'getUsers').and.callThrough()
-                setMealout(() => {
+                setTimeout(() => {
                     expect(spy).toHaveBeenCalledWith(Object({ roleFilter: undefined, searchTerm: 'ss', skip: 0 }))
                     done()
                 }, 500)

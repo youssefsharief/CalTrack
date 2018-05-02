@@ -15,7 +15,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgProgressModule } from 'ngx-progressbar';
-import { MealZoneFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
+import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
 
 @NgModule({
@@ -43,7 +43,7 @@ import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
     ReactiveFormsModule,
     RouterModule,
     MealsComponent,
-    MealZoneFormComponent,
+    MealFormComponent,
     EditUserComponent,
     BrowserAnimationsModule,
     NgProgressModule,
@@ -55,7 +55,7 @@ import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
     NavComponent,
     FooterComponent,
     MealsComponent,
-    MealZoneFormComponent,
+    MealFormComponent,
     EditUserComponent,
     LoginLayoutComponent,
     AuthenticatedNavbarComponent,

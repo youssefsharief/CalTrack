@@ -86,14 +86,14 @@ describe('OtherUserMeal Component', () => {
         describe('success', () => {
             it('list item should be removed', () => {
                 expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
-                dataService.deleteMealZone = () => Observable.of('ok')
+                dataService.deleteMeal = () => Observable.of('ok')
                 fixture.nativeElement.querySelector('.fa-trash').click()
                 fixture.detectChanges()
                 expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeFalsy()
             });
             it('api service should have been called with correct params', () => {
-                dataService.deleteMealZone = () => Observable.of('ok')
-                const spy = spyOn(dataService, 'deleteMealZone').and.callThrough()
+                dataService.deleteMeal = () => Observable.of('ok')
+                const spy = spyOn(dataService, 'deleteMeal').and.callThrough()
                 fixture.nativeElement.querySelector('.fa-trash').click()
                 fixture.detectChanges()
                 expect(spy).toHaveBeenCalledWith('uID', 'r')
@@ -103,7 +103,7 @@ describe('OtherUserMeal Component', () => {
         describe('error', () => {
             it('list item should not be removed', () => {
                 expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
-                dataService.deleteMealZone = () => Observable.throw('Error')
+                dataService.deleteMeal = () => Observable.throw('Error')
                 fixture.nativeElement.querySelector('.fa-trash').click()
                 fixture.detectChanges()
                 expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()

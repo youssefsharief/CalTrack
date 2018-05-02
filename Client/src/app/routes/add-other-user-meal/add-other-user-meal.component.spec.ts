@@ -11,17 +11,16 @@ import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
 import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { AddOtherUserMealComponent } from 'app/routes/add-other-user-meal/add-other-user-meal.component';
 import { UsersComponent } from 'app/routes/users-list/users.component';
 import { SelectedUserService } from 'app/core/services/selectedUser.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { OtherUserMealComponent } from 'app/routes/other-user-meal/other-user-meal.component';
 import { User } from 'app/shared/models/user.model';
-import { SelectedMealService } from 'app/core/services/selected-meal.service';
-import { EditOtherUserMealComponent } from 'app/routes/edit-other-user-meal/edit-other-user-meal.component';
 
-describe('EditOtherUserMeal Component', () => {
-    let comp: EditOtherUserMealComponent;
-    let fixture: ComponentFixture<EditOtherUserMealComponent>;
+describe('AddOtherUserMeal Component', () => {
+    let comp: AddOtherUserMealComponent;
+    let fixture: ComponentFixture<AddOtherUserMealComponent>;
     let location: Location
     let dataService: DataService
     let selectedUserService: SelectedUserService
@@ -33,15 +32,14 @@ describe('EditOtherUserMeal Component', () => {
                     { path: 'users', component: UsersComponent }
                 ]),
             ],
-            declarations: [EditOtherUserMealComponent, UsersComponent, OtherUserMealComponent],
+            declarations: [AddOtherUserMealComponent, UsersComponent, OtherUserMealComponent],
             providers: [
                 { provide: SelectedUserService, useValue: {} },
                 { provide: DataService, useValue: {} },
-                { provide: SelectedMealService, useValue: { getSelectedMeal() { return {_id: 'ww'} } } },
                 SnackBarService,
             ],
         });
-        fixture = TestBed.createComponent(EditOtherUserMealComponent);
+        fixture = TestBed.createComponent(AddOtherUserMealComponent);
         comp = fixture.componentInstance;
         location = fixture.debugElement.injector.get(Location);
         dataService = fixture.debugElement.injector.get(DataService)
@@ -87,12 +85,13 @@ describe('EditOtherUserMeal Component', () => {
             })
             describe('Success Scenario', () => {
                 beforeEach(() => {
-                    dataService.updateMealZone = (id, payload) => Observable.of('ok')
+                    const user = <User>{}
+                    dataService.addMeal = (id, payload) => Observable.of(user)
                 })
                 describe('api call', () => {
                     let spy
                     beforeEach(() => {
-                        spy = spyOn(dataService, 'updateMealZone').and.callThrough()
+                        spy = spyOn(dataService, 'addMeal').and.callThrough()
                     })
                     it('should successfully post', () => {
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
@@ -100,7 +99,7 @@ describe('EditOtherUserMeal Component', () => {
                     })
                     it('should call with right arguments', () => {
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                        expect(spy).toHaveBeenCalledWith('rr', 'ww' , Object({ name: 'nnnn', city: 'cccc', gmtMealDifference: 3 }));
+                        expect(spy).toHaveBeenCalledWith('rr', Object({ name: 'nnnn', city: 'cccc', gmtMealDifference: 3 }));
                     })
                 })
 
@@ -113,7 +112,7 @@ describe('EditOtherUserMeal Component', () => {
             })
             describe('Error Scenario', () => {
                 beforeEach(() => {
-                    dataService.updateMealZone = (id, payload) => Observable.throw('Error')
+                    dataService.addMeal = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 })
                 it('should handle error', () => {

@@ -29,7 +29,7 @@ export class OtherUserMealComponent implements OnInit {
     }
 
     onDeleteClicked(item) {
-        this.dataService.deleteMealZone(this.user._id, item._id).subscribe(
+        this.dataService.deleteMeal(this.user._id, item._id).subscribe(
             data => this.user.meals = this.user.meals.filter(t => t._id !== item._id),
             error => this.sb.emitErrorSnackBar(error)
         )

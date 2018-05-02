@@ -37,7 +37,7 @@ export class MealsComponent {
         const hours = t.setHours(t.getUTCHours() + gmtMealDifference)
         const minutes = t.setMinutes(t.getUTCMinutes())
         t.setSeconds(0)
-        return t.toLocaleMealString().slice(0, -3)
+        return t.toLocaleTimeString().slice(0, -3)
     }
 
 }

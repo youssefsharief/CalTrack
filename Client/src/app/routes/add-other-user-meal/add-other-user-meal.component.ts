@@ -27,7 +27,7 @@ export class AddOtherUserMealComponent implements OnInit {
 
 
     onSubmitted(x: Meal) {
-        this.dataService.addMealZone(this.user._id, x).subscribe(
+        this.dataService.addMeal(this.user._id, x).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/users/', this.user._id, 'meal' ])

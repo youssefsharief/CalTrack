@@ -18,7 +18,7 @@ export class AddMyMealComponent {
     ) {  }
 
     onSubmitted(x: Meal) {
-        this.dataService.addMealZone(this.authService.getId(), x).subscribe(
+        this.dataService.addMeal(this.authService.getId(), x).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/my-meal'])

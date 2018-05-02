@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.fetchUsers({ page: 1 })
         this.searchSubscription =
-            this.keyUp$.debounceMeal(400).distinctUntilChanged().subscribe(() => {
+            this.keyUp$.debounceTime(400).distinctUntilChanged().subscribe(() => {
                 this.fetchConsideringPaging()
             })
     }

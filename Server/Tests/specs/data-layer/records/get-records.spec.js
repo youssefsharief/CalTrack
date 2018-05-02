@@ -1,11 +1,12 @@
 const addNewUser = require('../../../../src/data-layer/add-new-user.db')
-const addRecord = require('../../../../src/data-layer/add-record.db')
+const addBulkRecords = require('../../../../src/data-layer/add-bulk-records.db')
+const getRecordsQuery = require('../../../../src/data-layer/get-records.db')
 const { connectToDb } = require('../../../helpers/requestsSpecHelper')
 
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+fdescribe("Users endpoint", function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -15,7 +16,7 @@ describe("Users endpoint", function () {
         meals: [],
         password: '1234567a'
     }
-    let id 
+    let id
     beforeAll((done) => {
         addNewUser(payload, 'regular').then(x => {
             expect(x.name).toBe(payload.name)
@@ -25,20 +26,32 @@ describe("Users endpoint", function () {
         })
     })
 
-    it("should add new record ", function (done) {
-        const newMeal = {
-            name: 'meal1',
-            numOfCalories: 600,
-            date: Date.now()
-        }
-
-        addRecord(id, newMeal).then(x=>{
-            expect(x.meals.length).toBe(1)
-            expect(x.meals[0].name).toBe(newMeal.name)
-            expect(x.meals[0].date).toBeTruthy()
-            expect(x.meals[0].numOfCalories).toBe(newMeal.numOfCalories)
-            done()
+    describe("Adding records ", function () {
+        beforeEach((done) => {
+            const meals = []
+            for (let i = 0; i < 50; i++) {
+                meals.push({
+                    name: faker.name.firstName(),
+                    numOfCalories: Math.random() * 100,
+                    date: new Date(+(new Date()) - Math.floor(Math.random()*10000000000))
+                })
+            }
+            addBulkRecords(id, meals).then(x => {
+                done()
+            })
         })
+
+        it('should use skip and limit correctly', (done)=>{
+            const getMealsQuery = new getRecordsQuery(id, 10, 0)
+            getMealsQuery.getMeals().then(x=>{
+                console.log(x)
+                expect(x.length).toBe(10)
+                done()
+            })
+        })
+
+
+        
     })
 
 

@@ -1,6 +1,6 @@
 
 Environemnt:
-The code has been tested on a Windows 10 x64 machine. No guarantees that the development environment would work in other operating systems; hopefully it doees
+The code has been tested on a Windows 10 x64 machine. No guarantees that the development environment would work in other operating systems; hopefully it does
 
 Currentyly we are using development environment. Note that in production environment, we should turn off console logs by changing
 NODE_ENV_ENVIRONMENT to be 'production'
@@ -16,3 +16,7 @@ git subtree push --prefix Server heroku master
 
 To get logs 
 heroku logs -t --app app-name
+
+Mongodb scripts
+db.users.ensureIndex({"meals.date" : 1})
+db.users.ensureIndex({"meals._id" : 1})

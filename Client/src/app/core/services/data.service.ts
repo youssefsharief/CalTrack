@@ -46,15 +46,15 @@ export class DataService {
         return this.http.get<User>(`users/${userId}`)
     }
 
-    updateMealZone(userId: string, mealId: string, data: Meal) {
+    updateMeal(userId: string, mealId: string, data: Meal) {
         return this.http.put(`users/${userId}/meals/${mealId}`, data)
     }
 
-    addMealZone(userId: string, data: Meal) {
+    addMeal(userId: string, data: Meal) {
         return this.http.post<User>(`users/${userId}/meals`, data)
     }
 
-    deleteMealZone(userId: string, mealId: string) {
+    deleteMeal(userId: string, mealId: string) {
         return this.http.delete(`users/${userId}/meals/${mealId}`)
     }
 
