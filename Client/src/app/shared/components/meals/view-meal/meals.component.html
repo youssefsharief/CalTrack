@@ -1,11 +1,24 @@
 <div class="row">
-    <div class="col-xs-12 col-12 col-md-4 form-group">
-        <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" (ngModelChange)="fetchConsideringPaging()">
+    <div class="col-xs-12 col-12 col-md-2 form-group">
+            <label>Date Range</label>
+        <input type="text" placeholder="Date picker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue">
     </div>
 </div>
+<div class="form-group row">
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+        <label>Start Time</label>
+        <timepicker name="time" [(ngModel)]="startTime"></timepicker>
+    </div>
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+        <label>End time</label>
+        <timepicker name="time" [(ngModel)]="endTime"></timepicker>
+    </div>
+</div>
+<div class="row">
+        <button class="btn btn-default pull-right"  (click)="resetFilters()">Reset Filters</button>
+        <button class="btn btn-default pull-right"  (click)="fetchConsideringPaging()">Search</button>
+</div>
 
-<timepicker name="time" [(ngModel)]="startTime" (ngModelChange)="fetchConsideringPaging()"></timepicker>
-<timepicker name="time" [(ngModel)]="endTime" (ngModelChange)="fetchConsideringPaging()"></timepicker>
 
 <div class="panel panel-primary">
     <div class="panel-heading">

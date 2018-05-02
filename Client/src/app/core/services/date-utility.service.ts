@@ -11,7 +11,7 @@ export class DateUtilityService {
     ) {  }
 
     combineDateAndTimeFromUIPickersToDateObject(date, time) {
-        return new Date(this.datePipe.transform(date, 'yyyy-MM-dd') + ' ' + this.datePipe.transform(time, 'HH:MM:ss'));
+        return new Date(this.datePipe.transform(date, 'yyyy-MM-dd') + ' ' + this.datePipe.transform(time, 'HH:mm'));
     }
 
     convertDateToMediumDate(date) {

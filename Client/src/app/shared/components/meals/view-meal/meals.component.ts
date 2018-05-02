@@ -43,7 +43,13 @@ export class MealsComponent implements OnInit {
         }
     }
 
-    public fetchMeals({ page }) {
+    resetFilters() {
+        this.bsRangeValue = null;
+        this.endTime = null;
+        this.startTime = null;
+    }
+
+    fetchMeals({ page }) {
         console.log(this.bsRangeValue)
         this.dataService.getMeals(this.userId, {
             startDate: this.bsRangeValue ? this.dateUtilityService.convertDateToMediumDate(this.bsRangeValue[0]) : null,
