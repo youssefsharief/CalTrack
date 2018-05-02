@@ -24,7 +24,7 @@ describe('InviteUser Component', () => {
         dataService = fixture.debugElement.injector.get(DataService)
     });
 
-    fdescribe('Form Validation', () => {
+    describe('Form Validation', () => {
         beforeEach(() => {
             fixture.detectChanges();
         })
@@ -51,7 +51,7 @@ describe('InviteUser Component', () => {
         })
 
 
-        fdescribe('valid form', () => {
+        describe('valid form', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
                 const emailInputElement = emailInput.nativeElement
@@ -71,7 +71,7 @@ describe('InviteUser Component', () => {
                 expect(y[0].properties.hidden).toBeTruthy();
             })
 
-            fdescribe('Submitting Form', () => {
+            describe('Submitting Form', () => {
                 describe('Success Scenario', () => {
                     beforeEach(() => {
                         dataService.inviteUser = (id, payload) => Observable.of('ok')
@@ -87,7 +87,7 @@ describe('InviteUser Component', () => {
                         })
                         it('should call with right arguments', () => {
                             fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                            expect(spy).toHaveBeenCalledWith('sdafg@dsds.com', 'http://localhost:9876');
+                            expect(spy).toHaveBeenCalledWith('sdafg@dsds.com', 'http://localhost:9876/login/signup');
                         })
                     })
                 })

@@ -31,4 +31,17 @@ function sendActivationCode(recepient, code) {
     }).catch(err => { throw err })
 }
 
-module.exports  = { sendEmailWithCode, sendActivationCode }
+
+function sendInvitation(recepient, url) {
+    return transporter.sendMail({
+        from: senderEmail,
+        to: recepient,
+        subject: 'Invitation to Calorie Metrics App',
+        text: `Signup for this app that allows you to keep track of your daily caloric intake and provide you with usefule analytics. ${url}`,
+        html: `<p>Signup for this app that allows you to keep track of your daily caloric intake and provide you with usefule analytics. ${url}</p>`
+    }).then(info => {
+        console.log('Preview URL: ' + nodemailer.getTestMessageUrl(info))
+    }).catch(err => { throw err })
+}
+
+module.exports  = { sendEmailWithCode, sendActivationCode, sendInvitation }

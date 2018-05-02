@@ -16,6 +16,8 @@ const validateUpdateInfo = require('./user/update-user-info.validate')
 const updateUserRole = require('./user/update-role.route')
 const getUsers = require('./user/get-users.route')
 
+const inviteUser = require('./user/invite-user.route')
+const validateInviteUser = require('./user/invite-user.validate')
 
 const signup = require('./security/signup.route')
 const login = require('./security/login.route')
@@ -69,6 +71,7 @@ router.put('/users/:id/meals/:mealId', verifyUser, validateUpdateRecord, Authori
 
 router.patch('/users/:id/role', verifyUser, validateUpdateRole, Authorize.allowAdminOnly, updateUserRole)
 
+router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdminOnly, inviteUser)
 
 
 

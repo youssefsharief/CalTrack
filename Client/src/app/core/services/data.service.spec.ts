@@ -46,9 +46,9 @@ describe('ApiService: DataService', () => {
     describe('signup', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
-            service.signup({ name: 's', email: 'a', password: 'a' }).subscribe()
+            service.signup({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
             const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users' });
-            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', meals: [] }))
+            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }))
             req.flush(dummy);
         });
     });
@@ -57,9 +57,9 @@ describe('ApiService: DataService', () => {
     describe('signup securely', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
-            service.signupSecurely({ name: 's', email: 'a', password: 'a' }).subscribe()
+            service.signupSecurely({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
             const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users/secure' });
-            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', meals: [] }))
+            expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }))
             req.flush(dummy);
         });
     });

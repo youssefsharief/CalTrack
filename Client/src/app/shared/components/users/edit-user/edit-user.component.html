@@ -8,5 +8,15 @@
         <input type="email" name="email" class="form-control" formControlName="email">
     </app-email-input-layout>
 
+    <div class="form-group">
+        <label for="">Maximum Calories Per Day </label>
+        <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter calories" formControlName="maxCalories">
+    </div>
+
+    <div class="form-group">
+        <label for="">Display Calories Tracking </label>
+        <input name="isTrackingDisplayed" type="checkbox" class="form-control" formControlName="isTrackingDisplayed">
+    </div>
+
     <app-submit-button [isDisabled]="!form.valid"></app-submit-button>
 </form>
