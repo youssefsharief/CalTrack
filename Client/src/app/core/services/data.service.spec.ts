@@ -11,7 +11,7 @@ import { UnAuthorizedRequestsInterceptor } from 'app/core/http-interceptors/unau
 import { AuthInterceptor } from 'app/core/http-interceptors/authentication-interceptor';
 import { TestRequest } from '@angular/common/http/testing/src/request';
 
-describe('ApiService: DataService', () => {
+fdescribe('ApiService: DataService', () => {
     let httpMock: HttpTestingController;
     let service: DataService;
 
@@ -43,7 +43,7 @@ describe('ApiService: DataService', () => {
     });
 
 
-    describe('signup', () => {
+    xdescribe('signup', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.signup({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
@@ -54,7 +54,7 @@ describe('ApiService: DataService', () => {
     });
 
 
-    describe('signup securely', () => {
+    xdescribe('signup securely', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.signupSecurely({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
@@ -111,6 +111,17 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users?skip=10&searchFilter=aa&roleFilter=')
             req.flush(dummy);
         });
+    });
+
+    fdescribe('get meals', () => {
+        it('should have appropriate url ', () => {
+            const dummy = 'ok';
+            service.getMeals('1', { skip: 10, startDate: 'aa', endDate: 'dsa' }).subscribe()
+            const req = httpMock.expectOne(req => req.method === 'GET');
+            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/1/meals?skip=10&startDate=aa&endDate=dsa')
+            req.flush(dummy);
+        });
+
     });
 
     describe('Get user details', () => {
@@ -177,7 +188,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.assignRole('s', { role: 'regular'}).subscribe()
+            service.assignRole('s', { role: 'regular' }).subscribe()
             req = httpMock.expectOne(req => req.method === 'PATCH');
         })
         afterEach(() => {
@@ -187,7 +198,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/role')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ role: 'regular'}))
+            expect(req.request.body).toEqual(Object({ role: 'regular' }))
         });
     });
 
@@ -197,7 +208,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.assignRole('s', { role: 'regular'}).subscribe()
+            service.assignRole('s', { role: 'regular' }).subscribe()
             req = httpMock.expectOne(req => req.method === 'PATCH');
         })
         afterEach(() => {
@@ -207,7 +218,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/role')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ role: 'regular'}))
+            expect(req.request.body).toEqual(Object({ role: 'regular' }))
         });
     });
 
@@ -227,7 +238,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/password_recovery_requests')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ email: 'saa@'}))
+            expect(req.request.body).toEqual(Object({ email: 'saa@' }))
         });
     });
 
@@ -236,7 +247,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.changePasswordUsingOldPassword({oldPassword: 'a', newPassword: 'w'}).subscribe()
+            service.changePasswordUsingOldPassword({ oldPassword: 'a', newPassword: 'w' }).subscribe()
             req = httpMock.expectOne(req => req.method === 'PUT');
         })
         afterEach(() => {
@@ -246,7 +257,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/password')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({oldPassword: 'a', newPassword: 'w'}))
+            expect(req.request.body).toEqual(Object({ oldPassword: 'a', newPassword: 'w' }))
         });
     });
 
@@ -256,7 +267,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.changeOtherUserPassword( 'a', 'w').subscribe()
+            service.changeOtherUserPassword('a', 'w').subscribe()
             req = httpMock.expectOne(req => req.method === 'PUT');
         })
         afterEach(() => {
@@ -266,7 +277,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/a/password')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({newPassword: 'w'}))
+            expect(req.request.body).toEqual(Object({ newPassword: 'w' }))
         });
     });
 
@@ -276,7 +287,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest;
         beforeEach(() => {
             dummy = 'ok';
-            service.changeMyPasswordUsingRecoveryCode( {recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e'}).subscribe()
+            service.changeMyPasswordUsingRecoveryCode({ recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e' }).subscribe()
             req = httpMock.expectOne(req => req.method === 'POST');
         })
         afterEach(() => {
@@ -286,7 +297,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/recovery_code')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e'}))
+            expect(req.request.body).toEqual(Object({ recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e' }))
         });
     });
 
@@ -295,7 +306,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.activateUserAdministratively( 'a').subscribe()
+            service.activateUserAdministratively('a').subscribe()
             req = httpMock.expectOne(req => req.method === 'PATCH');
         })
         afterEach(() => {
