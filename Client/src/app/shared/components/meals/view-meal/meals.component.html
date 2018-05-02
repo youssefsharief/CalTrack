@@ -9,9 +9,9 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>City</th>
-                    <th>Current Meal</th>
-                    <th>GMT Meal Difference</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Calories</th>
                     <th class="text-center">Update</th>
                     <th class="text-center">Delete</th>
                 </tr>
@@ -19,9 +19,9 @@
             <tbody>
                 <tr *ngFor="let item of meals">
                     <td>{{item.name}}</td>
-                    <td>{{item.city}}</td>
-                    <td>{{getMeal(item.gmtMealDifference)}}</td>
-                    <td>{{item.gmtMealDifference}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.time}}</td>
+                    <td>{{item.calories}}</td>
                     <td class="text-center">
                         <a class="link" (click)="onEditMealClick(item)">
                             <i class="fa fa-edit text-warning"> </i>

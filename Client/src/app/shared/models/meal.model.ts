@@ -1,6 +1,7 @@
 export interface Meal {
     name: string
-    city: string
-    gmtMealDifference: number
+    date: string
+    time?: string
+    calories: number
     _id?: string
 }

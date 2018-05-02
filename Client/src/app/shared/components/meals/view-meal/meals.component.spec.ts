@@ -10,23 +10,23 @@ import { AuthService } from 'app/core/services/auth.service';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SharedModule } from 'app/shared/shared.module';
 
-describe('Meals Component', () => {
+fdescribe('Meals Component', () => {
     let comp: MealsComponent;
     let fixture: ComponentFixture<MealsComponent>;
     let sb: SnackBarService
 
     const fakemeals = [
         {
-            name: 'CairoRegular', city: 'Cairo', gmtMealDifference: 2, id: '12'
+            name: 'CairoRegular', date: 'Cairo', calories: 2, id: '12'
         },
         {
-            name: 'CairoSummer', city: 'Cairo', gmtMealDifference: 3, id: '35'
+            name: 'CairoSummer', date: 'Cairo', calories: 3, id: '35'
         },
         {
-            name: 'AEST', city: 'Sydney', gmtMealDifference: 2, id: '89'
+            name: 'AEST', date: 'Sydney', calories: 2, id: '89'
         },
         {
-            name: 'AEDT', city: 'Sydney', gmtMealDifference: 2, id: '56'
+            name: 'AEDT', date: 'Sydney', calories: 2, id: '56'
         },
     ]
     const fakeUserDetails = {
@@ -75,16 +75,11 @@ describe('Meals Component', () => {
 
         dataService = fixture.debugElement.injector.get(DataService);
         sb = fixture.debugElement.injector.get(SnackBarService);
+        fixture.detectChanges();
     });
 
-
-
-
-    describe('get meal', () => {
-        it('should get meal appropriately undependant from local meal', () => {
-            expect(comp.getMeal(2)).toContain(':');
-        })
-
+    it('should build', () => {
+        expect(comp).toBeTruthy()
     })
 
 

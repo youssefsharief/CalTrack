@@ -25,20 +25,71 @@ describe('MealFormComponentt', () => {
     })
 
     describe('Form validation', () => {
+        describe('all valid', () => {
+            beforeEach(() => {
+                const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
+                const nameInputElement = nameInput.nativeElement
+                nameInputElement.value = 'nnaa'
+                nameInputElement.dispatchEvent(new Event('input'));
+                const date = fixture.debugElement.query(By.css('input[name="date"]'));
+                const dateElement = date.nativeElement
+                dateElement.value = '15/05/2018'
+                dateElement.dispatchEvent(new Event('input'));
+                const hour = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[0];
+                const hourElement = hour.nativeElement;
+                hourElement.value = '13'
+                hourElement.dispatchEvent(new Event('input'));
+                const minutes = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[1];
+                const minutesElement = minutes.nativeElement;
+                minutesElement.value = '08'
+                minutesElement.dispatchEvent(new Event('input'));
+                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
+                const caloriesElement = calories.nativeElement
+                caloriesElement.value = '3'
+                caloriesElement.dispatchEvent(new Event('input'));
+                fixture.detectChanges()
+            })
+            it('form should be valid', () => {
+                expect(comp.form.invalid).toBe(false)
+            })
+            it('submit button should be enabled', () => {
+                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
+            })
+
+            xdescribe('Submitting', () => {
+                it('should call output', () => {
+                    const spy = spyOn(comp, 'submitted')
+                    fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
+                    fixture.detectChanges()
+                    expect(spy).toHaveBeenCalledWith(2)
+                })
+
+            })
+        })
+
+
         describe('invalid name', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameInputElement = nameInput.nativeElement
-                nameInputElement.value = 'nn'
+                nameInputElement.value = 'aa'
                 nameInputElement.dispatchEvent(new Event('input'));
-                const city = fixture.debugElement.query(By.css('input[name="city"]'));
-                const cityElement = city.nativeElement
-                cityElement.value = 'cccc'
-                cityElement.dispatchEvent(new Event('input'));
-                const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
-                const gmtMealDifferenceElement = gmtMealDifference.nativeElement
-                gmtMealDifferenceElement.value = '3'
-                gmtMealDifferenceElement.dispatchEvent(new Event('input'));
+                const date = fixture.debugElement.query(By.css('input[name="date"]'));
+                const dateElement = date.nativeElement
+                dateElement.value = '15/05/2018'
+                dateElement.dispatchEvent(new Event('input'));
+                const hour = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[0];
+                const hourElement = hour.nativeElement;
+                hourElement.value = '13'
+                hourElement.dispatchEvent(new Event('input'));
+                const minutes = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[1];
+                const minutesElement = minutes.nativeElement;
+                minutesElement.value = '08'
+                minutesElement.dispatchEvent(new Event('input'));
+                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
+                const caloriesElement = calories.nativeElement
+                caloriesElement.value = '3'
+                caloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges()
             })
             it('form should be invalid', () => {
@@ -47,92 +98,6 @@ describe('MealFormComponentt', () => {
             it('submit button should be disabled', () => {
                 expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
             })
-        })
-
-        describe('invalid city', () => {
-            beforeEach(() => {
-                const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
-                const nameInputElement = nameInput.nativeElement
-                nameInputElement.value = 'nnnn'
-                nameInputElement.dispatchEvent(new Event('input'));
-                const city = fixture.debugElement.query(By.css('input[name="city"]'));
-                const cityElement = city.nativeElement
-                cityElement.value = 'cc'
-                cityElement.dispatchEvent(new Event('input'));
-                const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
-                const gmtMealDifferenceElement = gmtMealDifference.nativeElement
-                gmtMealDifferenceElement.value = '3'
-                gmtMealDifferenceElement.dispatchEvent(new Event('input'));
-                fixture.detectChanges()
-            })
-            it('form should be invalid', () => {
-                expect(comp.form.invalid).toBe(true)
-            })
-            it('submit button should be disabled', () => {
-                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
-            })
-        })
-
-        describe('gmtMealDifference validation', () => {
-            beforeEach(() => {
-                const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
-                const nameInputElement = nameInput.nativeElement
-                nameInputElement.value = 'nnnn'
-                nameInputElement.dispatchEvent(new Event('input'));
-                const city = fixture.debugElement.query(By.css('input[name="city"]'));
-                const cityElement = city.nativeElement
-                cityElement.value = 'cccc'
-                cityElement.dispatchEvent(new Event('input'));
-            })
-
-            describe('too high', () => {
-                beforeEach(() => {
-                    const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
-                    const gmtMealDifferenceElement = gmtMealDifference.nativeElement
-                    gmtMealDifferenceElement.value = '15'
-                    gmtMealDifferenceElement.dispatchEvent(new Event('input'));
-                    fixture.detectChanges()
-                })
-                it('form should be invalid', () => {
-                    expect(comp.form.invalid).toBe(true)
-                })
-                it('submit button should be disabled', () => {
-                    expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
-                })
-            })
-
-            describe('too low', () => {
-                beforeEach(() => {
-                    const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
-                    const gmtMealDifferenceElement = gmtMealDifference.nativeElement
-                    gmtMealDifferenceElement.value = '-13'
-                    gmtMealDifferenceElement.dispatchEvent(new Event('input'));
-                    fixture.detectChanges()
-                })
-                it('form should be invalid', () => {
-                    expect(comp.form.invalid).toBe(true)
-                })
-                it('submit button should be disabled', () => {
-                    expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
-                })
-            })
-
-            describe('just in range', () => {
-                beforeEach(() => {
-                    const gmtMealDifference = fixture.debugElement.query(By.css('input[name="gmtMealDifference"]'));
-                    const gmtMealDifferenceElement = gmtMealDifference.nativeElement
-                    gmtMealDifferenceElement.value = '-12'
-                    gmtMealDifferenceElement.dispatchEvent(new Event('input'));
-                    fixture.detectChanges()
-                })
-                it('form should be invalid', () => {
-                    expect(comp.form.invalid).toBe(false)
-                })
-                it('submit button should be disabled', () => {
-                    expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
-                })
-            })
-
         })
     })
 

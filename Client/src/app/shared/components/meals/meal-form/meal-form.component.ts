@@ -27,8 +27,9 @@ export class MealFormComponent implements OnInit {
     private buildForm() {
         this.form = this.fb.group({
             name: [this.meal ? this.meal.name : '', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
-            city: [this.meal ? this.meal.city : '', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
-            gmtMealDifference: [this.meal ? this.meal.gmtMealDifference : 0, Validators.compose([Validators.required, Validators.max(14), Validators.min(-12)])],
+            date: [this.meal ? this.meal.date : ''],
+            time: [this.meal ? this.meal.time : ''],
+            calories: [this.meal ? this.meal.calories : 0, Validators.required],
         })
     }
 

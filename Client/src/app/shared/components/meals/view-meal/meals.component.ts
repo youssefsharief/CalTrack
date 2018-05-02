@@ -32,12 +32,4 @@ export class MealsComponent {
         this.addClicked.emit()
     }
 
-    getMeal(gmtMealDifference) {
-        const  t = new Date()
-        const hours = t.setHours(t.getUTCHours() + gmtMealDifference)
-        const minutes = t.setMinutes(t.getUTCMinutes())
-        t.setSeconds(0)
-        return t.toLocaleTimeString().slice(0, -3)
-    }
-
 }

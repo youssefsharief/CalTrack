@@ -3,15 +3,15 @@
     <app-name-input-layout [isNotValid]="form.get('name').dirty && form.get('name').invalid">
         <input type="text" name="name" class="form-control" formControlName="name">
     </app-name-input-layout>
-
-    <app-name-input-layout [isNotValid]="form.get('city').dirty && form.get('city').invalid">
-        <input type="text" name="city" class="form-control" formControlName="city">
-    </app-name-input-layout>
-
     <div class="form-group">
-        <label for="">GMT Meal difference </label>
-        <input name="gmtMealDifference" type="number" class="form-control" id="" min="-12" max="14" placeholder="Enter Gmt Meal Difference"
-            formControlName="gmtMealDifference">
+        <label for="">Calories </label>
+        <input name="calories" type="number" class="form-control" id="" placeholder="Enter calories" formControlName="calories">
     </div>
+    <div class="row">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+            <input name="date" type="text" placeholder="Datepicker" class="form-control" formControlName="date" bsDatepicker>
+        </div>
+    </div>
+    <timepicker name="time" formControlName="time" ></timepicker>
     <app-submit-button [isDisabled]="!form.valid"></app-submit-button>
 </form>

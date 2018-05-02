@@ -29,9 +29,9 @@ describe('MyMeal Component', () => {
                 meals: [
                     {
                         _id: 'r',
-                        city: 'Cairo',
+                        date: 'Cairo',
                         name: 'C',
-                        gmtMealDifference: 3
+                        calories: 3
                     }
                 ]
             })
@@ -71,7 +71,7 @@ describe('MyMeal Component', () => {
         it('Name should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('td')[0].innerHTML).toBe('C')
         })
-        it('City should be displayed', () => {
+        it('Date should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('td')[1].innerHTML).toBe('Cairo')
         })
         it('Gmt meal difference should be displayed', () => {

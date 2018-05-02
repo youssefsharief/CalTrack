@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgProgressModule } from 'ngx-progressbar';
 import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
     MatSnackBarModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    AppInputsModule
+    AppInputsModule,
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
   providers: [],
   exports: [
