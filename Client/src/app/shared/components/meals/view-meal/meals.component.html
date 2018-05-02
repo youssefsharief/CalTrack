@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-12 col-md-4 form-group">
-        <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" (change)="fetchConsideringPaging()">
+        <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" (ngModelChange)="fetchConsideringPaging()">
     </div>
 </div>
 
-<timepicker name="time" [(ngModel)]="startTime" (change)="fetchConsideringPaging()"></timepicker>
-<timepicker name="time" [(ngModel)]="endTime" (change)="fetchConsideringPaging()"></timepicker>
+<timepicker name="time" [(ngModel)]="startTime" (ngModelChange)="fetchConsideringPaging()"></timepicker>
+<timepicker name="time" [(ngModel)]="endTime" (ngModelChange)="fetchConsideringPaging()"></timepicker>
 
 <div class="panel panel-primary">
     <div class="panel-heading">

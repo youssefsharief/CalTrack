@@ -10,7 +10,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { MyMealsComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 

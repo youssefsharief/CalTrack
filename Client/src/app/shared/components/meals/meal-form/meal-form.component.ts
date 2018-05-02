@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Meal } from '../../../models/meal.model';
-import { DatePipe } from '@angular/common';
+import { DateUtilityService } from 'app/core/services/date-utility.service';
 
 @Component({
     selector: 'app-meal-form',
@@ -14,7 +14,7 @@ export class MealFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private datePipe: DatePipe
+        private dateUtilityService: DateUtilityService
     ) {
     }
 
@@ -25,13 +25,9 @@ export class MealFormComponent implements OnInit {
     onSubmit() {
         this.submitted.emit({
             name: this.form.value.name,
-            date: this.transformDate(this.form.value.date, this.form.value.time),
+            date: this.dateUtilityService.combineDateAndTimeFromUIPickersToDateObject(this.form.value.date, this.form.value.time),
             numOfCalories: this.form.value.numOfCalories ? this.form.value.numOfCalories : undefined
         });
-    }
-
-    private transformDate(date, time) {
-        return new Date(this.datePipe.transform(date, 'yyyy-MM-dd') + ' ' + this.datePipe.transform(time, 'HH:MM:ss'));
     }
 
     private buildForm() {

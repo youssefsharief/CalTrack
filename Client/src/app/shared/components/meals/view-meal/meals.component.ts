@@ -4,6 +4,7 @@ import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
+import { DateUtilityService } from 'app/core/services/date-utility.service';
 
 @Component({
     selector: 'app-meals',
@@ -27,14 +28,14 @@ export class MealsComponent implements OnInit {
         private mealsService: SelectedMealService,
         private dataService: DataService,
         private sb: SnackBarService,
-
+        private dateUtilityService: DateUtilityService
     ) { }
 
     ngOnInit() {
         this.fetchMeals({ page: 1 })
     }
 
-    public fetchConsideringPaging() {
+    fetchConsideringPaging() {
         if (this.currentPage === 1) {
             this.fetchMeals({ page: 1 })
         } else {
@@ -42,20 +43,14 @@ export class MealsComponent implements OnInit {
         }
     }
 
-    private formattedDates() {
-        const startDate = this.bsRangeValue
-        const endDate = this.bsRangeValue
-        return {
-            startDate,
-            endDate
-        }
-    }
-
     public fetchMeals({ page }) {
-        const formattedDates = this.formattedDates()
+        console.log(this.bsRangeValue)
         this.dataService.getMeals(this.userId, {
-            startDate: formattedDates.startDate, endDate: formattedDates.endDate,
-            startTime: this.startTime, endTime: this.endTime, skip: (page - 1) * 10
+            startDate: this.bsRangeValue ? this.dateUtilityService.convertDateToMediumDate(this.bsRangeValue[0]) : null,
+            endDate: this.bsRangeValue ? this.dateUtilityService.convertDateToMediumDate(this.bsRangeValue[1]) : null,
+            startTime: this.dateUtilityService.convertDateToMediumTime(this.startTime),
+            endTime: this.dateUtilityService.convertDateToMediumTime(this.endTime),
+            skip: (page - 1) * 10
         }).first().subscribe(
             data => {
                 this.meals = data.meals
