@@ -34,6 +34,7 @@ import { PasswordRecoveredSuccessfullyComponent } from 'app/routes/personal/reco
 import { ActivateAfterSignupComponent } from 'app/routes/signup/activate-after-signup/activate-after-signup.component';
 import { CoreModule } from 'app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { HttpClientModule } from '@angular/common/http';
     RecoverPasswordByEmailComponent,
     NewPasswordAndRecoveryCodeSubmissionComponent,
     PasswordRecoveredSuccessfullyComponent,
+    InviteUserComponent
   ],
   imports: [
     AppRoutingModule,

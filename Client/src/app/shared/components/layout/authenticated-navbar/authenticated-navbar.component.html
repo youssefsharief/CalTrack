@@ -7,8 +7,11 @@
             <li class="nav-item">
                 <a routerLinkActive="active" routerLink='/my-profile' class="nav-link">My profile</a>
             </li>
-            <li *ngIf="isAtleastManager()" class="nav-item">
+            <li *ngIf="authService.isAtleastManager()" class="nav-item">
                 <a routerLinkActive="active" routerLink='/users' class="nav-link">Users</a>
+            </li>
+            <li *ngIf="authService.isAdmin()" class="nav-item">
+                <a routerLinkActive="active" routerLink='/invite' class="nav-link">Invite a User</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link link" href="javascript:void(0);" (click)="logout()">Logout</a>

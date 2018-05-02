@@ -8,18 +8,12 @@ import { AuthService } from 'app/core/services/auth.service';
 })
 export class AuthenticatedNavbarComponent {
     constructor(
-        private authService: AuthService,
+        public authService: AuthService,
         private router: Router
     ) { }
     logout() {
         this.authService.logout()
         this.router.navigate(['/login'])
     }
-
-    isAtleastManager() {
-        return this.authService.isAtleastManager()
-    }
-
-
 
 }

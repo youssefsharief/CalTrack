@@ -10,7 +10,7 @@ import { AuthService } from 'app/core/services/auth.service';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SharedModule } from 'app/shared/shared.module';
 
-fdescribe('Meals Component', () => {
+describe('Meals Component', () => {
     let comp: MealsComponent;
     let fixture: ComponentFixture<MealsComponent>;
     let sb: SnackBarService

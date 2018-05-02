@@ -54,4 +54,10 @@ export class AuthService {
         else return false
     }
 
+    public isAdmin() {
+        const role = this.getRole()
+        if (role === 'admin') return true
+        else return false
+    }
+
 }

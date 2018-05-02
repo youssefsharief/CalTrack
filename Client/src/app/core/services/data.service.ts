@@ -14,7 +14,7 @@ export class DataService {
     ) { }
 
     login(item: UserCredentials) {
-        return this.http.post<{token: string, user: User}>('users/login', item, )
+        return this.http.post<{ token: string, user: User }>('users/login', item, )
     }
 
     signup(item: User) {
@@ -80,6 +80,10 @@ export class DataService {
 
     activateUserAdministratively(id: string) {
         return this.http.patch(`activation/administration/${id}`, {}, )
+    }
+
+    inviteUser(email: string, url: string) {
+        return this.http.post(`users/invite`, { email, url }, )
     }
 
 }

@@ -36,6 +36,7 @@ import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
 import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.component';
+import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
 
 export const routes: Routes = [
     {
@@ -63,6 +64,7 @@ export const routes: Routes = [
     {
         path: '', component: AuthenticatedNavbarComponent, canActivate: [AuthGuardService], children: [
             { path: 'empty', component: EmptyComponent, },
+            { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService],},
             { path: 'my-profile', component: EditMyInfoComponent, },
             { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent },
             { path: 'my-meal', component: MyMealComponent, },

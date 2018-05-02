@@ -1,0 +1,113 @@
+import { ComponentFixture, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
+import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
+import { AppModule } from 'app/app.module';
+import { DataService } from 'app/core/services/data.service';
+
+describe('InviteUser Component', () => {
+    let comp: InviteUserComponent;
+    let fixture: ComponentFixture<InviteUserComponent>;
+    let dataService: DataService
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [AppModule],
+            providers: [
+                { provide: DataService, useValue: {} },
+            ],
+        });
+        fixture = TestBed.createComponent(InviteUserComponent);
+        comp = fixture.componentInstance;
+        dataService = fixture.debugElement.injector.get(DataService)
+    });
+
+    fdescribe('Form Validation', () => {
+        beforeEach(() => {
+            fixture.detectChanges();
+        })
+        describe('invalid email', () => {
+            beforeEach(() => {
+                const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
+                const emailInputElement = emailInput.nativeElement
+                emailInputElement.value = 'aadssm'
+                emailInputElement.dispatchEvent(new Event('input'));
+                fixture.detectChanges();
+            })
+            it('form should be invalid', () => {
+                expect(comp.form.invalid).toBe(true)
+            })
+            it('error message should appear', () => {
+                fixture.detectChanges()
+                const y = fixture.debugElement.queryAll(By.css('p.text-danger'));
+                expect(y[0].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[0].properties.hidden).toBeFalsy();
+            })
+            it('submit button should be disabled', () => {
+                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
+            })
+        })
+
+
+        fdescribe('valid form', () => {
+            beforeEach(() => {
+                const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
+                const emailInputElement = emailInput.nativeElement
+                emailInputElement.value = 'sdafg@dsds.com'
+                emailInputElement.dispatchEvent(new Event('input'));
+                fixture.detectChanges();
+            })
+            it('form should be valid', () => {
+                expect(comp.form.invalid).toBe(false)
+            })
+            it('submit button should be enabled', () => {
+                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
+            })
+            it('error message should not appear', () => {
+                fixture.detectChanges()
+                const y = fixture.debugElement.queryAll(By.css('p.text-danger'));
+                expect(y[0].properties.hidden).toBeTruthy();
+            })
+
+            fdescribe('Submitting Form', () => {
+                describe('Success Scenario', () => {
+                    beforeEach(() => {
+                        dataService.inviteUser = (id, payload) => Observable.of('ok')
+                    })
+                    describe('api call', () => {
+                        let spy
+                        beforeEach(() => {
+                            spy = spyOn(dataService, 'inviteUser').and.callThrough()
+                        })
+                        it('should successfully post', () => {
+                            fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
+                            expect(spy).toHaveBeenCalled();
+                        })
+                        it('should call with right arguments', () => {
+                            fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
+                            expect(spy).toHaveBeenCalledWith('sdafg@dsds.com', 'http://localhost:9876');
+                        })
+                    })
+                })
+                describe('Error Scenario', () => {
+                    beforeEach(() => {
+                        dataService.inviteUser = (id, payload) => Observable.throw('Error')
+                        fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
+                    })
+                    it('should handle error', () => {
+                        expect(comp).toBeTruthy();
+                    })
+                })
+            })
+        })
+
+
+  
+
+
+
+    })
+
+})
