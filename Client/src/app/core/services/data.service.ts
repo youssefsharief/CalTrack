@@ -46,7 +46,13 @@ export class DataService {
         return this.http.get<User>(`users/${userId}`)
     }
 
-    getMeals(userId: string) {
+    getMeals(userId: string, { skip = 0, startDate = '', endDate = '', startTime = '', endTime = '' }) {
+        const params = new HttpParams()
+            .set('skip', skip.toString())
+            .set('startDate', startDate)
+            .set('endDate', endDate)
+            .set('startTime', startTime)
+            .set('endTime', endTime)
         return this.http.get<Meal[]>(`users/${userId}/meals`)
     }
 

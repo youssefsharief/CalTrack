@@ -1,5 +1,6 @@
-const db = require('../../data-layer/get-user-records-by-id.db')
+const getRecords = require('../../data-layer/get-records.db')
 
 module.exports = (req, res, next) => {
-    return db(req.params.id).then(x => res.status(200).json(x)).catch(err => next(err))
+    return getRecords(req.params.id, 10, parseInt(req.query.skip), req.query.startDate, req.query.endDate,
+        req.query.startTime, req.query.endTime).then(x => res.status(200).json(x)).catch(err => next(err))
 }

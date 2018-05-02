@@ -1,10 +1,11 @@
 const usersModel = require('../models/users.model')
+const ObjectId = require('mongodb').ObjectID;
 
 module.exports = (userId, limit, skip, startDate, endDate, startTime, endTime) => {
     return usersModel.aggregate([
         {
             $match: {
-                _id: userId,
+                _id: ObjectId(userId),
             }
         },
         { $unwind: "$meals" },

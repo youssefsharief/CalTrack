@@ -26,7 +26,7 @@ export class MealFormComponent implements OnInit {
         this.submitted.emit({
             name: this.form.value.name,
             date: this.transformDate(this.form.value.date, this.form.value.time),
-            numOfCalories: this.form.value.numOfCalories
+            numOfCalories: this.form.value.numOfCalories ? this.form.value.numOfCalories : undefined
         });
     }
 
