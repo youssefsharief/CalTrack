@@ -1,3 +1,12 @@
+<div class="row">
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+        <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" (change)="fetchConsideringPaging()">
+    </div>
+</div>
+
+<timepicker name="time" [(ngModel)]="startTime" (change)="fetchConsideringPaging()"></timepicker>
+<timepicker name="time" [(ngModel)]="endTime" (change)="fetchConsideringPaging()"></timepicker>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title"> {{title}}
@@ -19,8 +28,8 @@
             <tbody>
                 <tr *ngFor="let item of meals">
                     <td>{{item.name}}</td>
-                    <td>{{item.date}}</td>
-                    <td>{{item.time}}</td>
+                    <td>{{item.date | date:'mediumDate'}}</td>
+                    <td>{{item.date | date:'shortTime'}}</td>
                     <td>{{item.numOfCalories}}</td>
                     <td class="text-center">
                         <a class="link" (click)="onEditMealClick(item)">

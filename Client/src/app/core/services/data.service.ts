@@ -49,11 +49,11 @@ export class DataService {
     getMeals(userId: string, { skip = 0, startDate = '', endDate = '', startTime = '', endTime = '' }) {
         const params = new HttpParams()
             .set('skip', skip.toString())
-            .set('startDate', startDate)
-            .set('endDate', endDate)
-            .set('startTime', startTime)
-            .set('endTime', endTime)
-        return this.http.get<{ meals: Meal[], count: number }>(`users/${userId}/meals`)
+        if (startDate) params.set('startDate', startDate)
+        if (endDate) params.set('endDate', endDate)
+        if (startTime) params.set('startTime', startTime)
+        if (endTime) params.set('endTime', endTime)
+        return this.http.get<{ meals: Meal[], count: number }>(`users/${userId}/meals`, { params })
     }
 
     updateMeal(userId: string, mealId: string, data: Meal) {

@@ -18,8 +18,7 @@ export class MealsComponent implements OnInit {
     @Output() editClicked = new EventEmitter()
     meals: Meal[] = []
     totalItems: number
-    startDate: string
-    endDate: string;
+    bsRangeValue: string
     startTime: string
     endTime: string;
     currentPage: number
@@ -43,9 +42,20 @@ export class MealsComponent implements OnInit {
         }
     }
 
+    private formattedDates() {
+        const startDate = this.bsRangeValue
+        const endDate = this.bsRangeValue
+        return {
+            startDate,
+            endDate
+        }
+    }
+
     public fetchMeals({ page }) {
+        const formattedDates = this.formattedDates()
         this.dataService.getMeals(this.userId, {
-            startDate: this.startDate, endDate: this.endDate, startTime: this.startTime, endTime: this.endTime, skip: (page - 1) * 10
+            startDate: formattedDates.startDate, endDate: formattedDates.endDate,
+            startTime: this.startTime, endTime: this.endTime, skip: (page - 1) * 10
         }).first().subscribe(
             data => {
                 this.meals = data.meals
@@ -61,7 +71,6 @@ export class MealsComponent implements OnInit {
             error => this.sb.emitErrorSnackBar(error)
         )
     }
-
 
     onEditMealClick(item: Meal) {
         this.mealsService.saveSelectedMeal(item)
