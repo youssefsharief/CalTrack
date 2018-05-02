@@ -15,6 +15,7 @@ import { EnvironmentApiInterceptor } from 'app/core/http-interceptors/environmen
 import { UnAuthorizedRequestsInterceptor } from 'app/core/http-interceptors/unauthorized-requests-interceptor';
 import { AuthInterceptor } from 'app/core/http-interceptors/authentication-interceptor';
 import { NgProgressInterceptor } from 'ngx-progressbar';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import { NgProgressInterceptor } from 'ngx-progressbar';
         AdminClaimsService,
         AuthGuardService,
         PublicInfoService,
+        DatePipe,
         { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: EnvironmentApiInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: UnAuthorizedRequestsInterceptor, multi: true },

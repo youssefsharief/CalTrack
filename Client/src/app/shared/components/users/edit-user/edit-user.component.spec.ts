@@ -117,7 +117,7 @@ describe('EditUser Component', () => {
         })
 
 
-        describe('no max calories', () => {
+        describe('no max numOfCalories', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
                 const emailInputElement = emailInput.nativeElement
@@ -145,7 +145,7 @@ describe('EditUser Component', () => {
                 expect(fixture.nativeElement.querySelector('input[name="isTrackingDisplayed"][disabled]')).toBeTruthy()
             })
 
-            describe('adding max calories', () => {
+            describe('adding max numOfCalories', () => {
                 beforeEach(() => {
                     const maxCaloriesInput = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
                     const maxCaloriesInputElement = maxCaloriesInput.nativeElement
@@ -157,7 +157,7 @@ describe('EditUser Component', () => {
                     expect(fixture.nativeElement.querySelector('input[name="isTrackingDisplayed"][disabled]')).toBeFalsy()
                 })
 
-                fdescribe('Submitting Form', () => {
+                describe('Submitting Form', () => {
                     describe('EditUser', () => {
                         describe('Scenario: Success', () => {
                             let spy;

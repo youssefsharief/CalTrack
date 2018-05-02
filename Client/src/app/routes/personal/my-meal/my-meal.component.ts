@@ -12,7 +12,7 @@ import { OnInit } from '@angular/core';
 })
 export class MyMealComponent implements OnInit {
 
-    user: User
+    meals: Meal[]
     constructor(
         private router: Router,
         private authService: AuthService,
@@ -21,8 +21,8 @@ export class MyMealComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.dataService.getUserDetails(this.authService.getId()).subscribe(
-            data => this.user = data
+        this.dataService.getMeals(this.authService.getId()).subscribe(
+            data => this.meals = data
         )
     }
 
@@ -35,8 +35,8 @@ export class MyMealComponent implements OnInit {
     }
 
     onDeleteClicked(item) {
-        this.dataService.deleteMeal(this.user._id, item._id).subscribe(
-            data => this.user.meals = this.user.meals.filter(t => t._id !== item._id),
+        this.dataService.deleteMeal(this.authService.getId(), item._id).subscribe(
+            data => this.meals = this.meals.filter(t => t._id !== item._id),
             error => this.sb.emitErrorSnackBar(error)
         )
     }

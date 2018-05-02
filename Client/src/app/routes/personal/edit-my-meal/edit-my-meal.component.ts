@@ -28,7 +28,7 @@ export class EditMyMealComponent implements OnInit {
         }
     }
 
-    onSubmitted(x: { name: string, date: string, calories: number }) {
+    onSubmitted(x: { name: string, date: string, numOfCalories: number }) {
         this.dataService.updateMeal(this.authService.getId(), this.meal._id, x).first().subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()

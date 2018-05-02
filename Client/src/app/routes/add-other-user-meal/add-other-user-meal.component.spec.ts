@@ -77,10 +77,10 @@ describe('AddOtherUserMeal Component', () => {
                 const dateElement = date.nativeElement
                 dateElement.value = 'cccc'
                 dateElement.dispatchEvent(new Event('input'));
-                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                const caloriesElement = calories.nativeElement
-                caloriesElement.value = '3'
-                caloriesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
             describe('Success Scenario', () => {
@@ -99,7 +99,7 @@ describe('AddOtherUserMeal Component', () => {
                     })
                     it('should call with right arguments', () => {
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                        expect(spy).toHaveBeenCalledWith('rr', Object({ name: 'nnnn', date: 'cccc', calories: 3 }));
+                        expect(spy).toHaveBeenCalledWith('rr', Object({ name: 'nnnn', date: 'cccc', numOfCalories: 3 }));
                     })
                 })
 

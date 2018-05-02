@@ -42,6 +42,10 @@ const changeOtherUserPassword = require('./security/change-other-user-password.r
 const validatechangeOtherUserPassword = require('./security/change-other-user-password.validate')
 
 
+const getUserRecords = require('./records/get-user-records.route')
+
+
+
 const { verifyUser } = require('../core/authentication')
 const Authorize = require('../core/authorization')
 
@@ -65,6 +69,7 @@ router.delete('/users/:id', verifyUser, Authorize.allowAdminAndManager, removeUs
 router.get('/users/', verifyUser, Authorize.preventRegularUsers, getUsers)
 router.get('/users/:id', verifyUser, Authorize.allowSelfAndAdminOnly, getUserDetailsIncludingRecords)
 
+router.get('/users/:id/meals', verifyUser, Authorize.allowSelfAndAdminOnly, getUserRecords)
 router.post('/users/:id/meals', verifyUser, validateAddRecord, Authorize.allowSelfAndAdminOnly, addRecord)
 router.delete('/users/:id/meals/:mealId', verifyUser, Authorize.allowSelfAndAdminOnly, removeRecord)
 router.put('/users/:id/meals/:mealId', verifyUser, validateUpdateRecord, Authorize.allowSelfAndAdminOnly, updateRecord)

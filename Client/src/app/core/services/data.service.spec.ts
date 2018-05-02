@@ -125,10 +125,10 @@ describe('ApiService: DataService', () => {
     describe('Update meal', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
-            service.updateMeal('s', 'e', { name: 'a', date: '14/07/2018', calories: 9 }).subscribe()
+            service.updateMeal('s', 'e', { name: 'a', date: '14/07/2018', numOfCalories: 9 }).subscribe()
             const req = httpMock.expectOne(req => req.method === 'PUT');
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals/e')
-            expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', calories: 9 }))
+            expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', numOfCalories: 9 }))
             req.flush(dummy);
         });
     });
@@ -138,7 +138,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.addMeal('s', { name: 'a', date: '14/07/2018', calories: 9 }).subscribe()
+            service.addMeal('s', { name: 'a', date: '14/07/2018', numOfCalories: 9 }).subscribe()
             req = httpMock.expectOne(req => req.method === 'POST');
         })
         afterEach(() => {
@@ -148,7 +148,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', calories: 9 }))
+            expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', numOfCalories: 9 }))
         });
     });
 
@@ -157,7 +157,7 @@ describe('ApiService: DataService', () => {
         let req: TestRequest
         beforeEach(() => {
             dummy = 'ok';
-            service.addMeal('s', { name: 'a', date: '14/07/2018', calories: 9 }).subscribe()
+            service.addMeal('s', { name: 'a', date: '14/07/2018', numOfCalories: 9 }).subscribe()
             req = httpMock.expectOne(req => req.method === 'POST');
         })
         afterEach(() => {
@@ -167,7 +167,7 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals')
         });
         it('should have appropriate body ', () => {
-            expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', calories: 9 }))
+            expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', numOfCalories: 9 }))
         });
     });
 

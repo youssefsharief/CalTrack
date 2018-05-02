@@ -8,6 +8,7 @@ import { AuthService } from 'app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { AppModule } from 'app/app.module';
 import { UsersComponent } from 'app/routes/users-list/users.component';
+import { User } from 'app/shared/models/user.model';
 
 describe('Users Component', () => {
     let comp: UsersComponent;
@@ -46,7 +47,7 @@ describe('Users Component', () => {
     })
     describe('Users retrieved successfully', () => {
         beforeEach(() => {
-            const users = [{ _id: '11', name: 'YYasd', email: 'asddl@kfdl.com', role: 'regular' }]
+            const users = <User[]>[{ _id: '11', name: 'YYasd', email: 'asddl@kfdl.com', role: 'regular' }]
             const data = { users, count: 111 }
             dataService.getUsers = () => Observable.of(data)
         })

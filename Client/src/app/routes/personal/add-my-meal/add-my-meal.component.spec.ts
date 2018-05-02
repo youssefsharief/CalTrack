@@ -56,10 +56,10 @@ describe('AddMyMeal Component', () => {
             const dateElement = date.nativeElement
             dateElement.value = 'cccc'
             dateElement.dispatchEvent(new Event('input'));
-            const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-            const caloriesElement = calories.nativeElement
-            caloriesElement.value = '3'
-            caloriesElement.dispatchEvent(new Event('input'));
+            const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+            const numOfCaloriesElement = numOfCalories.nativeElement
+            numOfCaloriesElement.value = '3'
+            numOfCaloriesElement.dispatchEvent(new Event('input'));
             fixture.detectChanges()
         })
 
@@ -78,7 +78,7 @@ describe('AddMyMeal Component', () => {
                         expect(spy).toHaveBeenCalled();
                     })
                     it('should call with right arguments', () => {
-                        expect(spy).toHaveBeenCalledWith('iiid', Object({ name: 'nnnn', date: 'cccc', calories: 3 }));
+                        expect(spy).toHaveBeenCalledWith('iiid', Object({ name: 'nnnn', date: 'cccc', numOfCalories: 3 }));
                     })
                 })
                 xit('should navigate to "my-meal" route', fakeAsync(() => {

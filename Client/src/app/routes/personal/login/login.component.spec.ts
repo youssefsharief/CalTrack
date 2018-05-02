@@ -20,7 +20,7 @@ describe('Login Component', () => {
     let fixture: ComponentFixture<LoginComponent>;
     let sb: SnackBarService
     let location: Location
-    const user: User = {
+    const user = <User>{
         name: 'Ahmed',
         email: 'd',
     }

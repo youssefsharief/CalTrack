@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Meal } from '../../../models/meal.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-meal-form',
@@ -13,6 +14,7 @@ export class MealFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
+        private datePipe: DatePipe
     ) {
     }
 
@@ -21,7 +23,15 @@ export class MealFormComponent implements OnInit {
     }
 
     onSubmit() {
-        this.submitted.emit(this.form.value);
+        this.submitted.emit({
+            name: this.form.value.name,
+            date: this.transformDate(this.form.value.date, this.form.value.time),
+            numOfCalories: this.form.value.numOfCalories
+        });
+    }
+
+    private transformDate(date, time) {
+        return new Date(this.datePipe.transform(date, 'yyyy-MM-dd') + ' ' + this.datePipe.transform(time, 'HH:MM:ss'));
     }
 
     private buildForm() {
@@ -29,7 +39,7 @@ export class MealFormComponent implements OnInit {
             name: [this.meal ? this.meal.name : '', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
             date: [this.meal ? this.meal.date : ''],
             time: [this.meal ? this.meal.time : ''],
-            calories: [this.meal ? this.meal.calories : 0, Validators.required],
+            numOfCalories: [this.meal ? this.meal.numOfCalories : ''],
         })
     }
 

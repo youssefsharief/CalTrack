@@ -6,6 +6,7 @@ import 'rxjs/add/observable/throw';
 import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { By } from '@angular/platform-browser';
+import { CoreModule } from 'app/core/core.module';
 
 describe('MealFormComponentt', () => {
     let comp: MealFormComponent;
@@ -13,7 +14,7 @@ describe('MealFormComponentt', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule]
+            imports: [SharedModule, CoreModule]
         });
         fixture = TestBed.createComponent(MealFormComponent);
         comp = fixture.componentInstance;
@@ -23,6 +24,12 @@ describe('MealFormComponentt', () => {
     it('should build successfully', () => {
         expect(comp).toBeTruthy()
     })
+
+    // xdescribe('transform date', () => {
+    //     it('should work', () => {
+    //         expect(comp.transformDate(new Date('2018-08-09'), new Date('2018-08-23'))).toBe('')
+    //     })
+    // })
 
     describe('Form validation', () => {
         describe('all valid', () => {
@@ -43,10 +50,10 @@ describe('MealFormComponentt', () => {
                 const minutesElement = minutes.nativeElement;
                 minutesElement.value = '08'
                 minutesElement.dispatchEvent(new Event('input'));
-                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                const caloriesElement = calories.nativeElement
-                caloriesElement.value = '3'
-                caloriesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges()
             })
             it('form should be valid', () => {
@@ -56,9 +63,9 @@ describe('MealFormComponentt', () => {
                 expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
             })
 
-            xdescribe('Submitting', () => {
-                it('should call output', () => {
-                    const spy = spyOn(comp, 'submitted')
+            fdescribe('Submitting', () => {
+                xit('should call output', () => {
+                    const spy = spyOn(comp.submitted, 'emit')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     fixture.detectChanges()
                     expect(spy).toHaveBeenCalledWith(2)
@@ -86,10 +93,10 @@ describe('MealFormComponentt', () => {
                 const minutesElement = minutes.nativeElement;
                 minutesElement.value = '08'
                 minutesElement.dispatchEvent(new Event('input'));
-                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                const caloriesElement = calories.nativeElement
-                caloriesElement.value = '3'
-                caloriesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges()
             })
             it('form should be invalid', () => {

@@ -17,16 +17,16 @@ describe('Meals Component', () => {
 
     const fakemeals = [
         {
-            name: 'CairoRegular', date: 'Cairo', calories: 2, id: '12'
+            name: 'CairoRegular', date: 'Cairo', numOfCalories: 2, id: '12'
         },
         {
-            name: 'CairoSummer', date: 'Cairo', calories: 3, id: '35'
+            name: 'CairoSummer', date: 'Cairo', numOfCalories: 3, id: '35'
         },
         {
-            name: 'AEST', date: 'Sydney', calories: 2, id: '89'
+            name: 'AEST', date: 'Sydney', numOfCalories: 2, id: '89'
         },
         {
-            name: 'AEDT', date: 'Sydney', calories: 2, id: '56'
+            name: 'AEDT', date: 'Sydney', numOfCalories: 2, id: '56'
         },
     ]
     const fakeUserDetails = {

@@ -46,6 +46,10 @@ export class DataService {
         return this.http.get<User>(`users/${userId}`)
     }
 
+    getMeals(userId: string) {
+        return this.http.get<Meal[]>(`users/${userId}/meals`)
+    }
+
     updateMeal(userId: string, mealId: string, data: Meal) {
         return this.http.put(`users/${userId}/meals/${mealId}`, data)
     }

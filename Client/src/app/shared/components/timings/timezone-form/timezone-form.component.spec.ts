@@ -35,10 +35,10 @@ describe('MealFormComponentt', () => {
                 const dateElement = date.nativeElement
                 dateElement.value = 'cccc'
                 dateElement.dispatchEvent(new Event('input'));
-                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                const caloriesElement = calories.nativeElement
-                caloriesElement.value = '3'
-                caloriesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges()
             })
             it('form should be invalid', () => {
@@ -59,10 +59,10 @@ describe('MealFormComponentt', () => {
                 const dateElement = date.nativeElement
                 dateElement.value = 'cc'
                 dateElement.dispatchEvent(new Event('input'));
-                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                const caloriesElement = calories.nativeElement
-                caloriesElement.value = '3'
-                caloriesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges()
             })
             it('form should be invalid', () => {
@@ -73,7 +73,7 @@ describe('MealFormComponentt', () => {
             })
         })
 
-        describe('calories validation', () => {
+        describe('numOfCalories validation', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameInputElement = nameInput.nativeElement
@@ -87,10 +87,10 @@ describe('MealFormComponentt', () => {
 
             describe('too high', () => {
                 beforeEach(() => {
-                    const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                    const caloriesElement = calories.nativeElement
-                    caloriesElement.value = '15'
-                    caloriesElement.dispatchEvent(new Event('input'));
+                    const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                    const numOfCaloriesElement = numOfCalories.nativeElement
+                    numOfCaloriesElement.value = '15'
+                    numOfCaloriesElement.dispatchEvent(new Event('input'));
                     fixture.detectChanges()
                 })
                 it('form should be invalid', () => {
@@ -103,10 +103,10 @@ describe('MealFormComponentt', () => {
 
             describe('too low', () => {
                 beforeEach(() => {
-                    const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                    const caloriesElement = calories.nativeElement
-                    caloriesElement.value = '-13'
-                    caloriesElement.dispatchEvent(new Event('input'));
+                    const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                    const numOfCaloriesElement = numOfCalories.nativeElement
+                    numOfCaloriesElement.value = '-13'
+                    numOfCaloriesElement.dispatchEvent(new Event('input'));
                     fixture.detectChanges()
                 })
                 it('form should be invalid', () => {
@@ -119,10 +119,10 @@ describe('MealFormComponentt', () => {
 
             describe('just in range', () => {
                 beforeEach(() => {
-                    const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                    const caloriesElement = calories.nativeElement
-                    caloriesElement.value = '-12'
-                    caloriesElement.dispatchEvent(new Event('input'));
+                    const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                    const numOfCaloriesElement = numOfCalories.nativeElement
+                    numOfCaloriesElement.value = '-12'
+                    numOfCaloriesElement.dispatchEvent(new Event('input'));
                     fixture.detectChanges()
                 })
                 it('form should be invalid', () => {

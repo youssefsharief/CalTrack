@@ -30,7 +30,7 @@ describe('OtherUserMeal Component', () => {
                         _id: 'r',
                         date: 'Cairo',
                         name: 'C',
-                        calories: 3
+                        numOfCalories: 3
                     }
                 ]
             })

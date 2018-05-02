@@ -59,7 +59,7 @@ describe('EditMyMeal Component', () => {
 
     describe('Meal has been selected', () => {
         beforeEach(() => {
-            mealsService.getSelectedMeal = () => ({ _id: 'rr', name: 'tttttt', date: 'vvvvvvv', calories: 9 })
+            mealsService.getSelectedMeal = () => ({ _id: 'rr', name: 'tttttt', date: 'vvvvvvv', numOfCalories: 9 })
             fixture.detectChanges();
         })
         it('should build successfully', () => {
@@ -75,10 +75,10 @@ describe('EditMyMeal Component', () => {
                 const dateElement = date.nativeElement
                 dateElement.value = 'cccc'
                 dateElement.dispatchEvent(new Event('input'));
-                const calories = fixture.debugElement.query(By.css('input[name="calories"]'));
-                const caloriesElement = calories.nativeElement
-                caloriesElement.value = '3'
-                caloriesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges()
             })
 
@@ -97,7 +97,7 @@ describe('EditMyMeal Component', () => {
                             expect(spy).toHaveBeenCalled();
                         })
                         it('should call with right arguments', () => {
-                            expect(spy).toHaveBeenCalledWith('iiid', 'rr', Object({ name: 'nnnn', date: 'cccc', calories: 3 }));
+                            expect(spy).toHaveBeenCalledWith('iiid', 'rr', Object({ name: 'nnnn', date: 'cccc', numOfCalories: 3 }));
                         })
                     })
                     it('should navigate to "my-meal" route', fakeAsync(() => {
