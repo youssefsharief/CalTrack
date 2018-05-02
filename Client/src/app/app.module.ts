@@ -21,11 +21,10 @@ import { AddOtherUserMealComponent } from './routes/add-other-user-meal/add-othe
 import { EditOtherUserMealComponent } from './routes/edit-other-user-meal/edit-other-user-meal.component';
 import { EditRoleComponent } from './routes/edit-role/edit-role.component';
 import { UsersComponent } from './routes/users-list/users.component';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
-import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
 import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.component';
 import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
@@ -50,7 +49,7 @@ import { InviteUserComponent } from 'app/routes/invite-user/invite-user.componen
     EditOtherUserMealComponent,
     EditRoleComponent,
     LoginComponent,
-    MyMealComponent,
+    MyMealsComponent,
     OtherUserMealComponent,
     SignupComponent,
     UsersComponent,
@@ -69,7 +68,6 @@ import { InviteUserComponent } from 'app/routes/invite-user/invite-user.componen
     AppRoutingModule,
     BrowserModule,
     SharedModule,
-    PaginationModule.forRoot(),
     CoreModule,
     HttpClientModule
   ],

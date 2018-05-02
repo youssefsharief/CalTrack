@@ -37,3 +37,6 @@
         </table>
     </div>
 </div>
+<div class="col-md-12">
+    <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="fetchMeals($event)" [maxSize]="10"></pagination>
+</div>

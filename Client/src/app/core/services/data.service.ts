@@ -53,7 +53,7 @@ export class DataService {
             .set('endDate', endDate)
             .set('startTime', startTime)
             .set('endTime', endTime)
-        return this.http.get<Meal[]>(`users/${userId}/meals`)
+        return this.http.get<{ meals: Meal[], count: number }>(`users/${userId}/meals`)
     }
 
     updateMeal(userId: string, mealId: string, data: Meal) {

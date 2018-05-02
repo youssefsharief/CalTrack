@@ -28,14 +28,6 @@ export class OtherUserMealComponent implements OnInit {
         )
     }
 
-    onDeleteClicked(item) {
-        this.dataService.deleteMeal(this.user._id, item._id).subscribe(
-            data => this.user.meals = this.user.meals.filter(t => t._id !== item._id),
-            error => this.sb.emitErrorSnackBar(error)
-        )
-    }
-
-
     onAddClicked() {
         this.router.navigate(['users', this.user._id, 'meal', 'add'])
     }

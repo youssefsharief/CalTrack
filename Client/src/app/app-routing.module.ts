@@ -31,7 +31,7 @@ import { EmptyComponent } from './routes/empty/empty.component';
 import { LoginLayoutComponent } from './shared/components/layout/login-layout/login-layout.component';
 import { EditOtherUserMealComponent } from './routes/edit-other-user-meal/edit-other-user-meal.component';
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
-import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
 import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
@@ -64,10 +64,10 @@ export const routes: Routes = [
     {
         path: '', component: AuthenticatedNavbarComponent, canActivate: [AuthGuardService], children: [
             { path: 'empty', component: EmptyComponent, },
-            { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService],},
+            { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService]},
             { path: 'my-profile', component: EditMyInfoComponent, },
             { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent },
-            { path: 'my-meal', component: MyMealComponent, },
+            { path: 'my-meal', component: MyMealsComponent, },
             { path: 'my-meal/add', component: AddMyMealComponent, },
             { path: 'my-meal/edit', component: EditMyMealComponent },
             { path: 'users', component: UsersComponent, },

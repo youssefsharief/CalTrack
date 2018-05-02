@@ -19,6 +19,7 @@ import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-fo
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 
 @NgModule({
   imports: [
@@ -34,7 +35,9 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     BrowserAnimationsModule,
     AppInputsModule,
     BsDatepickerModule.forRoot(),
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+
   ],
   providers: [],
   exports: [
@@ -52,7 +55,9 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     BrowserAnimationsModule,
     NgProgressModule,
     AppInputsModule,
-    TypeaheadModule
+    TypeaheadModule,
+    PaginationModule,
+
 
   ],
   declarations: [

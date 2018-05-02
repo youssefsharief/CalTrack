@@ -61,7 +61,7 @@ module.exports = (userId, limit, skip, startDate, endDate, startTime, endTime) =
     ).exec().then(x => {
         return {
             meals: x[0].meals,
-            total: x[0].pageInfo[0] ? x[0].pageInfo[0].count : 0,
+            count: x[0].pageInfo[0] ? x[0].pageInfo[0].count : 0,
             skip,
             limit
         }

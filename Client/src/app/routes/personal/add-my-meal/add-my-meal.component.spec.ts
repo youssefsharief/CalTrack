@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
 import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
-import { MyMealComponent } from 'app/routes/personal/my-meal/my-meal.component';
+import { MyMealsComponent } from 'app/routes/personal/my-meal/my-meal.component';
 
 
 describe('AddMyMeal Component', () => {
@@ -24,10 +24,10 @@ describe('AddMyMeal Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'my-meal', component: MyMealComponent }
+                    { path: 'my-meal', component: MyMealsComponent }
                 ]),
             ],
-            declarations: [AddMyMealComponent, MyMealComponent],
+            declarations: [AddMyMealComponent, MyMealsComponent],
             providers: [
                 { provide: AuthService, useValue: { getId() { return 'iiid' } } },
                 { provide: DataService, useValue: {} },
