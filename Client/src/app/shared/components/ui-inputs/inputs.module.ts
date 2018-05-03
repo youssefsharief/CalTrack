@@ -7,6 +7,9 @@ import { PasswordInputlayoutComponent } from 'app/shared/components/ui-inputs/pa
 import { DefaultInputLayoutComponent } from 'app/shared/components/ui-inputs/default-input-layout/default-input-layout.component';
 import { ConfirmPasswordInputLayoutComponent } from 'app/shared/components/ui-inputs/confirm-password-input-layout/confirm-password-input-layout.component';
 import { CodeInputLayoutComponent } from 'app/shared/components/ui-inputs/code-input-layout/code-input-layout.component';
+import { CaloriesInputLayoutComponent } from 'app/shared/components/ui-inputs/calories-input-layout/calories-input-layout.component';
+import { MaxCaloriesInputLayoutComponent } from 'app/shared/components/ui-inputs/max-calories-input-layout/max-calories-input-layout.component';
+import { DisplayTrackingInputCheckboxLayoutComponent } from 'app/shared/components/ui-inputs/display-tracking-input-checkbox-layout/display-tracking-input-checkbox-layout.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import { CodeInputLayoutComponent } from 'app/shared/components/ui-inputs/code-i
     PasswordInputlayoutComponent,
     DefaultInputLayoutComponent,
     ConfirmPasswordInputLayoutComponent,
-    CodeInputLayoutComponent
+    CodeInputLayoutComponent,
+    CaloriesInputLayoutComponent,
+    MaxCaloriesInputLayoutComponent,
+    DisplayTrackingInputCheckboxLayoutComponent
   ],
   declarations: [
     SubmitButtonComponent,
@@ -28,7 +34,10 @@ import { CodeInputLayoutComponent } from 'app/shared/components/ui-inputs/code-i
     NameInputLayoutComponent,
     DefaultInputLayoutComponent,
     ConfirmPasswordInputLayoutComponent,
-    CodeInputLayoutComponent
+    CodeInputLayoutComponent,
+    CaloriesInputLayoutComponent,
+    MaxCaloriesInputLayoutComponent,
+    DisplayTrackingInputCheckboxLayoutComponent
   ],
 })
 export class AppInputsModule { }

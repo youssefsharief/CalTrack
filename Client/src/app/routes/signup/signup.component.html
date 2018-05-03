@@ -16,6 +16,14 @@
         <input type="password" name="confirmPassword" class="form-control" placeholder="Enter Password" formControlName="confirmPassword">
     </app-confirm-password-input-layout>
 
+    <app-max-calories-input-layout [isNotValid]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
+        <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter maximum daily intake" formControlName="maxCalories">
+    </app-max-calories-input-layout>
+
+    <app-display-tracking-input-checkbox-layout>
+        <input name="isTrackingDisplayed" type="checkbox" class="form-control" formControlName="isTrackingDisplayed">
+    </app-display-tracking-input-checkbox-layout>
+
     <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="signup()">Signup</button>
     <button class="btn btn-default" id="secure-signup-button" [disabled]="!form.valid" type="submit" (click)="signupSecurely()">Signup securely</button>
 </form>

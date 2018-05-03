@@ -8,15 +8,13 @@
         <input type="email" name="email" class="form-control" formControlName="email">
     </app-email-input-layout>
 
-    <div class="form-group">
-        <label for="">Maximum Calories Per Day </label>
-        <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter numOfCalories" formControlName="maxCalories">
-    </div>
+    <app-max-calories-input-layout [isNotValid]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
+        <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter maximum daily intake" formControlName="maxCalories">
+    </app-max-calories-input-layout>
 
-    <div class="form-group">
-        <label for="">Display Calories Tracking </label>
+    <app-display-tracking-input-checkbox-layout>
         <input name="isTrackingDisplayed" type="checkbox" class="form-control" formControlName="isTrackingDisplayed">
-    </div>
+    </app-display-tracking-input-checkbox-layout>
 
     <app-submit-button [isDisabled]="!form.valid"></app-submit-button>
 </form>

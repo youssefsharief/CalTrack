@@ -30,6 +30,8 @@ export class SignupComponent implements OnInit {
             email: ['', Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.compose([Validators.required, Validators.pattern(passwordPattern)])],
             confirmPassword: ['', Validators.required],
+            maxCalories: [''],
+            isTrackingDisplayed: [false],
         }, { validator: this.areEqual })
     }
 
