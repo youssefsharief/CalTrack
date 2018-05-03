@@ -25,6 +25,7 @@ export class EditMyMealComponent implements OnInit {
             this.router.navigate(['/my-meal'])
         } else {
             this.meal = this.mealsService.getSelectedMeal()
+            console.log(this.meal)
         }
     }
 

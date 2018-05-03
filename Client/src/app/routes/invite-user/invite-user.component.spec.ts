@@ -28,7 +28,7 @@ describe('InviteUser Component', () => {
         beforeEach(() => {
             fixture.detectChanges();
         })
-        describe('invalid email', () => {
+        fdescribe('invalid email', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
                 const emailInputElement = emailInput.nativeElement
