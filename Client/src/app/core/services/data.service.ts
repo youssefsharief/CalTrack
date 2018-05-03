@@ -18,11 +18,17 @@ export class DataService {
     }
 
     signup(item: User) {
-        return this.http.post('users', { email: item.email, password: item.password, meals: [], name: item.name })
+        return this.http.post('users', {
+            email: item.email, password: item.password, meals: [], name: item.name,
+            maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed
+        })
     }
 
     signupSecurely(item: User) {
-        return this.http.post('users/secure', { email: item.email, password: item.password, meals: [], name: item.name }, )
+        return this.http.post('users/secure', {
+            email: item.email, password: item.password, meals: [], name: item.name,
+            maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed
+        }, )
     }
 
     activateFromBackEnd(code: string, email: string) {

@@ -31,7 +31,7 @@ export class EditUserComponent implements OnInit {
         this.form = this.fb.group({
             name: [this.user.name, Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
             email: [this.user.email, Validators.compose([Validators.required, Validators.email])],
-            maxCalories: [this.user.maxCalories || ''],
+            maxCalories: [this.user.maxCalories, Validators.compose([Validators.required, Validators.min(500), Validators.max(8000)])],
             isTrackingDisplayed: [this.user.isTrackingDisplayed],
         })
     }

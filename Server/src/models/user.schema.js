@@ -17,8 +17,8 @@ const usersSchema = new Schema({
     recoveryCode: String,
     active: { type: Boolean, required: true, default: false },
     activationCode: String,
-    maxCalories: Number,
-    isTrackingDisplayed: { type: Boolean, required: true, default: false },
+    maxCalories: { type: Number, required: true },
+    isTrackingDisplayed: { type: Boolean, required: true },
 });
 
 module.exports = usersSchema
