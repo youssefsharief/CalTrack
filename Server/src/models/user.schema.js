@@ -10,7 +10,7 @@ const roles_enum = {
 
 const usersSchema = new Schema({
     name: { type: String, required: true },
-    email: { type: String, required: true, unique:true },
+    email: { type: String, required: false, unique:true },
     password: { type: String, required: true },
     role: { type: String, enum: roles_enum, required: true, default: 'regular' },
     meals: [mealSchema],
@@ -19,6 +19,7 @@ const usersSchema = new Schema({
     activationCode: String,
     maxCalories: { type: Number, required: true },
     isTrackingDisplayed: { type: Boolean, required: true },
+    googleId: { type: String, required: false, unique:true },
 });
 
 module.exports = usersSchema

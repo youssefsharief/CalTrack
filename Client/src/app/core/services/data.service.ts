@@ -110,6 +110,10 @@ export class DataService {
         return this.http.post(`users/invite`, { email, url }, )
     }
 
+    verifyTokenFromGoogle(token: string) {
+        return this.http.post<{ token: string, user: User }>(`tokensignin`, { token }, )
+    }
+
 }
 
 

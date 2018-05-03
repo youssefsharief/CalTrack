@@ -20,3 +20,4 @@ heroku logs -t --app app-name
 Mongodb scripts
 db.users.ensureIndex({"meals.date" : 1})
 db.users.ensureIndex({"meals._id" : 1})
+db.users.ensureIndex({"googleId" : 1})

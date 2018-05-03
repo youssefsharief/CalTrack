@@ -39,46 +39,45 @@ import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.compo
 import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
 
 export const routes: Routes = [
+
+    // {
+    //     path: 'login', component: LoginLayoutComponent, children: [
+
+
+    //     ]
+    // },
     {
-        path: 'login', component: LoginLayoutComponent, children: [
-            { path: '', component: LoginComponent },
-            { path: 'signup', component: SignupComponent },
-            { path: 'signup/activate', component: ActivateAfterSignupComponent },
-            { path: 'signup/success', component: SignupSuccessComponent },
-
-
-            { path: 'recover_password_by_email', component: RecoverPasswordByEmailComponent },
-            { path: 'recover_password_by_email/submit_new_password', component: NewPasswordAndRecoveryCodeSubmissionComponent },
-            { path: 'recover_password_by_email/submit_new_password/password_recovered_successfully',
-             component: PasswordRecoveredSuccessfullyComponent },
-
-
-
-
-            { path: 'corrupt', component: CorruptLinkComponent },
+        path: '', component: AuthenticatedNavbarComponent, children: [
+            { path: 'login', component: LoginComponent },
+            { path: 'login/signup', component: SignupComponent },
+            { path: 'login/signup/activate', component: ActivateAfterSignupComponent },
+            { path: 'login/signup/success', component: SignupSuccessComponent },
+            { path: 'login/recover_password_by_email', component: RecoverPasswordByEmailComponent },
+            { path: 'login/recover_password_by_email/submit_new_password', component: NewPasswordAndRecoveryCodeSubmissionComponent },
+            {
+                path: 'recover_password_by_email/submit_new_password/password_recovered_successfully',
+                component: PasswordRecoveredSuccessfullyComponent
+            },
+            { path: 'login/corrupt', component: CorruptLinkComponent },
 
 
 
-        ]
-    },
-    {
-        path: '', component: AuthenticatedNavbarComponent, canActivate: [AuthGuardService], children: [
             { path: 'empty', component: EmptyComponent, },
-            { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService]},
-            { path: 'my-profile', component: EditMyInfoComponent, },
-            { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent },
-            { path: 'my-meal', component: MyMealsComponent, },
-            { path: 'my-meal/add', component: AddMyMealComponent, },
-            { path: 'my-meal/edit', component: EditMyMealComponent },
-            { path: 'users', component: UsersComponent, },
-            { path: 'users/:id', component: EditOtherUserInfoComponent },
-            { path: 'users/:id/password', component: ChangeOtherUserPasswordComponent },
+            { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService] },
+            { path: 'my-profile', component: EditMyInfoComponent, canActivate: [AuthGuardService], },
+            { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent, canActivate: [AuthGuardService], },
+            { path: 'my-meal', component: MyMealsComponent, canActivate: [AuthGuardService], },
+            { path: 'my-meal/add', component: AddMyMealComponent, canActivate: [AuthGuardService], },
+            { path: 'my-meal/edit', component: EditMyMealComponent, canActivate: [AuthGuardService], },
+            { path: 'users', component: UsersComponent, canActivate: [AuthGuardService], },
+            { path: 'users/:id', component: EditOtherUserInfoComponent, canActivate: [AuthGuardService], },
+            { path: 'users/:id/password', component: ChangeOtherUserPasswordComponent, canActivate: [AuthGuardService], },
             { path: 'users/:id/role', component: EditRoleComponent, canActivate: [AdminClaimsService] },
             { path: 'users/:id/meal', component: OtherUserMealComponent, canActivate: [AdminClaimsService], },
-            { path: 'users/:id/meal/add', component: AddOtherUserMealComponent },
-            { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent },
-            { path: '', redirectTo: 'empty', pathMatch: 'full' },
-            { path: '**', redirectTo: 'empty' }
+            { path: 'users/:id/meal/add', component: AddOtherUserMealComponent, canActivate: [AuthGuardService], },
+            { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent, canActivate: [AuthGuardService], },
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: '**', redirectTo: 'login' }
         ]
     },
 

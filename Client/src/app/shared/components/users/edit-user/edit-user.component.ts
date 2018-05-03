@@ -21,31 +21,19 @@ export class EditUserComponent implements OnInit {
 
     ngOnInit() {
         this.buildForm()
-        this.disableOrEnableCheckbox()
-        this.form.valueChanges.subscribe(x => {
-            this.disableOrEnableCheckbox()
-        })
     }
 
     private buildForm() {
         this.form = this.fb.group({
+            email: [{value: this.user.email, disabled: true}],
             name: [this.user.name, Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
-            email: [this.user.email, Validators.compose([Validators.required, Validators.email])],
             maxCalories: [this.user.maxCalories, Validators.compose([Validators.required, Validators.min(500), Validators.max(8000)])],
             isTrackingDisplayed: [this.user.isTrackingDisplayed],
         })
     }
 
-    disableOrEnableCheckbox() {
-        // if (!this.form.get('maxCalories').value) {
-        //     this.form.get('isTrackingDisplayed').disable()
-        // } else {
-        //     console.log('aaaaaa')
-        //     this.form.get('isTrackingDisplayed').enable()
-        // }
-    }
-
     onSubmit() {
+        console.log(this.form.value)
         this.dataService.updateUserInfo(this.user._id, this.form.value).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()

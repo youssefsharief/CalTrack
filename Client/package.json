@@ -31,6 +31,8 @@
     "@pact-foundation/karma-pact": "^2.1.5",
     "@pact-foundation/pact": "^5.9.0",
     "@types/faker": "^4.1.2",
+    "@types/gapi": "0.0.35",
+    "@types/gapi.auth2": "0.0.47",
     "angular2-jwt": "^0.2.3",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",

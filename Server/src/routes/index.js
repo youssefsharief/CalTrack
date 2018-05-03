@@ -43,6 +43,7 @@ const validatechangeOtherUserPassword = require('./security/change-other-user-pa
 
 
 const getUserRecords = require('./records/get-user-records.route')
+const tokenSignin = require('./security/token-sigin.route')
 
 
 
@@ -78,6 +79,7 @@ router.patch('/users/:id/role', verifyUser, validateUpdateRole, Authorize.allowA
 
 router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdminOnly, inviteUser)
 
+router.post('/tokensignin', tokenSignin)
 
 
 

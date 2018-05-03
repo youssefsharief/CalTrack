@@ -1,12 +1,12 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="form">
 
+    <app-email-input-layout *ngIf="user.email">
+        <input type="email" name="email" class="form-control" formControlName="email">
+    </app-email-input-layout>
+
     <app-name-input-layout [isNotValid]="form.get('name').dirty && form.get('name').invalid">
         <input type="text" name="name" class="form-control" id="" placeholder="Enter your first name" formControlName="name">
     </app-name-input-layout>
-
-    <app-email-input-layout [isNotValid]="form.get('email').dirty && form.get('email').invalid">
-        <input type="email" name="email" class="form-control" formControlName="email">
-    </app-email-input-layout>
 
     <app-max-calories-input-layout [isNotValid]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
         <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter maximum daily intake" formControlName="maxCalories">
