@@ -1,3 +1,7 @@
-<app-default-input-layout label="Display Calorie Tracking">
+<div class="form-check">
     <ng-content></ng-content>
-</app-default-input-layout>
+    <label class="form-check-label" for="defaultCheck1">
+        Display Calorie Tracking
+    </label>
+    <p test-id="errorMessage" class="text-danger" [hidden]="!isNotValid"> {{errorMessage}} </p>
+</div>
