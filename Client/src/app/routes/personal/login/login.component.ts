@@ -41,19 +41,12 @@ export class LoginComponent implements OnInit {
     attachSignin(element) {
         this.auth2.attachClickHandler(element, {},
             (googleUser) => {
-                const profile = googleUser.getBasicProfile();
-                console.log('Token || ' + googleUser.getAuthResponse().id_token);
-                console.log('ID: ' + profile.getId());
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail());
-                const id_token = googleUser.getAuthResponse().id_token;
-                console.log('ID Token: ' + id_token);
-                this.dataService.verifyTokenFromGoogle(id_token).subscribe(
+                // const profile = googleUser.getBasicProfile();
+                this.dataService.verifyTokenFromGoogle(googleUser.getAuthResponse().id_token).subscribe(
                     data => {
                         this.authService.saveToken(data.token)
                         this.authService.saveProfile(data.user)
-                        this.router.navigate(['empty'])
+                        // this.router.navigate(['my-profile'])
                     },
                     error => console.log(error)
                 )
@@ -81,7 +74,7 @@ export class LoginComponent implements OnInit {
             data => {
                 this.authService.saveToken(data.token)
                 this.authService.saveProfile(data.user)
-                this.router.navigate(['empty'])
+                this.router.navigate(['my-profile'])
             },
         )
     }

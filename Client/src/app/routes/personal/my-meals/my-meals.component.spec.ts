@@ -7,7 +7,6 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { AuthService } from 'app/core/services/auth.service';
-import { EmptyComponent } from 'app/routes/empty/empty.component';
 import { Location } from '@angular/common';
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';

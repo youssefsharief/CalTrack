@@ -11,7 +11,6 @@ import { AuthService } from 'app/core/services/auth.service';
 import { By } from '@angular/platform-browser';
 import { SignupComponent } from 'app/routes/signup/signup.component';
 import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
-import { EmptyComponent } from 'app/routes/empty/empty.component';
 import { Location } from '@angular/common';
 import { User } from 'app/shared/models/user.model';
 
@@ -43,13 +42,12 @@ describe('Login Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule.withRoutes([
-                    { path: 'empty', component: EmptyComponent },
                     { path: 'login/signup', component: SignupComponent },
                     { path: 'login/recover_password_by_email', component: RecoverPasswordByEmailComponent },
                 ]),
                 SharedModule
             ],
-            declarations: [LoginComponent, SignupComponent, RecoverPasswordByEmailComponent, EmptyComponent],
+            declarations: [LoginComponent, SignupComponent, RecoverPasswordByEmailComponent],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,
@@ -195,7 +193,7 @@ describe('Login Component', () => {
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick()
-                expect(location.path()).toBe('/empty')
+                expect(location.path()).toBe('/my-profile')
             }))
         })
 

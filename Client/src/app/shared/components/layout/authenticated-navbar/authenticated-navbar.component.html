@@ -1,6 +1,6 @@
 <app-nav>
     <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" *ngIf="authService.isAuthenticated()">
             <li class="nav-item">
                 <a routerLinkActive="active" routerLink='/my-meal' class="nav-link">My meals</a>
             </li>

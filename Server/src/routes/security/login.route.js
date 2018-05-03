@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         if (!user.active) return res.status(403).json({ number: 1, msg: "Your account is not activated yet" })
         return comparePassword(req.body.password, user.password).then(ok => {
             if (!ok) return res.status(401).json({ msg: loginErr.message })
-            return res.send({ user: clearUnneededDataFromPayload(user), token: getToken(user._id, user.role) })
+            return res.status(200).json({ user: clearUnneededDataFromPayload(user), token: getToken(user._id, user.role) })
         }).catch(err => next(err))
     })
 }

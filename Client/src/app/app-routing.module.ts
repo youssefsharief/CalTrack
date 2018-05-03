@@ -27,7 +27,6 @@ import { EditRoleComponent } from './routes/edit-role/edit-role.component';
 import { AddOtherUserMealComponent } from './routes/add-other-user-meal/add-other-user-meal.component';
 import { EditUserComponent } from './shared/components/users/edit-user/edit-user.component';
 import { EditOtherUserInfoComponent } from './routes/edit-other-user-info/edit-other-user-info.component';
-import { EmptyComponent } from './routes/empty/empty.component';
 import { LoginLayoutComponent } from './shared/components/layout/login-layout/login-layout.component';
 import { EditOtherUserMealComponent } from './routes/edit-other-user-meal/edit-other-user-meal.component';
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
@@ -60,9 +59,6 @@ export const routes: Routes = [
             },
             { path: 'login/corrupt', component: CorruptLinkComponent },
 
-
-
-            { path: 'empty', component: EmptyComponent, },
             { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService] },
             { path: 'my-profile', component: EditMyInfoComponent, canActivate: [AuthGuardService], },
             { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent, canActivate: [AuthGuardService], },
@@ -76,8 +72,8 @@ export const routes: Routes = [
             { path: 'users/:id/meal', component: OtherUserMealComponent, canActivate: [AdminClaimsService], },
             { path: 'users/:id/meal/add', component: AddOtherUserMealComponent, canActivate: [AuthGuardService], },
             { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent, canActivate: [AuthGuardService], },
-            { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: '**', redirectTo: 'login' }
+            { path: '', redirectTo: 'my-profile', pathMatch: 'full' },
+            { path: '**', redirectTo: 'my-profile' }
         ]
     },
 

@@ -7,7 +7,6 @@ import {
 import {
     ChangeMyPasswordUsingOldPasswordComponent,
 } from './routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
-import { EmptyComponent } from './routes/empty/empty.component';
 import { SharedModule } from './shared/shared.module';
 import { SignupComponent } from './routes/signup/signup.component';
 import { OtherUserMealComponent } from './routes/other-user-meal/other-user-meal.component';
@@ -53,7 +52,6 @@ import { InviteUserComponent } from 'app/routes/invite-user/invite-user.componen
     OtherUserMealComponent,
     SignupComponent,
     UsersComponent,
-    EmptyComponent,
     SignupSuccessComponent,
     ActivateAfterSignupComponent,
     ChangeMyPasswordUsingOldPasswordComponent,
