@@ -2,10 +2,14 @@ import { CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { User } from 'app/shared/models/user.model';
+import { AuthService as LibAuthService } from 'angularx-social-login';
 
 @Injectable()
 export class AuthService {
 
+    constructor(
+        private libAuthService: LibAuthService
+    ) {}
     public saveToken(token): void {
         window.localStorage.setItem('id_token', token)
     }
@@ -35,6 +39,7 @@ export class AuthService {
     }
 
     public logout() {
+        this.libAuthService.signOut();
         window.localStorage.removeItem('id_token')
         window.localStorage.removeItem('profile')
         window.localStorage.removeItem('role')

@@ -84,6 +84,6 @@ router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdmi
 
 
 router.post('/oauth/facebook',  passport.authenticate('facebookToken', {session: false}), validateSocialLogin, facebookSignin );
-router.post('/oauth/google', validateSocialLogin, googleSignin  );
+router.post('/oauth/google', passport.authenticate('googleToken', {session: false}), validateSocialLogin, googleSignin  );
 
 module.exports = router

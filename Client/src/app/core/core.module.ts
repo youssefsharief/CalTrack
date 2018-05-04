@@ -17,6 +17,7 @@ import { AuthInterceptor } from 'app/core/http-interceptors/authentication-inter
 import { NgProgressInterceptor } from 'ngx-progressbar';
 import { DatePipe } from '@angular/common';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
+import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import { DateUtilityService } from 'app/core/services/date-utility.service';
         DataService,
         AdminClaimsService,
         AuthGuardService,
+        LoggedInGuardService,
         PublicInfoService,
         DatePipe,
         DateUtilityService,

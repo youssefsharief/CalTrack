@@ -4,7 +4,6 @@ const getUserByEmailFromDb = require('../../data-layer/get-user-by-email')
 
 module.exports = (req, res, next) => {
     getUserByEmailFromDb(req.body.email).then(async (user) => {
-        console.log(user)
         if (user) {
             return res.status(400).json({ msg: 'This user is already registered in our system' })
         } else {

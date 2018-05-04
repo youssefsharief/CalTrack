@@ -13,7 +13,7 @@ module.exports = class SocialAuth {
 
     action() {
         return new Promise((resolve, reject) => {
-            return getUserByAttribute({idKey: this.id}).then(existingUser => {
+            return getUserByAttribute({[this.idKey]: this.id}).then(existingUser => {
                 if (existingUser) {
                     resolve(this._getPayload(existingUser))
                 } else {
@@ -32,7 +32,6 @@ module.exports = class SocialAuth {
             isTrackingDisplayed: true,
         }
         user[idKey] = idValue
-        console.log(user)
         return addNewUser(user, ROLES.regular)
     }
     

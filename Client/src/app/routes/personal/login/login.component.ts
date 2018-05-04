@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../../core/services/data.service';
 import { SnackBarService } from '../../../core/services/snackbar.service';
@@ -7,19 +7,19 @@ import { AuthService } from '../../../core/services/auth.service';
 import { passwordPattern } from 'app/shared/config/constants';
 import { AuthService as LibAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
+import { Subscription } from 'rxjs/Subscription';
+import { User } from 'app/shared/models/user.model';
 
-
-
-declare var gapi: any
 @Component({
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
     form: FormGroup
-    isRegisteredButNotActive
-    auth2
-    constructor(private fb: FormBuilder,
+    isRegisteredButNotActive: boolean
+    socialAuthListener$: Subscription
+    constructor(
+        private fb: FormBuilder,
         private dataService: DataService,
         private sb: SnackBarService,
         private router: Router,
@@ -30,16 +30,16 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.buildForm()
-        this.listenToSocialAuth();
     }
 
     listenToSocialAuth() {
-        this.libAuthService.authState.subscribe((user) => {
+        this.socialAuthListener$ = this.libAuthService.authState.subscribe((user) => {
             console.log(user)
             if (user && user.authToken) {
-                this.dataService.oAuthFacebook(user.authToken).subscribe(
+                const sub = user.provider === 'FACEBOOK' ? this.dataService.oAuthFacebook(user.authToken) : this.dataService.oAuthGoogle(user.idToken)
+                sub.subscribe(
                     data => {
-                        console.log(data)
+                        this.saveUserDataLocallyAndProceedToProfile(data);
                     },
                     error => {
                         console.log(error)
@@ -60,29 +60,31 @@ export class LoginComponent implements OnInit {
     onSubmit(loginForm) {
         this.dataService.login(loginForm).subscribe(
             data => {
-                this.authService.saveToken(data.token)
-                this.authService.saveProfile(data.user)
-                this.router.navigate(['my-profile'])
+                this.saveUserDataLocallyAndProceedToProfile(data);
             },
         )
     }
 
-    googleSignOut() {
-        const auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
+    private saveUserDataLocallyAndProceedToProfile(data: { user: User, token: string }) {
+        this.authService.saveToken(data.token)
+        this.authService.saveProfile(data.user)
+        this.router.navigate(['my-profile'])
     }
 
-    // signInWithFB(): void {
-    //     this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    // }
+    signInWithFB(): void {
+        this.listenToSocialAuth();
+        this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    }
 
-    // signInWithGoogle(): void {
-    //     this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    // }
+    signInWithGoogle(): void {
+        this.listenToSocialAuth();
+        this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+    }
 
-    // libSignOut(): void {
-    //     this.libAuthService.signOut();
-    // }
+    ngOnDestroy() {
+        if (this.socialAuthListener$) {
+            this.socialAuthListener$.unsubscribe();
+        }
+    }
+
 }

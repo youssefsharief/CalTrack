@@ -36,28 +36,23 @@ import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-me
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
 import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.component';
 import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
+import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service';
 
 export const routes: Routes = [
-
-    // {
-    //     path: 'login', component: LoginLayoutComponent, children: [
-
-
-    //     ]
-    // },
     {
         path: '', component: AuthenticatedNavbarComponent, children: [
-            { path: 'login', component: LoginComponent },
-            { path: 'login/signup', component: SignupComponent },
-            { path: 'login/signup/activate', component: ActivateAfterSignupComponent },
-            { path: 'login/signup/success', component: SignupSuccessComponent },
-            { path: 'login/recover_password_by_email', component: RecoverPasswordByEmailComponent },
-            { path: 'login/recover_password_by_email/submit_new_password', component: NewPasswordAndRecoveryCodeSubmissionComponent },
+            { path: 'login', component: LoginComponent, canActivate: [LoggedInGuardService], },
+            { path: 'login/signup', component: SignupComponent, canActivate: [LoggedInGuardService], },
+            { path: 'login/signup/activate', component: ActivateAfterSignupComponent, canActivate: [LoggedInGuardService], },
+            { path: 'login/signup/success', component: SignupSuccessComponent, canActivate: [LoggedInGuardService], },
+            { path: 'login/recover_password_by_email', component: RecoverPasswordByEmailComponent, canActivate: [LoggedInGuardService], },
+            { path: 'login/recover_password_by_email/submit_new_password', component: NewPasswordAndRecoveryCodeSubmissionComponent, canActivate: [LoggedInGuardService], },
             {
                 path: 'recover_password_by_email/submit_new_password/password_recovered_successfully',
                 component: PasswordRecoveredSuccessfullyComponent
+                , canActivate: [LoggedInGuardService],
             },
-            { path: 'login/corrupt', component: CorruptLinkComponent },
+            { path: 'login/corrupt', component: CorruptLinkComponent, canActivate: [LoggedInGuardService], },
 
             { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService] },
             { path: 'my-profile', component: EditMyInfoComponent, canActivate: [AuthGuardService], },

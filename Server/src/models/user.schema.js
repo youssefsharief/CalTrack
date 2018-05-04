@@ -19,8 +19,8 @@ const usersSchema = new Schema({
     activationCode: String,
     maxCalories: { type: Number, required: true },
     isTrackingDisplayed: { type: Boolean, required: true },
-    googleId: { type: String, required: false, unique:true },
-    facebookId: { type: String, required: false, unique:true },
+    googleId: { type: String, required: false, trim: true, index: true, unique: true, sparse: true },
+    facebookId: { type: String, required: false, trim: true, index: true, unique: true, sparse: true },
 });
 
 module.exports = usersSchema
