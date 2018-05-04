@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4400",
+    "start": "ng serve --port 4400 --ssl true",
     "build": "ng build",
     "test": "ng test -sm=false",
     "coverage": "ng test -cc -sm=false",
@@ -34,6 +34,7 @@
     "@types/gapi": "0.0.35",
     "@types/gapi.auth2": "0.0.47",
     "angular2-jwt": "^0.2.3",
+    "angularx-social-login": "^1.1.8",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
     "faker": "^4.1.0",

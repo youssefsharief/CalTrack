@@ -5,6 +5,10 @@ import { DataService } from '../../../core/services/data.service';
 import { SnackBarService } from '../../../core/services/snackbar.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { passwordPattern } from 'app/shared/config/constants';
+import { AuthService as LibAuthService } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+
+
 
 declare var gapi: any
 @Component({
@@ -20,12 +24,32 @@ export class LoginComponent implements OnInit {
         private sb: SnackBarService,
         private router: Router,
         private authService: AuthService,
+        private libAuthService: LibAuthService
     ) {
     }
 
     ngOnInit() {
         this.buildForm()
+        this.listenToSocialAuth();
     }
+
+    listenToSocialAuth() {
+        this.libAuthService.authState.subscribe((user) => {
+            console.log(user)
+            if (user && user.authToken) {
+                this.dataService.oAuthFacebook(user.authToken).subscribe(
+                    data => {
+                        console.log(data)
+                    },
+                    error => {
+                        console.log(error)
+                    }
+                )
+            }
+        });
+    }
+
+
 
     googleInit() {
         gapi.load('auth2', () => {
@@ -42,7 +66,7 @@ export class LoginComponent implements OnInit {
         this.auth2.attachClickHandler(element, {},
             (googleUser) => {
                 // const profile = googleUser.getBasicProfile();
-                this.dataService.verifyTokenFromGoogle(googleUser.getAuthResponse().id_token).subscribe(
+                this.dataService.oAuthGoogle(googleUser.getAuthResponse().id_token).subscribe(
                     data => {
                         this.authService.saveToken(data.token)
                         this.authService.saveProfile(data.user)
@@ -86,4 +110,11 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    signInWithFB(): void {
+        this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    }
+
+    libSignOut(): void {
+        this.libAuthService.signOut();
+    }
 }

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-
+const passport = require('passport')
 
 const addRecord = require('./records/add-record.route')
 const removeRecord = require('./records/remove-record.route')
@@ -43,12 +43,14 @@ const validatechangeOtherUserPassword = require('./security/change-other-user-pa
 
 
 const getUserRecords = require('./records/get-user-records.route')
-const tokenSignin = require('./security/token-sigin.route')
 
-
+const googleSignin = require('./security/social-login/google-signin.route')
+const facebookSignin = require('./security/social-login/facebook-signin.route')
+const validateSocialLogin = require('./security/social-login/social-login.validate')
 
 const { verifyUser } = require('../core/authentication')
 const Authorize = require('../core/authorization')
+require('../passport')
 
 router.post('/users/', validateSignup, signup)
 router.post('/users/secure', validateSignup, signupSecurely)
@@ -79,8 +81,9 @@ router.patch('/users/:id/role', verifyUser, validateUpdateRole, Authorize.allowA
 
 router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdminOnly, inviteUser)
 
-router.post('/tokensignin', tokenSignin)
 
 
+router.post('/oauth/facebook',  passport.authenticate('facebookToken', {session: false}), validateSocialLogin, facebookSignin );
+router.post('/oauth/google', validateSocialLogin, googleSignin  );
 
 module.exports = router

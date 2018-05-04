@@ -110,8 +110,12 @@ export class DataService {
         return this.http.post(`users/invite`, { email, url }, )
     }
 
-    verifyTokenFromGoogle(token: string) {
-        return this.http.post<{ token: string, user: User }>(`tokensignin`, { token }, )
+    oAuthFacebook(access_token: string) {
+        return this.http.post<{ token: string, user: User }>(`oauth/facebook`, { access_token }, )
+    }
+
+    oAuthGoogle(access_token: string) {
+        return this.http.post<{ token: string, user: User }>(`oauth/google`, { access_token }, )
     }
 
 }
