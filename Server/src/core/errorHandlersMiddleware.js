@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 module.exports = app => {
 
     app.use(function (err, req, res, next) {
-        console.log(err)
+        if(err.oauthError) {
+            return res.status(err.oauthError.statusCode).json({msg:'Invalid OAUth token' })
+        }
         if (err.isJoi) {
             err.isJoi = undefined
             err._object = undefined
@@ -19,7 +21,7 @@ module.exports = app => {
     app.use(function (err, req, res, next) {
         if (err.name = 'CastError') {
             if (err instanceof mongoose.Error.CastError) {
-                return res.status(422).json({msg:'Please send proper input'})
+                return res.status(422).json({msg:`Please send proper '${err.path}'`})
             }
             else return res.status(500).json({msg:'Internal Server Error'})
         } else return next(err)
