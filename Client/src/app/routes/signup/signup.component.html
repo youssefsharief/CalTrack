@@ -1,22 +1,22 @@
 <form [formGroup]="form" *ngIf="form">
 
-    <app-name-input-layout [isNotValid]="form.get('name').dirty && form.get('name').invalid">
+    <app-name-input-layout [isDisplayingErrorMessage]="form.get('name').dirty && form.get('name').invalid">
         <input type="text" name="name" class="form-control" formControlName="name">
     </app-name-input-layout>
 
-    <app-email-input-layout [isNotValid]="form.get('email').dirty && form.get('email').invalid">
+    <app-email-input-layout [isDisplayingErrorMessage]="form.get('email').dirty && form.get('email').invalid">
         <input type="email" name="email" class="form-control" formControlName="email">
     </app-email-input-layout>
 
-    <app-password-input-layout [isNotValid]="form.get('password').dirty && form.get('password').invalid">
+    <app-password-input-layout [isDisplayingErrorMessage]="form.get('password').dirty && form.get('password').invalid">
         <input type="password" name="password" placeholder="Enter Password" class="form-control" formControlName="password">
     </app-password-input-layout>
 
-    <app-confirm-password-input-layout [isNotValid]="form.getError('areEqual')">
+    <app-confirm-password-input-layout [isDisplayingErrorMessage]="form.getError('areEqual')">
         <input type="password" name="confirmPassword" class="form-control" placeholder="Enter Password" formControlName="confirmPassword">
     </app-confirm-password-input-layout>
 
-    <app-max-calories-input-layout [isNotValid]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
+    <app-max-calories-input-layout [isDisplayingErrorMessage]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
         <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter maximum daily intake" formControlName="maxCalories">
     </app-max-calories-input-layout>
 

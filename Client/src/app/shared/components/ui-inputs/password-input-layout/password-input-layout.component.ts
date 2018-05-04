@@ -8,6 +8,6 @@ import { passwordErrorMessage } from 'app/shared/config/constants';
 })
 export class PasswordInputlayoutComponent {
     public errorMessage = passwordErrorMessage;
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
     @Input() label = 'Password'
 }

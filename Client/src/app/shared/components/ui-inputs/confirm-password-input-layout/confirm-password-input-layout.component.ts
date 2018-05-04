@@ -7,6 +7,6 @@ import { unsimillarPasswordErrorMessage } from 'app/shared/config/constants';
 })
 export class ConfirmPasswordInputLayoutComponent {
     public errorMessage = unsimillarPasswordErrorMessage;
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
     @Input() label = 'Confirm Password'
 }

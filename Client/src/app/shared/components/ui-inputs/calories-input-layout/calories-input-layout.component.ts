@@ -8,7 +8,7 @@ import { codeErrorMessage } from 'app/shared/config/constants';
 })
 export class CaloriesInputLayoutComponent {
     public errorMessage = codeErrorMessage;
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
     @Input() label = 'Calories'
 
 }

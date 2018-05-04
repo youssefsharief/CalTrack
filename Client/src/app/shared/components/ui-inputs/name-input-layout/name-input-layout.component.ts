@@ -7,5 +7,5 @@ import { nameErrorMessage } from 'app/shared/config/constants';
 })
 export class NameInputLayoutComponent {
     public errorMessage = nameErrorMessage
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
 }

@@ -8,7 +8,7 @@ import { maxCaloriesErrorMessage } from 'app/shared/config/constants';
 })
 export class MaxCaloriesInputLayoutComponent {
     public errorMessage = maxCaloriesErrorMessage;
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
     @Input() label = 'Maximum Daily Intake of Calories'
 
 }

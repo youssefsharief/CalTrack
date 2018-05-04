@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class DefaultInputLayoutComponent {
     @Input() errorMessage: string
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
     @Input() label: string
 }

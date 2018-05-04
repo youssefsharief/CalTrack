@@ -7,6 +7,6 @@ import { emailErrorMessage } from 'app/shared/config/constants';
 })
 export class EmailInputLayoutComponent {
     public errorMessage = emailErrorMessage;
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
 
 }

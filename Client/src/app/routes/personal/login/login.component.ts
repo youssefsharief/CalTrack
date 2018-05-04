@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     listenToSocialAuth() {
         this.socialAuthListener$ = this.libAuthService.authState.subscribe((user) => {
-            console.log(user)
             if (user && user.authToken) {
                 const sub = user.provider === 'FACEBOOK' ? this.dataService.oAuthFacebook(user.authToken) : this.dataService.oAuthGoogle(user.idToken)
                 sub.subscribe(
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private buildForm() {
         this.form = this.fb.group({
             email: ['', Validators.compose([Validators.email, Validators.required])],
-            password: ['', Validators.compose([Validators.required, Validators.pattern(passwordPattern)])],
+            password: ['', Validators.compose([Validators.required])],
         })
     }
 

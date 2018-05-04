@@ -8,6 +8,6 @@ import { codeErrorMessage } from 'app/shared/config/constants';
 })
 export class CodeInputLayoutComponent {
     public errorMessage = codeErrorMessage;
-    @Input() isNotValid: Boolean
+    @Input() isDisplayingErrorMessage: Boolean
     @Input() label = 'Recovery Code'
 }
