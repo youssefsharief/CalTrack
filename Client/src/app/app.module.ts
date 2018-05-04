@@ -33,21 +33,8 @@ import { ActivateAfterSignupComponent } from 'app/routes/signup/activate-after-s
 import { CoreModule } from 'app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
-
-
-
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from 'angularx-social-login';
-
-
-const config = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('218590022238538')
-  },
-]);
-
-
+import { SocialLoginModule } from 'angularx-social-login';
+import { socialLoginConfig } from 'app/shared/config/social-login.config';
 
 
 @NgModule({
@@ -83,7 +70,7 @@ const config = new AuthServiceConfig([
     SharedModule,
     CoreModule,
     HttpClientModule,
-    SocialLoginModule.initialize(config)
+    SocialLoginModule.initialize(socialLoginConfig)
 
   ],
   bootstrap: [AppComponent]

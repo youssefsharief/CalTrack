@@ -6,7 +6,7 @@ import { SnackBarService } from '../../../core/services/snackbar.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { passwordPattern } from 'app/shared/config/constants';
 import { AuthService as LibAuthService } from 'angularx-social-login';
-import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 
 
 
@@ -50,42 +50,6 @@ export class LoginComponent implements OnInit {
     }
 
 
-
-    googleInit() {
-        gapi.load('auth2', () => {
-            this.auth2 = gapi.auth2.init({
-                client_id: '170990127407-hmj1dvgspn0vbn6bn1q284a9j36eh6mj.apps.googleusercontent.com',
-                cookiepolicy: 'single_host_origin',
-                scope: 'profile email'
-            });
-            this.attachSignin(document.getElementById('googleBtn'));
-        });
-    }
-
-    attachSignin(element) {
-        this.auth2.attachClickHandler(element, {},
-            (googleUser) => {
-                // const profile = googleUser.getBasicProfile();
-                this.dataService.oAuthGoogle(googleUser.getAuthResponse().id_token).subscribe(
-                    data => {
-                        this.authService.saveToken(data.token)
-                        this.authService.saveProfile(data.user)
-                        // this.router.navigate(['my-profile'])
-                    },
-                    error => console.log(error)
-                )
-            }, (error) => {
-                alert(JSON.stringify(error, undefined, 2));
-            });
-    }
-
-
-    // tslint:disable-next-line:use-life-cycle-interface
-    ngAfterViewInit() {
-        this.googleInit();
-    }
-
-
     private buildForm() {
         this.form = this.fb.group({
             email: ['', Validators.compose([Validators.email, Validators.required])],
@@ -110,11 +74,15 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    signInWithFB(): void {
-        this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    }
+    // signInWithFB(): void {
+    //     this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // }
 
-    libSignOut(): void {
-        this.libAuthService.signOut();
-    }
+    // signInWithGoogle(): void {
+    //     this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+    // }
+
+    // libSignOut(): void {
+    //     this.libAuthService.signOut();
+    // }
 }
