@@ -1,0 +1,8 @@
+
+.theme-red .bs-datepicker-head, .theme-red .bs-datepicker-body table td span.selected{
+    background-color: map-get($theme-colors, "primary")
+}
+
+.theme-red .bs-datepicker-body table td.week span {
+    color: map-get($theme-colors, "primary")
+}
