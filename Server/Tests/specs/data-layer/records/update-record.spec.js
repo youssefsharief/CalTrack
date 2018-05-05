@@ -1,8 +1,8 @@
-const addNewUser = require('../../../../src/data-layer/add-new-user.db')
-const addRecord = require('../../../../src/data-layer/add-record.db')
+const addNewUser = require('../../../../src/data-layer/user/add-new-user.db')
+const addRecord = require('../../../../src/data-layer/record/add-record.db')
 const { connectToDb } = require('../../../helpers/requestsSpecHelper')
-const getUserRecordsById = require('../../../../src/data-layer/get-user-records-by-id.db')
-const updateRecord = require('../../../../src/data-layer/update-record.db')
+const getUserRecordsById = require('../../../../src/data-layer/record/get-user-records-by-id.db')
+const updateRecord = require('../../../../src/data-layer/record/update-record.db')
 const faker = require('faker')
 
 

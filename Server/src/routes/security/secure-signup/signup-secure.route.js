@@ -1,5 +1,5 @@
 
-const addNewUser = require('../../../data-layer/add-new-user.db')
+const addNewUser = require('../../../data-layer/user/add-new-user.db')
 const generateRandomCode = require('../../../services/generate-random-code').generateRandomCode
 const ROLES = require('../../../config/rolesConstants')
 const clearUnneededDataFromPayload = require('../../../services/clear-unneeded-data')

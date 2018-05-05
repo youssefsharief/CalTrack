@@ -1,8 +1,8 @@
-const saveRecoveryCode = require('../../../src/data-layer/save-recovery-code.db')
-const addNewUser = require('../../../src/data-layer/add-new-user.db')
+const saveRecoveryCode = require('../../../src/data-layer/user/save-recovery-code.db')
+const addNewUser = require('../../../src/data-layer/user/add-new-user.db')
 const { connectToDb } = require('../../helpers/requestsSpecHelper')
 const generateRandomCode = require('../../../src/services/generate-random-code').generateRandomCode
-const getUserByEmail = require('../../../src/data-layer/get-user-by-email')
+const getUserByEmail = require('../../../src/data-layer/user/get-user-by-email')
 
 const faker = require('faker')
 

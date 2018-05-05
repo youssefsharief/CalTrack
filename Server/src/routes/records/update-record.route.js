@@ -1,5 +1,5 @@
 
-const updateRecord = require('../../data-layer/update-record.db')
+const updateRecord = require('../../data-layer/record/update-record.db')
 const { getNutriCalories } = require('../../external-apis/nutritionix')
 const { getDateIgnoringTimezone } = require('../../services/date-utility')
 

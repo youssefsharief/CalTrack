@@ -1,6 +1,6 @@
-const addNewUser = require('../../../src/data-layer/add-new-user.db')
-const getUserByEmail = require('../../../src/data-layer/get-user-by-email')
-const GetUserQuery = require('../../../src/data-layer/get-users.db')
+const addNewUser = require('../../../src/data-layer/user/add-new-user.db')
+const getUserByEmail = require('../../../src/data-layer/user/get-user-by-email')
+const GetUserQuery = require('../../../src/data-layer/user/get-users.db')
 const { connectToDb } = require('../../helpers/requestsSpecHelper')
 const faker = require('faker')
 

@@ -1,5 +1,5 @@
 const ROLES = require('../../config/rolesConstants')
-const GetUserQuery = require('../../data-layer/get-users.db')
+const GetUserQuery = require('../../data-layer/user/get-users.db')
 
 module.exports = (req, res, next) => {
     const getUserQuery = new GetUserQuery(10, parseInt(req.query.skip),

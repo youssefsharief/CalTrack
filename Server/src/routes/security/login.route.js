@@ -1,6 +1,6 @@
 const { getToken } = require('../../core/authentication')
 const comparePassword = require('../../services/compare-password').comparePassword
-const getUserByEmail = require('../../data-layer/get-user-by-email')
+const getUserByEmail = require('../../data-layer/user/get-user-by-email')
 const clearUnneededDataFromPayload = require('../../services/clear-unneeded-data')
 
 module.exports = (req, res, next) => {

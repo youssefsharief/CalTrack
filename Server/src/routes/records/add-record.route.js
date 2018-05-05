@@ -1,4 +1,4 @@
-const addRecord = require('../../data-layer/add-record.db')
+const addRecord = require('../../data-layer/record/add-record.db')
 const { getNutriCalories } = require('../../external-apis/nutritionix')
 const { getDateIgnoringTimezone } = require('../../services/date-utility')
 

@@ -1,4 +1,4 @@
-const saveRecoveryCodeToDb = require('../../../data-layer/save-recovery-code.db')
+const saveRecoveryCodeToDb = require('../../../data-layer/user/save-recovery-code.db')
 const generateRandomCode = require('../../../services/generate-random-code').generateRandomCode
 const mailer = require('../../../services/mailer')
 

@@ -1,5 +1,5 @@
 
-const getUserPasswordFromDb = require('../../data-layer/get-user-old-password-by-id.db')
+const getUserPasswordFromDb = require('../../data-layer/user/get-user-old-password-by-id.db')
 const comparePassword = require('../../services/compare-password').comparePassword
 
 module.exports = async (req, res, next) => {

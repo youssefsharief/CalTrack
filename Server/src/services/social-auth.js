@@ -1,6 +1,6 @@
-const getUserByAttribute = require('../data-layer/get-user-by-attribute.db')
+const getUserByAttribute = require('../data-layer/user/get-user-by-attribute.db')
 const clearUnneededDataFromPayload = require('./clear-unneeded-data')
-const addNewUser = require('../data-layer/add-new-user.db')
+const addNewUser = require('../data-layer/user/add-new-user.db')
 const ROLES = require('../config/rolesConstants')
 const { getToken } = require('../core/authentication')
 
