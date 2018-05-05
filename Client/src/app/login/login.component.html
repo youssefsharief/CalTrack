@@ -5,8 +5,7 @@
     </p>
 </div>
 
-<h1 class="mb-4">Login</h1>
-<br>
+<app-title>Login</app-title>
 <form (ngSubmit)="onSubmit(form.value)" [formGroup]="form" *ngIf="form">
     <app-email-input-layout [isDisplayingErrorMessage]="form.get('email').dirty && form.get('email').invalid">
         <input type="email" name="email" class="form-control" formControlName="email">
@@ -19,7 +18,10 @@
 <hr>
 <button class="btn btn-default mb-4" id="forget-password-button" routerLink="/email_password_recovery">Forgotten password?</button>
 <br class="mb-4">
-<span>Do not have an account?</span>
-<button class="btn btn-default" id="signup-button" routerLink="/signup">Sign Up</button>
+
+<div class="mb-4">
+    <span>Do not have an account?</span>
+    <button class="btn btn-default " id="signup-button" routerLink="/signup">Sign Up</button>
+</div>
 
 <app-social-sign-in></app-social-sign-in>

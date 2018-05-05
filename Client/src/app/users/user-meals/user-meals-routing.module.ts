@@ -6,7 +6,7 @@ import { AddOtherUserMealComponent } from 'app/users/user-meals/add-other-user-m
 import { EditOtherUserMealComponent } from 'app/users/user-meals/edit-other-user-meal/edit-other-user-meal.component';
 
 const routes: Routes = [
-    { path: '', component: OtherUserMealsComponent, canActivate: [AdminClaimsService], },
+    { path: '', component: OtherUserMealsComponent, },
     { path: 'add', component: AddOtherUserMealComponent },
     { path: 'edit', component: EditOtherUserMealComponent },
 ]

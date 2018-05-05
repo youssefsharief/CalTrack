@@ -8,10 +8,11 @@ import { UsersComponent } from 'app/users/routes/users-list/users.component';
 import { EditRoleComponent } from 'app/users/routes/edit-role/edit-role.component';
 import { CommonModule } from '@angular/common';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
 
 
 @NgModule({
-    imports: [SharedModule, UsersRoutingModule, CommonModule],
+    imports: [SharedModule, UsersRoutingModule, CommonModule, SharedTrimmedModule],
     declarations: [
         UsersComponent,
         EditOtherUserInfoComponent,

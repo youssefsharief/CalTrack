@@ -9,7 +9,6 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
-import { UsersComponent } from 'app/routes/users-list/users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { ChangeOtherUserPasswordComponent } from 'app/users/routes/change-other-user-password/change-other-user-password.component';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';

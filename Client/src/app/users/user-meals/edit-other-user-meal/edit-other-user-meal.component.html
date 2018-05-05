@@ -1,2 +1,2 @@
-<h3 *ngIf="meal && user">Update {{meal.name}} Meal for {{user.name}}</h3>
+<app-title *ngIf="meal && user">Update {{meal.name}} Meal for {{user.name}}</app-title>
 <app-meal-form [meal]="meal" (submitted)="onSubmitted($event)"></app-meal-form>

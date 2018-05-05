@@ -1,10 +1,8 @@
-<div class="col-md-6">
-    <h3>Update Role</h3>
-    <br>
+    <app-title>Update Role</app-title>
     <div class="form-group" *ngIf="user">
         <label for="role" *ngIf="user.name">{{user?.name}}'s  Role</label>
 
-        <select class="form-control" name="role" [(ngModel)]="user.role ">
+        <select class="form-control col-4" name="role" [(ngModel)]="user.role ">
             <!-- <option disabled  value="" >Subcategory</option> -->
             <option value="regular">Regular</option>
             <option value="manager">Manager</option>
@@ -13,4 +11,3 @@
         </select>
     </div>
     <button class="btn btn-default" (click)="onAssignClick()">Assign Role</button>
-</div>

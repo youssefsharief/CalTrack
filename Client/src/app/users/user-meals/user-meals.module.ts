@@ -12,7 +12,7 @@ import { SelectedUserService } from 'app/users/services/selectedUser.service';
     declarations: [
         OtherUserMealsComponent,
         AddOtherUserMealComponent,
-        EditOtherUserMealComponent
+        EditOtherUserMealComponent,
     ],
     providers: [
         SelectedUserService

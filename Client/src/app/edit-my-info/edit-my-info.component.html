@@ -1,10 +1,6 @@
 
-<h3>Update My Info</h3>
-
+<app-title>Update My Info</app-title>
 <app-edit-user [user]="user" (edited)="onEdited($event)"></app-edit-user>
-
-<br>
-<br>
-<button class="btn btn-default" *ngIf="user.email" id="change-my-password-button" routerLink="/my-profile/password">Change my Password</button>
+<button class="btn btn-default mt-4" *ngIf="user.email" id="change-my-password-button" routerLink="/my-profile/password">Change my Password</button>
 
   

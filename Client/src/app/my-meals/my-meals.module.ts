@@ -7,11 +7,13 @@ import { AddMyMealComponent } from 'app/my-meals/add-my-meal/add-my-meal.compone
 import { MyMealsRoutingModule } from 'app/my-meals/my-meals-routing.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { MyMealsComponent } from 'app/my-meals/my-meals.component';
+import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
 
 @NgModule({
     imports: [
         SharedModule,
-        MyMealsRoutingModule
+        MyMealsRoutingModule,
+        SharedTrimmedModule
     ],
     declarations: [
         EditMyMealComponent,

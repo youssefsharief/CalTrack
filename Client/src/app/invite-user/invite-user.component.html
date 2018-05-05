@@ -1,5 +1,4 @@
-<h1 class="mb-4">Invite a user</h1>
-<br>
+<app-title>Invite a user</app-title>
 <form (ngSubmit)="onSubmit(form.value)" [formGroup]="form" *ngIf="form">
     <app-email-input-layout [isDisplayingErrorMessage]="form.get('email').dirty && form.get('email').invalid">
         <input type="email" name="email" class="form-control" formControlName="email">

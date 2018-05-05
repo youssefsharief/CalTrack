@@ -10,13 +10,9 @@ import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
-import { AddOtherUserMealComponent } from 'app/routes/add-other-user-meal/add-other-user-meal.component';
-import { UsersComponent } from 'app/routes/users-list/users.component';
-import { SelectedUserService } from 'app/core/services/selectedUser.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
-import { OtherUserMealsComponent } from 'app/routes/other-user-meals/other-user-meals.component';
 import { User } from 'app/shared/models/user.model';
+import { SelectedUserService } from 'app/users/services/selectedUser.service';
 
 describe('AddOtherUserMeal Component', () => {
     let comp: AddOtherUserMealComponent;

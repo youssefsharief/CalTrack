@@ -8,11 +8,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EditMyInfoComponent implements OnInit {
     public user
-    public title: string
     constructor(private authService: AuthService) { }
 
     ngOnInit() {
-        this.title = `Update my Info `
         this.user = this.authService.getProfile()
     }
 

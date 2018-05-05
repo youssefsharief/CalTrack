@@ -1,2 +1,3 @@
-<h3 *ngIf="user">Add to {{user.name}} meals</h3>
+<app-title *ngIf="user">Add to {{user.name}} meals</app-title>
+
 <app-meal-form (submitted)="onSubmitted($event)"></app-meal-form>

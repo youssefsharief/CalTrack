@@ -4,11 +4,13 @@ import { NewPasswordAndRecoveryCodeSubmissionComponent } from './new-password-an
 import { EmailPasswordRecoveryComponent } from './email-password-recovery.component';
 import { SharedFormsModule } from 'app/shared/shared-forms.module.ts/shared-forms.module';
 import { EmailPasswordRecoveryRoutingModule } from 'app/email-password-recovery/email-password-recovery-routing.module';
+import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
 
 @NgModule({
     imports: [
         SharedFormsModule,
-        EmailPasswordRecoveryRoutingModule
+        EmailPasswordRecoveryRoutingModule,
+        SharedTrimmedModule
     ],
     declarations: [
         EmailPasswordRecoveryComponent,
