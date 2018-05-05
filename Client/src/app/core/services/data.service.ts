@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserCredentials } from 'app/shared/models/userCredentials';
 import { User } from 'app/shared/models/user.model';
-import { UserInfo } from 'app/shared/models/userInfo.model';
 import { Meal } from 'app/shared/models/meal.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -35,7 +34,7 @@ export class DataService {
         return this.http.post('activation', { code, email })
     }
 
-    updateUserInfo(id: string, data: UserInfo) {
+    updateUserInfo(id: string, data) {
         return this.http.put(`users/${id}/info`, data, )
     }
 

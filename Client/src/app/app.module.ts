@@ -10,21 +10,13 @@ import { socialLoginConfig } from 'app/shared/config/social-login.config';
 import { AuthServiceConfig } from 'angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-export function provideConfig() {
-  return socialLoginConfig;
-}
-
 @NgModule({
   declarations: [
     AppComponent,
   ],
   providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+    { provide: AuthServiceConfig, useFactory: () => socialLoginConfig }
   ],
-
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -33,7 +25,6 @@ export function provideConfig() {
     HttpClientModule,
     SocialLoginModule,
     BrowserAnimationsModule
-
   ],
   bootstrap: [AppComponent]
 })
