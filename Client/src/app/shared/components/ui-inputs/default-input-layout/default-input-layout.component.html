@@ -1,5 +1,7 @@
-<div class="form-group">
-    <label for="">{{label}} </label>
-    <ng-content></ng-content>
-    <p test-id="errorMessage" class="text-danger" [hidden]="!isDisplayingErrorMessage"> {{errorMessage}} </p>
+<div class="form-group row">
+    <label for="" class="col-2 col-form-label">{{label}} </label>
+    <div class="col-10">
+        <ng-content></ng-content>
+        <p test-id="errorMessage" class="form-text text-danger" [hidden]="!isDisplayingErrorMessage"> {{errorMessage}} </p>
+    </div>
 </div>

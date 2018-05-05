@@ -1,6 +1,5 @@
 import { SignupSuccessComponent } from './signup/signup-success/signup-success.component';
 import { ActivateAfterSignupComponent } from './signup/activate-after-signup/activate-after-signup.component';
-import { LoginComponent } from './routes/personal/login/login.component';
 import {
     PasswordRecoveredSuccessfullyComponent,
 } from './routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/password-recovered-successfully/password-recovered-successfully.component';
@@ -31,7 +30,7 @@ import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service'
 export const routes: Routes = [
     {
         path: '', component: AuthenticatedNavbarComponent, children: [
-            { path: 'login', component: LoginComponent, canActivate: [LoggedInGuardService], },
+            { path: 'login',  loadChildren: './login/login.module#LoginModule', canActivate: [LoggedInGuardService],  },
             { path: 'signup',  loadChildren: './signup/signup.module#SignupModule', canActivate: [LoggedInGuardService],  },
             { path: 'recover_password_by_email', component: RecoverPasswordByEmailComponent, canActivate: [LoggedInGuardService], },
             { path: 'recover_password_by_email/submit_new_password', component: NewPasswordAndRecoveryCodeSubmissionComponent, canActivate: [LoggedInGuardService], },

@@ -1,4 +1,3 @@
-import { LoginComponent } from './routes/personal/login/login.component';
 import {
     NewPasswordAndRecoveryCodeSubmissionComponent,
 // tslint:disable-next-line:max-line-length
@@ -38,7 +37,6 @@ export function provideConfig() {
     EditMyInfoComponent,
     EditMyMealComponent,
     EditMyMealComponent,
-    LoginComponent,
     MyMealsComponent,
     ChangeMyPasswordUsingOldPasswordComponent,
     RecoverPasswordByEmailComponent,

@@ -1,36 +1,27 @@
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from '../../../core/services/data.service';
-import { SnackBarService } from '../../../core/services/snackbar.service';
-import { AuthService } from '../../../core/services/auth.service';
-import { passwordPattern } from 'app/shared/config/constants';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthService as LibAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { Subscription } from 'rxjs/Subscription';
+import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
+import { Router } from '@angular/router';
+import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
-    templateUrl: 'login.component.html',
-    styleUrls: ['login.component.scss']
+    selector: 'app-social-sign-in',
+    templateUrl: 'social-sign-in.component.html',
+    styleUrls: ['social-sign-in.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
-    form: FormGroup
-    isRegisteredButNotActive: boolean
+
+export class SocialSignInComponent implements OnDestroy {
     socialAuthListener$: Subscription
+
     constructor(
-        private fb: FormBuilder,
+        private libAuthService: LibAuthService,
         private dataService: DataService,
-        private sb: SnackBarService,
         private router: Router,
         private authService: AuthService,
-        private libAuthService: LibAuthService
-    ) {
-    }
-
-    ngOnInit() {
-        this.buildForm()
-    }
+    ) {}
 
     listenToSocialAuth() {
         this.socialAuthListener$ = this.libAuthService.authState.subscribe((user) => {
@@ -46,22 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
                 )
             }
         });
-    }
-
-
-    private buildForm() {
-        this.form = this.fb.group({
-            email: ['', Validators.compose([Validators.email, Validators.required])],
-            password: ['', Validators.compose([Validators.required])],
-        })
-    }
-
-    onSubmit(loginForm) {
-        this.dataService.login(loginForm).subscribe(
-            data => {
-                this.saveUserDataLocallyAndProceedToProfile(data);
-            },
-        )
     }
 
     private saveUserDataLocallyAndProceedToProfile(data: { user: User, token: string }) {
@@ -85,5 +60,4 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.socialAuthListener$.unsubscribe();
         }
     }
-
 }
