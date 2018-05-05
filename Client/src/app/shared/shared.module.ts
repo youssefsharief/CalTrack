@@ -1,15 +1,11 @@
-import { AuthenticatedNavbarComponent } from './components/layout/authenticated-navbar/authenticated-navbar.component';
 import { RouterModule } from '@angular/router';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from './components/layout/footer/footer.component';
-import { NavComponent } from './components/layout/nav/nav.component';
 import { MealsComponent } from './components/meals/view-meal/meals.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
-import { LoginLayoutComponent } from './components/layout/login-layout/login-layout.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -40,10 +36,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
   providers: [],
   exports: [
     CommonModule,
-    FooterComponent,
-    NavComponent,
-    LoginLayoutComponent,
-    AuthenticatedNavbarComponent,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
@@ -55,18 +47,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
     AppInputsModule,
     TypeaheadModule,
     PaginationModule,
-
-
   ],
   declarations: [
-    NavComponent,
-    FooterComponent,
     MealsComponent,
     MealFormComponent,
     EditUserComponent,
-    LoginLayoutComponent,
-    AuthenticatedNavbarComponent,
-
   ],
 })
 export class SharedModule { }

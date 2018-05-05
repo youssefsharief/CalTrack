@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
-    selector: 'app-authenticated-navbar',
+    selector: 'app-authenticated-nav-bar',
     templateUrl: 'authenticated-navbar.component.html',
 })
 export class AuthenticatedNavbarComponent {
