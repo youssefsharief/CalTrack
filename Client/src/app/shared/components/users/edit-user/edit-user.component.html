@@ -5,11 +5,11 @@
     </app-email-input-layout>
 
     <app-name-input-layout [isDisplayingErrorMessage]="form.get('name').dirty && form.get('name').invalid">
-        <input type="text" name="name" class="form-control" id="" placeholder="Enter your first name" formControlName="name">
+        <input type="text" name="name" class="form-control" id="" formControlName="name">
     </app-name-input-layout>
 
     <app-max-calories-input-layout [isDisplayingErrorMessage]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
-        <input name="maxCalories" type="number" class="form-control" id="" placeholder="Enter maximum daily intake" formControlName="maxCalories">
+        <input name="maxCalories" type="number" class="form-control" id="" formControlName="maxCalories">
     </app-max-calories-input-layout>
 
     <app-display-tracking-input-checkbox-layout>

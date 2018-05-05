@@ -11,7 +11,7 @@
     </app-email-input-layout>
 
     <app-code-input-layout [isDisplayingErrorMessage]="form.get('activationCode').dirty && form.get('activationCode').invalid">
-        <input type="text" label="Activation Code" name="activationCode" placeholder="Enter recovery code" class="form-control" formControlName="activationCode">
+        <input type="text" label="Activation Code" name="activationCode" class="form-control" formControlName="activationCode">
     </app-code-input-layout>
 
     <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="submit(form.value)">Activate</button>

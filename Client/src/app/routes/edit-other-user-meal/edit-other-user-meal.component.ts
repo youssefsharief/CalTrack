@@ -30,6 +30,11 @@ export class EditOtherUserMealComponent implements OnInit {
             user => user ?  this.user = user : this.router.navigate(['/users/'])
         );
         this.meal = this.mealsService.getSelectedMeal()
+        // if (!this.meal) {
+        //     this.route.params.subscribe((
+        //         data => this.router.navigate([`/users/${data.id}`])
+        //     ))
+        // }
     }
 
 
