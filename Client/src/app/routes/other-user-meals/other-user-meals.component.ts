@@ -8,9 +8,9 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 
 @Component({
-    templateUrl: 'other-user-meal.component.html',
+    templateUrl: 'other-user-meals.component.html',
 })
-export class OtherUserMealComponent implements OnInit {
+export class OtherUserMealsComponent implements OnInit {
     public user: User
     constructor(
         private selectedUserService: SelectedUserService,

@@ -20,7 +20,7 @@ export class MyMealsComponent {
     ) { }
 
     onAddClicked() {
-        this.router.navigate(['/my-meal/add'])
+        this.router.navigate(['/my-meals/add'])
     }
 
     onEditClicked(item: Meal) {

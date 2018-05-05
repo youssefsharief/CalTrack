@@ -26,7 +26,7 @@ describe('EditMyMeal Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'my-meal', component: MyMealsComponent }
+                    { path: 'my-meals', component: MyMealsComponent }
                 ]),
             ],
             declarations: [EditMyMealComponent, MyMealsComponent],
@@ -49,11 +49,11 @@ describe('EditMyMeal Component', () => {
         expect(comp).toBeTruthy()
     })
     describe('No timing has been selected', () => {
-        it('should navigate to "my-meal" route', fakeAsync(() => {
+        it('should navigate to "my-meals" route', fakeAsync(() => {
             mealsService.getSelectedMeal = () => null
             fixture.detectChanges();
             tick(100)
-            expect(location.path()).toBe('/my-meal')
+            expect(location.path()).toBe('/my-meals')
         }))
     })
 
@@ -100,10 +100,10 @@ describe('EditMyMeal Component', () => {
                             expect(spy).toHaveBeenCalledWith('iiid', 'rr', Object({ name: 'nnnn', date: 'cccc', numOfCalories: 3 }));
                         })
                     })
-                    it('should navigate to "my-meal" route', fakeAsync(() => {
+                    it('should navigate to "my-meals" route', fakeAsync(() => {
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                         tick(100)
-                        expect(location.path()).toBe('/my-meal')
+                        expect(location.path()).toBe('/my-meals')
                     }))
                 })
                 describe('Error Scenario', () => {

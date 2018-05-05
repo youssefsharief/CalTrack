@@ -42,7 +42,7 @@ describe('MyMeal Component', () => {
             imports: [
                 RouterTestingModule.withRoutes([
                     { path: 'my-meal/edit', component: EditMyMealComponent },
-                    { path: 'my-meal/add', component: AddMyMealComponent },
+                    { path: 'my-meals/add', component: AddMyMealComponent },
                 ]),
                 SharedModule
             ],
@@ -117,7 +117,7 @@ describe('MyMeal Component', () => {
                 fixture.nativeElement.querySelector('.fa-plus').click();
                 tick();
                 fixture.detectChanges();
-                expect(location.path()).toBe('/my-meal/add');
+                expect(location.path()).toBe('/my-meals/add');
             }));
         })
         describe('click on plus edit button', () => {

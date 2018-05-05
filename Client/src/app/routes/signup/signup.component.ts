@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
 
     signup() {
         this.dataService.signup(this.form.value).subscribe(
-            data => this.router.navigate(['/login/signup/success']),
+            data => this.router.navigate(['/signup/success']),
             error => this.sb.emitErrorSnackBar(error)
         )
     }
@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
             data => {
                 this.publicInfoService.setEmail(this.form.value.email)
                 this.publicInfoService.setPass(this.form.value.password)
-                this.router.navigate(['/login/signup/activate'])
+                this.router.navigate(['/signup/activate'])
             },
             error => {
                 this.sb.emitErrorSnackBar(error)

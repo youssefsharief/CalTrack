@@ -87,7 +87,7 @@ describe('InviteUser Component', () => {
                         })
                         it('should call with right arguments', () => {
                             fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                            expect(spy).toHaveBeenCalledWith('sdafg@dsds.com', 'http://localhost:9876/login/signup');
+                            expect(spy).toHaveBeenCalledWith('sdafg@dsds.com', 'http://localhost:9876/signup');
                         })
                     })
                 })

@@ -42,8 +42,8 @@ describe('Login Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule.withRoutes([
-                    { path: 'login/signup', component: SignupComponent },
-                    { path: 'login/recover_password_by_email', component: RecoverPasswordByEmailComponent },
+                    { path: 'signup', component: SignupComponent },
+                    { path: 'recover_password_by_email', component: RecoverPasswordByEmailComponent },
                 ]),
                 SharedModule
             ],
@@ -72,13 +72,13 @@ describe('Login Component', () => {
             fixture.nativeElement.querySelector('#signup-button').click();
             tick();
             fixture.detectChanges();
-            expect(location.path()).toBe('/login/signup');
+            expect(location.path()).toBe('/signup');
         }));
         it('forget password', fakeAsync(() => {
             fixture.nativeElement.querySelector('#forget-password-button').click();
             tick();
             fixture.detectChanges();
-            expect(location.path()).toBe('/login/recover_password_by_email');
+            expect(location.path()).toBe('/recover_password_by_email');
         }));
     })
 

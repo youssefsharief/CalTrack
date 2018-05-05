@@ -8,14 +8,14 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
-import { OtherUserMealComponent } from 'app/routes/other-user-meal/other-user-meal.component';
+import { OtherUserMealsComponent } from 'app/routes/other-user-meals/other-user-meals.component';
 import { EditOtherUserMealComponent } from 'app/routes/edit-other-user-meal/edit-other-user-meal.component';
 import { AddOtherUserMealComponent } from 'app/routes/add-other-user-meal/add-other-user-meal.component';
 import { SelectedUserService } from 'app/core/services/selectedUser.service';
 
 describe('OtherUserMeal Component', () => {
-    let comp: OtherUserMealComponent;
-    let fixture: ComponentFixture<OtherUserMealComponent>;
+    let comp: OtherUserMealsComponent;
+    let fixture: ComponentFixture<OtherUserMealsComponent>;
     let location: Location
     let dataService: DataService
 
@@ -46,7 +46,7 @@ describe('OtherUserMeal Component', () => {
                 ]),
                 SharedModule
             ],
-            declarations: [OtherUserMealComponent, AddOtherUserMealComponent, EditOtherUserMealComponent],
+            declarations: [OtherUserMealsComponent, AddOtherUserMealComponent, EditOtherUserMealComponent],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SelectedUserService,
@@ -55,7 +55,7 @@ describe('OtherUserMeal Component', () => {
                 Location
             ],
         });
-        fixture = TestBed.createComponent(OtherUserMealComponent);
+        fixture = TestBed.createComponent(OtherUserMealsComponent);
         comp = fixture.componentInstance;
         dataService = fixture.debugElement.injector.get(DataService);
         location = fixture.debugElement.injector.get(Location);

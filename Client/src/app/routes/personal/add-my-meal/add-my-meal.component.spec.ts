@@ -24,7 +24,7 @@ describe('AddMyMeal Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'my-meal', component: MyMealsComponent }
+                    { path: 'my-meals', component: MyMealsComponent }
                 ]),
             ],
             declarations: [AddMyMealComponent, MyMealsComponent],
@@ -81,10 +81,10 @@ describe('AddMyMeal Component', () => {
                         expect(spy).toHaveBeenCalledWith('iiid', Object({ name: 'nnnn', date: 'cccc', numOfCalories: 3 }));
                     })
                 })
-                xit('should navigate to "my-meal" route', fakeAsync(() => {
+                xit('should navigate to "my-meals" route', fakeAsync(() => {
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     tick(100)
-                    expect(location.path()).toBe('/my-meal')
+                    expect(location.path()).toBe('/my-meals')
                 }))
             })
             describe('Error Scenario', () => {

@@ -40,7 +40,7 @@ export class NewPasswordAndRecoveryCodeSubmissionComponent implements OnInit {
     changePassword({recoveryCode, newPassword, email}) {
         this.dataService.changeMyPasswordUsingRecoveryCode({recoveryCode, newPassword, email}).subscribe(
             data => {
-                this.router.navigate(['/login/recover_password_by_email/submit_new_password/password_recovered_successfully'])
+                this.router.navigate(['/password_recovered_successfully'])
             },
             (err) => this.sb.emitErrorSnackBar(err)
         )

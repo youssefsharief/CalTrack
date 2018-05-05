@@ -23,7 +23,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
                 SharedModule,
                 RouterTestingModule.withRoutes([
                     {
-                        path: 'login/recover_password_by_email/submit_new_password/password_recovered_successfully',
+                        path: 'password_recovered_successfully',
                         component: NewPasswordAndRecoveryCodeSubmissionComponent
                     },
                 ]),
@@ -264,7 +264,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
             it('should navigate to password submission route', fakeAsync(() => {
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick(400)
-                expect(location.path()).toBe('/login/recover_password_by_email/submit_new_password/password_recovered_successfully')
+                expect(location.path()).toBe('/password_recovered_successfully')
             }))
         })
 

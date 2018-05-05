@@ -27,7 +27,7 @@ describe('ActivateAfterSignupComponent Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'login/signup/success', component: SignupSuccessComponent },
+                    { path: 'signup/success', component: SignupSuccessComponent },
                 ]),
             ],
             declarations: [SignupSuccessComponent, ActivateAfterSignupComponent],
@@ -159,14 +159,14 @@ describe('ActivateAfterSignupComponent Component', () => {
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick()
-                expect(location.path()).toBe('/login/signup/success')
+                expect(location.path()).toBe('/signup/success')
             }))
             it('should successfully post and navigate to signup success page', fakeAsync(() => {
                 dataService.activateFromBackEnd = (activationCode, email) => Observable.of('ok')
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick()
-                expect(location.path()).toBe('/login/signup/success')
+                expect(location.path()).toBe('/signup/success')
             }))
         })
 

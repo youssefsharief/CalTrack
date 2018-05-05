@@ -36,7 +36,7 @@ export class ActivateAfterSignupComponent implements OnInit {
     submit({ activationCode, email }) {
         this.dataService.activateFromBackEnd(activationCode, email).subscribe(
             data => {
-                this.router.navigate(['login/signup/success'])
+                this.router.navigate(['signup/success'])
             },
             error => this.sb.emitErrorSnackBar(error)
         )

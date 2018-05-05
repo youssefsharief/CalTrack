@@ -19,7 +19,7 @@ export class UnAuthorizedRequestsInterceptor implements HttpInterceptor {
             if (res.status === 401 || res.status === 403) {
                 this.sb.emitErrorSnackBar(apiErrorMessage);
                 if (res.error.number === 1) {
-                    this.router.navigate(['login/signup/activate'])
+                    this.router.navigate(['signup/activate'])
                 } else {
                     this.router.navigate(['login'])
                 }

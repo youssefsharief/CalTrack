@@ -45,8 +45,8 @@ describe('Signup Component', () => {
         TestBed.configureTestingModule({
             imports: [SharedModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'login/signup/success', component: SignupSuccessComponent },
-                    { path: 'login/signup/activate', component: ActivateAfterSignupComponent }
+                    { path: 'signup/success', component: SignupSuccessComponent },
+                    { path: 'signup/activate', component: ActivateAfterSignupComponent }
                 ]),
             ],
             declarations: [SignupComponent, SignupSuccessComponent, ActivateAfterSignupComponent],
@@ -281,7 +281,7 @@ describe('Signup Component', () => {
                     fixture.detectChanges();
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     tick()
-                    expect(location.path()).toBe('/login/signup/success')
+                    expect(location.path()).toBe('/signup/success')
                 }))
             })
 
@@ -312,7 +312,7 @@ describe('Signup Component', () => {
                     fixture.detectChanges();
                     fixture.debugElement.query(By.css('#secure-signup-button')).nativeElement.click()
                     tick()
-                    expect(location.path()).toBe('/login/signup/activate')
+                    expect(location.path()).toBe('/signup/activate')
                 }))
                 it('should call the right arguments', () => {
                     fixture.detectChanges();

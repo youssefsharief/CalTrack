@@ -9,7 +9,7 @@ import {
 } from './routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
 import { SharedModule } from './shared/shared.module';
 import { SignupComponent } from './routes/signup/signup.component';
-import { OtherUserMealComponent } from './routes/other-user-meal/other-user-meal.component';
+import { OtherUserMealsComponent } from './routes/other-user-meals/other-user-meals.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -25,7 +25,6 @@ import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-me
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
 import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
 import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
-import { CorruptLinkComponent } from 'app/routes/corrupt-link/corrupt-link.component';
 import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
 // tslint:disable-next-line:max-line-length
 import { PasswordRecoveredSuccessfullyComponent } from 'app/routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/password-recovered-successfully/password-recovered-successfully.component';
@@ -51,14 +50,13 @@ import { socialLoginConfig } from 'app/shared/config/social-login.config';
     EditRoleComponent,
     LoginComponent,
     MyMealsComponent,
-    OtherUserMealComponent,
+    OtherUserMealsComponent,
     SignupComponent,
     UsersComponent,
     SignupSuccessComponent,
     ActivateAfterSignupComponent,
     ChangeMyPasswordUsingOldPasswordComponent,
     ChangeOtherUserPasswordComponent,
-    CorruptLinkComponent,
     RecoverPasswordByEmailComponent,
     NewPasswordAndRecoveryCodeSubmissionComponent,
     PasswordRecoveredSuccessfullyComponent,

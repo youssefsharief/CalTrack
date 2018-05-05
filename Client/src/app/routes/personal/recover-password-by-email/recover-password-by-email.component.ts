@@ -27,7 +27,7 @@ export class RecoverPasswordByEmailComponent implements OnInit {
         this.dataService.forgottenPassword(formValue.email).subscribe(
             data => {
                 this.publicInfoService.setEmail(formValue.email)
-                this.router.navigate(['/login/recover_password_by_email/submit_new_password'])
+                this.router.navigate(['/recover_password_by_email/submit_new_password'])
             },
             error => {
                 this.sb.emitErrorSnackBar(error)

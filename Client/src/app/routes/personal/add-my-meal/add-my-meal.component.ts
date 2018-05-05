@@ -21,7 +21,7 @@ export class AddMyMealComponent {
         this.dataService.addMeal(this.authService.getId(), x).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
-                this.router.navigate(['/my-meal'])
+                this.router.navigate(['/my-meals'])
             },
             error => this.sb.emitErrorSnackBar(error)
         )

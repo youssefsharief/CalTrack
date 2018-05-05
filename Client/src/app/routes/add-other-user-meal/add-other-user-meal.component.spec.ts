@@ -15,7 +15,7 @@ import { AddOtherUserMealComponent } from 'app/routes/add-other-user-meal/add-ot
 import { UsersComponent } from 'app/routes/users-list/users.component';
 import { SelectedUserService } from 'app/core/services/selectedUser.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
-import { OtherUserMealComponent } from 'app/routes/other-user-meal/other-user-meal.component';
+import { OtherUserMealsComponent } from 'app/routes/other-user-meals/other-user-meals.component';
 import { User } from 'app/shared/models/user.model';
 
 describe('AddOtherUserMeal Component', () => {
@@ -28,11 +28,11 @@ describe('AddOtherUserMeal Component', () => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, SharedModule, PaginationModule,
                 RouterTestingModule.withRoutes([
-                    { path: 'users/:id/meal', component: OtherUserMealComponent },
+                    { path: 'users/:id/meal', component: OtherUserMealsComponent },
                     { path: 'users', component: UsersComponent }
                 ]),
             ],
-            declarations: [AddOtherUserMealComponent, UsersComponent, OtherUserMealComponent],
+            declarations: [AddOtherUserMealComponent, UsersComponent, OtherUserMealsComponent],
             providers: [
                 { provide: SelectedUserService, useValue: {} },
                 { provide: DataService, useValue: {} },

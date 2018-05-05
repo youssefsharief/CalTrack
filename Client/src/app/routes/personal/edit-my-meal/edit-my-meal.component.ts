@@ -22,7 +22,7 @@ export class EditMyMealComponent implements OnInit {
 
     ngOnInit() {
         if (!this.mealsService.getSelectedMeal()) {
-            this.router.navigate(['/my-meal'])
+            this.router.navigate(['/my-meals'])
         } else {
             this.meal = this.mealsService.getSelectedMeal()
             console.log(this.meal)
@@ -33,7 +33,7 @@ export class EditMyMealComponent implements OnInit {
         this.dataService.updateMeal(this.authService.getId(), this.meal._id, x).first().subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
-                this.router.navigate(['/my-meal'])
+                this.router.navigate(['/my-meals'])
             },
             error => this.sb.emitErrorSnackBar(error)
         )
