@@ -19,6 +19,7 @@ import { DateUtilityService } from 'app/core/services/date-utility.service';
 import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service';
 import { TimepickerConfig } from 'ngx-bootstrap/timepicker';
 import { AuthenticatedNavbarComponent } from 'app/core/components/authenticated-navbar/authenticated-navbar.component';
+import { RouterModule } from '@angular/router';
 
 export function getTimepickerConfig(): TimepickerConfig {
     return Object.assign(new TimepickerConfig(), {
@@ -35,7 +36,8 @@ export function getTimepickerConfig(): TimepickerConfig {
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule
     ],
     exports: [
         AuthenticatedNavbarComponent

@@ -43,7 +43,7 @@ describe('Login Component', () => {
             imports: [
                 RouterTestingModule.withRoutes([
                     { path: 'signup', component: SignupComponent },
-                    { path: 'recover_password_by_email', component: RecoverPasswordByEmailComponent },
+                    { path: 'email_password_recovery', component: RecoverPasswordByEmailComponent },
                 ]),
                 SharedModule
             ],
@@ -78,7 +78,7 @@ describe('Login Component', () => {
             fixture.nativeElement.querySelector('#forget-password-button').click();
             tick();
             fixture.detectChanges();
-            expect(location.path()).toBe('/recover_password_by_email');
+            expect(location.path()).toBe('/email_password_recovery');
         }));
     })
 

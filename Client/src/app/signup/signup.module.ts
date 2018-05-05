@@ -4,19 +4,14 @@ import { SignupSuccessComponent } from 'app/signup/signup-success/signup-success
 import { ActivateAfterSignupComponent } from 'app/signup/activate-after-signup/activate-after-signup.component';
 import { SignupRoutingModule } from 'app/signup/signup-routing.module';
 import { SocialSignInModule } from 'app/shared/social-sign-in/social-sign-in.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
-import { CommonModule } from '@angular/common';
+import { SharedFormsModule } from 'app/shared/shared-forms.module.ts/shared-forms.module';
 
 @NgModule({
     imports: [
-        CommonModule,
-        AppInputsModule,
-        FormsModule,
-        ReactiveFormsModule,
         SocialSignInModule,
         SignupRoutingModule,
         SocialSignInModule,
+        SharedFormsModule
     ],
     declarations: [
         SignupComponent,

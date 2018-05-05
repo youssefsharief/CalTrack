@@ -1,15 +1,6 @@
 import { SignupSuccessComponent } from './signup/signup-success/signup-success.component';
 import { ActivateAfterSignupComponent } from './signup/activate-after-signup/activate-after-signup.component';
 import {
-    PasswordRecoveredSuccessfullyComponent,
-} from './routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/password-recovered-successfully/password-recovered-successfully.component';
-import {
-    NewPasswordAndRecoveryCodeSubmissionComponent,
-} from './routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/new-password-and-recovery-code-submission.component';
-import {
-    RecoverPasswordByEmailComponent,
-} from './routes/personal/recover-password-by-email/recover-password-by-email.component';
-import {
     ChangeMyPasswordUsingOldPasswordComponent,
 } from './routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
 import { AuthGuardService } from './core/services/auth.guard.service';
@@ -21,16 +12,14 @@ import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-in
 import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
 import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
-import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
 import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service';
 
 export const routes: Routes = [
     { path: 'login', loadChildren: './login/login.module#LoginModule', canActivate: [LoggedInGuardService], },
     { path: 'signup', loadChildren: './signup/signup.module#SignupModule', canActivate: [LoggedInGuardService], },
-    { path: 'recover_password_by_email', component: RecoverPasswordByEmailComponent, canActivate: [LoggedInGuardService], },
-    { path: 'recover_password_by_email/submit_new_password', component: NewPasswordAndRecoveryCodeSubmissionComponent, canActivate: [LoggedInGuardService], },
-    { path: 'password_recovered_successfully', component: PasswordRecoveredSuccessfullyComponent, canActivate: [LoggedInGuardService], },
-    { path: 'invite', component: InviteUserComponent, canActivate: [AdminClaimsService] },
+    { path: 'email_password_recovery', loadChildren: './email-password-recovery/email-password-recovery.module#EmailPasswordRecoveryModule', canActivate: [LoggedInGuardService], },
+
+    { path: 'invite', loadChildren: './invite-user/invite-user.module#InviteUserModule', canActivate: [AdminClaimsService] },
     { path: 'my-profile', component: EditMyInfoComponent, canActivate: [AuthGuardService], },
     { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent, canActivate: [AuthGuardService], },
     { path: 'my-meals', component: MyMealsComponent, canActivate: [AuthGuardService], },

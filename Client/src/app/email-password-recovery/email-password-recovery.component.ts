@@ -1,14 +1,15 @@
-import { PublicInfoService } from '../../../core/services/public.info.service';
-import { SnackBarService } from '../../../core/services/snackbar.service';
+import { PublicInfoService } from '../core/services/public.info.service';
+import { SnackBarService } from '../core/services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { DataService } from '../../../core/services/data.service';
+import { DataService } from '../core/services/data.service';
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: 'recover-password-by-email.component.html',
+    templateUrl: 'email-password-recovery.component.html',
+    styleUrls: ['email-password-recovery.component.scss']
 })
-export class RecoverPasswordByEmailComponent implements OnInit {
+export class EmailPasswordRecoveryComponent implements OnInit {
     form: FormGroup
 
     constructor(
@@ -27,7 +28,7 @@ export class RecoverPasswordByEmailComponent implements OnInit {
         this.dataService.forgottenPassword(formValue.email).subscribe(
             data => {
                 this.publicInfoService.setEmail(formValue.email)
-                this.router.navigate(['/recover_password_by_email/submit_new_password'])
+                this.router.navigate(['/email_password_recovery/submit_new_password'])
             },
             error => {
                 this.sb.emitErrorSnackBar(error)
@@ -40,7 +41,4 @@ export class RecoverPasswordByEmailComponent implements OnInit {
             email: ['', Validators.compose([Validators.email, Validators.required])],
         })
     }
-
-
-
 }

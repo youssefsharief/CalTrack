@@ -1,8 +1,4 @@
 import {
-    NewPasswordAndRecoveryCodeSubmissionComponent,
-// tslint:disable-next-line:max-line-length
-} from './routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/new-password-and-recovery-code-submission.component';
-import {
     ChangeMyPasswordUsingOldPasswordComponent,
 } from './routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
 import { SharedModule } from './shared/shared.module';
@@ -15,9 +11,6 @@ import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
 import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
-import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
-// tslint:disable-next-line:max-line-length
-import { PasswordRecoveredSuccessfullyComponent } from 'app/routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/password-recovered-successfully/password-recovered-successfully.component';
 import { CoreModule } from 'app/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
@@ -39,9 +32,6 @@ export function provideConfig() {
     EditMyMealComponent,
     MyMealsComponent,
     ChangeMyPasswordUsingOldPasswordComponent,
-    RecoverPasswordByEmailComponent,
-    NewPasswordAndRecoveryCodeSubmissionComponent,
-    PasswordRecoveredSuccessfullyComponent,
     InviteUserComponent,
   ],
   providers: [
