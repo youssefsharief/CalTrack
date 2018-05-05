@@ -1,6 +1,6 @@
 <div *ngIf="user">
     <app-title>Update {{user.name}}'s Info</app-title>
-    <app-edit-user [user]="user"></app-edit-user>
+    <app-user-form [user]="user"></app-user-form>
     <br>
     <br>
     <button class="btn btn-default" *ngIf="user.email" id="change-user-password-button" (click)="navigateToChangeUserPassword()">Change user's password</button>

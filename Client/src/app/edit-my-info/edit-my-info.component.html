@@ -1,6 +1,6 @@
 
 <app-title>Update My Info</app-title>
-<app-edit-user [user]="user" (edited)="onEdited($event)"></app-edit-user>
+<app-user-form [user]="user" (edited)="onEdited($event)"></app-user-form>
 <button class="btn btn-default mt-4" *ngIf="user.email" id="change-my-password-button" routerLink="/my-profile/password">Change my Password</button>
 
   

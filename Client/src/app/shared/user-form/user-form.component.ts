@@ -1,15 +1,16 @@
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from '../../../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
-    selector: 'app-edit-user',
-    templateUrl: 'edit-user.component.html',
+    selector: 'app-user-form',
+    templateUrl: 'user-form.component.html',
+    styleUrls: ['user-form.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class UserFormComponent implements OnInit {
     @Input() user: User
     @Output() edited = new EventEmitter()
     public form: FormGroup
@@ -43,5 +44,4 @@ export class EditUserComponent implements OnInit {
             }
         )
     }
-
 }

@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { MealsComponent } from './components/meals/view-meal/meals.component';
-import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -42,7 +41,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
     RouterModule,
     MealsComponent,
     MealFormComponent,
-    EditUserComponent,
     NgProgressModule,
     AppInputsModule,
     TypeaheadModule,
@@ -51,7 +49,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
   declarations: [
     MealsComponent,
     MealFormComponent,
-    EditUserComponent,
   ],
 })
 export class SharedModule { }

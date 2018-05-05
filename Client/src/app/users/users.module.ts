@@ -9,15 +9,21 @@ import { EditRoleComponent } from 'app/users/routes/edit-role/edit-role.componen
 import { CommonModule } from '@angular/common';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
-
+import { UserFormModule } from 'app/shared/user-form/user-form.module';
 
 @NgModule({
-    imports: [SharedModule, UsersRoutingModule, CommonModule, SharedTrimmedModule],
+    imports: [
+        SharedModule,
+        UsersRoutingModule,
+        CommonModule,
+        SharedTrimmedModule,
+        UserFormModule
+    ],
     declarations: [
         UsersComponent,
         EditOtherUserInfoComponent,
         ChangeOtherUserPasswordComponent,
-        EditRoleComponent
+        EditRoleComponent,
     ],
     providers: [
         SelectedUserService
