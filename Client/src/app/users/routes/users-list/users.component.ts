@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     }
 
     public fetchUsers({ page }) {
-        this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 }).first().subscribe(
+        this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 }).subscribe(
             data => {
                 this.users = data.users
                 this.totalItems = data.count

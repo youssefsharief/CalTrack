@@ -30,7 +30,7 @@ export class EditMyMealComponent implements OnInit {
     }
 
     onSubmitted(x: { name: string, date: string, numOfCalories: number }) {
-        this.dataService.updateMeal(this.authService.getId(), this.meal._id, x).first().subscribe(
+        this.dataService.updateMeal(this.authService.getId(), this.meal._id, x).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/my-meals'])
