@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
 import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
-import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
+import { MyMealsComponent } from 'app/my-meals/my-meals.component';
 
 describe('MyMeal Component', () => {
     let comp: MyMealsComponent;
@@ -41,7 +41,7 @@ describe('MyMeal Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule.withRoutes([
-                    { path: 'my-meal/edit', component: EditMyMealComponent },
+                    { path: 'my-meals/edit', component: EditMyMealComponent },
                     { path: 'my-meals/add', component: AddMyMealComponent },
                 ]),
                 SharedModule
@@ -125,7 +125,7 @@ describe('MyMeal Component', () => {
                 fixture.nativeElement.querySelector('.fa-edit').click();
                 tick();
                 fixture.detectChanges();
-                expect(location.path()).toBe('/my-meal/edit');
+                expect(location.path()).toBe('/my-meals/edit');
             }));
         })
     })

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { Meal } from 'app/shared/models/meal.model';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
+import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
     templateUrl: 'edit-my-meal.component.html',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Meal } from '../../../shared/models/meal.model';
+import { Meal } from '../shared/models/meal.model';
 import { AuthService } from 'app/core/services/auth.service';
 import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
@@ -24,7 +24,7 @@ export class MyMealsComponent {
     }
 
     onEditClicked(item: Meal) {
-        this.router.navigate(['/my-meal/edit'])
+        this.router.navigate(['/my-meals/edit'])
     }
 
 

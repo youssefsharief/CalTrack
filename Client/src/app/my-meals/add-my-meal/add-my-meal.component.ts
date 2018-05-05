@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
 import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { Meal } from 'app/shared/models/meal.model';
+import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
     templateUrl: 'add-my-meal.component.html',
