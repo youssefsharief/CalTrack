@@ -22,10 +22,8 @@ export class OtherUserMealComponent implements OnInit {
      }
 
     ngOnInit() {
-        this.route.params.first().flatMap(data => this.dataService.getUserDetails(data.id).first()).subscribe(
-            data =>  this.user = data,
-            error => this.sb.emitErrorSnackBar(error)
-        )
+        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).subscribe(
+            user => user ?  this.user = user : this.router.navigate(['/users/']))
     }
 
     onAddClicked() {

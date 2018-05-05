@@ -10,7 +10,7 @@ module.exports =
             if (roleFilter) this.query.role = roleFilter
         }
         getUsers() {
-            return usersModel.find(this.query).limit(this.limit).skip(this.skip).select('_id name email role active').lean().exec()
+            return usersModel.find(this.query).limit(this.limit).skip(this.skip).select('_id name email role active isTrackingDisplayed maxCalories').lean().exec()
         }
         getUsersCount() {
             return usersModel.find(this.query).select('-meals').count().lean().exec()

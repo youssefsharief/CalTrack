@@ -6,7 +6,7 @@ const removeRecord = require('./records/remove-record.route')
 const updateRecord = require('./records/update-record.route')
 const validateUpdateRecord = require('./records/update-record.validate')
 const validateAddRecord = require('./records/add-record.validate')
-const getUserDetailsIncludingRecords = require('./records/get-user-records.route')
+const getUser = require('./user/get-user.route')
 
 
 const updateUserInfo = require('./user/update-user-info.route')
@@ -70,7 +70,7 @@ router.post('/users/recovery_code', validateUpdatePasswordByRecoveryCode, update
 router.put('/users/:id/info', verifyUser, validateUpdateInfo, Authorize.allowSelfAdminAndManager, updateUserInfo)
 router.delete('/users/:id', verifyUser, Authorize.allowAdminAndManager, removeUser)
 router.get('/users/', verifyUser, Authorize.preventRegularUsers, getUsers)
-router.get('/users/:id', verifyUser, Authorize.allowSelfAndAdminOnly, getUserDetailsIncludingRecords)
+router.get('/users/:id', verifyUser, Authorize.allowSelfAndAdminOnly, getUser)
 
 router.get('/users/:id/meals', verifyUser, Authorize.allowSelfAndAdminOnly, getUserRecords)
 router.post('/users/:id/meals', verifyUser, validateAddRecord, Authorize.allowSelfAndAdminOnly, addRecord)

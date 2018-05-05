@@ -18,7 +18,7 @@ const usersSchema = new Schema({
     active: { type: Boolean, required: true, default: false },
     activationCode: String,
     maxCalories: { type: Number, required: true },
-    isTrackingDisplayed: { type: Boolean, required: true },
+    isTrackingDisplayed: { type: Boolean, required: true, default:false },
     googleId: { type: String, required: false, trim: true, index: true, unique: true, sparse: true },
     facebookId: { type: String, required: false, trim: true, index: true, unique: true, sparse: true },
 });

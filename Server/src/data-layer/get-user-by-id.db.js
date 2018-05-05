@@ -1,5 +1,5 @@
 const usersModel = require('../models/users.model')
 
-module.exports = async (id) => {
-    return usersModel.findById(id).exec()
+module.exports = (id) => {
+    return usersModel.findById(id).select('_id name email role active isTrackingDisplayed maxCalories').exec()
 }
