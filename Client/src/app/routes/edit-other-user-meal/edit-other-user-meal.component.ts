@@ -42,7 +42,7 @@ export class EditOtherUserMealComponent implements OnInit {
         this.dataService.updateMeal(this.user._id, this.meal._id, x).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
-                this.router.navigate(['/users/', this.user._id, 'meal'])
+                this.router.navigate(['/users/', this.user._id, 'meals'])
             },
             error => this.sb.emitErrorSnackBar(error)
         )

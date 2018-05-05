@@ -57,8 +57,8 @@ export const routes: Routes = [
             { path: 'users/:id', component: EditOtherUserInfoComponent, canActivate: [AuthGuardService], },
             { path: 'users/:id/password', component: ChangeOtherUserPasswordComponent, canActivate: [AuthGuardService], },
             { path: 'users/:id/role', component: EditRoleComponent, canActivate: [AdminClaimsService] },
-            { path: 'users/:id/meal', component: OtherUserMealsComponent, canActivate: [AdminClaimsService], },
-            { path: 'users/:id/meal/add', component: AddOtherUserMealComponent, canActivate: [AuthGuardService], },
+            { path: 'users/:id/meals', component: OtherUserMealsComponent, canActivate: [AdminClaimsService], },
+            { path: 'users/:id/meals/add', component: AddOtherUserMealComponent, canActivate: [AuthGuardService], },
             { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent, canActivate: [AuthGuardService], },
             { path: '', redirectTo: 'my-profile', pathMatch: 'full' },
             { path: '**', redirectTo: 'my-profile' }

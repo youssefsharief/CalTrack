@@ -42,7 +42,7 @@ describe('OtherUserMeal Component', () => {
             imports: [
                 RouterTestingModule.withRoutes([
                     { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent },
-                    { path: 'users/:id/meal/add', component: AddOtherUserMealComponent },
+                    { path: 'users/:id/meals/add', component: AddOtherUserMealComponent },
                 ]),
                 SharedModule
             ],
@@ -117,7 +117,7 @@ describe('OtherUserMeal Component', () => {
                 fixture.nativeElement.querySelector('.fa-plus').click();
                 tick();
                 fixture.detectChanges();
-                expect(location.path()).toBe('/users/uID/meal/add');
+                expect(location.path()).toBe('/users/uID/meals/add');
             }));
         })
         describe('click on plus edit button', () => {

@@ -81,7 +81,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     onMealsClick(item) {
         this.selectedUserService.set(item)
-        this.router.navigate(['/users', item._id, 'meal'])
+        this.router.navigate(['/users', item._id, 'meals'])
     }
 
     ngOnDestroy() {
