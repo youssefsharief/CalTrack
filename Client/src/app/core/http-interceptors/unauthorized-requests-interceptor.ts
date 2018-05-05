@@ -3,6 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of'
+import 'rxjs/add/observable/throw'
 
 @Injectable()
 export class UnAuthorizedRequestsInterceptor implements HttpInterceptor {

@@ -56,7 +56,7 @@ export class MealsComponent implements OnInit {
             startTime: this.dateUtilityService.convertDateToMediumTime(this.startTime),
             endTime: this.dateUtilityService.convertDateToMediumTime(this.endTime),
             skip: (page - 1) * 10
-        }).first().subscribe(
+        }).subscribe(
             data => {
                 this.meals = data.meals
                 this.totalItems = data.count

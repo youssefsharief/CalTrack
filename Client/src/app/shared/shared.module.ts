@@ -13,7 +13,6 @@ import { LoginLayoutComponent } from './components/layout/login-layout/login-lay
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgProgressModule } from 'ngx-progressbar';
 import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
@@ -32,7 +31,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
     RouterModule,
     MatSnackBarModule,
     NgProgressModule,
-    BrowserAnimationsModule,
     AppInputsModule,
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
@@ -41,6 +39,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
   ],
   providers: [],
   exports: [
+    CommonModule,
     FooterComponent,
     NavComponent,
     LoginLayoutComponent,
@@ -52,7 +51,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
     MealsComponent,
     MealFormComponent,
     EditUserComponent,
-    BrowserAnimationsModule,
     NgProgressModule,
     AppInputsModule,
     TypeaheadModule,

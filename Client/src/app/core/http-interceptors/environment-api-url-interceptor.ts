@@ -6,9 +6,8 @@ import { environment } from 'environments/environment';
 export class EnvironmentApiInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any> , next: HttpHandler) {
-        const host = environment.apiUrl || '/';
         req = req.clone({
-            url: host + req.url
+            url: environment.apiUrl + req.url
         });
         return next.handle(req);
     }
