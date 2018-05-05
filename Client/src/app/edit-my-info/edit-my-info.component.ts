@@ -1,6 +1,6 @@
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../shared/models/user.model';
+import { User } from '../shared/models/user.model';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
