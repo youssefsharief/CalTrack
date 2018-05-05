@@ -50,7 +50,7 @@ const validateSocialLogin = require('./security/social-login/social-login.valida
 
 const { verifyUser } = require('../core/authentication')
 const Authorize = require('../core/authorization')
-require('../passport')
+require('../core/passport')
 
 router.post('/users/', validateSignup, signup)
 router.post('/users/secure', validateSignup, signupSecurely)
