@@ -1,5 +1,7 @@
 
 const getUserByEmail = require('../../../data-layer/user/get-user-by-email')
+const { getToken } = require('../../../core/authentication')
+const clearUnneededDataFromPayload = require('../../../services/clear-unneeded-data')
 
 module.exports = async (req, res, next) => {
     try {
@@ -12,7 +14,7 @@ module.exports = async (req, res, next) => {
             user.activationCode = undefined
             user.active = true
             await user.save()
-            return res.status(200).json({ success: 'Your account has been activated successfully' })
+            return res.status(200).json({ user: clearUnneededDataFromPayload(user), token: getToken(user._id, user.role) })
         }
     } catch (e) {
         return next(e)

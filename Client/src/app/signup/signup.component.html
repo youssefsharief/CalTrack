@@ -12,10 +12,10 @@
         <input type="password" name="password" class="form-control" formControlName="password">
     </app-password-input-layout>
 
-    <app-confirm-password-input-layout [isDisplayingErrorMessage]="form.getError('areEqual')">
-        <input type="password" name="confirmPassword" class="form-control" formControlName="confirmPassword">
-    </app-confirm-password-input-layout>
-
+    <app-confirm-password-input-layout [isDisplayingErrorMessage]="form.get('confirmPassword').dirty &&form.getError('areEqual')">
+            <input type="password" name="confirmPassword" class="form-control" formControlName="confirmPassword">
+        </app-confirm-password-input-layout>
+    
     <app-max-calories-input-layout [isDisplayingErrorMessage]="form.get('maxCalories').dirty && form.get('maxCalories').invalid">
         <input name="maxCalories" type="number" class="form-control" id="" formControlName="maxCalories">
     </app-max-calories-input-layout>

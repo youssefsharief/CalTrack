@@ -1,0 +1,18 @@
+<form [formGroup]="form" *ngIf="form">
+    <app-email-input-layout [isDisplayingErrorMessage]="form.get('email').dirty && form.get('email').invalid">
+        <input type="email" name="email" class="form-control" formControlName="email">
+    </app-email-input-layout>
+
+    <app-password-input-layout [isDisplayingErrorMessage]="form.get('password').dirty && form.get('password').invalid">
+        <input type="password" name="password" class="form-control" formControlName="password">
+    </app-password-input-layout>
+
+    <app-confirm-password-input-layout [isDisplayingErrorMessage]="form.get('confirmPassword').dirty &&form.getError('areEqual')">
+        <input type="password" name="confirmPassword" class="form-control" formControlName="confirmPassword">
+    </app-confirm-password-input-layout>
+
+    <div class="mb-4">
+        <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="connectLocalLogin()">Connect Local Login</button>
+        <button class="btn btn-default" id="secure-signup-button" [disabled]="!form.valid" type="submit" (click)="connectLocalLoginSecurely()">Connect Local Login securely</button>
+    </div>
+</form>

@@ -5,6 +5,7 @@ import { PublicInfoService } from '../../core/services/public.info.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
     templateUrl: 'activate-after-signup.component.html',
@@ -17,7 +18,8 @@ export class ActivateAfterSignupComponent implements OnInit {
         private dataService: DataService,
         private sb: SnackBarService,
         private publicInfoService: PublicInfoService,
-        private router: Router
+        private router: Router,
+        private authService: AuthService
     ) {
     }
 
@@ -36,7 +38,8 @@ export class ActivateAfterSignupComponent implements OnInit {
     submit({ activationCode, email }) {
         this.dataService.activateFromBackEnd(activationCode, email).subscribe(
             data => {
-                this.router.navigate(['signup/success'])
+                this.authService.saveProfile(data.user)
+                this.router.navigate(['my-profile'])
             },
             error => this.sb.emitErrorSnackBar(error)
         )

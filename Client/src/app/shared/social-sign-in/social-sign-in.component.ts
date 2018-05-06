@@ -58,7 +58,7 @@ export class SocialSignInComponent implements OnDestroy {
 
     signInWithGoogle(): void {
         this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
-            this.dataService.oAuthFacebook(user.idToken).subscribe(
+            this.dataService.oAuthGoogle(user.idToken).subscribe(
                 data => this.saveUserDataLocallyAndProceedToProfile(data),
                 error => console.log(error)
             );

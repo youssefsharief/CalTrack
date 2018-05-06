@@ -5,6 +5,7 @@ import { User } from 'app/shared/models/user.model';
 import { AuthService as LibAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { SnackBarService } from 'app/core/services/snackbar.service';
 
 @Component({
     templateUrl: 'my-logins.component.html',
@@ -17,7 +18,7 @@ export class MyLoginsComponent implements OnInit {
         private authService: AuthService,
         private dataService: DataService,
         private libAuthService: LibAuthService,
-
+        private sb: SnackBarService,
     ) { }
 
     ngOnInit() {
@@ -65,7 +66,12 @@ export class MyLoginsComponent implements OnInit {
 
 
     disconnectLocalLogin() {
-        console.log('aaaa')
+        this.dataService.disconnectLocalLogin().subscribe(
+            data => {
+                this.authService.saveProfile(data)
+                this.sb.emitSuccessSnackBar('Disonnected Successfully')
+            }
+        )
     }
 
     isRemoveLoginDisabled() {

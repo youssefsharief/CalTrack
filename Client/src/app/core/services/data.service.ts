@@ -17,7 +17,7 @@ export class DataService {
     }
 
     signup(item: User) {
-        return this.http.post('users', {
+        return this.http.post<{ token: string, user: User }>('users', {
             email: item.email, password: item.password, meals: [], name: item.name,
             maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed
         })
@@ -31,7 +31,7 @@ export class DataService {
     }
 
     activateFromBackEnd(code: string, email: string) {
-        return this.http.post('activation', { code, email })
+        return this.http.post<{ token: string, user: User }>('activation', { code, email })
     }
 
     updateUserInfo(id: string, data) {
@@ -131,6 +131,18 @@ export class DataService {
 
     disconnectGoogle() {
         return this.http.post<User>(`disconnect/google`, { }, )
+    }
+
+    connectLocalLogin(payload) {
+        return this.http.post<User>(`disconnect/local`, payload, )
+    }
+
+    connectLocalLoginSecurely(payload) {
+        return this.http.post<User>(`disconnect/local`, payload, )
+    }
+
+    disconnectLocalLogin() {
+        return this.http.post<User>(`disconnect/local`, {}, )
     }
 
 }

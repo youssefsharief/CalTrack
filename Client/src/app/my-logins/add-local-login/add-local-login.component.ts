@@ -1,24 +1,25 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../core/services/data.service';
-import { SnackBarService } from '../core/services/snackbar.service';
-import { User } from '../shared/models/user.model';
-import { PublicInfoService } from '../core/services/public.info.service';
 import { passwordPattern } from 'app/shared/config/constants';
+import { SnackBarService } from 'app/core/services/snackbar.service';
+import { DataService } from 'app/core/services/data.service';
+import { PublicInfoService } from 'app/core/services/public.info.service';
 import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
-    templateUrl: 'signup.component.html',
+    templateUrl: 'add-local-login.component.html',
+    styleUrls: ['add-local-login.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class AddLocalLoginComponent implements OnInit {
+
     form: FormGroup
     constructor(private fb: FormBuilder,
         private dataService: DataService,
         private sb: SnackBarService,
         private router: Router,
         private publicInfoService: PublicInfoService,
-        private authService: AuthService
+        private authService: AuthService,
     ) {
     }
 
@@ -28,12 +29,9 @@ export class SignupComponent implements OnInit {
 
     private buildForm() {
         this.form = this.fb.group({
-            name: ['', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
             email: ['', Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.compose([Validators.required, Validators.pattern(passwordPattern)])],
             confirmPassword: ['', Validators.required],
-            maxCalories: [2250, Validators.compose([Validators.required, Validators.min(500), Validators.max(8000)])],
-            isTrackingDisplayed: [true],
         }, { validator: this.areEqual })
     }
 
@@ -41,18 +39,18 @@ export class SignupComponent implements OnInit {
         return group.get('password').value === group.get('confirmPassword').value ? null : { areEqual: true }
     }
 
-    signup() {
-        this.dataService.signup(this.form.value).subscribe(
+    connectLocalLogin() {
+        this.dataService.connectLocalLogin(this.form.value).subscribe(
             data => {
-                this.authService.saveProfile(data.user)
-                this.router.navigate(['my-profile'])
+                this.authService.saveProfile(data)
+                this.sb.emitSuccessSnackBar('Connected Successfully')
             },
             error => this.sb.emitErrorSnackBar(error)
         )
     }
 
-    signupSecurely() {
-        this.dataService.signupSecurely(this.form.value).subscribe(
+    connectLocalLoginSecurely() {
+        this.dataService.connectLocalLoginSecurely(this.form.value).subscribe(
             data => {
                 this.publicInfoService.setEmail(this.form.value.email)
                 this.publicInfoService.setPass(this.form.value.password)
@@ -63,4 +61,5 @@ export class SignupComponent implements OnInit {
             }
         )
     }
+
 }

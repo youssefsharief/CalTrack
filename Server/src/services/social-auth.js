@@ -11,6 +11,9 @@ module.exports = class SocialAuth {
         if(provider==='facebook') {
             this.idKey = 'facebookId'
             this.emailKey = 'facebookEmail'
+        } else {
+            this.idKey = 'googleId'
+            this.emailKey = 'googleEmail'
         }
         this.email = email
     }

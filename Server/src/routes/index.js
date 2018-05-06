@@ -48,9 +48,14 @@ const googleSignin = require('./security/social-login/google-signin.route')
 const facebookSignin = require('./security/social-login/facebook-signin.route')
 const connectFacebook = require('./security/social-login/connect-facebook.route')
 const connectGoogle = require('./security/social-login/connect-google.route')
+const connectLocalLogin = require('./security/connect-local-login.route')
+const connectLocalLoginSecurely = require('./security/connect-local-login-secure.route')
+
+const validateConnectLocalLogin = require('./security/connect-local-login.validate')
+
 const disconnectFacebook = require('./security/social-login/disconnect-facebook.route')
 const disconnectGoogle = require('./security/social-login/disconnect-google.route')
-
+const disconnectLocalLogin = require('./security/disconnect-local-login.route')
 const validateSocialLogin = require('./security/social-login/social-login.validate')
 
 const { verifyUser } = require('../core/authentication')
@@ -66,7 +71,7 @@ router.patch('/activation/administration/:id', verifyUser, Authorize.allowAdminA
 router.post('/users/login', validateLogin, login)
 router.post('/password_recovery_requests', validateSendMeRecoveryCode, sendMeRecoveryCode)
 router.put('/password', verifyUser, validateUpdateMyPassword, updateMyPassword)
-router.put('/users/:id/password', verifyUser, validatechangeOtherUserPassword, Authorize.allowAdminAndManager,  changeOtherUserPassword)
+router.put('/users/:id/password', verifyUser, validatechangeOtherUserPassword, Authorize.allowAdminAndManager, changeOtherUserPassword)
 
 
 
@@ -88,13 +93,16 @@ router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdmi
 
 
 
-router.post('/oauth/facebook',  passport.authenticate('facebookToken', {session: false}), validateSocialLogin, facebookSignin );
-router.post('/oauth/google', passport.authenticate('googleToken', {session: false}), validateSocialLogin, googleSignin  );
+router.post('/oauth/facebook', passport.authenticate('facebookToken', { session: false }), validateSocialLogin, facebookSignin);
+router.post('/oauth/google', passport.authenticate('googleToken', { session: false }), validateSocialLogin, googleSignin);
 
-router.post('/connect/facebook',  verifyUser, passport.authenticate('facebookToken', {session: false}), validateSocialLogin, connectFacebook );
-router.post('/connect/google', verifyUser, passport.authenticate('googleToken', {session: false}), validateSocialLogin, connectGoogle  );
+router.post('/connect/facebook', verifyUser, passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
+router.post('/connect/google', verifyUser, passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
+router.post('/connect/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
+router.post('/connect/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
 
-router.post('/disconnect/facebook',  verifyUser, disconnectFacebook );
-router.post('/disconnect/google', verifyUser, disconnectGoogle  );
+router.post('/disconnect/facebook', verifyUser, disconnectFacebook);
+router.post('/disconnect/google', verifyUser, disconnectGoogle);
+router.post('/disconnect/local', verifyUser, disconnectLocalLogin);
 
 module.exports = router
