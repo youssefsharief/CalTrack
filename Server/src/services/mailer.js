@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer')
-const envDpendendentMailConfig = require('../config/mailer.config')
+const envDpendendentMailConfig = require('config/mailer.config')
 const senderEmail = envDpendendentMailConfig.auth.user
 const transporter = nodemailer.createTransport(envDpendendentMailConfig);
 

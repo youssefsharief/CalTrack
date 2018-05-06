@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const mealSchema = require('./meal.schema')
-const ROLES = require('../config/rolesConstants')
+const ROLES = require('config/rolesConstants')
 
 const roles_enum = {
     values: [ROLES.regular, ROLES.manager, ROLES.admin],

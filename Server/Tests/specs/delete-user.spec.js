@@ -1,7 +1,7 @@
-const { setup } = require('../helpers/requestsSpecHelper')
+const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
-const { adminCredentials, managerCredentials} = require('../constants/credentials')
+const { adminCredentials, managerCredentials} = require('constants/credentials')
 process.on('unhandledRejection', up => { throw up })
 
 

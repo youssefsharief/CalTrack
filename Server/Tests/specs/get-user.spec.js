@@ -1,6 +1,6 @@
-const { setup } = require('../helpers/requestsSpecHelper')
+const { setup } = require('helpers/requestsSpecHelper')
 let server, request
-const { adminCredentials } = require('../constants/credentials')
+const { adminCredentials } = require('constants/credentials')
 describe("Users endpoint", function () {
 	beforeAll(() => {
 		[server, request] = setup()

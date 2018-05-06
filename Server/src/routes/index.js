@@ -60,9 +60,9 @@ const validateSocialLogin = require('./security/social-login/social-login.valida
 const ensureHavingAtleast2Accounts = require('./security/ensure-having-2-accounts.validate')
 
 
-const { verifyUser } = require('../core/authentication')
-const Authorize = require('../core/authorization')
-require('../core/passport')
+const { verifyUser } = require('core/authentication')
+const Authorize = require('core/authorization')
+require('core/passport')
 
 router.post('/users/', validateSignup, signup)
 router.post('/users/secure', validateSignup, signupSecurely)

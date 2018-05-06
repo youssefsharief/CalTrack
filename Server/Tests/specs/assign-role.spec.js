@@ -1,6 +1,6 @@
-const { setup } = require('../helpers/requestsSpecHelper')
+const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
-const { adminCredentials, managerCredentials} = require('../constants/credentials')
+const { adminCredentials, managerCredentials} = require('constants/credentials')
 
 let server, request
 
