@@ -1,7 +1,7 @@
-// const authRef = '../../../src/core/authorization'
+// const authRef = 'src/core/authorization'
 // const getUserRoleByIdRef = '../data-layer/user/get-user-role-by-id'
 // const { allowAdminAndManager, allowAdminOnly, allowSelfAdminAndManager, allowSelfAndAdminOnly, preventRegularUsers } = require(authRef)
-// const { admin, manager, regular } = require('../../../src/config/rolesConstants')
+// const { admin, manager, regular } = require('src/config/rolesConstants')
 // const proxyquire = require('proxyquire')
 
 // describe("Auth", function () {

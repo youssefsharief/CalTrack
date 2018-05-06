@@ -1,8 +1,8 @@
-const addNewUser = require('../../../../src/data-layer/user/add-new-user.db')
-const addRecord = require('../../../../src/data-layer/record/add-record.db')
-const { connectToDb } = require('../../../helpers/requestsSpecHelper')
-const getUserRecordsById = require('../../../../src/data-layer/record/get-user-records-by-id.db')
-const deleteRecord = require('../../../../src/data-layer/record/remove-record.db')
+const addNewUser = require('data-layer/user/add-new-user.db')
+const addRecord = require('data-layer/record/add-record.db')
+const { connectToDb } = require('helpers/requestsSpecHelper')
+const getUserRecordsById = require('data-layer/record/get-user-records-by-id.db')
+const deleteRecord = require('data-layer/record/remove-record.db')
 const faker = require('faker')
 
 

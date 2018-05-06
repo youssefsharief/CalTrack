@@ -1,7 +1,7 @@
 
-const getUserByEmail = require('../../../data-layer/user/get-user-by-email')
-const { getToken } = require('../../../core/authentication')
-const clearUnneededDataFromPayload = require('../../../services/clear-unneeded-data')
+const getUserByEmail = require('data-layer/user/get-user-by-email')
+const { getToken } = require('core/authentication')
+const clearUnneededDataFromPayload = require('services/clear-unneeded-data')
 
 module.exports = async (req, res, next) => {
     try {

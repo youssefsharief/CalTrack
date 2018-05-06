@@ -1,4 +1,4 @@
-const SocialAuth = require('../../../services/social-auth')
+const SocialAuth = require('services/social-auth')
 
 
 module.exports = (req, res, next) => {

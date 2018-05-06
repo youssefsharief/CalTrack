@@ -1,6 +1,6 @@
-const addNewUser = require('../../../../src/data-layer/user/add-new-user.db')
-const addRecord = require('../../../../src/data-layer/record/add-record.db')
-const { connectToDb } = require('../../../helpers/requestsSpecHelper')
+const addNewUser = require('data-layer/user/add-new-user.db')
+const addRecord = require('data-layer/record/add-record.db')
+const { connectToDb } = require('helpers/requestsSpecHelper')
 
 const faker = require('faker')
 

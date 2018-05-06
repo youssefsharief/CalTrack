@@ -1,6 +1,6 @@
-const db = require('../../data-layer/user/update-user-info.db')
-const clearUnneededDataFromPayload = require('../../services/clear-unneeded-data')
-const mailer = require('../../services/mailer')
+const db = require('data-layer/user/update-user-info.db')
+const clearUnneededDataFromPayload = require('services/clear-unneeded-data')
+const mailer = require('services/mailer')
 
 module.exports = async (req, res, next) => {
     db(req.decoded._id, { email: req.body.email, password: req.body.password }).then( async user => {

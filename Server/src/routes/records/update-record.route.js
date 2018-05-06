@@ -1,7 +1,7 @@
 
-const updateRecord = require('../../data-layer/record/update-record.db')
-const { getNutriCalories } = require('../../external-apis/nutritionix')
-const { getDateIgnoringTimezone } = require('../../services/date-utility')
+const updateRecord = require('data-layer/record/update-record.db')
+const { getNutriCalories } = require('external-apis/nutritionix')
+const { getDateIgnoringTimezone } = require('services/date-utility')
 
 module.exports = async (req, res, next) => {
     const numOfCalories = req.body.numOfCalories ? req.body.numOfCalories : await getNutriCalories(req.body.name)

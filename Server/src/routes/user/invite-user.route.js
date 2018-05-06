@@ -1,6 +1,6 @@
 
-const mailer = require('../../services/mailer')
-const getUserByEmailFromDb = require('../../data-layer/user/get-user-by-email')
+const mailer = require('services/mailer')
+const getUserByEmailFromDb = require('data-layer/user/get-user-by-email')
 
 module.exports = (req, res, next) => {
     getUserByEmailFromDb(req.body.email).then(async (user) => {

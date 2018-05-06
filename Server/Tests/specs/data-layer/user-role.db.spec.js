@@ -1,7 +1,7 @@
-const addNewUser = require('../../../src/data-layer/user/add-new-user.db')
-const updateUserRole = require('../../../src/data-layer/user/update-role.db')
-const getUserRoleById = require('../../../src/data-layer/user/get-user-role-by-id')
-const { connectToDb } = require('../../helpers/requestsSpecHelper')
+const addNewUser = require('src/data-layer/user/add-new-user.db')
+const updateUserRole = require('src/data-layer/user/update-role.db')
+const getUserRoleById = require('src/data-layer/user/get-user-role-by-id')
+const { connectToDb } = require('helpers/requestsSpecHelper')
 
 const faker = require('faker')
 

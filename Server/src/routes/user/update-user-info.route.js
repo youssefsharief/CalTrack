@@ -1,4 +1,4 @@
-const db = require('../../data-layer/user/update-user-info.db')
+const db = require('data-layer/user/update-user-info.db')
 
 
 module.exports = (req, res, next) => {

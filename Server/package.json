@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www",
+    "start": "cross-env NODE_PATH=./src node ./src/bin/www",
     "e2e": "node ./src/bin/www -t",
     "coverage": "nodemon --exec istanbul cover node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
     "test": "nodemon --exec jasmine JASMINE_CONFIG_PATH=jasmine.json",
@@ -20,6 +20,7 @@
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
+    "cross-env": "^5.1.4",
     "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "express": "^4.16.3",

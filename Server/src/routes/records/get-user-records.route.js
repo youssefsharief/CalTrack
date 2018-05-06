@@ -1,4 +1,4 @@
-const getRecords = require('../../data-layer/record/get-records.db')
+const getRecords = require('data-layer/record/get-records.db')
 
 module.exports = (req, res, next) => {
     return getRecords(req.params.id, 10, parseInt(req.query.skip), req.query.startDate, req.query.endDate,

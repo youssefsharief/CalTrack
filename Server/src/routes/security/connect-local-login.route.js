@@ -1,4 +1,4 @@
-const getUserById = require('../../data-layer/user/get-user-by-id.db')
+const getUserById = require('data-layer/user/get-user-by-id.db')
 
 module.exports = async (req, res, next) => {
     getUserById(req.decoded._id).then(user => {

@@ -1,4 +1,4 @@
-const usersModel = require('../../models/users.model')
+const usersModel = require('models/users.model')
 const ObjectId = require('mongodb').ObjectID;
 
 module.exports = (userId, limit, skip, startDate, endDate, startTime, endTime) => {

@@ -1,7 +1,7 @@
-const addNewUser = require('../../../src/data-layer/user/add-new-user.db')
-const removeUser = require('../../../src/data-layer/user/remove-user.db')
-const getUser = require('../../../src/data-layer/user/get-user-by-email')
-const { connectToDb } = require('../../helpers/requestsSpecHelper')
+const addNewUser = require('src/data-layer/user/add-new-user.db')
+const removeUser = require('src/data-layer/user/remove-user.db')
+const getUser = require('src/data-layer/user/get-user-by-email')
+const { connectToDb } = require('helpers/requestsSpecHelper')
 
 const faker = require('faker')
 

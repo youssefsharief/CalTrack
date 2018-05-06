@@ -1,4 +1,4 @@
-const { getNutriCalories } = require('../../../src/external-apis/nutritionix')
+const { getNutriCalories } = require('src/external-apis/nutritionix')
 
 fdescribe('nutritionix', () => {
 

@@ -1,7 +1,7 @@
-const addNewUser = require('../../../../src/data-layer/user/add-new-user.db')
-const addBulkRecords = require('../../../../src/data-layer/record/add-bulk-records.db')
-const getRecords = require('../../../../src/data-layer/record/get-records.db')
-const { connectToDb } = require('../../../helpers/requestsSpecHelper')
+const addNewUser = require('data-layer/user/add-new-user.db')
+const addBulkRecords = require('data-layer/record/add-bulk-records.db')
+const getRecords = require('data-layer/record/get-records.db')
+const { connectToDb } = require('helpers/requestsSpecHelper')
 
 const faker = require('faker')
 

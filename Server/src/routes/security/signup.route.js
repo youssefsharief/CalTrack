@@ -1,8 +1,8 @@
 
-const addNewUser = require('../../data-layer/user/add-new-user.db')
-const ROLES = require('../../config/rolesConstants')
-const clearUnneededDataFromPayload = require('../../services/clear-unneeded-data')
-const { getToken } = require('../../core/authentication')
+const addNewUser = require('data-layer/user/add-new-user.db')
+const ROLES = require('config/rolesConstants')
+const clearUnneededDataFromPayload = require('services/clear-unneeded-data')
+const { getToken } = require('core/authentication')
 
 
 module.exports = (req, res, next) => {
