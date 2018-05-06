@@ -9,6 +9,8 @@ export interface User {
     role?: string
     _id?: string
     meals?: Meal[]
+    facebookId?: string;
+    googleId?: string;
 }
 
 

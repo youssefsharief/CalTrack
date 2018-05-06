@@ -1,0 +1,63 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">My Logins </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Provider</th>
+                    <th>Email</th>
+                    <th class="text-center">Change Password</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CalTrack</td>
+                    <td>{{user.email}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-default" *ngIf="user.email" id="change-my-password-button" routerLink="/my-profile/password">Change my Password</button>
+
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-default link" (click)="disconnectLocalLogin()" [disabled]="isRemoveLoginDisabled()">
+                            Remove local login
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="group-icon openid-icon icon-google"></span> Google</td>
+                    <td>{{user.googleEmail}}</td>
+                    <td class="text-center">
+                    </td>
+                    <td class="text-center">
+                        <button *ngIf="!user.googleId" class="btn btn-default link" (click)="connectGoogle()">
+                            Connect Google
+                        </button>
+                        <button *ngIf="user.googleId" class="btn btn-default link" (click)="disconnectGoogle()" [disabled]="isRemoveLoginDisabled()">
+                            Disconnect Google
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="group-icon openid-icon icon-facebook"></span> Facebook</td>
+                    <td>{{user.facebookEmail}}</td>
+                    <td class="text-center">
+                    </td>
+                    <td class="text-center">
+                            <button *ngIf="!user.facebookId" class="btn btn-default link" (click)="connectFacebook()">
+                                Connect Facebook
+                            </button>
+                            <button *ngIf="user.facebookId" class="btn btn-default link" (click)="disconnectFacebook()" [disabled]="isRemoveLoginDisabled()">
+                                Disconnect Facebook
+                            </button>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

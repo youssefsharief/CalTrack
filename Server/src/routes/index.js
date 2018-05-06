@@ -48,6 +48,8 @@ const googleSignin = require('./security/social-login/google-signin.route')
 const facebookSignin = require('./security/social-login/facebook-signin.route')
 const connectFacebook = require('./security/social-login/connect-facebook.route')
 const connectGoogle = require('./security/social-login/connect-google.route')
+const disconnectFacebook = require('./security/social-login/disconnect-facebook.route')
+const disconnectGoogle = require('./security/social-login/disconnect-google.route')
 
 const validateSocialLogin = require('./security/social-login/social-login.validate')
 
@@ -92,7 +94,7 @@ router.post('/oauth/google', passport.authenticate('googleToken', {session: fals
 router.post('/connect/facebook',  verifyUser, passport.authenticate('facebookToken', {session: false}), validateSocialLogin, connectFacebook );
 router.post('/connect/google', verifyUser, passport.authenticate('googleToken', {session: false}), validateSocialLogin, connectGoogle  );
 
-// router.post('/diconnect/facebook',  verifyUser, passport.authenticate('facebookToken', {session: false}), validateSocialLogin, diconnectFacebook );
-// router.post('/diconnect/google', verifyUser, passport.authenticate('googleToken', {session: false}), validateSocialLogin, diconnectGoogle  );
+router.post('/disconnect/facebook',  verifyUser, disconnectFacebook );
+router.post('/disconnect/google', verifyUser, disconnectGoogle  );
 
 module.exports = router

@@ -21,7 +21,7 @@ export class SocialSignInComponent implements OnDestroy {
         private dataService: DataService,
         private router: Router,
         private authService: AuthService,
-    ) {}
+    ) { }
 
     listenToSocialAuth() {
         this.socialAuthListener$ = this.libAuthService.authState.subscribe((user) => {
@@ -45,14 +45,24 @@ export class SocialSignInComponent implements OnDestroy {
         this.router.navigate(['my-profile'])
     }
 
+
     signInWithFB(): void {
-        this.listenToSocialAuth();
-        this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+        this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
+            console.log(user)
+            this.dataService.oAuthFacebook(user.authToken).subscribe(
+                data => this.saveUserDataLocallyAndProceedToProfile(data),
+                error => console.log(error)
+            );
+        })
     }
 
     signInWithGoogle(): void {
-        this.listenToSocialAuth();
-        this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+        this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
+            this.dataService.oAuthFacebook(user.idToken).subscribe(
+                data => this.saveUserDataLocallyAndProceedToProfile(data),
+                error => console.log(error)
+            );
+        })
     }
 
     ngOnDestroy() {

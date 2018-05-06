@@ -5,10 +5,13 @@ const ROLES = require('../config/rolesConstants')
 const { getToken } = require('../core/authentication')
 
 module.exports = class SocialAuth {
-    constructor(id, name, email, idKey) {
+    constructor(id, name, email, provider) {
         this.id = id;
         this.name = name
-        this.idKey = idKey
+        if(provider==='facebook') {
+            this.idKey = 'facebookId'
+            this.emailKey = 'facebookEmail'
+        }
         this.email = email
     }
 
@@ -18,7 +21,14 @@ module.exports = class SocialAuth {
                 if (existingUser) {
                     resolve(this._getPayload(existingUser))
                 } else {
-                    return this._addUser().then(user => resolve(this._getPayload(user)).catch(err => reject(err)))
+                    // return getUserByAttribute({email: this.email}).then(existingUserWithEmail =>{
+                    //     if(existingUserWithEmail) {
+                    //         return resolve(this._getPayload(existingUserWithEmail))
+                    //     } else {
+                            return this._addUser().then(user => resolve(this._getPayload(user)).catch(err => reject(err)))
+                        // }
+                    // })
+                        
                 }
             }).catch(err => reject(err))
         })
@@ -31,8 +41,8 @@ module.exports = class SocialAuth {
             active: true,
             maxCalories: 2250,
             isTrackingDisplayed: true,
-            socialEmail: this.email
         }
+        user[this.emailKey]=this.email
         user[this.idKey] = this.id
         return addNewUser(user, ROLES.regular)
     }

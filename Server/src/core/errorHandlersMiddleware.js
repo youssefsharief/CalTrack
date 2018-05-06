@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 module.exports = app => {
 
     app.use(function (err, req, res, next) {
+        console.log(err)
         if(err.oauthError) {
             return res.status(err.oauthError.statusCode).json({msg:'Invalid OAUth token' })
         }

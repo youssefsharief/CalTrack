@@ -12,6 +12,7 @@ export const routes: Routes = [
     { path: 'my-profile', loadChildren: './edit-my-info/edit-my-info.module#EditMyInfoModule', canActivate: [AuthGuardService] },
     { path: 'my-meals', loadChildren: './my-meals/my-meals.module#MyMealsModule', canActivate: [AuthGuardService] },
     { path: 'users', loadChildren: './users/users.module#UsersModule', canActivate: [AuthGuardService], },
+    { path: 'my-logins', loadChildren: './my-logins/my-logins.module#MyLoginsModule', canActivate: [AuthGuardService], },
     { path: '', redirectTo: 'my-profile', pathMatch: 'full' },
     { path: '**', redirectTo: 'my-profile' }
 ]
