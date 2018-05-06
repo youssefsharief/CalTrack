@@ -1,18 +1,9 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">My Logins </h3>
+        <h4 class="panel-title">My Logins </h4>
     </div>
     <div class="panel-body">
         <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Provider</th>
-                    <th>Email</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center"></th>
-                    <th class="text-center"></th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
                     <td>CalTrack</td>
@@ -28,7 +19,7 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        <button class="btn btn-link" *ngIf="user.email" id="change-my-password-button" routerLink="/my-logins/change-my-password">Change my Password</button>
+                        <button class="btn btn-link" *ngIf="user.email" id="change-my-password-button" routerLink="/my-logins/password">Change my Password</button>
                     </td>
                     <td class="text-center">
                         <button *ngIf="!user.email" class="btn btn-link" routerLink="/my-logins/add-local-login">

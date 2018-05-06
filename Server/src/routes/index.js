@@ -57,6 +57,8 @@ const disconnectFacebook = require('./security/social-login/disconnect-facebook.
 const disconnectGoogle = require('./security/social-login/disconnect-google.route')
 const disconnectLocalLogin = require('./security/disconnect-local-login.route')
 const validateSocialLogin = require('./security/social-login/social-login.validate')
+const ensureHavingAtleast2Accounts = require('./security/ensure-having-2-accounts.validate')
+
 
 const { verifyUser } = require('../core/authentication')
 const Authorize = require('../core/authorization')
@@ -101,8 +103,8 @@ router.post('/connect/google', verifyUser, passport.authenticate('googleToken', 
 router.post('/connect/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
 router.post('/connect/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
 
-router.post('/disconnect/facebook', verifyUser, disconnectFacebook);
-router.post('/disconnect/google', verifyUser, disconnectGoogle);
-router.post('/disconnect/local', verifyUser, disconnectLocalLogin);
+router.post('/disconnect/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
+router.post('/disconnect/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
+router.post('/disconnect/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
 
 module.exports = router

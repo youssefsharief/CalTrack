@@ -26,7 +26,6 @@ export class UserFormComponent implements OnInit {
 
     private buildForm() {
         this.form = this.fb.group({
-            email: [{value: this.user.email, disabled: true}],
             name: [this.user.name, Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
             maxCalories: [this.user.maxCalories, Validators.compose([Validators.required, Validators.min(500), Validators.max(8000)])],
             isTrackingDisplayed: [this.user.isTrackingDisplayed],

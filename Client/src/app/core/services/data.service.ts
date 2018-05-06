@@ -134,11 +134,11 @@ export class DataService {
     }
 
     connectLocalLogin(payload) {
-        return this.http.post<User>(`disconnect/local`, payload, )
+        return this.http.post<User>(`connect/local`, payload, )
     }
 
     connectLocalLoginSecurely(payload) {
-        return this.http.post<User>(`disconnect/local`, payload, )
+        return this.http.post<User>(`connect/local/secure`, payload, )
     }
 
     disconnectLocalLogin() {

@@ -40,17 +40,18 @@ export class AddLocalLoginComponent implements OnInit {
     }
 
     connectLocalLogin() {
-        this.dataService.connectLocalLogin(this.form.value).subscribe(
+        this.dataService.connectLocalLogin({email: this.form.value.email, password: this.form.value.password}).subscribe(
             data => {
                 this.authService.saveProfile(data)
                 this.sb.emitSuccessSnackBar('Connected Successfully')
+                this.router.navigate(['my-logins'])
             },
             error => this.sb.emitErrorSnackBar(error)
         )
     }
 
     connectLocalLoginSecurely() {
-        this.dataService.connectLocalLoginSecurely(this.form.value).subscribe(
+        this.dataService.connectLocalLoginSecurely({email: this.form.value.email, password: this.form.value.password}).subscribe(
             data => {
                 this.publicInfoService.setEmail(this.form.value.email)
                 this.publicInfoService.setPass(this.form.value.password)

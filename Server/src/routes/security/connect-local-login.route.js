@@ -1,5 +1,12 @@
-const db = require('../../data-layer/user/update-user-info.db')
+const getUserById = require('../../data-layer/user/get-user-by-id.db')
 
 module.exports = async (req, res, next) => {
-    db(req.decoded._id, { email: req.body.email, password: req.body.password }).then(payload => res.status(200).json(payload)).catch(err => next(err))
+    getUserById(req.decoded._id).then(user => {
+        if (!user) return next({ nF: 'User' })
+        user.email = req.body.email
+        user.password = req.body.password
+        return user.save()
+    })
+    .then(user => res.status(200).json(user))
+    .catch(e => next(e))
 }

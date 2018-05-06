@@ -68,7 +68,7 @@ export class MyLoginsComponent implements OnInit {
     disconnectLocalLogin() {
         this.dataService.disconnectLocalLogin().subscribe(
             data => {
-                this.authService.saveProfile(data)
+                this.onEdited(data)
                 this.sb.emitSuccessSnackBar('Disonnected Successfully')
             }
         )

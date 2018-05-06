@@ -7,7 +7,7 @@
         <input type="password" name="password" class="form-control" formControlName="password">
     </app-password-input-layout>
 
-    <app-confirm-password-input-layout [isDisplayingErrorMessage]="form.get('confirmPassword').dirty &&form.getError('areEqual')">
+    <app-confirm-password-input-layout [isDisplayingErrorMessage]="form.get('confirmPassword').dirty && form.getError('areEqual')">
         <input type="password" name="confirmPassword" class="form-control" formControlName="confirmPassword">
     </app-confirm-password-input-layout>
 

@@ -1,9 +1,4 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="form">
-
-    <app-email-input-layout>
-        <input type="email" name="email" class="form-control" formControlName="email">
-    </app-email-input-layout>
-
     <app-name-input-layout [isDisplayingErrorMessage]="form.get('name').dirty && form.get('name').invalid">
         <input type="text" name="name" class="form-control" id="" formControlName="name">
     </app-name-input-layout>
