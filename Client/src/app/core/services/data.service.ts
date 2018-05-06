@@ -117,6 +117,22 @@ export class DataService {
         return this.http.post<{ token: string, user: User }>(`oauth/google`, { access_token }, )
     }
 
+    connectFacebook(access_token: string) {
+        return this.http.post<User>(`connect/facebook`, { access_token }, )
+    }
+
+    connectGoogle(access_token: string) {
+        return this.http.post<User>(`connect/google`, { access_token }, )
+    }
+
+    disconnectFacebook() {
+        return this.http.post<User>(`disconnect/facebook`, { }, )
+    }
+
+    disconnectGoogle() {
+        return this.http.post<User>(`disconnect/google`, { }, )
+    }
+
 }
 
 

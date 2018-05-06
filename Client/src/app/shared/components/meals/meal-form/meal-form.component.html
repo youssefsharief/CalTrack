@@ -3,15 +3,19 @@
     <app-name-input-layout [isDisplayingErrorMessage]="form.get('name').dirty && form.get('name').invalid">
         <input type="text" name="name" class="form-control" formControlName="name">
     </app-name-input-layout>
-    <div class="form-group">
-        <label for="">Calories </label>
-        <input name="numOfCalories" type="number" class="form-control" id="" formControlName="numOfCalories">
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-12 col-md-4 form-group">
+
+    <app-default-input-layout label="Calories">
+            <input name="numOfCalories" type="number" class="form-control" id="" formControlName="numOfCalories">
+    </app-default-input-layout>
+
+    <app-default-input-layout label="Date">
             <input name="date" type="text" placeholder="Datepicker" class="form-control" formControlName="date" bsDatepicker [bsConfig]="{containerClass: 'theme-red' }">
-        </div>
-    </div>
-    <timepicker name="time" formControlName="time" ></timepicker>
+    </app-default-input-layout>
+
+    <app-default-input-layout class="mt-5" id="timeInput" label="Time">
+            <timepicker name="time" formControlName="time" ></timepicker>
+    </app-default-input-layout>
+
+    
     <app-submit-button [isDisabled]="!form.valid"></app-submit-button>
 </form>

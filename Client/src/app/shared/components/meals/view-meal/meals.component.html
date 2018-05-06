@@ -1,64 +1,59 @@
-<div class="row">
-    <div class="col-xs-12 col-12 col-md-4 form-group">
-            <label>Date Range</label>
-        <input type="text" placeholder="Date picker" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" [bsConfig]="{containerClass: 'theme-red' }">
-    </div>
-</div>
 <div class="form-group row">
-    <div class="col-xs-12 col-12 col-md-4 form-group">
-        <label>Start Time</label>
-        <timepicker name="time" [(ngModel)]="startTime"></timepicker>
+    <div class="col-4">
+        <input type="text" placeholder="Date Range" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" [bsConfig]="{containerClass: 'theme-red' }">
     </div>
-    <div class="col-xs-12 col-12 col-md-4 form-group">
-        <label>End time</label>
-        <timepicker name="time" [(ngModel)]="endTime"></timepicker>
+
+    <label for="" class="col-1 col-form-label">From </label>
+    <div class="col-3">
+        <timepicker name="startTime" [(ngModel)]="startTime"></timepicker>
     </div>
+    <label for="" class="col-1 col-form-label">To </label>
+    <div class="col-3">
+        <timepicker name="endTime" [(ngModel)]="endTime"></timepicker>
+    </div>
+
+
 </div>
+
 <div class="row">
-        <button class="btn btn-default pull-right"  (click)="resetFilters()">Reset Filters</button>
-        <button class="btn btn-default pull-right"  (click)="fetchConsideringPaging()">Search</button>
+    <button class="btn btn-default pull-right" (click)="resetFilters()">Reset Filters</button>
+    <button class="btn btn-default pull-right" (click)="fetchConsideringPaging()">Search</button>
 </div>
 
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title"> {{title}}
-            <a title="Add New Meal" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
-        </h3>
-    </div>
-    <div class="panel-body">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Calories</th>
-                    <th class="text-center">Update</th>
-                    <th class="text-center">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of meals">
-                    <td>{{item.name}}</td>
-                    <td>{{item.date.replace('Z', '') | date:'mediumDate'}}</td>
-                    <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
-                    <td>{{item.numOfCalories}}</td>
-                    <td class="text-center">
-                        <a class="link" (click)="onEditMealClick(item)">
-                            <i class="fa fa-edit text-warning"> </i>
-                        </a>
-                    </td>
-                    <td class="text-center ">
-                        <a class="link" (click)="onDeleteClick(item)">
-                            <i class="fa fa-trash text-danger"> </i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+{{title}}
+<h3 class="panel-title">
+    <a title="Add New Meal" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
+</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Calories</th>
+            <th class="text-center">Update</th>
+            <th class="text-center">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of meals">
+            <td>{{item.name}}</td>
+            <td>{{item.date.replace('Z', '') | date:'mediumDate'}}</td>
+            <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
+            <td>{{item.numOfCalories}}</td>
+            <td class="text-center">
+                <a class="link" (click)="onEditMealClick(item)">
+                    <i class="fa fa-edit text-warning"> </i>
+                </a>
+            </td>
+            <td class="text-center ">
+                <a class="link" (click)="onDeleteClick(item)">
+                    <i class="fa fa-trash text-danger"> </i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
 <div class="col-md-12">
     <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="fetchMeals($event)" [maxSize]="10"></pagination>
 </div>

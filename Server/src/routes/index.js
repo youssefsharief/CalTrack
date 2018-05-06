@@ -46,6 +46,9 @@ const getUserRecords = require('./records/get-user-records.route')
 
 const googleSignin = require('./security/social-login/google-signin.route')
 const facebookSignin = require('./security/social-login/facebook-signin.route')
+const connectFacebook = require('./security/social-login/connect-facebook.route')
+const connectGoogle = require('./security/social-login/connect-google.route')
+
 const validateSocialLogin = require('./security/social-login/social-login.validate')
 
 const { verifyUser } = require('../core/authentication')
@@ -85,5 +88,11 @@ router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdmi
 
 router.post('/oauth/facebook',  passport.authenticate('facebookToken', {session: false}), validateSocialLogin, facebookSignin );
 router.post('/oauth/google', passport.authenticate('googleToken', {session: false}), validateSocialLogin, googleSignin  );
+
+router.post('/connect/facebook',  verifyUser, passport.authenticate('facebookToken', {session: false}), validateSocialLogin, connectFacebook );
+router.post('/connect/google', verifyUser, passport.authenticate('googleToken', {session: false}), validateSocialLogin, connectGoogle  );
+
+// router.post('/diconnect/facebook',  verifyUser, passport.authenticate('facebookToken', {session: false}), validateSocialLogin, diconnectFacebook );
+// router.post('/diconnect/google', verifyUser, passport.authenticate('googleToken', {session: false}), validateSocialLogin, diconnectGoogle  );
 
 module.exports = router

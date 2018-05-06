@@ -6,6 +6,7 @@ import { DateUtilityService } from 'app/core/services/date-utility.service';
 @Component({
     selector: 'app-meal-form',
     templateUrl: 'meal-form.component.html',
+    styleUrls: ['meal-form.component.scss']
 })
 export class MealFormComponent implements OnInit {
     form: FormGroup

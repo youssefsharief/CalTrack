@@ -1,5 +1,5 @@
 const usersModel = require('../../models/users.model')
 
-module.exports = (_id, {name, maxCalories, isTrackingDisplayed}) => {
-    return usersModel.findOneAndUpdate({ _id }, { name, maxCalories, isTrackingDisplayed }, { new: true }).select('-meals')
+module.exports = (_id, payload) => {
+    return usersModel.findOneAndUpdate({ _id }, payload, { new: true }).select('-meals')
 }

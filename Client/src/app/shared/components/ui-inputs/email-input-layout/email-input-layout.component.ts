@@ -8,5 +8,6 @@ import { emailErrorMessage } from 'app/shared/config/constants';
 export class EmailInputLayoutComponent {
     public errorMessage = emailErrorMessage;
     @Input() isDisplayingErrorMessage: Boolean
+    @Input() label = 'Email'
 
 }

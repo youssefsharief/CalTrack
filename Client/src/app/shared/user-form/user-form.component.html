@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="form">
 
-    <app-email-input-layout *ngIf="user.email">
+    <app-email-input-layout>
         <input type="email" name="email" class="form-control" formControlName="email">
     </app-email-input-layout>
 

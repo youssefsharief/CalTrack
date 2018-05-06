@@ -1,6 +1,32 @@
 
 <app-title>Update My Info</app-title>
 <app-user-form [user]="user" (edited)="onEdited($event)"></app-user-form>
+
+
+<br>
+
+
+
+<a *ngIf="!user.facebookId" class="btn btn-social btn-facebook btn-lg white" (click)="connectFacebook()">
+    <span class="fa fa-facebook"></span>
+     Connect Facebook 
+</a>
+<a *ngIf="user.facebookId" class="btn btn-social btn-facebook btn-lg white" (click)="disconnectFacebook()">
+    <span class="fa fa-facebook"></span>
+     Disconnect Facebook 
+</a>
+
+<a *ngIf="!user.googleId" class="btn btn-social btn-google btn-lg white" (click)="connectGoogle()">
+    <span class="fa fa-google"></span>
+    Connect Google
+</a>
+
+<a *ngIf="user.googleId" class="btn btn-social btn-google btn-lg white" (click)="disconnectGoogle()">
+    <span class="fa fa-google"></span>
+    Disconnect Google
+</a>
+
+
 <button class="btn btn-default mt-4" *ngIf="user.email" id="change-my-password-button" routerLink="/my-profile/password">Change my Password</button>
 
   

@@ -5,10 +5,11 @@ const ROLES = require('../config/rolesConstants')
 const { getToken } = require('../core/authentication')
 
 module.exports = class SocialAuth {
-    constructor(id, name, idKey) {
+    constructor(id, name, email, idKey) {
         this.id = id;
         this.name = name
         this.idKey = idKey
+        this.email = email
     }
 
     action() {
@@ -17,21 +18,22 @@ module.exports = class SocialAuth {
                 if (existingUser) {
                     resolve(this._getPayload(existingUser))
                 } else {
-                    return this._addUser(this.name, this.idKey, this.id).then(user => resolve(this._getPayload(user)).catch(err => reject(err)))
+                    return this._addUser().then(user => resolve(this._getPayload(user)).catch(err => reject(err)))
                 }
             }).catch(err => reject(err))
         })
     }
 
-    _addUser(name, idKey, idValue) {
+    _addUser() {
         const user = {
-            name: name,
+            name: this.name,
             meals: [],
             active: true,
             maxCalories: 2250,
             isTrackingDisplayed: true,
+            socialEmail: this.email
         }
-        user[idKey] = idValue
+        user[this.idKey] = this.id
         return addNewUser(user, ROLES.regular)
     }
     
