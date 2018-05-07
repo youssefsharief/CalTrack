@@ -5,6 +5,7 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { Meal } from 'app/shared/models/meal.model';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { AuthService } from 'app/core/services/auth.service';
+import { MealChangesService } from 'app/core/services/meal-changes.service';
 
 @Component({
     templateUrl: 'edit-my-meal.component.html',
@@ -17,7 +18,8 @@ export class EditMyMealComponent implements OnInit {
         private router: Router,
         private dataService: DataService,
         private sb: SnackBarService,
-        private mealsService: SelectedMealService
+        private mealsService: SelectedMealService,
+        private mealChangesService: MealChangesService
     ) { }
 
     ngOnInit() {
@@ -34,6 +36,7 @@ export class EditMyMealComponent implements OnInit {
             data => {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/my-meals'])
+                this.mealChangesService.updated$.next()
             },
             error => this.sb.emitErrorSnackBar(error)
         )

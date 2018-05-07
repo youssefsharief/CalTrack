@@ -58,7 +58,7 @@ const disconnectGoogle = require('./security/social-login/disconnect-google.rout
 const disconnectLocalLogin = require('./security/disconnect-local-login.route')
 const validateSocialLogin = require('./security/social-login/social-login.validate')
 const ensureHavingAtleast2Accounts = require('./security/ensure-having-2-accounts.validate')
-
+const getTodaysIntake = require('./records/get-todays-intake.route')
 
 const { verifyUser } = require('core/authentication')
 const Authorize = require('core/authorization')
@@ -98,13 +98,15 @@ router.post('/users/invite', verifyUser, validateInviteUser, Authorize.allowAdmi
 router.post('/oauth/facebook', passport.authenticate('facebookToken', { session: false }), validateSocialLogin, facebookSignin);
 router.post('/oauth/google', passport.authenticate('googleToken', { session: false }), validateSocialLogin, googleSignin);
 
-router.post('/connect/facebook', verifyUser, passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
-router.post('/connect/google', verifyUser, passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
-router.post('/connect/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
-router.post('/connect/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
+router.post('/connect/facebook', verifyUser,  passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
+router.post('/connect/google', verifyUser,  passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
+router.post('/connect/local', verifyUser,  validateConnectLocalLogin, connectLocalLogin);
+router.post('/connect/local/secure', verifyUser,  validateConnectLocalLogin, connectLocalLoginSecurely);
 
-router.post('/disconnect/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
-router.post('/disconnect/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
-router.post('/disconnect/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
+router.post('/disconnect/facebook', verifyUser,  ensureHavingAtleast2Accounts, disconnectFacebook);
+router.post('/disconnect/google', verifyUser,  ensureHavingAtleast2Accounts, disconnectGoogle);
+router.post('/disconnect/local', verifyUser,  ensureHavingAtleast2Accounts, disconnectLocalLogin);
+
+router.get('/users/:id/meals/calories_today', verifyUser, Authorize.allowSelfAdminAndManager, getTodaysIntake);
 
 module.exports = router

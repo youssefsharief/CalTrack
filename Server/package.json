@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_PATH=./src node ./src/bin/www",
-    "e2e": "node ./src/bin/www -t",
-    "coverage": "nodemon --exec istanbul cover node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
-    "test": "nodemon --exec jasmine JASMINE_CONFIG_PATH=jasmine.json",
-    "dev": "nodemon ./src/bin/www"
+    "coverage": "cross-env NODE_PATH=./src nodemon --exec istanbul cover node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
+    "test": "cross-env NODE_PATH=./src nodemon --exec jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "dev": "cross-env NODE_PATH=./src nodemon ./src/bin/www"
   },
   "engines": {
     "node": "8.9.1"

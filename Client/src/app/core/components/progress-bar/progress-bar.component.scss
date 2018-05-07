@@ -1,0 +1,21 @@
+@import '../../../../styles/variables';
+.progress {
+    margin-bottom: 0;
+    height: 40px;
+    width: 400px;
+    border-radius: 5px;
+    margin: auto;
+    background: lightgreen;
+}
+
+.progress-bar {
+    &.danger {
+        background: map-get($theme-colors, "danger");
+    }
+    &.success {
+        background: map-get($theme-colors, "success");
+    }
+}
+
+
+

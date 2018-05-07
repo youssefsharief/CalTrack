@@ -20,6 +20,8 @@ import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service'
 import { TimepickerConfig } from 'ngx-bootstrap/timepicker';
 import { NavbarComponent } from 'app/core/components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { MealChangesService } from 'app/core/services/meal-changes.service';
+import { ProgressBarComponent } from 'app/core/components/progress-bar/progress-bar.component';
 
 export function getTimepickerConfig(): TimepickerConfig {
     return Object.assign(new TimepickerConfig(), {
@@ -40,10 +42,12 @@ export function getTimepickerConfig(): TimepickerConfig {
         RouterModule
     ],
     exports: [
-        NavbarComponent
+        NavbarComponent,
+        ProgressBarComponent
     ],
     declarations: [
-        NavbarComponent
+        NavbarComponent,
+        ProgressBarComponent
     ],
     providers: [
         AuthService,
@@ -61,7 +65,8 @@ export function getTimepickerConfig(): TimepickerConfig {
         { provide: HTTP_INTERCEPTORS, useClass: UnAuthorizedRequestsInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         { provide: APP_BASE_HREF, useValue: '/' },
-        [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]
+        [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
+        MealChangesService
     ],
 
 })

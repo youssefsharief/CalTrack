@@ -5,6 +5,7 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
+import { MealChangesService } from 'app/core/services/meal-changes.service';
 
 @Component({
     selector: 'app-meals',
@@ -28,7 +29,8 @@ export class MealsComponent implements OnInit {
         private mealsService: SelectedMealService,
         private dataService: DataService,
         private sb: SnackBarService,
-        private dateUtilityService: DateUtilityService
+        private dateUtilityService: DateUtilityService,
+        private mealChangesService: MealChangesService
     ) { }
 
     ngOnInit() {
@@ -67,7 +69,10 @@ export class MealsComponent implements OnInit {
 
     onDeleteClick(item) {
         this.dataService.deleteMeal(this.userId, item._id).subscribe(
-            data => this.meals = this.meals.filter(t => t._id !== item._id),
+            data => {
+                this.meals = this.meals.filter(t => t._id !== item._id)
+                this.mealChangesService.updated$.next()
+            },
             error => this.sb.emitErrorSnackBar(error)
         )
     }
