@@ -69,6 +69,10 @@ export class DataService {
         return this.http.get<{ meals: Meal[], count: number }>(`users/${userId}/meals`, { params })
     }
 
+    getMeal(userId: string, mealId) {
+        return this.http.get<Meal>(`users/${userId}/meals/${mealId}`)
+    }
+
     updateMeal(userId: string, mealId: string, data: Meal) {
         return this.http.put(`users/${userId}/meals/${mealId}`, data)
     }

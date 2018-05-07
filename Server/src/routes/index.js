@@ -43,6 +43,7 @@ const validatechangeOtherUserPassword = require('./security/change-other-user-pa
 
 
 const getUserRecords = require('./records/get-user-records.route')
+const getUserRecord = require('./records/get-user-record.route')
 
 const googleSignin = require('./security/social-login/google-signin.route')
 const facebookSignin = require('./security/social-login/facebook-signin.route')
@@ -108,5 +109,8 @@ router.post('/disconnect/google', verifyUser,  ensureHavingAtleast2Accounts, dis
 router.post('/disconnect/local', verifyUser,  ensureHavingAtleast2Accounts, disconnectLocalLogin);
 
 router.get('/users/:id/meals/calories_today', verifyUser, Authorize.allowSelfAdminAndManager, getTodaysIntake);
+router.get('/users/:id/meals/:mealId', verifyUser, Authorize.allowSelfAndAdminOnly, getUserRecord);
+
+
 
 module.exports = router

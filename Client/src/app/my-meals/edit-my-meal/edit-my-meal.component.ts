@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { Meal } from 'app/shared/models/meal.model';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { AuthService } from 'app/core/services/auth.service';
 import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
+import 'rxjs/add/operator/first'
 
 @Component({
     templateUrl: 'edit-my-meal.component.html',
@@ -16,6 +17,7 @@ export class EditMyMealComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private router: Router,
+        private route: ActivatedRoute,
         private dataService: DataService,
         private sb: SnackBarService,
         private mealsService: SelectedMealService,
@@ -23,23 +25,38 @@ export class EditMyMealComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if (!this.mealsService.getSelectedMeal()) {
-            this.router.navigate(['/my-meals'])
-        } else {
-            this.meal = this.mealsService.getSelectedMeal()
-            console.log(this.meal)
+        this.meal = this.mealsService.getSelectedMeal()
+        if (!this.meal) {
+            this.fetchForMeal()
         }
+    }
+
+    private fetchForMeal() {
+        this.route.params.first().flatMap(data => this.dataService.getMeal(this.authService.getId(), data.mealId)).subscribe(
+            data => {
+                if (data) {
+                    this.meal = data
+                } else {
+                    this.navigateBack()
+                }
+            },
+            error => this.navigateBack()
+        )
     }
 
     onSubmitted(x: { name: string, date: string, numOfCalories: number }) {
         this.dataService.updateMeal(this.authService.getId(), this.meal._id, x).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
-                this.router.navigate(['/my-meals'])
+                this.navigateBack()
                 this.caloriesTrackingSubjectService.updated$.next()
             },
             error => this.sb.emitErrorSnackBar(error)
         )
+    }
+
+    private navigateBack() {
+        this.router.navigate(['my-meals'])
     }
 
 

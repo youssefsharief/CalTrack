@@ -24,7 +24,7 @@ export class MyMealsComponent {
     }
 
     onEditClicked(item: Meal) {
-        this.router.navigate(['/my-meals/edit'])
+        this.router.navigate(['/my-meals', item._id])
     }
 
 

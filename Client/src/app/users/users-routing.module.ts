@@ -17,7 +17,7 @@ const routes: Routes = [
     // { path: ':id/meals', loadChildren: './user-meals/user-meals.module#UserMealsModule', canActivate: [AdminClaimsService] },
     { path: ':id/meals', component: OtherUserMealsComponent, },
     { path: ':id/meals/add', component: AddOtherUserMealComponent },
-    { path: ':id/meals/edit', component: EditOtherUserMealComponent },
+    { path: ':id/meals/:mealId', component: EditOtherUserMealComponent },
 ]
 
 @NgModule({

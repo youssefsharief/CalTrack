@@ -8,7 +8,7 @@ import { AddMyMealComponent } from 'app/my-meals/add-my-meal/add-my-meal.compone
 const routes: Routes = [
     { path: '', component: MyMealsComponent },
     { path: 'add', component: AddMyMealComponent },
-    { path: 'edit', component: EditMyMealComponent },
+    { path: ':mealId', component: EditMyMealComponent },
 ]
 
 @NgModule({

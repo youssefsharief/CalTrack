@@ -27,11 +27,11 @@ export class OtherUserMealsComponent implements OnInit {
     }
 
     onAddClicked() {
-        this.router.navigate(['users', this.user._id, 'meal', 'add'])
+        this.router.navigate(['users', this.user._id, 'meals', 'add'])
     }
 
     onEditClicked(item: Meal) {
-        this.router.navigate(['users', this.user._id, 'meal', 'edit'])
+        this.router.navigate(['users', this.user._id, 'meals', item._id])
     }
 
     title() {
