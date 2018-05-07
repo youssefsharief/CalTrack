@@ -18,7 +18,7 @@
                                 <i class="fa fa-times  text-warning"> </i>
                             </a>
                         </td>
-                        <ng-template *ngIf="personal">
+                        <ng-container *ngIf="isPersonal">
                         <td class="text-center">
                             <button class="btn btn-link" *ngIf="user.email" id="change-my-password-button" routerLink="/my-logins/password">Change my Password</button>
                         </td>
@@ -30,7 +30,7 @@
                                 Remove local login
                             </button>
                         </td>
-                    </ng-template>
+                    </ng-container>
                     </tr>
                     <tr>
                         <td>
@@ -49,7 +49,7 @@
     
                         <td class="text-center">
                         </td>
-                    <ng-template *ngIf="personal">
+                    <ng-container *ngIf="isPersonal">
                         <td class="text-center">
                             <button *ngIf="!user.googleId" class="btn btn-link" (click)="connectGoogle.emit()">
                                 Connect Google
@@ -58,7 +58,7 @@
                                 Disconnect Google
                             </button>
                         </td>
-                    </ng-template>
+                    </ng-container>
                     </tr>
                     <tr>
                         <td>
@@ -77,7 +77,7 @@
     
                         <td class="text-center">
                         </td>
-                    <ng-template *ngIf="personal">
+                    <ng-container *ngIf="isPersonal">
                         <td class="text-center">
                             <button *ngIf="!user.facebookId" class="btn btn-link" (click)="connectFacebook.emit()">
                                 Connect Facebook
@@ -86,7 +86,7 @@
                                 Disconnect Facebook
                             </button>
                         </td>
-                    </ng-template>
+                    </ng-container>
                     </tr>
     
                 </tbody>

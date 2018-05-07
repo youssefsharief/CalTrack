@@ -8,7 +8,7 @@ import { User } from 'app/shared/models/user.model';
 })
 export class LoginsComponent {
     @Input() user: User;
-    @Input() personal = false
+    @Input() isPersonal = false
     @Input() isRemoveLoginDisabled: boolean
     @Output() disconnectFacebook = new EventEmitter()
     @Output() disconnectGoogle = new EventEmitter()
