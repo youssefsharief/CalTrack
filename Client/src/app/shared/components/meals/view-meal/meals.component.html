@@ -40,7 +40,7 @@
             <td>{{item.name}}</td>
             <td>{{item.date.replace('Z', '') | date:'mediumDate'}}</td>
             <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
-            <td>{{item.numOfCalories}}</td>
+            <td>{{item.numOfCalories | number: '1.0-1'}}</td>
             <td class="text-center">
                 <a class="link" (click)="onEditMealClick(item)">
                     <i class="fa fa-edit text-warning"> </i>

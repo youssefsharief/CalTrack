@@ -14,7 +14,7 @@ import { EnvironmentApiInterceptor } from 'app/core/http-interceptors/environmen
 import { UnAuthorizedRequestsInterceptor } from 'app/core/http-interceptors/unauthorized-requests-interceptor';
 import { AuthInterceptor } from 'app/core/http-interceptors/authentication-interceptor';
 import { NgProgressInterceptor } from 'ngx-progressbar';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
 import { LoggedInGuardService } from 'app/core/services/logged-in.guard.service';
 import { TimepickerConfig } from 'ngx-bootstrap/timepicker';
@@ -59,6 +59,7 @@ export function getTimepickerConfig(): TimepickerConfig {
         LoggedInGuardService,
         PublicInfoService,
         DatePipe,
+        DecimalPipe,
         DateUtilityService,
         { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: EnvironmentApiInterceptor, multi: true },
