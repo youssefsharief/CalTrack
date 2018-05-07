@@ -21,6 +21,8 @@ export class OtherUserLoginsComponent implements OnInit {
             error => this.router.navigate(['users'])
         )
     }
-
+    navigateToChangeOtherUserPassword() {
+        this.router.navigate(['users', this.user._id, 'password'])
+    }
 
 }

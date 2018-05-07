@@ -18,10 +18,10 @@
                             <i class="fa fa-times  text-warning"> </i>
                         </a>
                     </td>
+                    <td class="text-center">
+                        <button class="btn btn-link" *ngIf="user.email" (click)="changePasswordClick.emit()">Change Password</button>
+                    </td>
                     <ng-container *ngIf="isPersonal">
-                        <td class="text-center">
-                            <button class="btn btn-link" *ngIf="user.email" id="change-my-password-button" routerLink="/my-logins/password">Change my Password</button>
-                        </td>
                         <td class="text-center">
                             <button *ngIf="!user.email" class="btn btn-link" routerLink="/my-logins/add-local-login">
                                 Add local login
@@ -46,10 +46,11 @@
                             <i class="fa fa-times  text-warning"> </i>
                         </a>
                     </td>
+
+                    <td class="text-center">
+                    </td>
                     <ng-container *ngIf="isPersonal">
 
-                        <td class="text-center">
-                        </td>
                         <td class="text-center">
                             <button *ngIf="!user.googleId" class="btn btn-link" (click)="connectGoogle.emit()">
                                 Connect Google
@@ -74,9 +75,10 @@
                             <i class="fa fa-times  text-warning"> </i>
                         </a>
                     </td>
+                    <td class="text-center">
+                    </td>
                     <ng-container *ngIf="isPersonal">
-                        <td class="text-center">
-                        </td>
+
                         <td class="text-center">
                             <button *ngIf="!user.facebookId" class="btn btn-link" (click)="connectFacebook.emit()">
                                 Connect Facebook

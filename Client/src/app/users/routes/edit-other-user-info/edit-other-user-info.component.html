@@ -1,6 +1,4 @@
-<div *ngIf="user">
+<ng-container *ngIf="user">
     <app-title>Update {{user.name}}'s Info</app-title>
     <app-user-form [user]="user"></app-user-form>
-
-    <button class="btn btn-default mb-4" *ngIf="user.email" id="change-user-password-button" (click)="navigateToChangeUserPassword()">Change user's password</button>
-</div >
+</ng-container >

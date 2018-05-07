@@ -6,6 +6,7 @@ import { AuthService as LibAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { SnackBarService } from 'app/core/services/snackbar.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'my-logins.component.html',
@@ -19,6 +20,7 @@ export class MyLoginsComponent implements OnInit {
         private dataService: DataService,
         private libAuthService: LibAuthService,
         private sb: SnackBarService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -72,6 +74,10 @@ export class MyLoginsComponent implements OnInit {
                 this.sb.emitSuccessSnackBar('Disonnected Successfully')
             }
         )
+    }
+
+    navigateToChangeMyPassword() {
+        this.router.navigate(['/my-logins/password'])
     }
 
     isRemoveLoginDisabled() {
