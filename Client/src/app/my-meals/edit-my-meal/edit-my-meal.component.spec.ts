@@ -48,7 +48,7 @@ describe('EditMyMeal Component', () => {
     it('should build successfully', () => {
         expect(comp).toBeTruthy()
     })
-    describe('No timing has been selected', () => {
+    describe('No meal has been selected', () => {
         it('should navigate to "my-meals" route', fakeAsync(() => {
             mealsService.getSelectedMeal = () => null
             fixture.detectChanges();

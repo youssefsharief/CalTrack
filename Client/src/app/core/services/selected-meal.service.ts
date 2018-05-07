@@ -6,8 +6,8 @@ export class SelectedMealService {
 
     private savedMeal: Meal
 
-    public saveSelectedMeal(timing: Meal): void {
-        this.savedMeal = timing;
+    public saveSelectedMeal(meal: Meal): void {
+        this.savedMeal = meal;
     }
 
     public getSelectedMeal(): Meal {

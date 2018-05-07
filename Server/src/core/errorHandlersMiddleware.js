@@ -15,7 +15,11 @@ module.exports = app => {
             return res.status(404).json({msg: `${err.nF} is not found in our system` })
         }
         else if (err.name === 'NoUserFound') return res.status(404).json({msg: `This user does not exist in our system` })
-        else if (err.code === 11000 && err.index === 0) return res.status(409).json({msg:'Email already exists'})
+        else if (err.code === 11000 ) {
+            if(err.index === 0) {
+                return res.status(409).json({msg:'Email already exists'})
+            }
+        }
         else return next(err)
     });
 

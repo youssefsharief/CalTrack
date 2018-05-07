@@ -47,7 +47,7 @@ export class MyLoginsComponent implements OnInit {
             if (user) {
                 this.dataService.connectFacebook(user.authToken).subscribe(
                     data => this.onEdited(data),
-                    error => console.log(error)
+                    err => this.sb.emitErrorSnackBar(err)
                 )
             }
         });
@@ -58,7 +58,7 @@ export class MyLoginsComponent implements OnInit {
             if (user) {
                 this.dataService.connectGoogle(user.idToken).subscribe(
                     data => this.onEdited(data),
-                    error => console.log(error)
+                    err => this.sb.emitErrorSnackBar(err)
                 )
             }
         });
