@@ -14,6 +14,11 @@ Heroku:
 To push only backend to heroku
 git subtree push --prefix Server heroku master
 
+To push and pull environment variables: 
+heroku plugins:install heroku-config
+cd Server
+heroku config:push
+
 To get logs 
 heroku logs -t --app app-name
 
@@ -21,3 +26,6 @@ Mongodb scripts
 db.users.ensureIndex({"meals.date" : 1})
 db.users.ensureIndex({"meals._id" : 1})
 db.users.ensureIndex({"googleId" : 1})
+db.users.ensureIndex({"facebookId" : 1})
+
+

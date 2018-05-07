@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4400 --ssl true",
-    "build": "ng build --watch -prod -aot ",
+    "prod-watch": "ng build --watch -prod -aot ",
+    "prod": "ng build -prod -aot",
     "test": "ng test -sm=false",
     "coverage": "ng test -cc -sm=false",
     "lint": "ng lint --fix",

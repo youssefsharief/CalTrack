@@ -11,6 +11,8 @@ export interface User {
     meals?: Meal[]
     facebookId?: string;
     googleId?: string;
+    googleEmail?: string;
+    facebookEmail?: string;
 }
 
 

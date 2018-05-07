@@ -17,7 +17,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     caloriesConsumed: number
     constructor(
         private dataService: DataService,
-        private authService: AuthService,
+        public authService: AuthService,
         private caloriesTrackingSubjectService: CaloriesTrackingSubjectService
     ) { }
 
