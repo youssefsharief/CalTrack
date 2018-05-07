@@ -13,6 +13,8 @@ import { UserFormModule } from 'app/shared/user-form/user-form.module';
 import { AddOtherUserMealComponent } from 'app/users/routes/add-other-user-meal/add-other-user-meal.component';
 import { EditOtherUserMealComponent } from 'app/users/routes/edit-other-user-meal/edit-other-user-meal.component';
 import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other-user-meals.component';
+import { OtherUserLoginsComponent } from 'app/users/routes/other-user-logins/other-user-logins.component';
+import { LoginsModule } from 'app/shared/logins/logins.module';
 
 @NgModule({
     imports: [
@@ -20,7 +22,8 @@ import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other
         UsersRoutingModule,
         CommonModule,
         SharedTrimmedModule,
-        UserFormModule
+        UserFormModule,
+        LoginsModule
     ],
     declarations: [
         UsersComponent,
@@ -29,7 +32,8 @@ import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other
         EditRoleComponent,
         AddOtherUserMealComponent,
         EditOtherUserMealComponent,
-        OtherUserMealsComponent
+        OtherUserMealsComponent,
+        OtherUserLoginsComponent
     ],
     providers: [
         SelectedUserService

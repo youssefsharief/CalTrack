@@ -19,11 +19,11 @@ export class EditRoleComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).first().subscribe( user => this.user = user)
+        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).first().subscribe(user => this.user = user)
     }
 
     onAssignClick() {
-        this.dataService.assignRole(this.user._id  , { role: this.user.role }).subscribe(
+        this.dataService.assignRole(this.user._id, { role: this.user.role }).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/users'])
