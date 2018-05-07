@@ -23,6 +23,7 @@
                 <a routerLinkActive="active" routerLink='/my-logins' class="nav-link">My logins</a>
             </li>
         </ul>
+        <app-progress-bar *ngIf="authService.getProfile().isTrackingDisplayed"></app-progress-bar>
         <ul class="navbar-nav ml-auto mr-5" >
             <li class="nav-item">
                 <a class="nav-link link" href="javascript:void(0);" (click)="logout()">Logout</a>

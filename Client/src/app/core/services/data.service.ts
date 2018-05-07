@@ -145,8 +145,8 @@ export class DataService {
         return this.http.post<User>(`disconnect/local`, {}, )
     }
 
-    getTodaysIntake(userId) {
-        return this.http.get<Number>(`users/${userId}/meals/calories_today`)
+    getTodaysIntake(userId): Observable<number> {
+        return this.http.get<number>(`users/${userId}/meals/calories_today`)
     }
 
 }

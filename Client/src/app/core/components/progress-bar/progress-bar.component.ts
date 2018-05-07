@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DataService } from 'app/core/services/data.service';
 import { AuthService } from 'app/core/services/auth.service';
-import { MealChangesService } from 'app/core/services/meal-changes.service';
+import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -12,22 +12,22 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProgressBarComponent implements OnInit, OnDestroy {
 
     ngClass;
-    ngClassBackground
     width;
     mealChanges$: Subscription
-    caloriesConsumed: Number
+    caloriesConsumed: number
     constructor(
         private dataService: DataService,
         private authService: AuthService,
-        private mealChangesService: MealChangesService
+        private caloriesTrackingSubjectService: CaloriesTrackingSubjectService
     ) { }
 
     ngOnInit() {
         this.fetchForTodaysIntake();
+        this.listenToMealChanges();
     }
 
     private listenToMealChanges() {
-        this.mealChanges$ = this.mealChangesService.updated$.subscribe(() => this.fetchForTodaysIntake())
+        this.mealChanges$ = this.caloriesTrackingSubjectService.updated$.subscribe(() => this.fetchForTodaysIntake())
     }
 
     private fetchForTodaysIntake() {
@@ -39,6 +39,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
                     'success': this.caloriesConsumed <= maxCalories,
                     'danger': this.caloriesConsumed > maxCalories,
                 };
+                this.width = `${this.caloriesConsumed / maxCalories * 100}%`
             },
             error => console.log(error)
         )

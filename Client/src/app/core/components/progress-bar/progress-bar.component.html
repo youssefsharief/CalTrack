@@ -1,8 +1,14 @@
-<div class="progress" [ngClass]="ngClassBackground">
-    <div class="progress-bar" role="progressbar" [ngClass]="ngClass" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': width}">
-       <span *ngIf="authService.getProfile().maxCalories - caloriesConsumed > 0">
-        {{authService.getProfile().maxCalories - caloriesConsumed }} Calories Left
-       </span>
-        
-    </div>
+<div class="progress position-relative">
+
+
+        <div class="progress-bar" role="progressbar" [ngClass]="ngClass" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': width}">
+                <!-- <small >60% complete</small> -->
+                <span id="text" class="justify-content-center d-flex position-absolute w-100" >
+                        <span *ngIf="authService.getProfile().maxCalories - caloriesConsumed > 0">
+                                {{authService.getProfile().maxCalories - caloriesConsumed }} Calories Left </span>
+
+                        <span *ngIf="authService.getProfile().maxCalories - caloriesConsumed < 0">
+                                {{ caloriesConsumed - authService.getProfile().maxCalories }} Calories Over </span>
+                </span>
+        </div>
 </div>

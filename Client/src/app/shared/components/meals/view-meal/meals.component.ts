@@ -5,7 +5,7 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
-import { MealChangesService } from 'app/core/services/meal-changes.service';
+import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
 
 @Component({
     selector: 'app-meals',
@@ -30,7 +30,7 @@ export class MealsComponent implements OnInit {
         private dataService: DataService,
         private sb: SnackBarService,
         private dateUtilityService: DateUtilityService,
-        private mealChangesService: MealChangesService
+        private caloriesTrackingSubjectService: CaloriesTrackingSubjectService
     ) { }
 
     ngOnInit() {
@@ -71,7 +71,7 @@ export class MealsComponent implements OnInit {
         this.dataService.deleteMeal(this.userId, item._id).subscribe(
             data => {
                 this.meals = this.meals.filter(t => t._id !== item._id)
-                this.mealChangesService.updated$.next()
+                this.caloriesTrackingSubjectService.updated$.next()
             },
             error => this.sb.emitErrorSnackBar(error)
         )
