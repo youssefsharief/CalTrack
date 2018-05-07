@@ -97,4 +97,9 @@ export class UsersComponent implements OnInit, OnDestroy {
         )
     }
 
+    onLoginsClick(item) {
+        this.selectedUserService.set(item)
+        this.router.navigate(['/users', item._id, 'logins'])
+    }
+
 }

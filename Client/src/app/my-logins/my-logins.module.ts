@@ -6,13 +6,15 @@ import { AddLocalLoginComponent } from 'app/my-logins/add-local-login/add-local-
 import { SharedFormsModule } from 'app/shared/shared-forms.module.ts/shared-forms.module';
 import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/my-logins/change-my-password-using-old-password/change-my-password-using-old-password.component';
 import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
+import { LoginsModule } from 'app/shared/logins/logins.module';
 
 @NgModule({
     imports: [
         MyLoginsRoutingModule,
         CommonModule,
         SharedFormsModule,
-        SharedTrimmedModule
+        SharedTrimmedModule,
+        LoginsModule
     ],
     declarations: [
         MyLoginsComponent,

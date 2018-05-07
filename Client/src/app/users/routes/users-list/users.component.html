@@ -29,6 +29,7 @@
                     <th>Name</th>
                     <th>Role</th>
                     <th>Email</th>
+                    <th class="text-center">Logins</th>
                     <th class="text-center">Update User Info</th>
                     <th class="text-center">Activate</th>
                     <th *ngIf="isAdmin()" class="text-center">Meals</th>
@@ -41,6 +42,11 @@
                     <td>{{item.name}}</td>
                     <td>{{item.role}}</td>
                     <td>{{item.email}}</td>
+                    <td class="text-center">
+                        <a id="loginsButton" class="link" (click)="onLoginsClick(item)">
+                            <i class="fa fa-key  text-default"> </i>
+                        </a>
+                    </td>
                     <td class="text-center">
                         <a id="updateUserInfoButton" class="link" (click)="onUpdateClick(item)">
                             <i class="fa fa-edit  text-default"> </i>

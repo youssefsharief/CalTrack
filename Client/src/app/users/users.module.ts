@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
 import { UserFormModule } from 'app/shared/user-form/user-form.module';
+import { AddOtherUserMealComponent } from 'app/users/routes/add-other-user-meal/add-other-user-meal.component';
+import { EditOtherUserMealComponent } from 'app/users/routes/edit-other-user-meal/edit-other-user-meal.component';
+import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other-user-meals.component';
 
 @NgModule({
     imports: [
@@ -24,6 +27,9 @@ import { UserFormModule } from 'app/shared/user-form/user-form.module';
         EditOtherUserInfoComponent,
         ChangeOtherUserPasswordComponent,
         EditRoleComponent,
+        AddOtherUserMealComponent,
+        EditOtherUserMealComponent,
+        OtherUserMealsComponent
     ],
     providers: [
         SelectedUserService
