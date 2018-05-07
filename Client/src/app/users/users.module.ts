@@ -15,6 +15,8 @@ import { EditOtherUserMealComponent } from 'app/users/routes/edit-other-user-mea
 import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other-user-meals.component';
 import { OtherUserLoginsComponent } from 'app/users/routes/other-user-logins/other-user-logins.component';
 import { LoginsModule } from 'app/shared/logins/logins.module';
+import { MealsModule } from 'app/shared/meals/meals.module';
+import { MealFormModule } from 'app/shared/meal-form/meal-form.module';
 
 @NgModule({
     imports: [
@@ -23,7 +25,9 @@ import { LoginsModule } from 'app/shared/logins/logins.module';
         CommonModule,
         SharedTrimmedModule,
         UserFormModule,
-        LoginsModule
+        LoginsModule,
+        MealsModule,
+        MealFormModule
     ],
     declarations: [
         UsersComponent,

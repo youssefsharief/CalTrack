@@ -1,4 +1,3 @@
-import { Meal } from '../../../models/meal.model';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
@@ -6,6 +5,7 @@ import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
 import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
+import { Meal } from 'app/shared/models/meal.model';
 
 @Component({
     selector: 'app-meals',

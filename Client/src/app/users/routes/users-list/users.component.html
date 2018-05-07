@@ -3,32 +3,25 @@
         <h3 class="panel-title">Users </h3>
     </div>
     <div class="panel-body">
-        <div class="form-group row">
-            <div class="col-md-4">
-                <label>Search</label>
+        <div class="row">
+            <app-default-input-layout class="col-md-4 mr-5" label="Search">
                 <input type="text" name="search" id="search_field" class="form-control form-control-sm" placeholder="Filter by name" [(ngModel)]="searchTerm"
                     (ngModelChange)="keyUp$.next($event)">
-            </div>
-        </div>
-        <div class="form-group row" *ngIf="isAdmin()">
-            <div class="col-md-4">
-                <label for="role">Role</label>
+            </app-default-input-layout>
+            <app-default-input-layout class="col-md-4 ml-5" label="Role" *ngIf="isAdmin()">
                 <select class="form-control form-control-sm" name="role" [(ngModel)]="roleFilter" (change)="fetchConsideringPaging()">
                     <option value="">All</option>
                     <option value="regular">Regular</option>
                     <option value="manager">Manager</option>
                     <option value="admin">Admin</option>
                 </select>
-            </div>
+            </app-default-input-layout>
         </div>
-
-
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Role</th>
-                    <th>Email</th>
                     <th class="text-center">Logins</th>
                     <th class="text-center">Update User Info</th>
                     <th class="text-center">Activate</th>
@@ -41,7 +34,6 @@
                 <tr *ngFor="let item of users">
                     <td>{{item.name}}</td>
                     <td>{{item.role}}</td>
-                    <td>{{item.email}}</td>
                     <td class="text-center">
                         <a id="loginsButton" class="link" (click)="onLoginsClick(item)">
                             <i class="fa fa-key  text-default"> </i>

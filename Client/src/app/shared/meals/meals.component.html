@@ -1,26 +1,21 @@
-<div class="form-group row">
-    <div class="col-4">
-        <input type="text" placeholder="Date Range" class="form-control" bsDaterangepicker [(ngModel)]="bsRangeValue" [bsConfig]="{containerClass: 'theme-red' }">
-    </div>
-
-    <label for="" class="col-1 col-form-label">From </label>
-    <div class="col-3">
-        <timepicker name="startTime" [(ngModel)]="startTime"></timepicker>
-    </div>
-    <label for="" class="col-1 col-form-label">To </label>
-    <div class="col-3">
-        <timepicker name="endTime" [(ngModel)]="endTime"></timepicker>
-    </div>
-
-
-</div>
+<app-title>{{title}} </app-title>
 
 <div class="row">
-    <button class="btn btn-default pull-right" (click)="resetFilters()">Reset Filters</button>
-    <button class="btn btn-default pull-right" (click)="fetchConsideringPaging()">Search</button>
-</div>
+    <app-default-input-layout class="col-md-4 mr-5" label="Date">
+        <input type="text" placeholder="Date Range" class="form-control form-control-sm" bsDaterangepicker [(ngModel)]="bsRangeValue"
+            [bsConfig]="{containerClass: 'theme-red' }">
+    </app-default-input-layout>
+    <app-default-input-layout class="col-md-3" label="From:">
+        <timepicker name="startTime" [(ngModel)]="startTime"></timepicker>
+    </app-default-input-layout>
 
-{{title}}
+    <app-default-input-layout class="col-md-3" label="To:">
+        <timepicker name="endTime" [(ngModel)]="endTime"></timepicker>
+    </app-default-input-layout>
+</div>
+<button class="btn btn-default" (click)="resetFilters()">Reset Filters</button>
+<button class="btn btn-default" (click)="fetchConsideringPaging()">Search</button>
+
 <h3 class="panel-title">
     <a title="Add New Meal" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
 </h3>

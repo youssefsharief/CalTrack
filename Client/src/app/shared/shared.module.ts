@@ -4,16 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { MealsComponent } from './components/meals/view-meal/meals.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgProgressModule } from 'ngx-progressbar';
-import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
+import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
 
 @NgModule({
   imports: [
@@ -27,10 +24,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
     MatSnackBarModule,
     NgProgressModule,
     AppInputsModule,
-    BsDatepickerModule.forRoot(),
-    TimepickerModule.forRoot(),
     PaginationModule.forRoot(),
-
+    SharedTrimmedModule
   ],
   providers: [],
   exports: [
@@ -39,16 +34,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MealsComponent,
-    MealFormComponent,
     NgProgressModule,
     AppInputsModule,
     TypeaheadModule,
     PaginationModule,
-  ],
-  declarations: [
-    MealsComponent,
-    MealFormComponent,
   ],
 })
 export class SharedModule { }

@@ -1,13 +1,14 @@
-    <app-title>Update Role</app-title>
-    <div class="form-group" *ngIf="user">
-        <label for="role" *ngIf="user.name">{{user?.name}}'s  Role</label>
+<app-title>Update Role</app-title>
 
-        <select class="form-control col-4" name="role" [(ngModel)]="user.role ">
-            <!-- <option disabled  value="" >Subcategory</option> -->
-            <option value="regular">Regular</option>
-            <option value="manager">Manager</option>
-            <option value="admin">Admin</option>
-                
-        </select>
-    </div>
-    <button class="btn btn-default" (click)="onAssignClick()">Assign Role</button>
+<app-default-input-layout *ngIf="user && user.name" class="col-md-3" label="{{user?.name}}'s  Role">
+    <select class="form-control col-4" name="role" [(ngModel)]="user.role ">
+        <!-- <option disabled  value="" >Subcategory</option> -->
+        <option value="regular">Regular</option>
+        <option value="manager">Manager</option>
+        <option value="admin">Admin</option>
+
+    </select>
+</app-default-input-layout>
+
+
+<button class="btn btn-default mt-4" (click)="onAssignClick()">Assign Role</button>

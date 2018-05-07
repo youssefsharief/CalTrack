@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Meal } from '../../../models/meal.model';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
+import { Meal } from 'app/shared/models/meal.model';
 
 @Component({
     selector: 'app-meal-form',
