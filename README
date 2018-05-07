@@ -1,0 +1,4 @@
+
+In Order for the client side to run, you need use https/
+Use this repo to generate ssl keys, then add the keys in a folder called ssl in Client/ssl
+https://github.com/RubenVermeulen/generate-trusted-ssl-certificate

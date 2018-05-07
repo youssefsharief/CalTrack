@@ -5,13 +5,18 @@ import { ActivateAfterSignupComponent } from 'app/signup/activate-after-signup/a
 import { SignupRoutingModule } from 'app/signup/signup-routing.module';
 import { SocialSignInModule } from 'app/shared/social-sign-in/social-sign-in.module';
 import { SharedFormsModule } from 'app/shared/shared-forms.module.ts/shared-forms.module';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 @NgModule({
     imports: [
         SocialSignInModule,
         SignupRoutingModule,
         SocialSignInModule,
-        SharedFormsModule
+        SharedFormsModule,
+        RecaptchaModule.forRoot(),
+        RecaptchaFormsModule
+
     ],
     declarations: [
         SignupComponent,

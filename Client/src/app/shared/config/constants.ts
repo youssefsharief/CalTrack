@@ -9,3 +9,4 @@ export const maxCaloriesErrorMessage = 'Please Enter a number between 500 and 80
 export const roles = ['manager', 'admin', 'regular']
 export const facebookClientId = '218590022238538'
 export const googleClientId = '170990127407-hmj1dvgspn0vbn6bn1q284a9j36eh6mj.apps.googleusercontent.com'
+export const captchaSiteKey = '6Lcl0lcUAAAAACWH461TX1rI5j4ULpQajhTnM_uY'

@@ -63,10 +63,15 @@ const getTodaysIntake = require('./records/get-todays-intake.route')
 
 const { verifyUser } = require('core/authentication')
 const Authorize = require('core/authorization')
+const Recaptcha = require('express-recaptcha').Recaptcha;
+const recaptcha = new Recaptcha(process.env.captchaSiteKey, process.env.captchaSecretKey);
+
+
+
 require('core/passport')
 
-router.post('/users/', validateSignup, signup)
-router.post('/users/secure', validateSignup, signupSecurely)
+router.post('/users/', recaptcha.middleware.verify, validateSignup, signup)
+router.post('/users/secure', recaptcha.middleware.verify, validateSignup, signupSecurely)
 router.post('/activation', validateActivateMyAccount, activateMyAccount)
 
 router.patch('/activation/administration/:id', verifyUser, Authorize.allowAdminAndManager, activateUserAdministratively)

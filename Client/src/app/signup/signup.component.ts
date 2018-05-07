@@ -5,7 +5,7 @@ import { DataService } from '../core/services/data.service';
 import { SnackBarService } from '../core/services/snackbar.service';
 import { User } from '../shared/models/user.model';
 import { PublicInfoService } from '../core/services/public.info.service';
-import { passwordPattern } from 'app/shared/config/constants';
+import { passwordPattern, captchaSiteKey } from 'app/shared/config/constants';
 import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { AuthService } from 'app/core/services/auth.service';
 })
 export class SignupComponent implements OnInit {
     form: FormGroup
+    captchaKey = captchaSiteKey
     constructor(private fb: FormBuilder,
         private dataService: DataService,
         private sb: SnackBarService,
@@ -34,6 +35,7 @@ export class SignupComponent implements OnInit {
             confirmPassword: ['', Validators.required],
             maxCalories: [2250, Validators.compose([Validators.required, Validators.min(500), Validators.max(8000)])],
             isTrackingDisplayed: [true],
+            'g-recaptcha-response': [null, Validators.required],
         }, { validator: this.areEqual })
     }
 

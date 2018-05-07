@@ -19,14 +19,14 @@ export class DataService {
     signup(item: User) {
         return this.http.post<{ token: string, user: User }>('users', {
             email: item.email, password: item.password, meals: [], name: item.name,
-            maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed
+            maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed, 'g-recaptcha-response': item['g-recaptcha-response']
         })
     }
 
     signupSecurely(item: User) {
         return this.http.post('users/secure', {
             email: item.email, password: item.password, meals: [], name: item.name,
-            maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed
+            maxCalories: item.maxCalories, isTrackingDisplayed: item.isTrackingDisplayed, 'g-recaptcha-response': item['g-recaptcha-response']
         }, )
     }
 
@@ -152,6 +152,10 @@ export class DataService {
     getTodaysIntake(userId): Observable<number> {
         return this.http.get<number>(`users/${userId}/meals/calories_today`)
     }
+
+    // recaptchaTest(response) {
+    //     return this.http.post(`test`, {['g-recaptcha-response']: response})
+    // }
 
 }
 
