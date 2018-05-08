@@ -8,6 +8,8 @@ import { By } from '@angular/platform-browser';
 import { CoreModule } from 'app/core/core.module';
 import { MealFormModule } from 'app/shared/meal-form/meal-form.module';
 import { MealFormComponent } from 'app/shared/meal-form/meal-form.component';
+import { DateUtilityService } from 'app/core/services/date-utility.service';
+import { DatePipe } from '@angular/common';
 
 describe('MealFormComponentt', () => {
     let comp: MealFormComponent;
@@ -15,7 +17,8 @@ describe('MealFormComponentt', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MealFormModule]
+            imports: [MealFormModule],
+            providers: [DateUtilityService, DatePipe]
         });
         fixture = TestBed.createComponent(MealFormComponent);
         comp = fixture.componentInstance;
@@ -33,49 +36,6 @@ describe('MealFormComponentt', () => {
     // })
 
     describe('Form validation', () => {
-        describe('all valid', () => {
-            beforeEach(() => {
-                const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
-                const nameInputElement = nameInput.nativeElement
-                nameInputElement.value = 'nnaa'
-                nameInputElement.dispatchEvent(new Event('input'));
-                const date = fixture.debugElement.query(By.css('input[name="date"]'));
-                const dateElement = date.nativeElement
-                dateElement.value = '15/05/2018'
-                dateElement.dispatchEvent(new Event('input'));
-                const hour = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[0];
-                const hourElement = hour.nativeElement;
-                hourElement.value = '13'
-                hourElement.dispatchEvent(new Event('input'));
-                const minutes = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[1];
-                const minutesElement = minutes.nativeElement;
-                minutesElement.value = '08'
-                minutesElement.dispatchEvent(new Event('input'));
-                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
-                const numOfCaloriesElement = numOfCalories.nativeElement
-                numOfCaloriesElement.value = '3'
-                numOfCaloriesElement.dispatchEvent(new Event('input'));
-                fixture.detectChanges()
-            })
-            it('form should be valid', () => {
-                expect(comp.form.invalid).toBe(false)
-            })
-            it('submit button should be enabled', () => {
-                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
-            })
-
-            fdescribe('Submitting', () => {
-                xit('should call output', () => {
-                    const spy = spyOn(comp.submitted, 'emit')
-                    fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                    fixture.detectChanges()
-                    expect(spy).toHaveBeenCalledWith(2)
-                })
-
-            })
-        })
-
-
         describe('invalid name', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
@@ -106,7 +66,99 @@ describe('MealFormComponentt', () => {
             it('submit button should be disabled', () => {
                 expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
             })
+            it('error message should appear', () => {
+                fixture.detectChanges()
+                const y = fixture.debugElement.queryAll(By.css('p[test-id="errorMessage"]'));
+                expect(y[0].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[0].properties.hidden).toBeFalsy();
+            })
+
         })
+
+
+        fdescribe('invalid calories', () => {
+            beforeEach(() => {
+                const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
+                const nameInputElement = nameInput.nativeElement
+                nameInputElement.value = 'aaaa'
+                nameInputElement.dispatchEvent(new Event('input'));
+                const date = fixture.debugElement.query(By.css('input[name="date"]'));
+                const dateElement = date.nativeElement
+                dateElement.value = '15/05/2018'
+                dateElement.dispatchEvent(new Event('input'));
+                const hour = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[0];
+                const hourElement = hour.nativeElement;
+                hourElement.value = '13'
+                hourElement.dispatchEvent(new Event('input'));
+                const minutes = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[1];
+                const minutesElement = minutes.nativeElement;
+                minutesElement.value = '08'
+                minutesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '333333333333333'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
+                fixture.detectChanges()
+            })
+            it('form should be invalid', () => {
+                expect(comp.form.invalid).toBe(true)
+            })
+            it('submit button should be disabled', () => {
+                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeTruthy()
+            })
+            it('error message should appear', () => {
+                fixture.detectChanges()
+                const y = fixture.debugElement.queryAll(By.css('p[test-id="errorMessage"]'));
+                expect(y[1].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[1].properties.hidden).toBeFalsy();
+            })
+
+        })
+
+
+        fdescribe('all valid', () => {
+            beforeEach(() => {
+                const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
+                const nameInputElement = nameInput.nativeElement
+                nameInputElement.value = 'nnaa'
+                nameInputElement.dispatchEvent(new Event('input'));
+                const date = fixture.debugElement.query(By.css('input[name="date"]'));
+                const dateElement = date.nativeElement
+                dateElement.value = '15/05/2018'
+                dateElement.dispatchEvent(new Event('input'));
+                const hour = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[0];
+                const hourElement = hour.nativeElement;
+                hourElement.value = '13'
+                hourElement.dispatchEvent(new Event('input'));
+                const minutes = fixture.debugElement.queryAll(By.css('.bs-timepicker-field'))[1];
+                const minutesElement = minutes.nativeElement;
+                minutesElement.value = '08'
+                minutesElement.dispatchEvent(new Event('input'));
+                const numOfCalories = fixture.debugElement.query(By.css('input[name="numOfCalories"]'));
+                const numOfCaloriesElement = numOfCalories.nativeElement
+                numOfCaloriesElement.value = '3'
+                numOfCaloriesElement.dispatchEvent(new Event('input'));
+                fixture.detectChanges()
+            })
+            it('form should be valid', () => {
+                expect(comp.form.invalid).toBe(false)
+            })
+            it('submit button should be enabled', () => {
+                expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
+            })
+
+            describe('Submitting', () => {
+                it('should call output', () => {
+                    const spy = spyOn(comp.submitted, 'emit')
+                    fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
+                    fixture.detectChanges()
+                    expect(spy).toHaveBeenCalled()
+                })
+            })
+        })
+
+
+
     })
 
 })

@@ -16,7 +16,7 @@ describe('EditUser Component', () => {
     let dataService: any
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [UserFormModule],
+            imports: [UserFormModule, SharedModule],
             providers: [
                 { provide: DataService, useValue: {} },
                 SnackBarService
@@ -50,21 +50,17 @@ describe('EditUser Component', () => {
     describe('Form Validation', () => {
         describe('invalid name', () => {
             beforeEach(() => {
-                const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
-                const emailInputElement = emailInput.nativeElement
-                emailInputElement.value = 'aadsdjh@kdaom.com'
-                emailInputElement.dispatchEvent(new Event('input'));
                 const name = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameElement = name.nativeElement
                 nameElement.value = 'YY'
                 nameElement.dispatchEvent(new Event('input'));
-                const maxCaloriesInput = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
-                const maxCaloriesInputElement = maxCaloriesInput.nativeElement
-                maxCaloriesInputElement.value = '1900'
-                maxCaloriesInputElement.dispatchEvent(new Event('input'));
+                const maxCalories = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
+                const maxCaloriesElement = maxCalories.nativeElement
+                maxCaloriesElement.value = 2000
+                maxCaloriesElement.dispatchEvent(new Event('input'));
                 const isTrackingDisplayed = fixture.debugElement.query(By.css('input[name="isTrackingDisplayed"]'));
                 const isTrackingDisplayedElement = isTrackingDisplayed.nativeElement
-                isTrackingDisplayedElement.value = 'true'
+                isTrackingDisplayedElement.value = true
                 isTrackingDisplayedElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
@@ -82,23 +78,19 @@ describe('EditUser Component', () => {
             })
         })
 
-        describe('invalid email', () => {
+        describe('invalid maxCalories', () => {
             beforeEach(() => {
-                const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
-                const emailInputElement = emailInput.nativeElement
-                emailInputElement.value = 'aadsdjhkdaom'
-                emailInputElement.dispatchEvent(new Event('input'));
                 const name = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameElement = name.nativeElement
                 nameElement.value = 'YYYY'
                 nameElement.dispatchEvent(new Event('input'));
-                const maxCaloriesInput = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
-                const maxCaloriesInputElement = maxCaloriesInput.nativeElement
-                maxCaloriesInputElement.value = '1900'
-                maxCaloriesInputElement.dispatchEvent(new Event('input'));
+                const maxCalories = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
+                const maxCaloriesElement = maxCalories.nativeElement
+                maxCaloriesElement.value = 10000
+                maxCaloriesElement.dispatchEvent(new Event('input'));
                 const isTrackingDisplayed = fixture.debugElement.query(By.css('input[name="isTrackingDisplayed"]'));
                 const isTrackingDisplayedElement = isTrackingDisplayed.nativeElement
-                isTrackingDisplayedElement.value = 'true'
+                isTrackingDisplayedElement.value = true
                 isTrackingDisplayedElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
@@ -117,16 +109,20 @@ describe('EditUser Component', () => {
         })
 
 
-        describe('no max numOfCalories', () => {
+        describe('valid form', () => {
             beforeEach(() => {
-                const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
-                const emailInputElement = emailInput.nativeElement
-                emailInputElement.value = 'adasd@jdks.com'
-                emailInputElement.dispatchEvent(new Event('input'));
                 const name = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameElement = name.nativeElement
                 nameElement.value = 'YYYY'
                 nameElement.dispatchEvent(new Event('input'));
+                const maxCalories = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
+                const maxCaloriesElement = maxCalories.nativeElement
+                maxCaloriesElement.value = 2000
+                maxCaloriesElement.dispatchEvent(new Event('input'));
+                const isTrackingDisplayed = fixture.debugElement.query(By.css('input[name="isTrackingDisplayed"]'));
+                const isTrackingDisplayedElement = isTrackingDisplayed.nativeElement
+                isTrackingDisplayedElement.value = true
+                isTrackingDisplayedElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
             it('form should be valid', () => {
@@ -141,21 +137,8 @@ describe('EditUser Component', () => {
             it('submit button should be enabled', () => {
                 expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
             })
-            it('checkbox should be disabled', () => {
-                expect(fixture.nativeElement.querySelector('input[name="isTrackingDisplayed"][disabled]')).toBeTruthy()
-            })
 
             describe('adding max numOfCalories', () => {
-                beforeEach(() => {
-                    const maxCaloriesInput = fixture.debugElement.query(By.css('input[name="maxCalories"]'));
-                    const maxCaloriesInputElement = maxCaloriesInput.nativeElement
-                    maxCaloriesInputElement.value = '1900'
-                    maxCaloriesInputElement.dispatchEvent(new Event('input'));
-                    fixture.detectChanges();
-                })
-                xit('checkbox should be enabled', () => {
-                    expect(fixture.nativeElement.querySelector('input[name="isTrackingDisplayed"][disabled]')).toBeFalsy()
-                })
 
                 describe('Submitting Form', () => {
                     describe('EditUser', () => {

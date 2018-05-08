@@ -11,17 +11,20 @@ import { UnAuthorizedRequestsInterceptor } from 'app/core/http-interceptors/unau
 import { AuthInterceptor } from 'app/core/http-interceptors/authentication-interceptor';
 import { TestRequest } from '@angular/common/http/testing/src/request';
 
-fdescribe('ApiService: DataService', () => {
+describe('ApiService: DataService', () => {
     let httpMock: HttpTestingController;
     let service: DataService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, RouterTestingModule, SharedModule],
-            providers: [AuthService, SnackBarService, RouterTestingModule, DataService,
+            providers: [
+                // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+                // AuthService, 
+                SnackBarService, RouterTestingModule,
+                DataService,
                 { provide: HTTP_INTERCEPTORS, useClass: EnvironmentApiInterceptor, multi: true },
                 { provide: HTTP_INTERCEPTORS, useClass: UnAuthorizedRequestsInterceptor, multi: true },
-                { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
             ]
         });
         httpMock = TestBed.get(HttpTestingController);
@@ -36,7 +39,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.login({ email: 'a', password: 'a' }).subscribe()
-            const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users/login' });
+            const req = httpMock.expectOne({ method: 'POST', url: 'https://localhost:3001/api/users/login' });
             expect(req.request.body).toEqual(Object({ email: 'a', password: 'a' }))
             req.flush(dummy);
         });
@@ -47,7 +50,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.signup({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
-            const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users' });
+            const req = httpMock.expectOne({ method: 'POST', url: 'https://localhost:3001/api/users' });
             expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }))
             req.flush(dummy);
         });
@@ -58,7 +61,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.signupSecurely({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
-            const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/users/secure' });
+            const req = httpMock.expectOne({ method: 'POST', url: 'https://localhost:3001/api/users/secure' });
             expect(req.request.body).toEqual(Object({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }))
             req.flush(dummy);
         });
@@ -68,7 +71,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.activateFromBackEnd('s', 'a').subscribe()
-            const req = httpMock.expectOne({ method: 'POST', url: 'http://localhost:3000/activation' });
+            const req = httpMock.expectOne({ method: 'POST', url: 'https://localhost:3001/api/activation' });
             expect(req.request.body).toEqual(Object({ code: 's', email: 'a' }))
             req.flush(dummy);
         });
@@ -78,7 +81,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.updateUserInfo('s', { name: 'a', email: 'a' }).subscribe()
-            const req = httpMock.expectOne({ method: 'PUT', url: 'http://localhost:3000/users/s/info' });
+            const req = httpMock.expectOne({ method: 'PUT', url: 'https://localhost:3001/api/users/s/info' });
             expect(req.request.body).toEqual(Object({ name: 'a', email: 'a' }))
             req.flush(dummy);
         });
@@ -89,7 +92,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.deleteUser('s').subscribe()
-            const req = httpMock.expectOne({ method: 'DELETE', url: 'http://localhost:3000/users/s' });
+            const req = httpMock.expectOne({ method: 'DELETE', url: 'https://localhost:3001/api/users/s' });
             req.flush(dummy);
         });
     });
@@ -98,7 +101,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.deleteUser('s').subscribe()
-            const req = httpMock.expectOne({ method: 'DELETE', url: 'http://localhost:3000/users/s' });
+            const req = httpMock.expectOne({ method: 'DELETE', url: 'https://localhost:3001/api/users/s' });
             req.flush(dummy);
         });
     });
@@ -108,17 +111,17 @@ fdescribe('ApiService: DataService', () => {
             const dummy = 'ok';
             service.getUsers({ skip: 10, searchTerm: 'aa' }).subscribe()
             const req = httpMock.expectOne(req => req.method === 'GET');
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users?skip=10&searchFilter=aa&roleFilter=')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users?skip=10&searchFilter=aa&roleFilter=')
             req.flush(dummy);
         });
     });
 
-    fdescribe('get meals', () => {
+    describe('get meals', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.getMeals('1', { skip: 10, startDate: 'aa', endDate: 'dsa' }).subscribe()
             const req = httpMock.expectOne(req => req.method === 'GET');
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/1/meals?skip=10&startDate=aa&endDate=dsa')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/1/meals?skip=10&startDate=aa&endDate=dsa')
             req.flush(dummy);
         });
 
@@ -128,7 +131,7 @@ fdescribe('ApiService: DataService', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.getUserDetails('s').subscribe()
-            const req = httpMock.expectOne({ method: 'GET', url: 'http://localhost:3000/users/s' });
+            const req = httpMock.expectOne({ method: 'GET', url: 'https://localhost:3001/api/users/s' });
             req.flush(dummy);
         });
     });
@@ -138,7 +141,7 @@ fdescribe('ApiService: DataService', () => {
             const dummy = 'ok';
             service.updateMeal('s', 'e', { name: 'a', date: '14/07/2018', numOfCalories: 9 }).subscribe()
             const req = httpMock.expectOne(req => req.method === 'PUT');
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals/e')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/s/meals/e')
             expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', numOfCalories: 9 }))
             req.flush(dummy);
         });
@@ -156,7 +159,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/s/meals')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', numOfCalories: 9 }))
@@ -175,7 +178,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/meals')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/s/meals')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ name: 'a', date: '14/07/2018', numOfCalories: 9 }))
@@ -195,7 +198,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/role')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/s/role')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ role: 'regular' }))
@@ -215,7 +218,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/s/role')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/s/role')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ role: 'regular' }))
@@ -235,7 +238,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/password_recovery_requests')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/password_recovery_requests')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ email: 'saa@' }))
@@ -254,7 +257,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/password')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/password')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ oldPassword: 'a', newPassword: 'w' }))
@@ -274,7 +277,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/a/password')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/a/password')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ newPassword: 'w' }))
@@ -294,7 +297,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/users/recovery_code')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/recovery_code')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e' }))
@@ -313,7 +316,7 @@ fdescribe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('http://localhost:3000/activation/administration/a')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/activation/administration/a')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({}))

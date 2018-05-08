@@ -36,7 +36,7 @@ export class MealFormComponent implements OnInit {
             name: [this.meal ? this.meal.name : '', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(3)])],
             date: [this.meal ? new Date(this.meal.date.replace('Z', '')) : new Date(Date.now()), Validators.required],
             time: [this.meal ? this.meal.date.replace('Z', '') : new Date(Date.now()), Validators.required],
-            numOfCalories: [this.meal ? this.meal.numOfCalories : ''],
+            numOfCalories: [this.meal ? this.meal.numOfCalories : '', Validators.compose([Validators.min(0), Validators.max(3000)])],
         })
     }
 

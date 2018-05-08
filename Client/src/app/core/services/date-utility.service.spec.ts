@@ -18,13 +18,13 @@ describe('Service: DateUtilityService', () => {
     });
 
 
-    fdescribe('convertDateToMediumDate', () => {
+    describe('convertDateToMediumDate', () => {
         it('should return medium date format', () => {
             expect(service.convertDateToMediumDate(new Date('2015-05-06'))).toBe('2015-05-06')
         });
     })
 
-    fdescribe('convertDateToMediumTime', () => {
+    describe('convertDateToMediumTime', () => {
         it('should return medium date format', () => {
             expect(service.convertDateToMediumTime(new Date('2015-05-06'))).toBe('02:00')
         });

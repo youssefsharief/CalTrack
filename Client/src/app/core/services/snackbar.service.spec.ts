@@ -2,6 +2,7 @@ import { SnackBarService } from './snackbar.service';
 import { async, getTestBed, TestBed } from '@angular/core/testing';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SharedModule } from 'app/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('Service: Snack bar Service', () => {
     let service: SnackBarService;
@@ -10,7 +11,7 @@ describe('Service: Snack bar Service', () => {
             providers: [
                 SnackBarService,
             ],
-            imports: [SharedModule]
+            imports: [SharedModule, BrowserAnimationsModule]
         });
         const testbed = getTestBed();
         service = testbed.get(SnackBarService);

@@ -6,17 +6,15 @@ import { UnAuthorizedRequestsInterceptor } from 'app/core/http-interceptors/unau
 import { HttpRequest, HttpHandler } from '@angular/common/http';
 import { SharedModule } from 'app/shared/shared.module';
 import { Observable } from 'rxjs/Observable';
-import { LoginComponent } from 'app/login/login.component';
+import { LoginModule } from 'app/login/login.module';
+import { CoreModule } from 'app/core/core.module';
 
 let service: UnAuthorizedRequestsInterceptor;
 let sb: SnackBarService;
 describe('UnAuthorizedRequestsInterceptor', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule.withRoutes([
-                { path: 'login', component: LoginComponent },
-            ]), SharedModule],
-            declarations: [LoginComponent],
+            imports: [LoginModule, RouterTestingModule, SharedModule],
             providers: [UnAuthorizedRequestsInterceptor, SnackBarService]
         });
         const injector = getTestBed();

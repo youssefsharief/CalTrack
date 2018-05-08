@@ -4,9 +4,9 @@
         <input type="text" name="name" class="form-control" formControlName="name">
     </app-name-input-layout>
 
-    <app-default-input-layout label="Calories">
+    <app-calories-input-layout [isDisplayingErrorMessage]="form.get('numOfCalories').dirty && form.get('numOfCalories').invalid">
             <input name="numOfCalories" type="number" class="form-control" id="" formControlName="numOfCalories">
-    </app-default-input-layout>
+    </app-calories-input-layout>
 
     <app-default-input-layout label="Date">
             <input name="date" type="text" placeholder="Datepicker" class="form-control" formControlName="date" bsDatepicker [bsConfig]="{containerClass: 'theme-red' }">
