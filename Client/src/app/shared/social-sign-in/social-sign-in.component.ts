@@ -6,6 +6,7 @@ import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/core/services/auth.service';
+import { SnackBarService } from 'app/core/services/snackbar.service';
 
 @Component({
     selector: 'app-social-sign-in',
@@ -21,6 +22,7 @@ export class SocialSignInComponent implements OnDestroy {
         private dataService: DataService,
         private router: Router,
         private authService: AuthService,
+        private sb: SnackBarService
     ) { }
 
     listenToSocialAuth() {
@@ -48,10 +50,9 @@ export class SocialSignInComponent implements OnDestroy {
 
     signInWithFB(): void {
         this.libAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(user => {
-            console.log(user)
             this.dataService.oAuthFacebook(user.authToken).subscribe(
                 data => this.saveUserDataLocallyAndProceedToProfile(data),
-                error => console.log(error)
+                error => this.sb.emitErrorSnackBar('Sorry.. An error occurred while you are trying to login')
             );
         })
     }
@@ -60,7 +61,7 @@ export class SocialSignInComponent implements OnDestroy {
         this.libAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(user => {
             this.dataService.oAuthGoogle(user.idToken).subscribe(
                 data => this.saveUserDataLocallyAndProceedToProfile(data),
-                error => console.log(error)
+                error => this.sb.emitErrorSnackBar('Sorry.. An error occurred while you are trying to login')
             );
         })
     }

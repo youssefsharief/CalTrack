@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     currentPage: number
     keyUp$ = new Subject<string>()
     searchSubscription: Subscription
-    roles =  roles
+    roles = roles
     constructor(
         private adminClaimsService: AdminClaimsService,
         private router: Router,
@@ -68,10 +68,12 @@ export class UsersComponent implements OnInit, OnDestroy {
     }
 
     onDeleteClick(selectedUser) {
-        this.dataService.deleteUser(selectedUser._id).subscribe(
-            data => this.fetchUsers({ page: this.currentPage }),
-            error => this.sb.emitErrorSnackBar(error)
-        )
+        if (confirm(`Are you sure you want to delete ${selectedUser.name}'s account`)) {
+            this.dataService.deleteUser(selectedUser._id).subscribe(
+                data => this.fetchUsers({ page: this.currentPage }),
+                error => this.sb.emitErrorSnackBar(error)
+            )
+        }
     }
 
     onUpdateClick(item) {
