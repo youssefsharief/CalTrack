@@ -1,6 +1,6 @@
 const { getNutriCalories } = require('src/external-apis/nutritionix')
 
-fdescribe('nutritionix', () => {
+describe('nutritionix', () => {
 
     it("should authenticate token successfully ", function (done) {
         getNutriCalories('rice').then(x =>{

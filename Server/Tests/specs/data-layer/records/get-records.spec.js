@@ -6,13 +6,13 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-fdescribe("Users endpoint", function () {
+describe("Users endpoint", function () {
     beforeAll(() => {
         connectToDb()
     })
     const payload = {
         name: faker.name.firstName(),
-        email: faker.internet.email(),
+        email: faker.internet.email(), maxCalories: 2000,
         meals: [],
         password: '1234567a'
     }
@@ -43,9 +43,7 @@ fdescribe("Users endpoint", function () {
 
         it('should use skip and limit correctly', (done)=>{
             getRecords(id, 10, 0, '2017-05-01', '2019-05-01', '06:30', '10:00').then(x=>{
-                // expect(x.meals.length).toBe(10)
-                // console.log(x.pageInfo)
-                // // expect(x.meals.length).toBe(10)
+                expect(x.meals.length).toBeGreaterThanOrEqual(1)
                 done()
             })
         })

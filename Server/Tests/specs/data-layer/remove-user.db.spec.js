@@ -6,13 +6,13 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+fdescribe("Users endpoint", function () {
     beforeAll(() => {
         connectToDb()
     })
     const payload = {
         name: faker.name.firstName(),
-        email: faker.internet.email(),
+        email: faker.internet.email(), maxCalories: 2000,
         meals: [],
         password: '1234567a'
     }

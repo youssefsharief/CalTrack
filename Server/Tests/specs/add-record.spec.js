@@ -1,9 +1,11 @@
-const { setup } = require('helpers/requestsSpecHelper')
+console.log(process.env.NODE_PATH)
+
+const { setup } = require('Tests/helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
 
 
-describe("Users endpoint", function () {
+fdescribe("Users endpoint", function () {
     beforeAll(() => {
         [server, request] = setup()
 
@@ -16,6 +18,7 @@ describe("Users endpoint", function () {
         const newUser = {
             name: faker.name.firstName(),
             email: faker.internet.email(),
+            maxCalories: 2000,
             meals: [],
             password: '456565654ds'
         }
@@ -25,7 +28,8 @@ describe("Users endpoint", function () {
         }
         const newUser2 = {
             name: faker.name.firstName(),
-            email: faker.internet.email(),
+            email: faker.internet.email(), 
+            maxCalories: 2000,
             meals: [],
             password: '3223565689re'
         }

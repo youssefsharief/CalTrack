@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env NODE_PATH=./src node ./src/bin/www",
     "coverage": "cross-env NODE_PATH=./src nodemon --exec istanbul cover node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
-    "test": "cross-env NODE_PATH=./src nodemon --exec jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "test": "nodemon --exec jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "t2": "cross-env NODE_PATH=./;./src/;./Tests/ npm test",
     "dev": "cross-env NODE_PATH=./src nodemon ./src/bin/www"
   },
   "engines": {

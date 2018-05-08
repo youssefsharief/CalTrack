@@ -1,4 +1,4 @@
-const { setup } = require('helpers/requestsSpecHelper')
+const { setup } = require('Tests/helpers/requestsSpecHelper')
 const faker = require('faker')
 const { adminCredentials, managerCredentials} = require('constants/credentials')
 
@@ -19,7 +19,7 @@ describe("Users endpoint", function () {
             
             const newUser = {
                 name: faker.name.firstName(),
-                email: faker.internet.email(),
+                email: faker.internet.email(), maxCalories: 2000,
                 meals: [],
                 password: '456565654ds'
             }

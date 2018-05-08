@@ -1,9 +1,9 @@
 const addNewUser = require('data-layer/user/add-new-user.db')
 const addRecord = require('data-layer/record/add-record.db')
 const { connectToDb } = require('helpers/requestsSpecHelper')
-const getUserRecordsById = require('data-layer/record/get-user-records-by-id.db')
 const deleteRecord = require('data-layer/record/remove-record.db')
 const faker = require('faker')
+const getRecord = require('data-layer/record/get-record.db')
 
 
 describe("Users endpoint", function () {
@@ -12,7 +12,7 @@ describe("Users endpoint", function () {
     })
     const payload = {
         name: faker.name.firstName(),
-        email: faker.internet.email(),
+        email: faker.internet.email(), maxCalories: 2000,
         meals: [],
         password: '1234567a'
     }
@@ -40,13 +40,10 @@ describe("Users endpoint", function () {
 
     it("should delete record ", async function (done) {      
         await deleteRecord(id, mealId)
-        done()
-
-            
-        // expect(updated.meals[0].gmtTimeDifference).toBe(5)
-        // expect(updated.meals[0].name).toBe(updatedRecord.name)
-        // expect(updated.meals[0].city).toBe(updatedRecord.city)
-        
+        getRecord(id, mealId).then(x => {
+            expect(x).toBeFalsy()
+            done()
+        })
     })
 
 

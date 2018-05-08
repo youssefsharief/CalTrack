@@ -14,7 +14,7 @@ describe("Users endpoint", function () {
     describe("Updating my password", function () {
         const newUser = {
             name: faker.name.firstName(),
-            email: faker.internet.email(),
+            email: faker.internet.email(), maxCalories: 2000,
             meals: [],
             password: '1234567a'
         }

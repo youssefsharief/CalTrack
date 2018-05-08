@@ -12,7 +12,7 @@ describe("Users endpoint", function () {
 	describe("Logging in", function () {
 		const newUser = {
 			name: faker.name.firstName(),
-			email: faker.internet.email(),
+			email: faker.internet.email(), maxCalories: 2000,
 			meals:[],
 			password: '456565654ds'
 		}
