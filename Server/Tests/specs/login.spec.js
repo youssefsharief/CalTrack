@@ -12,7 +12,7 @@ describe("Users endpoint", function () {
 	describe("Logging in", function () {
 		const newUser = {
 			name: faker.name.firstName(),
-			email: faker.internet.email(), maxCalories: 2000,
+			email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
 			meals:[],
 			password: '456565654ds'
 		}
@@ -22,7 +22,7 @@ describe("Users endpoint", function () {
         }
 
 		beforeAll((done) => {
-            request.post('/users').send(newUser).end((err, res) => {
+            request.post('/api/users').send(newUser).end((err, res) => {
 				expect(res.status).toEqual(200)
 				expect(res.body.name).toBe(newUser.name)
 				expect(res.body.email).toBe(newUser.email)
@@ -33,14 +33,14 @@ describe("Users endpoint", function () {
         })
 
 		it("should login", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.status).toEqual(200)
 				done();
 			})
 		})
 
 		it("should not login with wrong credentials", function (done) {
-			request.post('/users/login').send({
+			request.post('/api/users/login').send({
 				email: 'randomEmail@test33.com',
 				password: '454ds65ds8ew'
 			}).end((err, res) => {
@@ -50,56 +50,56 @@ describe("Users endpoint", function () {
 		})
 
 		it("should have token", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.token).toBeTruthy()
 				done();
 			})
 		})
 		it("should have user object", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user).toBeTruthy()
 				done();
 			})
 		})
 		it("should have name", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user).toBeTruthy()
 				done();
 			})
 		})
 		it("should have email", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user.email).toBe(newUser.email)
 				done();
 			})
 		})
 		it("should have _id", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user._id).toBeTruthy()
 				done();
 			})
 		})
 		it("should have role", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user.role).toBe('regular')
 				done();
 			})
 		})
 		it("should have meals", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user.meals.length).toBe(newUser.meals.length)
 				done();
 			})
 		})
 		it("should not have password in response", function (done) {
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.body.user.password).toBeFalsy()
 				done();
 			})
 		})
 		it("should not login in case password is incorrect", function (done) {
 			loginPayload.password = '12236565rew'
-			request.post('/users/login').send(loginPayload).end((err, res) => {
+			request.post('/api/users/login').send(loginPayload).end((err, res) => {
 				expect(res.status).toEqual(401)
 				done();
 			})

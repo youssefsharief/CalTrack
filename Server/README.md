@@ -39,3 +39,7 @@ Add FB Login:
 Add Google Login:
 1. Go to https://console.developers.google.com/apis/credentials
 2. Add the same urls as hown above in "Authorized Javascript origins" section
+
+
+Test 
+For tests to work you need to have saved credentials for the fatabase for the an admin and a manager

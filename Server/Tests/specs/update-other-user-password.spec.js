@@ -15,7 +15,7 @@ describe("Users endpoint", function () {
     describe("Updating other user password", function () {
         const newUser = {
             name: faker.name.firstName(),
-            email: faker.internet.email(), maxCalories: 2000,
+            email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '1234567a'
         }
@@ -30,11 +30,11 @@ describe("Users endpoint", function () {
         let id
         let adminToken
         beforeAll((done) => {
-            request.post('/users').send(newUser).end((err, res) => {
-                request.post('/users/login').send(loginPayload).end((err, res) => {
+            request.post('/api/users').send(newUser).end((err, res) => {
+                request.post('/api/users/login').send(loginPayload).end((err, res) => {
                     user = res.body.user
                     id = user._id
-                    request.post('/users/login').send(adminCredentials).end((err, res) => {
+                    request.post('/api/users/login').send(adminCredentials).end((err, res) => {
                         adminToken = res.body.token
                         done();
                     })
@@ -52,9 +52,9 @@ describe("Users endpoint", function () {
                 .send(updatePasswordPayload)
                 .end((err, res) => {
                     expect(res.status).toBe(200)
-                    request.post('/users/login').send(loginPayload).end((err, res) => {
+                    request.post('/api/users/login').send(loginPayload).end((err, res) => {
                         expect(res.status).toBe(401)
-                        request.post('/users/login').send({ email: loginPayload.email, password: updatePasswordPayload.newPassword }).end((err, res) => {
+                        request.post('/api/users/login').send({ email: loginPayload.email, password: updatePasswordPayload.newPassword }).end((err, res) => {
                             expect(res.status).toBe(200)
                             done();
                         })

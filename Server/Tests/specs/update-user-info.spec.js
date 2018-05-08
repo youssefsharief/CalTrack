@@ -14,7 +14,7 @@ describe("Users endpoint", function () {
     describe("Updating user info", function () {
         const newUser = {
             name: faker.name.firstName(),
-            email: faker.internet.email(), maxCalories: 2000,
+            email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '456565654ds'
         }
@@ -29,8 +29,8 @@ describe("Users endpoint", function () {
         let token
         let user
         beforeAll((done) => {
-            request.post('/users').send(newUser).end((err, res) => {
-                request.post('/users/login').send(loginPayload).end((err, res) => {
+            request.post('/api/users').send(newUser).end((err, res) => {
+                request.post('/api/users/login').send(loginPayload).end((err, res) => {
                     token = res.body.token
                     user = res.body.user
                     done();

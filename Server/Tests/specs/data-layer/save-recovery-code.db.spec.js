@@ -13,7 +13,7 @@ describe("Users endpoint", function () {
     })
     const payload = {
         name: faker.name.firstName(),
-        email: faker.internet.email(), maxCalories: 2000,
+        email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
         meals: [],
         password: '1234567a'
     }

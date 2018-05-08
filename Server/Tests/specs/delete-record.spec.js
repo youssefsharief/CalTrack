@@ -1,4 +1,5 @@
 const { setup } = require('helpers/requestsSpecHelper')
+const getRecord = require('data-layer/record/get-record.db')
 const faker = require('faker')
 let server, request
 
@@ -14,7 +15,7 @@ describe("Users endpoint", function () {
 
         const newUser = {
             name: faker.name.firstName(),
-            email: faker.internet.email(), maxCalories: 2000,
+            email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '456565654ds'
         }
@@ -31,27 +32,30 @@ describe("Users endpoint", function () {
         let userToken
         let mealId
         beforeAll((done) => {
-            request.post('/users').send(newUser).end((err, res) => {
-                id = res.body._id
+            request.post('/api/users').send(newUser).end((err, res) => {
+                id = res.body.user._id
                 done()
             })
         })
         describe("Acting as same user", function () {
             beforeAll((done) => {
-                request.post('/users/login').send(newUserCredentials).end((err, res) => {
+                request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
                     userToken = res.body.token
-                    request.post(`/users/${id}/meals`)
+                    request.post(`/api/users/${id}/meals`)
                         .set({ 'Authorization': `Bearer ${userToken}` })
                         .send(newMeal)
                         .end((err, res) => {
-                            mealId = res.body.meals[0]._id
-                            done();
+                            getRecord(id, mealId).then(x=>{
+                                expect(x).toBeTruthy()
+                                done();
+                            })
+                            
                         })
                 })
             })
 
-            it("should delete successfully ", function (done) {
-                request.delete(`/users/${id}/meals/${mealId}`)
+            fit("should delete successfully ", function (done) {
+                request.delete(`/api/users/${id}/meals/${mealId}`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(200)
@@ -61,7 +65,7 @@ describe("Users endpoint", function () {
             })
 
             it("should respond by 404 error when id is not provided ", function (done) {
-                request.delete(`/users/${id}/meals/`)
+                request.delete(`/api/users/${id}/meals/`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(404)
@@ -70,7 +74,7 @@ describe("Users endpoint", function () {
             })
 
             it("should respond by 400 error when wrong id is provided ", function (done) {
-                request.delete(`/users/${id}/meals/1`)
+                request.delete(`/api/users/${id}/meals/1`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(422)

@@ -19,25 +19,25 @@ describe("Users endpoint", function () {
             
             const newUser = {
                 name: faker.name.firstName(),
-                email: faker.internet.email(), maxCalories: 2000,
+                email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
                 meals: [],
                 password: '456565654ds'
             }
-            request.post('/users').send(newUser).end((err, res) => {
-                newUserId = res.body._id
+            request.post('/api/users').send(newUser).end((err, res) => {
+                newUserId = res.body.user._id
                 done();
             })
         })
 
         describe('Acting as an admin', () => {
             beforeAll((done) => {
-                request.post('/users/login').send(adminCredentials).end((err, res) => {
+                request.post('/api/users/login').send(adminCredentials).end((err, res) => {
                     adminToken = res.body.token
                     done()
                 })
             })
             it("should not allow unauthenticated users", function (done) {
-                request.patch(`/users/${newUserId}/role`).send({ role: 'manager' }).end((err, res) => {
+                request.patch(`/api/users/${newUserId}/role`).send({ role: 'manager' }).end((err, res) => {
                     expect(res.status).toBe(401)
                     done();
                 })
@@ -45,7 +45,7 @@ describe("Users endpoint", function () {
 
 
             it("should update role as manager ", function (done) {
-                request.patch(`/users/${newUserId}/role`)
+                request.patch(`/api/users/${newUserId}/role`)
                     .set({ 'Authorization': `Bearer ${adminToken}` })
                     .send({ role: 'manager' })
                     .end((err, res) => {
@@ -55,7 +55,7 @@ describe("Users endpoint", function () {
             })
 
             it("should update role as admin ", function (done) {
-                request.patch(`/users/${newUserId}/role`)
+                request.patch(`/api/users/${newUserId}/role`)
                     .set({ 'Authorization': `Bearer ${adminToken}` })
                     .send({ role: 'admin' })
                     .end((err, res) => {
@@ -65,7 +65,7 @@ describe("Users endpoint", function () {
             })
 
             it("should update role as regular ", function (done) {
-                request.patch(`/users/${newUserId}/role`)
+                request.patch(`/api/users/${newUserId}/role`)
                     .set({ 'Authorization': `Bearer ${adminToken}` })
                     .send({ role: 'regular' })
                     .end((err, res) => {
@@ -75,7 +75,7 @@ describe("Users endpoint", function () {
             })
 
             it("should return 404 if no id is provided", function (done) {
-                request.patch(`/users/role`)
+                request.patch(`/api/users/role`)
                     .set({ 'Authorization': `Bearer ${adminToken}` })
                     .send({ role: 'manager' })
                     .end((err, res) => {
@@ -90,13 +90,13 @@ describe("Users endpoint", function () {
         describe('Acting as a manager', () => {
             let managerToken
             beforeAll((done) => {
-                request.post('/users/login').send(managerCredentials).end((err, res) => {
+                request.post('/api/users/login').send(managerCredentials).end((err, res) => {
                     managerToken = res.body.token
                     done()
                 })
             })
             it("should not allow unauthenticated users", function (done) {
-                request.patch(`/users/${newUserId}/role`).send({ role: 'manager' }).end((err, res) => {
+                request.patch(`/api/users/${newUserId}/role`).send({ role: 'manager' }).end((err, res) => {
                     expect(res.status).toBe(401)
                     done();
                 })
@@ -104,7 +104,7 @@ describe("Users endpoint", function () {
 
 
             it("should not update role as manager ", function (done) {
-                request.patch(`/users/${newUserId}/role`)
+                request.patch(`/api/users/${newUserId}/role`)
                     .set({ 'Authorization': `Bearer ${managerToken}` })
                     .send({ role: 'manager' })
                     .end((err, res) => {
@@ -114,7 +114,7 @@ describe("Users endpoint", function () {
             })
 
             it("should not update role as admin ", function (done) {
-                request.patch(`/users/${newUserId}/role`)
+                request.patch(`/api/users/${newUserId}/role`)
                     .set({ 'Authorization': `Bearer ${managerToken}` })
                     .send({ role: 'admin' })
                     .end((err, res) => {
@@ -124,7 +124,7 @@ describe("Users endpoint", function () {
             })
 
             it("should not update role as regular ", function (done) {
-                request.patch(`/users/${newUserId}/role`)
+                request.patch(`/api/users/${newUserId}/role`)
                     .set({ 'Authorization': `Bearer ${managerToken}` })
                     .send({ role: 'regular' })
                     .end((err, res) => {

@@ -1,3 +1,3 @@
 module.exports = {
-    isCaptchaEnabled: true
+    isCaptchaEnabled: false
 }

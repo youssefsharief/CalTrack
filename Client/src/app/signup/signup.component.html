@@ -24,7 +24,7 @@
         <input name="isTrackingDisplayed" type="checkbox" class="form-check-input" formControlName="isTrackingDisplayed">
     </app-display-tracking-input-checkbox-layout>
 
-    <re-captcha [siteKey]="captchaKey" formControlName="g-recaptcha-response"></re-captcha>
+    <re-captcha *ngIf="isCaptchaEnabled" formControlName="g-recaptcha-response"></re-captcha>
 
     <div class="mb-4 mt-4">
         <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="signup()">Signup</button>

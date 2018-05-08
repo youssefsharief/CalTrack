@@ -5,7 +5,7 @@ const faker = require('faker')
 let server, request
 
 
-fdescribe("Users endpoint", function () {
+describe("Users endpoint", function () {
     beforeAll(() => {
         [server, request] = setup()
 
@@ -18,7 +18,7 @@ fdescribe("Users endpoint", function () {
         const newUser = {
             name: faker.name.firstName(),
             email: faker.internet.email(),
-            maxCalories: 2000,
+            maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '456565654ds'
         }
@@ -29,7 +29,7 @@ fdescribe("Users endpoint", function () {
         const newUser2 = {
             name: faker.name.firstName(),
             email: faker.internet.email(), 
-            maxCalories: 2000,
+            maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '3223565689re'
         }
@@ -45,9 +45,9 @@ fdescribe("Users endpoint", function () {
         let id
         let userToken
         beforeAll((done) => {
-            request.post('/users').send(newUser).end((err, res) => {
+            request.post('/api/users').send(newUser).end((err, res) => {
                 id = res.body._id
-                request.post('/users').send(newUser2).end((err, res) => {
+                request.post('/api/users').send(newUser2).end((err, res) => {
                     done()
                 })
             })
@@ -55,14 +55,14 @@ fdescribe("Users endpoint", function () {
         describe("Acting as same user", function () {
 
             beforeAll((done) => {
-                request.post('/users/login').send(newUserCredentials).end((err, res) => {
+                request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
                     userToken = res.body.token
                     done()
                 })
             })
 
             it("should add successfully ", function (done) {
-                request.post(`/users/${id}/meals`)
+                request.post(`/api/users/${id}/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .send(newMeal)
                     .end((err, res) => {
@@ -75,7 +75,7 @@ fdescribe("Users endpoint", function () {
             })
 
             it("should respond by 404 error when id is not provided ", function (done) {
-                request.post(`/users/meals`)
+                request.post(`/api/users/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .send(newMeal)
                     .end((err, res) => {
@@ -90,14 +90,14 @@ fdescribe("Users endpoint", function () {
 
         describe("Acting as different user", function () {
             beforeAll((done) => {
-                request.post('/users/login').send(newUser2Credentials).end((err, res) => {
+                request.post('/api/users/login').send(newUser2Credentials).end((err, res) => {
                     userToken = res.body.token
                     done()
                 })
             })
 
             it("should not be allowed to add ", function (done) {
-                request.post(`/users/${id}/meals`)
+                request.post(`/api/users/${id}/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .send(newMeal)
                     .end((err, res) => {
@@ -107,7 +107,7 @@ fdescribe("Users endpoint", function () {
             })
 
             it("should respond by 404 error when id is not provided ", function (done) {
-                request.post(`/users/meals`)
+                request.post(`/api/users/meals`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .send(newMeal)
                     .end((err, res) => {

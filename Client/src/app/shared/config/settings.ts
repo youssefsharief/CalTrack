@@ -1,1 +1,1 @@
-export const isCaptchaEnabled = true;
+export const isCaptchaEnabled = false;

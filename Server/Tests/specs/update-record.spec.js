@@ -13,7 +13,7 @@ describe("Users endpoint", function () {
 
         const newUser = {
             name: faker.name.firstName(),
-            email: faker.internet.email(), maxCalories: 2000,
+            email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '456565654ds'
         }
@@ -35,16 +35,16 @@ describe("Users endpoint", function () {
         let userToken
         let mealId
         beforeAll((done) => {
-            request.post('/users').send(newUser).end((err, res) => {
+            request.post('/api/users').send(newUser).end((err, res) => {
                 id = res.body._id
                 done()
             })
         })
         describe("Acting as same user", function () {
             beforeAll((done) => {
-                request.post('/users/login').send(newUserCredentials).end((err, res) => {
+                request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
                     userToken = res.body.token
-                    request.post(`/users/${id}/meals`)
+                    request.post(`/api/users/${id}/meals`)
                         .set({ 'Authorization': `Bearer ${userToken}` })
                         .send(newMeal)
                         .end((err, res) => {
