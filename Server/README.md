@@ -29,3 +29,13 @@ db.users.ensureIndex({"googleId" : 1})
 db.users.ensureIndex({"facebookId" : 1})
 
 
+Add FB Login:
+1. Go to https://developers.facebook.com/apps/ and add a Facebook Login product
+2. Add the following Valid OAuth Redirect URIs
+    1. https://localhost:4400/   for the the dev server
+    2. https://caltrack-meals.herokuapp.com/  for the hosted app
+    3. https://localhost:3001/  to test serving from the same backend server locally
+
+Add Google Login:
+1. Go to https://console.developers.google.com/apis/credentials
+2. Add the same urls as hown above in "Authorized Javascript origins" section

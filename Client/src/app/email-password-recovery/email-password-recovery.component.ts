@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../core/services/data.service';
 import { Router } from '@angular/router';
+import { isCaptchaEnabled } from 'app/shared/config/settings';
 
 @Component({
     templateUrl: 'email-password-recovery.component.html',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EmailPasswordRecoveryComponent implements OnInit {
     form: FormGroup
-
+    isCaptchaEnabled = isCaptchaEnabled
     constructor(
         private fb: FormBuilder,
         private dataService: DataService,

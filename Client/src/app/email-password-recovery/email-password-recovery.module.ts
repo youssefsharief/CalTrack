@@ -5,12 +5,16 @@ import { EmailPasswordRecoveryComponent } from './email-password-recovery.compon
 import { SharedFormsModule } from 'app/shared/shared-forms.module.ts/shared-forms.module';
 import { EmailPasswordRecoveryRoutingModule } from 'app/email-password-recovery/email-password-recovery-routing.module';
 import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 @NgModule({
     imports: [
         SharedFormsModule,
         EmailPasswordRecoveryRoutingModule,
-        SharedTrimmedModule
+        SharedTrimmedModule,
+        RecaptchaModule.forRoot(),
+        RecaptchaFormsModule
     ],
     declarations: [
         EmailPasswordRecoveryComponent,

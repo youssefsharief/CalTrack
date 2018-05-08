@@ -5,7 +5,7 @@ import { DataService } from '../core/services/data.service';
 import { SnackBarService } from '../core/services/snackbar.service';
 import { User } from '../shared/models/user.model';
 import { PublicInfoService } from '../core/services/public.info.service';
-import { passwordPattern, captchaSiteKey } from 'app/shared/config/constants';
+import { passwordPattern } from 'app/shared/config/constants';
 import { isCaptchaEnabled } from 'app/shared/config/settings';
 import { AuthService } from 'app/core/services/auth.service';
 
@@ -14,7 +14,6 @@ import { AuthService } from 'app/core/services/auth.service';
 })
 export class SignupComponent implements OnInit {
     form: FormGroup
-    captchaKey = captchaSiteKey
     isCaptchaEnabled = isCaptchaEnabled
 
     constructor(private fb: FormBuilder,
