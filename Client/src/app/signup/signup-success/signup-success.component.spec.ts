@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { LoginComponent } from 'app/routes/personal/login/login.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { SignupSuccessComponent } from 'app/signup/signup-success/signup-success.component';
+import { SignupModule } from 'app/signup/signup.module';
 
 
 describe('SignupSuccess Component', () => {
@@ -15,10 +15,7 @@ describe('SignupSuccess Component', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule,
-                RouterTestingModule.withRoutes([{ path: 'login', component: LoginComponent }]),
-            ],
-            declarations: [SignupSuccessComponent, LoginComponent],
+            imports: [SignupModule],
             providers: [Location],
 
         });

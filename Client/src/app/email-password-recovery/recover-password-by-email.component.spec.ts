@@ -7,29 +7,20 @@ import 'rxjs/add/observable/throw';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
-import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
 // tslint:disable-next-line:max-line-length
-import { NewPasswordAndRecoveryCodeSubmissionComponent } from 'app/routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/new-password-and-recovery-code-submission.component';
 import { PublicInfoService } from 'app/core/services/public.info.service';
 import { Location } from '@angular/common';
+import { EmailPasswordRecoveryModule } from 'app/email-password-recovery/email-password-recovery.module';
+import { EmailPasswordRecoveryComponent } from 'app/email-password-recovery/email-password-recovery.component';
 
 describe('RecoverPassworByEmail Component', () => {
-    let comp: RecoverPasswordByEmailComponent;
-    let fixture: ComponentFixture<RecoverPasswordByEmailComponent>;
+    let comp: EmailPasswordRecoveryComponent;
+    let fixture: ComponentFixture<EmailPasswordRecoveryComponent>;
     let dataService: DataService
     let location: Location
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                RouterTestingModule.withRoutes([
-                    {
-                        path: 'email_password_recovery/submit_new_password',
-                        component: NewPasswordAndRecoveryCodeSubmissionComponent
-                    },
-                ]),
-            ],
-            declarations: [RecoverPasswordByEmailComponent, NewPasswordAndRecoveryCodeSubmissionComponent],
+            imports: [ EmailPasswordRecoveryModule  ],
             providers: [
                 { provide: DataService, useValue: {} },
                 SnackBarService,
@@ -37,7 +28,7 @@ describe('RecoverPassworByEmail Component', () => {
                 Location
             ],
         })
-        fixture = TestBed.createComponent(RecoverPasswordByEmailComponent)
+        fixture = TestBed.createComponent(EmailPasswordRecoveryComponent)
         comp = fixture.componentInstance
         dataService = fixture.debugElement.injector.get(DataService)
         location = fixture.debugElement.injector.get(Location)

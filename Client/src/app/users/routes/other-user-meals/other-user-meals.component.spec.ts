@@ -8,10 +8,9 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
-import { OtherUserMealsComponent } from 'app/users/user-meals/other-user-meals/other-user-meals.component';
-import { EditOtherUserMealComponent } from 'app/users/user-meals/edit-other-user-meal/edit-other-user-meal.component';
-import { AddOtherUserMealComponent } from 'app/users/user-meals/add-other-user-meal/add-other-user-meal.component';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other-user-meals.component';
+import { UsersModule } from 'app/users/users.module';
 
 describe('OtherUserMeal Component', () => {
     let comp: OtherUserMealsComponent;
@@ -39,14 +38,7 @@ describe('OtherUserMeal Component', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                RouterTestingModule.withRoutes([
-                    { path: 'users/:id/meal/edit', component: EditOtherUserMealComponent },
-                    { path: 'users/:id/meals/add', component: AddOtherUserMealComponent },
-                ]),
-                SharedModule
-            ],
-            declarations: [OtherUserMealsComponent, AddOtherUserMealComponent, EditOtherUserMealComponent],
+            imports: [UsersModule],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SelectedUserService,

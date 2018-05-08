@@ -8,10 +8,9 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { AuthService } from 'app/core/services/auth.service';
 import { Location } from '@angular/common';
-import { EditMyMealComponent } from 'app/routes/personal/edit-my-meal/edit-my-meal.component';
-import { AddMyMealComponent } from 'app/routes/personal/add-my-meal/add-my-meal.component';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { MyMealsComponent } from 'app/my-meals/my-meals.component';
+import { MyMealsModule } from 'app/my-meals/my-meals.module';
 
 describe('MyMeal Component', () => {
     let comp: MyMealsComponent;
@@ -39,14 +38,7 @@ describe('MyMeal Component', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                RouterTestingModule.withRoutes([
-                    { path: 'my-meals/edit', component: EditMyMealComponent },
-                    { path: 'my-meals/add', component: AddMyMealComponent },
-                ]),
-                SharedModule
-            ],
-            declarations: [MyMealsComponent, AddMyMealComponent, EditMyMealComponent],
+            imports: [MyMealsModule ],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,

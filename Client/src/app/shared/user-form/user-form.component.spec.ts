@@ -7,22 +7,22 @@ import 'rxjs/add/observable/throw';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
-import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
+import { UserFormComponent } from 'app/shared/user-form/user-form.component';
+import { UserFormModule } from 'app/shared/user-form/user-form.module';
 
 describe('EditUser Component', () => {
-    let comp: EditUserComponent;
-    let fixture: ComponentFixture<EditUserComponent>;
+    let comp: UserFormComponent;
+    let fixture: ComponentFixture<UserFormComponent>;
     let dataService: any
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, SharedModule],
-            declarations: [],
+            imports: [UserFormModule],
             providers: [
                 { provide: DataService, useValue: {} },
                 SnackBarService
             ],
         });
-        fixture = TestBed.createComponent(EditUserComponent);
+        fixture = TestBed.createComponent(UserFormComponent);
         comp = fixture.componentInstance;
         dataService = fixture.debugElement.injector.get(DataService)
         comp.user = { name: 'Wfaa', email: 'djakls@jk.com', password: 'daaerio7873', _id: 'aa', isTrackingDisplayed: false }

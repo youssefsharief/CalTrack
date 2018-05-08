@@ -10,9 +10,9 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AuthService } from 'app/core/services/auth.service';
 import { By } from '@angular/platform-browser';
 import { SignupComponent } from 'app/signup/signup.component';
-import { RecoverPasswordByEmailComponent } from 'app/routes/personal/recover-password-by-email/recover-password-by-email.component';
 import { Location } from '@angular/common';
 import { User } from 'app/shared/models/user.model';
+import { LoginModule } from 'app/login/login.module';
 
 describe('Login Component', () => {
     let comp: LoginComponent;
@@ -40,14 +40,8 @@ describe('Login Component', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                RouterTestingModule.withRoutes([
-                    { path: 'signup', component: SignupComponent },
-                    { path: 'email_password_recovery', component: RecoverPasswordByEmailComponent },
-                ]),
-                SharedModule
+            imports: [LoginModule
             ],
-            declarations: [LoginComponent, SignupComponent, RecoverPasswordByEmailComponent],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,

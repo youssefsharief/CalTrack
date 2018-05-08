@@ -3,14 +3,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
-import { SnackBarService } from '../../core/services/snackbar.service';
 import { EditRoleComponent } from './edit-role.component';
-import { DataService } from '../../core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
-import { UsersComponent } from 'app/routes/users-list/users.component';
-import { SelectedUserService } from 'app/core/services/selectedUser.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { Location } from '@angular/common';
+import { DataService } from 'app/core/services/data.service';
+import { SnackBarService } from 'app/core/services/snackbar.service';
+import { UsersModule } from 'app/users/users.module';
+import { SelectedUserService } from 'app/users/services/selectedUser.service';
 
 describe('EditRoleComponent', () => {
     let comp: EditRoleComponent;
@@ -32,13 +32,7 @@ describe('EditRoleComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule.withRoutes([
-                { path: 'users', component: UsersComponent },
-            ]),
-                SharedModule,
-            PaginationModule.forRoot()
-            ],
-            declarations: [EditRoleComponent, UsersComponent],
+            imports: [UsersModule],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,

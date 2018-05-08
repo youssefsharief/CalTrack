@@ -9,9 +9,9 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
-import { EditMyInfoComponent } from 'app/routes/personal/edit-my-info/edit-my-info.component';
-import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
+import { EditMyInfoComponent } from 'app/edit-my-info/edit-my-info.component';
+import { EditMyInfoModule } from 'app/edit-my-info/edit-my-info.module';
+import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/my-logins/change-my-password-using-old-password/change-my-password-using-old-password.component';
 
 describe('EditMyInfo Component', () => {
 
@@ -22,11 +22,7 @@ describe('EditMyInfo Component', () => {
     let dataService;
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, SharedModule,
-                RouterTestingModule.withRoutes([
-                    { path: 'my-profile/password', component: ChangeMyPasswordUsingOldPasswordComponent }
-                ]),
-            ],
+            imports: [RouterTestingModule, EditMyInfoModule],
             declarations: [EditMyInfoComponent, ChangeMyPasswordUsingOldPasswordComponent],
             providers: [
                 { provide: AuthService, useValue: { getProfile() { return { _id: 'rr', name: 'aaaa', email: 'aadr@rsde.com' } }, saveProfile(a) { } } },

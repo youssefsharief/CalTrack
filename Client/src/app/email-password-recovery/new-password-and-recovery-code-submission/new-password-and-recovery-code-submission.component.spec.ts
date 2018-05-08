@@ -9,8 +9,8 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { PublicInfoService } from 'app/core/services/public.info.service';
 import { Location } from '@angular/common';
+import { NewPasswordAndRecoveryCodeSubmissionComponent } from 'app/email-password-recovery/new-password-and-recovery-code-submission/new-password-and-recovery-code-submission.component';
 // tslint:disable-next-line:max-line-length
-import { NewPasswordAndRecoveryCodeSubmissionComponent } from 'app/routes/personal/recover-password-by-email/new-password-and-recovery-code-submission/new-password-and-recovery-code-submission.component';
 
 describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
     let comp: NewPasswordAndRecoveryCodeSubmissionComponent;

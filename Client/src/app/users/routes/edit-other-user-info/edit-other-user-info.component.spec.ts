@@ -9,11 +9,9 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
-import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
-import { EditOtherUserInfoComponent } from 'app/routes/edit-other-user-info/edit-other-user-info.component';
-import { ChangeOtherUserPasswordComponent } from 'app/routes/change-other-user-password/change-other-user-password.component';
-import { SelectedUserService } from 'app/core/services/selectedUser.service';
+import { UsersModule } from 'app/users/users.module';
+import { EditOtherUserInfoComponent } from 'app/users/routes/edit-other-user-info/edit-other-user-info.component';
+import { SelectedUserService } from 'app/users/services/selectedUser.service';
 
 describe('EditOtherUserInfo Component', () => {
     let comp: EditOtherUserInfoComponent;
@@ -23,12 +21,7 @@ describe('EditOtherUserInfo Component', () => {
     let dataService;
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, SharedModule,
-                RouterTestingModule.withRoutes([
-                    { path: 'users/:id/password', component: ChangeOtherUserPasswordComponent }
-                ]),
-            ],
-            declarations: [EditOtherUserInfoComponent, ChangeOtherUserPasswordComponent],
+            imports: [UsersModule ],
             providers: [
                 { provide: SelectedUserService, useValue: { getUserWithProbableDataFetch(a) { return Observable.of({ _id: 'rr', name: 'aaaa', email: 'aadr@rsde.com' })} } },
                 { provide: DataService, useValue: {} },

@@ -3,7 +3,6 @@ import { SignupComponent } from './signup.component';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
@@ -15,8 +14,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { NameInputLayoutComponent } from 'app/shared/components/ui-inputs/name-input-layout/name-input-layout.component';
 import { PublicInfoService } from 'app/core/services/public.info.service';
 import { Location } from '@angular/common';
-import { SignupSuccessComponent } from 'app/signup/signup-success/signup-success.component';
-import { ActivateAfterSignupComponent } from 'app/signup/activate-after-signup/activate-after-signup.component';
+import { User } from 'app/shared/models/user.model';
 
 describe('Signup Component', () => {
 
@@ -24,10 +22,10 @@ describe('Signup Component', () => {
     let fixture: ComponentFixture<SignupComponent>;
     let sb: SnackBarService
     let location: Location
-    const user = {
+    const user = <User>{
         name: 'Ahmed',
         password: '454565',
-        email: 'sads@ewew.com'
+        email: 'sads@ewew.com',
 
     }
 
@@ -43,13 +41,7 @@ describe('Signup Component', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule,
-                RouterTestingModule.withRoutes([
-                    { path: 'signup/success', component: SignupSuccessComponent },
-                    { path: 'signup/activate', component: ActivateAfterSignupComponent }
-                ]),
-            ],
-            declarations: [SignupComponent, SignupSuccessComponent, ActivateAfterSignupComponent],
+            imports: [SignupModule],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,
@@ -277,7 +269,7 @@ describe('Signup Component', () => {
         describe('Normal Signup', () => {
             describe('Scenario: Success', () => {
                 it('should successfully post and navigate to signup success page', fakeAsync(() => {
-                    dataService.signup = (data) => Observable.of(user)
+                    dataService.signup = (data) => Observable.of({user, token: 'aaaa'})
                     fixture.detectChanges();
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     tick()

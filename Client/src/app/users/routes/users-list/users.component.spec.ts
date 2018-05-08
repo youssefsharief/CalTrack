@@ -6,9 +6,9 @@ import { DataService } from 'app/core/services/data.service';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
 import { Router } from '@angular/router';
-import { AppModule } from 'app/app.module';
 import { User } from 'app/shared/models/user.model';
 import { UsersComponent } from 'app/users/routes/users-list/users.component';
+import { UsersModule } from 'app/users/users.module';
 
 describe('Users Component', () => {
     let comp: UsersComponent;
@@ -20,7 +20,7 @@ describe('Users Component', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                AppModule,
+                UsersModule,
             ],
             providers: [
                 { provide: DataService, useValue: {} },

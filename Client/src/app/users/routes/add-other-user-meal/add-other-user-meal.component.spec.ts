@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -9,10 +8,10 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
-import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { User } from 'app/shared/models/user.model';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { UsersModule } from 'app/users/users.module';
+import { AddOtherUserMealComponent } from 'app/users/routes/add-other-user-meal/add-other-user-meal.component';
 
 describe('AddOtherUserMeal Component', () => {
     let comp: AddOtherUserMealComponent;
@@ -22,13 +21,7 @@ describe('AddOtherUserMeal Component', () => {
     let selectedUserService: SelectedUserService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, SharedModule, PaginationModule,
-                RouterTestingModule.withRoutes([
-                    { path: 'users/:id/meal', component: OtherUserMealsComponent },
-                    { path: 'users', component: UsersComponent }
-                ]),
-            ],
-            declarations: [AddOtherUserMealComponent, UsersComponent, OtherUserMealsComponent],
+            imports: [UsersModule],
             providers: [
                 { provide: SelectedUserService, useValue: {} },
                 { provide: DataService, useValue: {} },

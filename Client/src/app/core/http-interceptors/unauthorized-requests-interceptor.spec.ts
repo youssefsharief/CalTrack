@@ -6,7 +6,7 @@ import { UnAuthorizedRequestsInterceptor } from 'app/core/http-interceptors/unau
 import { HttpRequest, HttpHandler } from '@angular/common/http';
 import { SharedModule } from 'app/shared/shared.module';
 import { Observable } from 'rxjs/Observable';
-import { LoginComponent } from 'app/routes/personal/login/login.component';
+import { LoginComponent } from 'app/login/login.component';
 
 let service: UnAuthorizedRequestsInterceptor;
 let sb: SnackBarService;

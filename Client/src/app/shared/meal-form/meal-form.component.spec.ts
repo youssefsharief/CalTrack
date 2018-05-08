@@ -3,10 +3,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
-import { MealFormComponent } from 'app/shared/components/meals/meal-form/meal-form.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { By } from '@angular/platform-browser';
 import { CoreModule } from 'app/core/core.module';
+import { MealFormModule } from 'app/shared/meal-form/meal-form.module';
+import { MealFormComponent } from 'app/shared/meal-form/meal-form.component';
 
 describe('MealFormComponentt', () => {
     let comp: MealFormComponent;
@@ -14,7 +15,7 @@ describe('MealFormComponentt', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule, CoreModule]
+            imports: [MealFormModule]
         });
         fixture = TestBed.createComponent(MealFormComponent);
         comp = fixture.componentInstance;

@@ -1,3 +1,5 @@
+console.log(process.env.CAPTCHA_DISABLED)
+
 module.exports = {
-    isCaptchaEnabled: false
+    isCaptchaEnabled: process.env.CAPTCHA_DISABLED ? false : true
 }

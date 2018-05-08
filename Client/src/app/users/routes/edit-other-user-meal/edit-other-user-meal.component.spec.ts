@@ -9,15 +9,12 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { Location } from '@angular/common';
 import { AuthService } from 'app/core/services/auth.service';
-import { EditUserComponent } from 'app/shared/components/users/edit-user/edit-user.component';
-import { MyMealsComponent } from 'app/routes/personal/my-meals/my-meals.component';
-import { UsersComponent } from 'app/routes/users-list/users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { User } from 'app/shared/models/user.model';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
-import { EditOtherUserMealComponent } from 'app/users/user-meals/edit-other-user-meal/edit-other-user-meal.component';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
-import { OtherUserMealsComponent } from 'app/users/user-meals/other-user-meals/other-user-meals.component';
+import { EditOtherUserMealComponent } from 'app/users/routes/edit-other-user-meal/edit-other-user-meal.component';
+import { UsersModule } from 'app/users/users.module';
 
 describe('EditOtherUserMeal Component', () => {
     let comp: EditOtherUserMealComponent;
@@ -27,13 +24,7 @@ describe('EditOtherUserMeal Component', () => {
     let selectedUserService: SelectedUserService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, SharedModule, PaginationModule,
-                RouterTestingModule.withRoutes([
-                    { path: 'users/:id/meal', component: OtherUserMealsComponent },
-                    { path: 'users', component: UsersComponent }
-                ]),
-            ],
-            declarations: [EditOtherUserMealComponent, UsersComponent, OtherUserMealsComponent],
+            imports: [UsersModule ],
             providers: [
                 { provide: SelectedUserService, useValue: {} },
                 { provide: DataService, useValue: {} },

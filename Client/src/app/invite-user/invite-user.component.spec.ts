@@ -4,9 +4,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
-import { InviteUserComponent } from 'app/routes/invite-user/invite-user.component';
 import { AppModule } from 'app/app.module';
 import { DataService } from 'app/core/services/data.service';
+import { InviteUserModule } from 'app/invite-user/invite-user.module';
+import { InviteUserComponent } from 'app/invite-user/invite-user.component';
 
 describe('InviteUser Component', () => {
     let comp: InviteUserComponent;
@@ -14,7 +15,7 @@ describe('InviteUser Component', () => {
     let dataService: DataService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [AppModule],
+            imports: [InviteUserModule],
             providers: [
                 { provide: DataService, useValue: {} },
             ],

@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { ChangeOtherUserPasswordComponent } from 'app/users/routes/change-other-user-password/change-other-user-password.component';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { UsersModule } from 'app/users/users.module';
 
 describe('ChangeOtherUserPassword Component', () => {
 
@@ -22,12 +23,7 @@ describe('ChangeOtherUserPassword Component', () => {
     let selectedUserService: SelectedUserService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, SharedModule, PaginationModule,
-                RouterTestingModule.withRoutes([
-                    { path: 'users', component: UsersComponent },
-                ]),
-            ],
-            declarations: [UsersComponent, ChangeOtherUserPasswordComponent],
+            imports: [UsersModule],
             providers: [
                 { provide: DataService, useValue: {} },
                 { provide: SelectedUserService, useValue: { getUserWithProbableDataFetch() { return Observable.of({ _id: 'rr' }) } } },

@@ -6,7 +6,8 @@ import 'rxjs/add/observable/throw';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
-import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/routes/personal/edit-my-info/change-my-password-using-old-password/change-my-password-using-old-password.component';
+import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/my-logins/change-my-password-using-old-password/change-my-password-using-old-password.component';
+import { MyLoginsModule } from 'app/my-logins/my-logins.module';
 
 describe('ChangeMyPasswordUsingOldPassword Component', () => {
     let comp: ChangeMyPasswordUsingOldPasswordComponent;
@@ -14,8 +15,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
     let dataService: DataService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule],
-            declarations: [ChangeMyPasswordUsingOldPasswordComponent],
+            imports: [MyLoginsModule],
             providers: [
                 { provide: DataService, useValue: {} },
                 SnackBarService,
