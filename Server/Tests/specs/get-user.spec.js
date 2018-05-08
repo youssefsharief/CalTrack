@@ -37,7 +37,7 @@ describe("Users endpoint", function () {
 					request.get(`/users/${res.body.users[0]._id}`)
 						.set({ 'Authorization': `Bearer ${token}` })
 						.end((err, res) => {
-							expect(res.body._id).toBeTruthy()
+							expect(res.body.user_id).toBeTruthy()
 							expect(res.body.name).toBeTruthy()
 							expect(res.body.email).toBeTruthy()
 							expect(res.body.meals).toBeTruthy()

@@ -1,5 +1,4 @@
 const { setup } = require('helpers/requestsSpecHelper')
-const getRecord = require('data-layer/record/get-record.db')
 const faker = require('faker')
 let server, request
 
@@ -45,21 +44,18 @@ describe("Users endpoint", function () {
                         .set({ 'Authorization': `Bearer ${userToken}` })
                         .send(newMeal)
                         .end((err, res) => {
-                            getRecord(id, mealId).then(x=>{
-                                expect(x).toBeTruthy()
+                            mealId = res.body.user_id
                                 done();
-                            })
                             
                         })
                 })
             })
 
-            fit("should delete successfully ", function (done) {
+            it("should delete successfully ", function (done) {
                 request.delete(`/api/users/${id}/meals/${mealId}`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .end((err, res) => {
                         expect(res.status).toEqual(200)
-                        expect(res.body.meals.length).toEqual(0)
                         done();
                     })
             })

@@ -1,5 +1,3 @@
-console.log(process.env.NODE_PATH)
-
 const { setup } = require('Tests/helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
@@ -46,7 +44,7 @@ describe("Users endpoint", function () {
         let userToken
         beforeAll((done) => {
             request.post('/api/users').send(newUser).end((err, res) => {
-                id = res.body._id
+                id = res.body.user_id
                 request.post('/api/users').send(newUser2).end((err, res) => {
                     done()
                 })

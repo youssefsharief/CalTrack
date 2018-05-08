@@ -28,7 +28,7 @@ describe("Users endpoint", function () {
 		describe("Acting as an admin", function () {
 			beforeEach((done) => {
 				request.post('/api/users').send(newUser).end((err, res) => {
-					id = res.body._id
+					id = res.body.user_id
 					done()
 				})
 			})
@@ -76,7 +76,7 @@ describe("Users endpoint", function () {
 			}
 			beforeEach((done) => {
 				request.post('/api/users').send(newUser).end((err, res) => {
-					id = res.body._id
+					id = res.body.user_id
 					done()
 				})
 			})

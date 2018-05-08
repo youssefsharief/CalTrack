@@ -36,7 +36,7 @@ describe("Users endpoint", function () {
         let mealId
         beforeAll((done) => {
             request.post('/api/users').send(newUser).end((err, res) => {
-                id = res.body._id
+                id = res.body.user_id
                 done()
             })
         })
@@ -44,27 +44,34 @@ describe("Users endpoint", function () {
             beforeAll((done) => {
                 request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
                     userToken = res.body.token
-                    request.post(`/api/users/${id}/meals`)
-                        .set({ 'Authorization': `Bearer ${userToken}` })
-                        .send(newMeal)
-                        .end((err, res) => {
-                            mealId = res.body.meals[0]._id
-                            done();
+                    id = res.body.user._id
+                    request.post(`/api/users/${id}/meals`).set({ 'Authorization': `Bearer ${userToken}` }).send(newMeal).end((err, res) => {
+                            mealId = res.body._id
+                            request.get(`/users/${id}/meals/${mealId}`).set({ 'Authorization': `Bearer ${userToken}` }).end((err, res) => {
+                                console.log(res.body)
+                                expect(res.status).toEqual(200)
+                                expect(res.body.name).toEqual(updatedMeal.name)
+                                expect(res.body.numOfCalories).toEqual(updatedMeal.numOfCalories)
+                                done();
+                            })
                         })
                 })
             })
 
-            it("should update successfully ", function (done) {
+            fit("should update successfully ", function (done) {
                 request.put(`/users/${id}/meals/${mealId}`)
                     .set({ 'Authorization': `Bearer ${userToken}` })
                     .send(updatedMeal)
                     .end((err, res) => {
-                        expect(res.status).toEqual(200)
-                        expect(res.body.meals.length).toEqual(1)
-                        expect(res.body.meals[0].name).toEqual(updatedMeal.name)
-                        expect(res.body.meals[0].city).toEqual(updatedMeal.city)
-                        expect(res.body.meals[0].gmtTimeDifference).toEqual(updatedMeal.gmtTimeDifference)
-                        done();
+                        request.get('/users?skip=10/')
+                            .set({ 'Authorization': `Bearer ${userToken}` })
+                            .end((err, res) => {
+                                expect(res.status).toEqual(200)
+                                expect(res.body.name).toEqual(updatedMeal.name)
+                                expect(res.body.numOfCalories).toEqual(updatedMeal.numOfCalories)
+                                done();
+                            })
+
                     })
             })
 
