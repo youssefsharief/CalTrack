@@ -22,6 +22,8 @@ import { NavbarComponent } from 'app/core/components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
 import { ProgressBarComponent } from 'app/core/components/progress-bar/progress-bar.component';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+import { captchaSiteKey } from 'app/shared/config/constants';
 
 export function getTimepickerConfig(): TimepickerConfig {
     return Object.assign(new TimepickerConfig(), {
@@ -67,6 +69,7 @@ export function getTimepickerConfig(): TimepickerConfig {
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         { provide: APP_BASE_HREF, useValue: '/' },
         [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
+        { provide: RECAPTCHA_SETTINGS, useValue: { siteKey: captchaSiteKey } as RecaptchaSettings },
         CaloriesTrackingSubjectService
     ],
 

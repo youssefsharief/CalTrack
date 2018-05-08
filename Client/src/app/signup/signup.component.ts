@@ -50,7 +50,9 @@ export class SignupComponent implements OnInit {
     }
 
     signup() {
-        this.dataService.signup(this.form.value).subscribe(
+        const payload = Object.assign(this.form.value, {})
+        delete payload.confirmPassword
+        this.dataService.signup(payload).subscribe(
             data => {
                 this.authService.saveProfile(data.user)
                 this.router.navigate(['my-profile'])
@@ -60,7 +62,9 @@ export class SignupComponent implements OnInit {
     }
 
     signupSecurely() {
-        this.dataService.signupSecurely(this.form.value).subscribe(
+        const payload = Object.assign(this.form.value, {})
+        delete payload.confirmPassword
+        this.dataService.signupSecurely(payload).subscribe(
             data => {
                 this.publicInfoService.setEmail(this.form.value.email)
                 this.publicInfoService.setPass(this.form.value.password)
