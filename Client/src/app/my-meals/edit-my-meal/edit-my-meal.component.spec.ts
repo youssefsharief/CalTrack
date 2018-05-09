@@ -46,14 +46,6 @@ describe('EditMyMeal Component', () => {
     it('should build successfully', () => {
         expect(comp).toBeTruthy()
     })
-    describe('No meal has been selected', () => {
-        it('should navigate to "my-meals" route', () => {
-            mealsService.getSelectedMeal = () => null
-            fixture.detectChanges();
-            tick(100)
-            expect(location.path()).toBe('/my-meals')
-        })
-    })
 
     describe('Meal has been selected', () => {
         beforeEach(() => {
@@ -77,11 +69,6 @@ describe('EditMyMeal Component', () => {
                         comp.onSubmitted({ name: 'aaaa', date: 'vvvvvvv', numOfCalories: 999 })
                         expect(spy).toHaveBeenCalled();
                     })
-                })
-                xit('should navigate to "my-meals" route', () => {
-                    fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                    tick(100)
-                    expect(location.path()).toBe('/my-meals')
                 })
             })
             describe('Error Scenario', () => {

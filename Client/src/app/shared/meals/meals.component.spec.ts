@@ -138,12 +138,6 @@ describe('Meals Component', () => {
         it('delete button should be there', () => {
             expect(fixture.nativeElement.querySelector('.fa-trash')).toBeTruthy()
         })
-        xit('should directly remove from ui after clicking delete', () => {
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable tr').length).toBe(5)
-            fixture.nativeElement.querySelectorAll('.fa-trash')[0].click()
-            fixture.detectChanges()
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable tr').length).toBe(4)
-        })
 
 
     })

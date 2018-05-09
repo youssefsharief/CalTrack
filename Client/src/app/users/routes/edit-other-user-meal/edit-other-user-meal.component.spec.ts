@@ -48,11 +48,7 @@ describe('EditOtherUserMeal Component', () => {
             fixture.detectChanges();
             expect(comp).toBeTruthy()
         })
-        xit('should navigate to "users" route', () => {
-            fixture.detectChanges();
-            tick()
-            expect(location.path()).toBe('/users')
-        })
+
     })
 
     describe('user available', () => {
@@ -96,11 +92,7 @@ describe('EditOtherUserMeal Component', () => {
                     })
                 })
 
-                xit('should navigate to "users/:id/meal" route', () => {
-                    fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                    tick(100)
-                    expect(location.path()).toBe('/users/rr/meal')
-                })
+
 
             })
             describe('Error Scenario', () => {

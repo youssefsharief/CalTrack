@@ -44,11 +44,7 @@ describe('AddOtherUserMeal Component', () => {
             fixture.detectChanges();
             expect(comp).toBeTruthy()
         })
-        xit('should navigate to "users" route', () => {
-            fixture.detectChanges();
-            tick()
-            expect(location.path()).toBe('/users')
-        })
+
     })
 
     describe('user available', () => {

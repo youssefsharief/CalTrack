@@ -154,9 +154,6 @@ describe('User Form Component', () => {
                                 expect(spy).toHaveBeenCalled();
                             })
 
-                            xit('should call with right arguments', () => {
-                                expect(spy).toHaveBeenCalledWith('aa', Object({ name: 'YYYY', email: 'aadsdjhk@daom.com', maxCalories: 1900, isTrackingDisplayed: false }));
-                            })
                         })
 
                         describe('Scenario: Error', () => {

@@ -65,20 +65,6 @@ describe('Login Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    xdescribe('Navigation', () => {
-        it('signup', () => {
-            fixture.nativeElement.querySelector('#signup-button').click();
-            tick();
-            fixture.detectChanges();
-            expect(location.path()).toBe('/signup');
-        });
-        it('forget password', () => {
-            fixture.nativeElement.querySelector('#forget-password-button').click();
-            tick();
-            fixture.detectChanges();
-            expect(location.path()).toBe('/email_password_recovery');
-        });
-    })
 
     describe('Initial Html', () => {
         it('jumbotron should not appear', () => {
@@ -179,22 +165,7 @@ describe('Login Component', () => {
             passwordInputElement.value = 'ada456346sd'
             passwordInputElement.dispatchEvent(new Event('input'));
         })
-        describe('Scenario: Success', () => {
-            xit('should successfully post and navigate to home page', () => {
-                dataService.login = (data) => Observable.of({ user, token: 'd' })
-                fixture.detectChanges();
-                router.initialNavigation();
-                const loader = TestBed.get(NgModuleFactoryLoader);
-                loader.stubbedModules = { lazyModule: MyMealsModule };
-                router.resetConfig([
-                    { path: 'my-profile', loadChildren: '../edit-my-info/edit-my-info.module#EditMyInfoModule' },
-                ]);
-                fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                tick();
-                fixture.detectChanges();
-                expect(location.path()).toBe('/my-profile')
-            })
-        })
+
 
 
         describe('Scenario: Error', () => {

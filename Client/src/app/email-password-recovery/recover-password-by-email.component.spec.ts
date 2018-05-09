@@ -117,12 +117,6 @@ describe('RecoverPassworByEmail Component', () => {
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 expect(spy).toHaveBeenCalledWith('fahjlkh@hfjdf.com')
             })
-        xit('should navigate to password submission route', () => {
-                fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                tick(400)
-                expect(location.path()).toBe('/email_password_recovery/submit_new_password')
-            })
-        })
 
         describe('Scenario: Error', () => {
             it('should handle Error', () => {

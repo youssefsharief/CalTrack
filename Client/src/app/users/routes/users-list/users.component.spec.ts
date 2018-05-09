@@ -64,33 +64,12 @@ describe('Users Component', () => {
                     authService.getRole = () => 'admin'
                     fixture.detectChanges()
                 })
-                it('should navigate to "update-user-info" route', () => {
-                    router.navigate(['users/11'])
-                    tick(100)
-                    expect(location.path()).toBe('/users/11')
-                })
-                it('should navigate to "update-user-role" route', () => {
-                    router.navigate(['users/11/role'])
-                    tick()
-                    expect(location.path()).toBe('/users/11/role')
-                })
-
             })
 
             describe('is manager', () => {
                 beforeEach(() => {
                     authService.getRole = () => 'manager'
                     fixture.detectChanges()
-                })
-                it('should be able to navigate to "update-user-info" route', () => {
-                    router.navigate(['users/11'])
-                    tick()
-                    expect(location.path()).toBe('/users/11')
-                })
-                it('should not be able to navigate to "update-user-role" route', () => {
-                    router.navigate(['users/11/role'])
-                    tick()
-                    expect(location.path()).not.toBe('/users/11/role')
                 })
 
             })
@@ -106,43 +85,6 @@ describe('Users Component', () => {
             })
             it('role should get displayed', () => {
                 expect(fixture.nativeElement.querySelectorAll('td')[1].innerHTML).toBe('regular')
-            })
-            it('email should get displayed', () => {
-                expect(fixture.nativeElement.querySelectorAll('td')[2].innerHTML).toBe('asddl@kfdl.com')
-            })
-        })
-
-        describe('Navigation', () => {
-            it('should navigate to "update-user-info" route', () => {
-                authService.getRole = () => 'admin'
-                fixture.detectChanges()
-                fixture.nativeElement.querySelector('#updateUserInfoButton').click()
-                tick(100)
-                expect(location.path()).toBe('/users/11')
-            })
-            describe('is Admin', () => {
-                beforeEach(() => {
-                    authService.getRole = () => 'admin'
-                    fixture.detectChanges()
-                })
-                it('should navigate to "update-user-meal" route', () => {
-                    fixture.nativeElement.querySelector('#mealsButton').click()
-                    tick(100)
-                    expect(location.path()).toBe('/users/11/meal')
-                })
-                it('should navigate to "update-user-role" route', () => {
-                    fixture.nativeElement.querySelector('#userRoleButton').click()
-                    tick(100)
-                    expect(location.path()).toBe('/users/11/role')
-                })
-            })
-            describe('is not admin', () => {
-                it('should not show icon that navigate to "update-user-meal" route', () => {
-                    expect(fixture.nativeElement.querySelector('#mealsButton')).toBeFalsy()
-                })
-                it('should not show icon that navigate to "update-user-role" route', () => {
-                    expect(fixture.nativeElement.querySelector('#userRoleButton')).toBeFalsy()
-                })
             })
         })
 
@@ -167,9 +109,6 @@ describe('Users Component', () => {
                     dataService.getUsers = () => Observable.of({ users: [], count: 40 })
                     fixture.nativeElement.querySelector('#deleteButton').click()
                     fixture.detectChanges()
-                })
-                it('user row should be available', () => {
-                    expect(fixture.nativeElement.querySelectorAll('td')[0]).toBeTruthy()
                 })
             })
         })
@@ -212,10 +151,6 @@ describe('Users Component', () => {
             beforeEach(() => {
                 fixture.detectChanges()
             })
-            xit('The correct number of pages should appear in addition to previous and next page links', () => {
-                fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('.page-item').length).toBe(14)
-            })
             describe('Moving to the next page', () => {
                 it('getUsers api method should have been called with the right arguments', () => {
                     const spy = spyOn(dataService, 'getUsers').and.callThrough()
@@ -233,28 +168,10 @@ describe('Users Component', () => {
                 searchFieldElement.value = 'ss'
                 searchFieldElement.dispatchEvent(new Event('input'));
             })
-            xit('getUsers api method should have been called with the right arguments', (done) => {
-                const spy = spyOn(dataService, 'getUsers').and.callThrough()
-                setTimeout(() => {
-                    expect(spy).toHaveBeenCalledWith(Object({ roleFilter: undefined, searchTerm: 'ss', skip: 0 }))
-                    done()
-                }, 500)
 
-            })
         })
 
 
-        describe('Filter functionality', () => {
-            xit('getUsers api method should have been called with the right arguments', () => {
-                fixture.detectChanges()
-                const spy = spyOn(dataService, 'getUsers').and.callThrough()
-                const searchFieldElement = fixture.nativeElement.querySelector('#roleField')
-                searchFieldElement.value = 'manager'
-                searchFieldElement.dispatchEvent(new Event('input'));
-                searchFieldElement.dispatchEvent(new Event('typeaheadOnSelect'))
-                expect(spy).toHaveBeenCalledWith(Object({ roleFilter: 'manager', searchTerm: undefined, skip: 0 }))
-            })
-        })
 
 
     })

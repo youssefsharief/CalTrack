@@ -31,11 +31,7 @@ describe('SignupSuccess Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    xit('should navigate to "login" route when clicking on the link', () => {
-        fixture.nativeElement.querySelector('a').click();
-        tick()
-        expect(location.path()).toBe('')
-    })
+
 
 
 })

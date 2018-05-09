@@ -67,11 +67,7 @@ describe('Signup Component', () => {
         fixture.detectChanges();
     });
 
-    xit('routing', () => {
-        router.navigateByUrl('/my-profile');
-        tick()
-        expect(comp).toBeTruthy()
-    })
+
 
     it('should build successfully', () => {
         expect(comp).toBeTruthy()

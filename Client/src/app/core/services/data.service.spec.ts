@@ -44,7 +44,7 @@ describe('ApiService: DataService', () => {
     });
 
 
-    xdescribe('signup', () => {
+    describe('signup', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.signup({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
@@ -55,7 +55,7 @@ describe('ApiService: DataService', () => {
     });
 
 
-    xdescribe('signup securely', () => {
+    describe('signup securely', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.signupSecurely({ name: 's', email: 'a', password: 'a', isTrackingDisplayed: false }).subscribe()
