@@ -11,7 +11,7 @@ export class SnackBarService {
     private errorConfig: MatSnackBarConfig = { panelClass: ['errorAlert'], duration: 5000 }
     private warnConfig: MatSnackBarConfig = { panelClass: ['warnAlert'], duration: 5000 }
 
-    constructor(private snackBar: MatSnackBar) { }
+    constructor(public snackBar: MatSnackBar) { }
 
     emitSuccessSnackBar(message = this.successDefaultMessage, actionText = this.actionText, config = this.successConfig) {
         this.snackBar.open(message, actionText, config)

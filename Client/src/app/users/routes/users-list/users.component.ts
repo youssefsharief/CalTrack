@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs/Rx';
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { roles } from 'app/shared/config/constants';
 import { AdminClaimsService } from 'app/core/services/admin-claims.service';
@@ -9,6 +9,7 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { AuthService } from 'app/core/services/auth.service';
 import { DataService } from 'app/core/services/data.service';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { UndoDeleteService } from 'app/core/services/undo-delete.service';
 
 @Component({
     templateUrl: 'users.component.html',
@@ -28,7 +29,9 @@ export class UsersComponent implements OnInit, OnDestroy {
         private selectedUserService: SelectedUserService,
         private dataService: DataService,
         private sb: SnackBarService,
-        private authService: AuthService
+        private authService: AuthService,
+        private undoDeleteService: UndoDeleteService,
+        private ref: ChangeDetectorRef
     ) { }
 
 
@@ -49,7 +52,8 @@ export class UsersComponent implements OnInit, OnDestroy {
     }
 
     public fetchUsers({ page }) {
-        this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 }).subscribe(
+        this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 }).debounceTime(50000)
+        .subscribe(
             data => {
                 this.users = data.users
                 this.totalItems = data.count
@@ -67,8 +71,23 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.router.navigate(['/users', item._id, 'role'])
     }
 
-    onDeleteClick(selectedUser) {
-        this.dataService.deleteUser(selectedUser._id).subscribe(
+
+    onDeleteClick(item) {
+        this.undoDeleteService.init(this.users, 'User').first().subscribe(
+            oldItems => {
+                if (oldItems) {
+                    this.users = oldItems
+                    this.ref.detectChanges()
+                } else {
+                    this.deleteFromBackend(item._id)
+                }
+            }
+        )
+        this.users = this.users.filter(user => user._id !== item._id)
+    }
+
+    private deleteFromBackend(userId) {
+        this.dataService.deleteUser(userId).subscribe(
             data => this.fetchUsers({ page: this.currentPage }),
             error => this.sb.emitErrorSnackBar(error)
         )

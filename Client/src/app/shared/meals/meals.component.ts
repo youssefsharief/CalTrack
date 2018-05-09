@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
@@ -6,6 +6,7 @@ import { User } from 'app/shared/models/user.model';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
 import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
 import { Meal } from 'app/shared/models/meal.model';
+import { UndoDeleteService } from 'app/core/services/undo-delete.service';
 
 @Component({
     selector: 'app-meals',
@@ -19,6 +20,7 @@ export class MealsComponent implements OnInit {
     @Output() addClicked = new EventEmitter()
     @Output() editClicked = new EventEmitter()
     meals: Meal[] = []
+    oldMeals: Meal[] = []
     totalItems: number
     bsRangeValue: string
     startTime: string
@@ -30,7 +32,9 @@ export class MealsComponent implements OnInit {
         private dataService: DataService,
         private sb: SnackBarService,
         private dateUtilityService: DateUtilityService,
-        private caloriesTrackingSubjectService: CaloriesTrackingSubjectService
+        private caloriesTrackingSubjectService: CaloriesTrackingSubjectService,
+        private undoDeleteService: UndoDeleteService,
+        private ref: ChangeDetectorRef
     ) { }
 
     ngOnInit() {
@@ -68,14 +72,28 @@ export class MealsComponent implements OnInit {
     }
 
     onDeleteClick(item) {
-        this.dataService.deleteMeal(this.userId, item._id).subscribe(
+        this.undoDeleteService.init(this.meals, 'Meal').first().subscribe(
+            oldItems => {
+                if (oldItems) {
+                    this.meals = oldItems
+                    this.ref.detectChanges()
+                } else {
+                    this.deleteFromBackend(item._id)
+                }
+            }
+        )
+        this.meals = this.meals.filter(meal => meal._id !== item._id)
+    }
+
+    private deleteFromBackend(mealId) {
+        this.dataService.deleteMeal(this.userId, mealId).subscribe(
             data => {
-                this.meals = this.meals.filter(t => t._id !== item._id)
                 this.caloriesTrackingSubjectService.updated$.next()
             },
             error => this.sb.emitErrorSnackBar(error)
         )
     }
+
 
     onEditMealClick(item: Meal) {
         this.mealsService.saveSelectedMeal(item)
