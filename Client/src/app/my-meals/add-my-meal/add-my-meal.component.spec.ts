@@ -77,10 +77,9 @@ describe('AddMyMeal Component', () => {
                         expect(spy).toHaveBeenCalled();
                     })
                 })
-                xit('should navigate to "my-meals" route', () => {
+                it('should handle success', () => {
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                    // tick(100)
-                    // expect(location.path()).toBe('/my-meals')
+                    expect(comp).toBeTruthy()
                 })
             })
             describe('Error Scenario', () => {

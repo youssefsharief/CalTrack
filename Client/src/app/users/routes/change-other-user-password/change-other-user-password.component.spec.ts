@@ -64,12 +64,10 @@ describe('ChangeOtherUserPassword Component', () => {
             })
         })
         describe('User not found', () => {
-            xit('should navigate to users page', () => {
+            xit('should handle issue', () => {
                 selectedUserService.getUserWithProbableDataFetch = () => Observable.throw('W')
                 fixture.detectChanges();
-                // console.log(comp.user)
-                // tick(1000)
-                // expect(location.path()).toBe('/users')
+                expect(comp).toBeTruthy();
             })
         })
     })

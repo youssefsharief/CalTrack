@@ -2,7 +2,7 @@ import { Meal } from 'app/shared/models/meal.model';
 
 export interface User {
     name: string
-    email: string
+    email?: string
     maxCalories?: number
     isTrackingDisplayed: boolean
     password?: string

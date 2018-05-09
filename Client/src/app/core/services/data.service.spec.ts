@@ -19,8 +19,6 @@ describe('ApiService: DataService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, RouterTestingModule, SharedModule],
             providers: [
-                // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-                // AuthService, 
                 SnackBarService, RouterTestingModule,
                 DataService,
                 { provide: HTTP_INTERCEPTORS, useClass: EnvironmentApiInterceptor, multi: true },

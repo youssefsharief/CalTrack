@@ -283,12 +283,10 @@ describe('Signup Component', () => {
 
         describe('Normal Signup', () => {
             describe('Scenario: Success', () => {
-                it('should successfully post and navigate to signup success page', () => {
+                it('should successfully post', () => {
                     dataService.signup = (data) => Observable.of({ user, token: 'aaaa' })
                     fixture.detectChanges();
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                    // tick()
-                    // expect(location.path()).toBe('/signup/success')
                 })
             })
 
@@ -315,11 +313,9 @@ describe('Signup Component', () => {
                 beforeEach(() => {
                     dataService.signupSecurely = (data) => Observable.of(user)
                 })
-                it('should successfully post and navigate to signup success page', () => {
+                it('should successfully post', () => {
                     fixture.detectChanges();
                     fixture.debugElement.query(By.css('#secure-signup-button')).nativeElement.click()
-                    // tick()
-                    // expect(location.path()).toBe('/signup/activate')
                 })
                 it('should call the right arguments', () => {
                     fixture.detectChanges();

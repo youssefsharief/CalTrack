@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
     const user = await getUserById(req.decoded._id).catch(e => next(e))
     if (!user) return next({ nF: 'User' })
     if (isDisallowedToDisconnect(user)) {
-        return res.status(400).json(errorMessageWrapper( 'You could not disconnect the last remaining login'))
+        return res.status(400).json(errorMessageWrapper('You could not disconnect the last remaining login'))
     } else {
         return next()
     }

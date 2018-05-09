@@ -8,7 +8,6 @@ import { PasswordRecoveredSuccessfullyComponent } from 'app/email-password-recov
 import { EmailPasswordRecoveryModule } from 'app/email-password-recovery/email-password-recovery.module';
 import { CoreModule } from 'app/core/core.module';
 import { AppRoutingModule } from 'app/app-routing.module';
-// tslint:disable-next-line:max-line-length
 
 describe('passwordRecoveredSuccessfully Component', () => {
     let comp: PasswordRecoveredSuccessfullyComponent;

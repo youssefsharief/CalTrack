@@ -29,12 +29,6 @@ describe('MealFormComponentt', () => {
         expect(comp).toBeTruthy()
     })
 
-    // xdescribe('transform date', () => {
-    //     it('should work', () => {
-    //         expect(comp.transformDate(new Date('2018-08-09'), new Date('2018-08-23'))).toBe('')
-    //     })
-    // })
-
     describe('Form validation', () => {
         describe('invalid name', () => {
             beforeEach(() => {

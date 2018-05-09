@@ -59,13 +59,13 @@ describe('MyMeals Component', () => {
         fixture.detectChanges();
     });
 
-    fit('should build successfully', () => {
+    it('should build successfully', () => {
         console.log(comp.userId)
         expect(comp).toBeTruthy()
     })
 
-    fdescribe('Initial Markup', () => {
-        fit('Name should be displayed', () => {
+    describe('Initial Markup', () => {
+        it('Name should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[0].innerHTML).toBe('C')
         })
         it('Date should be displayed', () => {

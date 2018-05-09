@@ -7,7 +7,6 @@ import 'rxjs/add/observable/throw';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
-// tslint:disable-next-line:max-line-length
 import { PublicInfoService } from 'app/core/services/public.info.service';
 import { Location } from '@angular/common';
 import { EmailPasswordRecoveryModule } from 'app/email-password-recovery/email-password-recovery.module';

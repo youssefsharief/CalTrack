@@ -23,10 +23,10 @@
                     </td>
                     <ng-container *ngIf="isPersonal">
                         <td class="text-center">
-                            <button *ngIf="!user.email" class="btn btn-link" routerLink="/my-logins/add-local-login">
+                            <button id="connectLocalBtn" *ngIf="!user.email" class="btn btn-link" routerLink="/my-logins/add-local-login">
                                 Add local login
                             </button>
-                            <button *ngIf="user.email" class="btn btn-link" (click)="disconnectLocalLogin.emit()" [disabled]="isRemoveLoginDisabled">
+                            <button id="disconnectLocalBtn" *ngIf="user.email" class="btn btn-link" (click)="disconnectLocalLogin.emit()" [disabled]="isRemoveLoginDisabled">
                                 Remove local login
                             </button>
                         </td>
@@ -52,10 +52,10 @@
                     <ng-container *ngIf="isPersonal">
 
                         <td class="text-center">
-                            <button *ngIf="!user.googleId" class="btn btn-link" (click)="connectGoogle.emit()">
+                            <button id="connectGoogleBtn" *ngIf="!user.googleId" class="btn btn-link" (click)="connectGoogle.emit()">
                                 Connect Google
                             </button>
-                            <button *ngIf="user.googleId" class="btn btn-link" (click)="disconnectGoogle.emit()" [disabled]="isRemoveLoginDisabled">
+                            <button id="disconnectGoogleBtn" *ngIf="user.googleId" class="btn btn-link" (click)="disconnectGoogle.emit()" [disabled]="isRemoveLoginDisabled">
                                 Disconnect Google
                             </button>
                         </td>
@@ -80,10 +80,10 @@
                     <ng-container *ngIf="isPersonal">
 
                         <td class="text-center">
-                            <button *ngIf="!user.facebookId" class="btn btn-link" (click)="connectFacebook.emit()">
+                            <button id="connectFacebookBtn" *ngIf="!user.facebookId" class="btn btn-link" (click)="connectFacebook.emit()">
                                 Connect Facebook
                             </button>
-                            <button *ngIf="user.facebookId" class="btn btn-link" (click)="disconnectFacebook.emit()" [disabled]="isRemoveLoginDisabled">
+                            <button id="disconnectFacebookBtn" *ngIf="user.facebookId" class="btn btn-link" (click)="disconnectFacebook.emit()" [disabled]="isRemoveLoginDisabled">
                                 Disconnect Facebook
                             </button>
                         </td>
