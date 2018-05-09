@@ -68,15 +68,13 @@ export class MealsComponent implements OnInit {
     }
 
     onDeleteClick(item) {
-        // if (confirm(`Are you sure you want to delete ${item.name} meal`)) {
-            this.dataService.deleteMeal(this.userId, item._id).subscribe(
-                data => {
-                    this.meals = this.meals.filter(t => t._id !== item._id)
-                    this.caloriesTrackingSubjectService.updated$.next()
-                },
-                error => this.sb.emitErrorSnackBar(error)
-            )
-        // }
+        this.dataService.deleteMeal(this.userId, item._id).subscribe(
+            data => {
+                this.meals = this.meals.filter(t => t._id !== item._id)
+                this.caloriesTrackingSubjectService.updated$.next()
+            },
+            error => this.sb.emitErrorSnackBar(error)
+        )
     }
 
     onEditMealClick(item: Meal) {

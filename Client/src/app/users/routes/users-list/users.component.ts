@@ -68,12 +68,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     }
 
     onDeleteClick(selectedUser) {
-        // if (confirm(`Are you sure you want to delete ${selectedUser.name}'s account`)) {
-            this.dataService.deleteUser(selectedUser._id).subscribe(
-                data => this.fetchUsers({ page: this.currentPage }),
-                error => this.sb.emitErrorSnackBar(error)
-            )
-        // }
+        this.dataService.deleteUser(selectedUser._id).subscribe(
+            data => this.fetchUsers({ page: this.currentPage }),
+            error => this.sb.emitErrorSnackBar(error)
+        )
     }
 
     onUpdateClick(item) {
