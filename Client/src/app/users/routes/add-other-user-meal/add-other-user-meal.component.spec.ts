@@ -12,6 +12,8 @@ import { User } from 'app/shared/models/user.model';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { UsersModule } from 'app/users/users.module';
 import { AddOtherUserMealComponent } from 'app/users/routes/add-other-user-meal/add-other-user-meal.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CoreModule } from 'app/core/core.module';
 
 describe('AddOtherUserMeal Component', () => {
     let comp: AddOtherUserMealComponent;
@@ -21,11 +23,10 @@ describe('AddOtherUserMeal Component', () => {
     let selectedUserService: SelectedUserService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [UsersModule],
+            imports: [UsersModule, RouterTestingModule, CoreModule],
             providers: [
                 { provide: SelectedUserService, useValue: {} },
                 { provide: DataService, useValue: {} },
-                SnackBarService,
             ],
         });
         fixture = TestBed.createComponent(AddOtherUserMealComponent);
@@ -43,11 +44,11 @@ describe('AddOtherUserMeal Component', () => {
             fixture.detectChanges();
             expect(comp).toBeTruthy()
         })
-        it('should navigate to "users" route', fakeAsync(() => {
+        it('should navigate to "users" route', () => {
             fixture.detectChanges();
             tick()
             expect(location.path()).toBe('/users')
-        }))
+        })
     })
 
     describe('user available', () => {
@@ -92,11 +93,11 @@ describe('AddOtherUserMeal Component', () => {
                     })
                 })
 
-                it('should navigate to "users/:id/meal" route', fakeAsync(() => {
+                it('should navigate to "users/:id/meal" route', () => {
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                     tick(100)
                     expect(location.path()).toBe('/users/rr/meal')
-                }))
+                })
 
             })
             describe('Error Scenario', () => {

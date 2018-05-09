@@ -97,7 +97,7 @@ describe('EditRoleComponent', () => {
             select.value = 'regular'
             select.dispatchEvent(new Event('change'));
         })
-        xit('should go to users route after success', fakeAsync(() => {
+        xit('should go to users route after success', () => {
             fixture.nativeElement.querySelector('button').click()
             tick(10)
             expect(location.path()).toBe('/users')

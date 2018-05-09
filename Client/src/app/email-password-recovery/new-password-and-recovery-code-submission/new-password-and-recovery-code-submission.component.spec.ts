@@ -261,11 +261,11 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 expect(spy).toHaveBeenCalledWith(Object({recoveryCode: '11111111111111111111', newPassword: 'ada456346sd', email: 'aadsdjhkds@sa.com'}))
             })
-            it('should navigate to password submission route', fakeAsync(() => {
+            it('should navigate to password submission route', () => {
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick(400)
                 expect(location.path()).toBe('/password_recovered_successfully')
-            }))
+            })
         })
 
         describe('Scenario: Error', () => {

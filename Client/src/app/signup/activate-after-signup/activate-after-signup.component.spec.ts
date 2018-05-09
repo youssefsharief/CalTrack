@@ -148,20 +148,20 @@ describe('ActivateAfterSignupComponent Component', () => {
         })
 
         describe('Scenario: Success', () => {
-            it('should call the right ', fakeAsync(() => {
+            it('should call the right ', () => {
                 dataService.activateFromBackEnd = (activationCode, email) => Observable.of(<{ token: string, user: User }>{})
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick()
                 expect(location.path()).toBe('/signup/success')
-            }))
-            it('should successfully post and navigate to signup success page', fakeAsync(() => {
+            })
+            it('should successfully post and navigate to signup success page', () => {
                 dataService.activateFromBackEnd = (activationCode, email) => Observable.of(<{ token: string, user: User }>{})
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
                 tick()
                 expect(location.path()).toBe('/signup/success')
-            }))
+            })
         })
 
         describe('Scenario: Error', () => {

@@ -63,16 +63,16 @@ describe('Users Component', () => {
                     authService.getRole = () => 'admin'
                     fixture.detectChanges()
                 })
-                it('should navigate to "update-user-info" route', fakeAsync(() => {
+                it('should navigate to "update-user-info" route', () => {
                     router.navigate(['users/11'])
                     tick(100)
                     expect(location.path()).toBe('/users/11')
-                }))
-                it('should navigate to "update-user-role" route', fakeAsync(() => {
+                })
+                it('should navigate to "update-user-role" route', () => {
                     router.navigate(['users/11/role'])
                     tick()
                     expect(location.path()).toBe('/users/11/role')
-                }))
+                })
 
             })
 
@@ -81,16 +81,16 @@ describe('Users Component', () => {
                     authService.getRole = () => 'manager'
                     fixture.detectChanges()
                 })
-                it('should be able to navigate to "update-user-info" route', fakeAsync(() => {
+                it('should be able to navigate to "update-user-info" route', () => {
                     router.navigate(['users/11'])
                     tick()
                     expect(location.path()).toBe('/users/11')
-                }))
-                it('should not be able to navigate to "update-user-role" route', fakeAsync(() => {
+                })
+                it('should not be able to navigate to "update-user-role" route', () => {
                     router.navigate(['users/11/role'])
                     tick()
                     expect(location.path()).not.toBe('/users/11/role')
-                }))
+                })
 
             })
 
@@ -112,28 +112,28 @@ describe('Users Component', () => {
         })
 
         describe('Navigation', () => {
-            it('should navigate to "update-user-info" route', fakeAsync(() => {
+            it('should navigate to "update-user-info" route', () => {
                 authService.getRole = () => 'admin'
                 fixture.detectChanges()
                 fixture.nativeElement.querySelector('#updateUserInfoButton').click()
                 tick(100)
                 expect(location.path()).toBe('/users/11')
-            }))
+            })
             describe('is Admin', () => {
                 beforeEach(() => {
                     authService.getRole = () => 'admin'
                     fixture.detectChanges()
                 })
-                it('should navigate to "update-user-meal" route', fakeAsync(() => {
+                it('should navigate to "update-user-meal" route', () => {
                     fixture.nativeElement.querySelector('#mealsButton').click()
                     tick(100)
                     expect(location.path()).toBe('/users/11/meal')
-                }))
-                it('should navigate to "update-user-role" route', fakeAsync(() => {
+                })
+                it('should navigate to "update-user-role" route', () => {
                     fixture.nativeElement.querySelector('#userRoleButton').click()
                     tick(100)
                     expect(location.path()).toBe('/users/11/role')
-                }))
+                })
             })
             describe('is not admin', () => {
                 it('should not show icon that navigate to "update-user-meal" route', () => {

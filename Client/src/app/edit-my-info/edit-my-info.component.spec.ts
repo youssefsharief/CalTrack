@@ -42,11 +42,11 @@ describe('EditMyInfo Component', () => {
     })
 
     // describe('Navigation', () => {
-    //     it('Change my password should navigate to the right page', fakeAsync(() => {
+    //     it('Change my password should navigate to the right page', () => {
     //         fixture.nativeElement.querySelector('#change-my-password-button').click()
     //         tick()
     //         expect(location.path()).toBe('/my-profile/password')
-    //     }))
+    //     })
     // })
     describe('Submitting Form', () => {
         beforeEach(() => {

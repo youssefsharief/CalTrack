@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AppModule } from 'app/app.module';
 import { PasswordRecoveredSuccessfullyComponent } from 'app/email-password-recovery/password-recovered-successfully/password-recovered-successfully.component';
 import { EmailPasswordRecoveryModule } from 'app/email-password-recovery/email-password-recovery.module';
+import { CoreModule } from 'app/core/core.module';
+import { AppRoutingModule } from 'app/app-routing.module';
 // tslint:disable-next-line:max-line-length
 
 describe('passwordRecoveredSuccessfully Component', () => {
@@ -16,7 +18,7 @@ describe('passwordRecoveredSuccessfully Component', () => {
     let router: Router;
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [EmailPasswordRecoveryModule],
+            imports: [EmailPasswordRecoveryModule, AppModule],
             providers: [Location],
         })
         fixture = TestBed.createComponent(PasswordRecoveredSuccessfullyComponent)

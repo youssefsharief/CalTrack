@@ -8,6 +8,8 @@ import { AppModule } from 'app/app.module';
 import { DataService } from 'app/core/services/data.service';
 import { InviteUserModule } from 'app/invite-user/invite-user.module';
 import { InviteUserComponent } from 'app/invite-user/invite-user.component';
+import { SharedModule } from 'app/shared/shared.module';
+import { CoreModule } from 'app/core/core.module';
 
 describe('InviteUser Component', () => {
     let comp: InviteUserComponent;
@@ -15,7 +17,7 @@ describe('InviteUser Component', () => {
     let dataService: DataService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [InviteUserModule],
+            imports: [InviteUserModule, SharedModule, CoreModule],
             providers: [
                 { provide: DataService, useValue: {} },
             ],

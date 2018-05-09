@@ -76,7 +76,7 @@ describe('MealFormComponentt', () => {
         })
 
 
-        fdescribe('invalid calories', () => {
+        describe('invalid calories', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameInputElement = nameInput.nativeElement
@@ -116,7 +116,7 @@ describe('MealFormComponentt', () => {
         })
 
 
-        fdescribe('all valid', () => {
+        describe('all valid', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameInputElement = nameInput.nativeElement

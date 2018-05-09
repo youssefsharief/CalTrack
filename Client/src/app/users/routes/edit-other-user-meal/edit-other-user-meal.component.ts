@@ -57,7 +57,7 @@ export class EditOtherUserMealComponent implements OnInit {
     }
 
     private navigateBack() {
-        this.router.navigate(['/users/', this.user._id, 'meals'])
+        this.router.navigate(['users', this.user._id, 'meals'])
     }
 
 

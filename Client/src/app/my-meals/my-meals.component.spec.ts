@@ -105,20 +105,20 @@ describe('MyMeal Component', () => {
 
     describe('Navigation', () => {
         describe('click on plus button', () => {
-            it('should navigate to correct add new meal route', fakeAsync(() => {
+            it('should navigate to correct add new meal route', () => {
                 fixture.nativeElement.querySelector('.fa-plus').click();
                 tick();
                 fixture.detectChanges();
                 expect(location.path()).toBe('/my-meals/add');
-            }));
+            });
         })
         describe('click on plus edit button', () => {
-            it('should navigate to correct edit meal route', fakeAsync(() => {
+            it('should navigate to correct edit meal route', () => {
                 fixture.nativeElement.querySelector('.fa-edit').click();
                 tick();
                 fixture.detectChanges();
                 expect(location.path()).toBe('/my-meals/edit');
-            }));
+            });
         })
     })
 
