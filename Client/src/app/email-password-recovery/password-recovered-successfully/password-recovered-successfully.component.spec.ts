@@ -33,10 +33,5 @@ describe('passwordRecoveredSuccessfully Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    it('it should navigate to login route when link clicked', fakeAsync(() => {
-        fixture.debugElement.nativeElement.querySelector('a').click()
-        tick(100)
-        expect(location.path()).toBe('/login')
-    }))
 })
 

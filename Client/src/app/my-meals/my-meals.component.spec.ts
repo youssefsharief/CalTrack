@@ -60,72 +60,7 @@ describe('MyMeals Component', () => {
     });
 
     it('should build successfully', () => {
-        console.log(comp.userId)
         expect(comp).toBeTruthy()
-    })
-
-    describe('Initial Markup', () => {
-        it('Name should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[0].innerHTML).toBe('C')
-        })
-        it('Date should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[1].innerHTML).toBe('Cairo')
-        })
-        it('Gmt meal difference should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3].innerHTML).toBe('3')
-        })
-        it('clock should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toContain(':');
-        })
-    })
-
-    describe('Delete meal', () => {
-        describe('success', () => {
-            it('list item should be removed', () => {
-                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeTruthy()
-                dataService.deleteMeal = () => Observable.of('ok')
-                fixture.nativeElement.querySelector('.fa-trash').click()
-                fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeFalsy()
-            });
-            it('api service should have been called with correct params', () => {
-                dataService.deleteMeal = () => Observable.of('ok')
-                const spy = spyOn(dataService, 'deleteMeal').and.callThrough()
-                fixture.nativeElement.querySelector('.fa-trash').click()
-                fixture.detectChanges()
-                expect(spy).toHaveBeenCalledWith('uID', 'r')
-            });
-        })
-
-        describe('error', () => {
-            it('list item should not be removed', () => {
-                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeTruthy()
-                dataService.deleteMeal = () => Observable.throw('Error')
-                fixture.nativeElement.querySelector('.fa-trash').click()
-                fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeTruthy()
-            });
-        })
-    })
-
-    describe('Navigation', () => {
-        describe('click on plus button', () => {
-            it('should navigate to correct add new meal route', () => {
-                fixture.nativeElement.querySelector('.fa-plus').click();
-                tick();
-                fixture.detectChanges();
-                expect(location.path()).toBe('/my-meals/add');
-            });
-        })
-        describe('click on plus edit button', () => {
-            it('should navigate to correct edit meal route', () => {
-                fixture.nativeElement.querySelector('.fa-edit').click();
-                tick();
-                fixture.detectChanges();
-                expect(location.path()).toBe('/my-meals/edit');
-            });
-        })
     })
 
 

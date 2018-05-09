@@ -322,7 +322,7 @@ describe('Signup Component', () => {
                     const spy = spyOn(dataService, 'signupSecurely').and.callThrough()
                     fixture.debugElement.query(By.css('#secure-signup-button')).nativeElement.click()
                     fixture.detectChanges()
-                    expect(spy).toHaveBeenCalledWith(Object({ name: 'YYYY', email: 'aadsdjhk@daom.com', password: '22323435fgt3', confirmPassword: '22323435fgt3' }))
+                    expect(spy).toHaveBeenCalledWith(Object({ name: 'YYYY', email: 'aadsdjhk@daom.com', password: '22323435fgt3', maxCalories: 2250, isTrackingDisplayed: true }))
                 })
 
             })

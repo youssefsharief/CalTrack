@@ -10,7 +10,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { UserFormComponent } from 'app/shared/user-form/user-form.component';
 import { UserFormModule } from 'app/shared/user-form/user-form.module';
 
-describe('EditUser Component', () => {
+describe('User Form Component', () => {
     let comp: UserFormComponent;
     let fixture: ComponentFixture<UserFormComponent>;
     let dataService: any
@@ -25,7 +25,7 @@ describe('EditUser Component', () => {
         fixture = TestBed.createComponent(UserFormComponent);
         comp = fixture.componentInstance;
         dataService = fixture.debugElement.injector.get(DataService)
-        comp.user = { name: 'Wfaa', email: 'djakls@jk.com', password: 'daaerio7873', _id: 'aa', isTrackingDisplayed: false }
+        comp.user = { name: 'Wfaa', email: 'djakls@jk.com', password: 'daaerio7873', _id: 'aa', isTrackingDisplayed: false, maxCalories: 4000 }
         fixture.detectChanges();
     });
 

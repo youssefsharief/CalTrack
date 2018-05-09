@@ -11,13 +11,18 @@ import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { OtherUserMealsComponent } from 'app/users/routes/other-user-meals/other-user-meals.component';
 import { UsersModule } from 'app/users/users.module';
+import { AppModule } from 'app/app.module';
+import { Router } from '@angular/router';
+import { Meal } from 'app/shared/models/meal.model';
+import { User } from 'app/shared/models/user.model';
 
 describe('OtherUserMeal Component', () => {
     let comp: OtherUserMealsComponent;
     let fixture: ComponentFixture<OtherUserMealsComponent>;
     let location: Location
     let dataService: DataService
-
+    let router: Router
+    let selectedUserService: SelectedUserService
     const dataServiceStub = {
         getUserDetails() {
             return Observable.of({
@@ -33,12 +38,16 @@ describe('OtherUserMeal Component', () => {
                     }
                 ]
             })
+        },
+
+        getMeals() {
+            return Observable.of('a')
         }
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [UsersModule],
+            imports: [UsersModule, RouterTestingModule, AppModule],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SelectedUserService,
@@ -51,6 +60,9 @@ describe('OtherUserMeal Component', () => {
         comp = fixture.componentInstance;
         dataService = fixture.debugElement.injector.get(DataService);
         location = fixture.debugElement.injector.get(Location);
+        router = fixture.debugElement.injector.get(Router);
+        selectedUserService = fixture.debugElement.injector.get(SelectedUserService);
+        selectedUserService.get = () => <User>{}
         fixture.detectChanges();
     });
 
@@ -58,67 +70,24 @@ describe('OtherUserMeal Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Initial Markup', () => {
-        it('Name should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[0].innerHTML).toBe('C')
-        })
-        it('Date should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[1].innerHTML).toBe('Cairo')
-        })
-        it('Gmt meal difference should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[3].innerHTML).toBe('3')
-        })
-        it('clock should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[2].innerHTML).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('td')[2].innerHTML).toContain(':');
-        })
+
+    describe('on Add Clicked', () => {
+        it('should call router', () => {
+            const spy = spyOn(router, 'navigate')
+            comp.onAddClicked()
+            expect(spy).toHaveBeenCalledTimes(1)
+        });
     })
 
-    describe('Delete meal', () => {
-        describe('success', () => {
-            it('list item should be removed', () => {
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
-                dataService.deleteMeal = () => Observable.of('ok')
-                fixture.nativeElement.querySelector('.fa-trash').click()
-                fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeFalsy()
-            });
-            it('api service should have been called with correct params', () => {
-                dataService.deleteMeal = () => Observable.of('ok')
-                const spy = spyOn(dataService, 'deleteMeal').and.callThrough()
-                fixture.nativeElement.querySelector('.fa-trash').click()
-                fixture.detectChanges()
-                expect(spy).toHaveBeenCalledWith('uID', 'r')
-            });
-        })
-
-        describe('error', () => {
-            it('list item should not be removed', () => {
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
-                dataService.deleteMeal = () => Observable.throw('Error')
-                fixture.nativeElement.querySelector('.fa-trash').click()
-                fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
-            });
-        })
+    describe('on Edit Clicked', () => {
+        it('should call router', () => {
+            const spy = spyOn(router, 'navigate')
+            comp.onEditClicked(<Meal>{})
+            expect(spy).toHaveBeenCalledTimes(1)
+        });
     })
 
-    describe('Navigation', () => {
-        describe('click on plus button', () => {
-            it('should navigate to correct add new meal route', () => {
-                fixture.nativeElement.querySelector('.fa-plus').click();
-                tick();
-                fixture.detectChanges();
-                expect(location.path()).toBe('/users/uID/meals/add');
-            });
-        })
-        describe('click on plus edit button', () => {
-            it('should not throw error', () => {
-                fixture.nativeElement.querySelector('.fa-edit').click();
-                expect(comp).toBeTruthy()
-            });
-        })
-    })
+
 
 
 })

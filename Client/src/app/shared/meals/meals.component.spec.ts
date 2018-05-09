@@ -63,6 +63,23 @@ describe('Meals Component', () => {
         expect(comp).toBeTruthy()
     })
 
+    describe('Initial Markup', () => {
+        it('Name should be displayed', () => {
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[0].innerHTML).toBe('CairoRegular')
+        })
+        it('Date should be displayed', () => {
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[1].innerHTML).toBeTruthy()
+        })
+        it('Gmt meal difference should be displayed', () => {
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3].innerHTML).toBe('2')
+        })
+        it('clock should be displayed', () => {
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toBeTruthy();
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toContain(':');
+        })
+    })
+
+
     describe('add click', () => {
         it('add button should be there', () => {
             fixture.nativeElement.querySelector('#addButton').click()
@@ -74,9 +91,9 @@ describe('Meals Component', () => {
         })
     })
 
-    describe('edit click', () => {
-        it('add button should be there', () => {
-            fixture.nativeElement.querySelector('#editButton').click()
+    describe('editting', () => {
+        it('edit button should be there', () => {
+            expect(fixture.nativeElement.querySelector('#editButton')).toBeTruthy()
         })
         it('an event should be emitted', () => {
             const spy = spyOn(comp.editClicked, 'emit')
@@ -104,7 +121,7 @@ describe('Meals Component', () => {
             })
         })
 
-        fdescribe('searching utilising filters', () => {
+        describe('searching utilising filters', () => {
             it('fetching should be called once', () => {
                 comp.currentPage = 1
                 const spy = spyOn(dataService, 'getMeals').and.callThrough()
@@ -113,6 +130,21 @@ describe('Meals Component', () => {
                 expect(spy).toHaveBeenCalledTimes(1)
             })
         })
+
+    })
+
+
+    describe('on Deleteing click', () => {
+        it('delete button should be there', () => {
+            expect(fixture.nativeElement.querySelector('.fa-trash')).toBeTruthy()
+        })
+        xit('should directly remove from ui after clicking delete', () => {
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable tr').length).toBe(5)
+            fixture.nativeElement.querySelectorAll('.fa-trash')[0].click()
+            fixture.detectChanges()
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable tr').length).toBe(4)
+        })
+
 
     })
 
