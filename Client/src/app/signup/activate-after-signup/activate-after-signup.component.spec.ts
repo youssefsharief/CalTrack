@@ -153,7 +153,7 @@ describe('ActivateAfterSignupComponent Component', () => {
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
             })
-            fit('should successfully post', () => {
+            it('should successfully post', () => {
                 dataService.activateFromBackEnd = (activationCode, email) => Observable.of(<{ token: string, user: User }>{})
                 fixture.detectChanges();
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

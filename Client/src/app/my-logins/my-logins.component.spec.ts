@@ -69,7 +69,7 @@ describe('MyMeals Component', () => {
             })
             fixture.detectChanges();
         })
-        fit('should build successfully', () => {
+        it('should build successfully', () => {
             expect(comp).toBeTruthy()
         })
         it('should build successfully', () => {

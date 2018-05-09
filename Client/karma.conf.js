@@ -5,17 +5,13 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli',
-    //  'pact'
-    ],
+    frameworks: ['jasmine', '@angular/cli' ],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma'),
       require('karma-scss-preprocessor'),
-      // require('@pact-foundation/karma-pact')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -32,27 +28,13 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
     singleRun: false,
     files: [
-      // { pattern: './src/test.ts', watched: false },
       { pattern: './src/styles/main.scss', watched: true,  included: true, served: true }
     ],
     preprocessors: {
-      // './src/test.ts': ['@angular/cli'],
       './src/styles/main.scss': ['scss']
     },
-
-
-
-    // pact: [{
-    //   port: 1234,
-    //   consumer: 'KarmaJasmineConsumer',
-    //   provider: 'KarmaJasmineProvider',
-    //   logLevel: 'DEBUG',
-    //   log: path.resolve(process.cwd(), 'logs', 'pact.log'),
-    //   dir: path.resolve(process.cwd(), 'pacts')
-    // }],
 
   });
 };

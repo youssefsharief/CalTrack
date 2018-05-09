@@ -13,11 +13,11 @@
         <timepicker name="endTime" [(ngModel)]="endTime"></timepicker>
     </app-default-input-layout>
 </div>
-<button class="btn btn-default" (click)="resetFilters()">Reset Filters</button>
-<button class="btn btn-default" (click)="fetchConsideringPaging()">Search</button>
+<button class="btn btn-default" id="resetFilterButton" (click)="resetFilters()">Reset Filters</button>
+<button class="btn btn-default" id="searchFilterButton" (click)="fetchConsideringPaging()">Search</button>
 
 <h3 class="panel-title">
-    <a title="Add New Meal" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
+    <a title="Add New Meal" id="addButton" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
 </h3>
 <table id="mealsTable" class="table table-hover">
     <thead>
@@ -37,7 +37,7 @@
             <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
             <td>{{item.numOfCalories | number: '1.0-1'}}</td>
             <td class="text-center">
-                <a class="link" (click)="onEditMealClick(item)">
+                <a class="link" id="editButton" (click)="onEditMealClick(item)">
                     <i class="fa fa-edit text-warning"> </i>
                 </a>
             </td>

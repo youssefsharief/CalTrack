@@ -8,6 +8,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
+import { CoreModule } from 'app/core/core.module';
+import { SocialLoginModule } from 'angularx-social-login';
+import { AppModule } from 'app/app.module';
 
 let httpMock: HttpTestingController;
 let httpClient: HttpClient;
@@ -16,8 +19,8 @@ let service: DataService;
 describe('Auth interceptor', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, SharedModule],
-            providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, DataService, AuthService, SnackBarService, RouterTestingModule, ]
+            imports: [HttpClientTestingModule, AppModule],
+            providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, ]
         });
         const injector = getTestBed();
         httpMock = injector.get(HttpTestingController);

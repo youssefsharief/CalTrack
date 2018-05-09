@@ -36,7 +36,7 @@ export class DataService {
         return this.http.delete(`users/${id}`)
     }
 
-    getUsers({ skip = 0, searchTerm = '', roleFilter = '' }) {
+    getUsers({ skip = 0, searchTerm = '', roleFilter = '' }): Observable<{ users: User[], count: number }> {
         const params = new HttpParams().set('skip', skip.toString()).set('searchFilter', searchTerm).append('roleFilter', roleFilter);
         return this.http.get<{ users: User[], count: number }>('users', { params })
     }
@@ -45,7 +45,7 @@ export class DataService {
         return this.http.get<User>(`users/${userId}`)
     }
 
-    getMeals(userId: string, { skip = 0, startDate = '', endDate = '', startTime = '', endTime = '' }) {
+    getMeals(userId: string, { skip = 0, startDate = '', endDate = '', startTime = '', endTime = '' }): Observable<{ meals: Meal[], count: number }> {
         let params = new HttpParams()
             .set('skip', skip.toString())
         if (startDate) {

@@ -7,6 +7,7 @@ import { MealsComponent } from 'app/shared/meals/meals.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
+import { UndoDeleteService } from 'app/core/services/undo-delete.service';
 
 @NgModule({
     imports: [
@@ -20,6 +21,9 @@ import { AppInputsModule } from 'app/shared/components/ui-inputs/inputs.module';
     ],
     declarations: [
         MealsComponent
+    ],
+    providers: [
+        UndoDeleteService
     ],
     exports: [
         MealsComponent
