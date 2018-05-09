@@ -1,11 +1,12 @@
 
 const mailer = require('services/mailer')
 const getUserByEmailFromDb = require('data-layer/user/get-user-by-email')
+const errorMessageWrapper = require('services/utility').errorMessageWrapper
 
 module.exports = (req, res, next) => {
     getUserByEmailFromDb(req.body.email).then(async (user) => {
         if (user) {
-            return res.status(400).json({ msg: 'This user is already registered in our system' })
+            return res.status(400).json(errorMessageWrapper( 'This user is already registered in our system' ))
         } else {
             try {
                 await mailer.sendInvitation(req.body.email, req.body.url)

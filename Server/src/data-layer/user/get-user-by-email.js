@@ -1,5 +1,5 @@
 const usersModel = require('models/users.model')
 
 module.exports = (email) =>{
-    return usersModel.findOne({ email }).exec()
+    return usersModel.findOne({ email }).select('-__v -meals').exec()
 }

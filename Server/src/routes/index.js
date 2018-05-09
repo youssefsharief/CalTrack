@@ -77,12 +77,11 @@ router.post('/activation', validateActivateMyAccount, activateMyAccount)
 router.patch('/activation/administration/:id', verifyUser, Authorize.allowAdminAndManager, activateUserAdministratively)
 
 router.post('/users/login', validateLogin, login)
-router.post('/password_recovery_requests', validateSendMeRecoveryCode, sendMeRecoveryCode)
 router.put('/password', verifyUser, validateUpdateMyPassword, updateMyPassword)
 router.put('/users/:id/password', verifyUser, validatechangeOtherUserPassword, Authorize.allowAdminAndManager, changeOtherUserPassword)
 
 
-
+router.post('/password_recovery_requests', validateSendMeRecoveryCode, sendMeRecoveryCode)
 router.post('/users/recovery_code', validateUpdatePasswordByRecoveryCode, updatePasswordByRecoveryCode)
 
 router.put('/users/:id/info', verifyUser, validateUpdateInfo, Authorize.allowSelfAdminAndManager, updateUserInfo)

@@ -41,13 +41,6 @@ describe('EditOtherUserInfo Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    // describe('Navigation', () => {
-    //     it('Change my password should navigate to the right page with the user id in the route params', () => {
-    //         fixture.nativeElement.querySelector('#change-user-password-button').click()
-    //         tick()
-    //         expect(location.path()).toBe('/users/rr/password')
-    //     })
-    // })
     describe('Submitting Form', () => {
         beforeEach(() => {
             const name = fixture.debugElement.query(By.css('input[name="name"]'));

@@ -11,8 +11,9 @@ import { Location } from '@angular/common';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { MyMealsComponent } from 'app/my-meals/my-meals.component';
 import { MyMealsModule } from 'app/my-meals/my-meals.module';
+import { AppModule } from 'app/app.module';
 
-describe('MyMeal Component', () => {
+describe('MyMeals Component', () => {
     let comp: MyMealsComponent;
     let fixture: ComponentFixture<MyMealsComponent>;
     let location: Location
@@ -24,22 +25,25 @@ describe('MyMeal Component', () => {
                 _id: 'uID',
                 name: 'W',
                 email: 'assad@sjdeir.com',
-                meals: [
-                    {
-                        _id: 'r',
-                        date: 'Cairo',
-                        name: 'C',
-                        numOfCalories: 3
-                    }
-                ]
             })
+        },
+        getMeals() {
+            return Observable.of([
+                {
+                    _id: 'r',
+                    date: '13/2/2018',
+                    name: 'C',
+                    numOfCalories: 3
+                }
+            ])
         }
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MyMealsModule ],
+            imports: [MyMealsModule, AppModule],
             providers: [
+                { provide: AuthService, useValue: { getId() { return '1' } } },
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,
                 AuthService,
@@ -51,37 +55,39 @@ describe('MyMeal Component', () => {
         comp = fixture.componentInstance;
         dataService = fixture.debugElement.injector.get(DataService);
         location = fixture.debugElement.injector.get(Location);
+        comp.userId = '1'
         fixture.detectChanges();
     });
 
-    it('should build successfully', () => {
+    fit('should build successfully', () => {
+        console.log(comp.userId)
         expect(comp).toBeTruthy()
     })
 
-    describe('Initial Markup', () => {
-        it('Name should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[0].innerHTML).toBe('C')
+    fdescribe('Initial Markup', () => {
+        fit('Name should be displayed', () => {
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[0].innerHTML).toBe('C')
         })
         it('Date should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[1].innerHTML).toBe('Cairo')
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[1].innerHTML).toBe('Cairo')
         })
         it('Gmt meal difference should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[3].innerHTML).toBe('3')
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3].innerHTML).toBe('3')
         })
         it('clock should be displayed', () => {
-            expect(fixture.nativeElement.querySelectorAll('td')[2].innerHTML).toBeTruthy();
-            expect(fixture.nativeElement.querySelectorAll('td')[2].innerHTML).toContain(':');
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toBeTruthy();
+            expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toContain(':');
         })
     })
 
     describe('Delete meal', () => {
         describe('success', () => {
             it('list item should be removed', () => {
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
+                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeTruthy()
                 dataService.deleteMeal = () => Observable.of('ok')
                 fixture.nativeElement.querySelector('.fa-trash').click()
                 fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeFalsy()
+                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeFalsy()
             });
             it('api service should have been called with correct params', () => {
                 dataService.deleteMeal = () => Observable.of('ok')
@@ -94,11 +100,11 @@ describe('MyMeal Component', () => {
 
         describe('error', () => {
             it('list item should not be removed', () => {
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
+                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeTruthy()
                 dataService.deleteMeal = () => Observable.throw('Error')
                 fixture.nativeElement.querySelector('.fa-trash').click()
                 fixture.detectChanges()
-                expect(fixture.nativeElement.querySelectorAll('td')[3]).toBeTruthy()
+                expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3]).toBeTruthy()
             });
         })
     })

@@ -1,10 +1,11 @@
 const Joi = require('joi')
 const passwordRegex = require('config/regexConstants').passwordRegex
 const settings = require('config/settings')
+const errorMessageWrapper = require('services/utility').errorMessageWrapper
 
 module.exports = (req, res, next) => {
     if (req.recaptcha.error && settings.isCaptchaEnabled) {
-        return res.status(400).json({ msg: 'No captcha' })
+        return res.status(400).json(errorMessageWrapper( 'No captcha' ))
     }
     const schema = Joi.object().keys({
         name: Joi.string().min(3).max(20).required().label('name'),

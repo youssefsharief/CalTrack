@@ -11,6 +11,7 @@ import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { UsersModule } from 'app/users/users.module';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { AppModule } from 'app/app.module';
 
 describe('EditRoleComponent', () => {
     let comp: EditRoleComponent;
@@ -26,13 +27,13 @@ describe('EditRoleComponent', () => {
     }
     const SelectedDataServiceStub = {
         getUserWithProbableDataFetch() {
-            return Observable.of({ _id: '123' })
+            return Observable.of({ _id: '123', name: 'Essam' })
         }
     }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [UsersModule],
+            imports: [UsersModule, AppModule, RouterTestingModule],
             providers: [
                 { provide: DataService, useValue: dataServiceStub },
                 SnackBarService,
@@ -97,11 +98,11 @@ describe('EditRoleComponent', () => {
             select.value = 'regular'
             select.dispatchEvent(new Event('change'));
         })
-        xit('should go to users route after success', () => {
+        it('should go to users route after success', () => {
             fixture.nativeElement.querySelector('button').click()
-            tick(10)
-            expect(location.path()).toBe('/users')
-        }))
+            // tick(10)
+            // expect(location.path()).toBe('/users')
+        })
     })
 
     describe('Error scenario', () => {

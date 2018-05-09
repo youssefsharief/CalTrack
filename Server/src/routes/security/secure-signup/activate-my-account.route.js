@@ -2,6 +2,7 @@
 const getUserByEmail = require('data-layer/user/get-user-by-email')
 const { getToken } = require('core/authentication')
 const clearUnneededDataFromPayload = require('services/clear-unneeded-data')
+const errorMessageWrapper = require('services/utility').errorMessageWrapper
 
 module.exports = async (req, res, next) => {
     try {
@@ -9,7 +10,7 @@ module.exports = async (req, res, next) => {
         if (!user){
             return next({ nF: 'User' })
         } else if (user.activationCode !== req.body.code) {
-            return res.status(400).json({msg: 'Wrong activation code' })
+            return res.status(400).json(errorMessageWrapper( 'Wrong activation code' ))
         } else {
             user.activationCode = undefined
             user.active = true

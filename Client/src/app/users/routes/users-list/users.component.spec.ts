@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { User } from 'app/shared/models/user.model';
 import { UsersComponent } from 'app/users/routes/users-list/users.component';
 import { UsersModule } from 'app/users/users.module';
+import { AppModule } from 'app/app.module';
 
 describe('Users Component', () => {
     let comp: UsersComponent;
@@ -20,7 +21,7 @@ describe('Users Component', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                UsersModule,
+                UsersModule, AppModule
             ],
             providers: [
                 { provide: DataService, useValue: {} },

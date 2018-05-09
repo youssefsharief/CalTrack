@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
+const errorMessageWrapper = require('services/utility').errorMessageWrapper
+
 module.exports = app => {
 
     app.use(function (err, req, res, next) {
         console.log(err)
         if(err.oauthError) {
-            return res.status(err.oauthError.statusCode).json({msg:'Invalid OAUth token' })
+            return res.status(err.oauthError.statusCode).json(errorMessageWrapper('Invalid OAUth token' ))
         }
         if (err.isJoi) {
             err.isJoi = undefined
@@ -12,12 +14,12 @@ module.exports = app => {
             return res.status(422).json(err)
         }
         else if (err.nF) {
-            return res.status(404).json({msg: `${err.nF} is not found in our system` })
+            return res.status(404).json(errorMessageWrapper( `${err.nF} is not found in our system` ))
         }
-        else if (err.name === 'NoUserFound') return res.status(404).json({msg: `This user does not exist in our system` })
+        else if (err.name === 'NoUserFound') return res.status(404).json(errorMessageWrapper( `This user does not exist in our system` ))
         else if (err.code === 11000 ) {
             if(err.index === 0) {
-                return res.status(409).json({msg:'Email already exists'})
+                return res.status(409).json(errorMessageWrapper('Email already exists'))
             }
         }
         else return next(err)
@@ -26,9 +28,9 @@ module.exports = app => {
     app.use(function (err, req, res, next) {
         if (err.name = 'CastError') {
             if (err instanceof mongoose.Error.CastError) {
-                return res.status(422).json({msg:`Please send proper '${err.path}'`})
+                return res.status(422).json(errorMessageWrapper(`Please send proper '${err.path}'`))
             }
-            else return res.status(500).json({msg:'Internal Server Error'})
+            else return res.status(500).json(errorMessageWrapper('Internal Server Error'))
         } else return next(err)
     });
 
@@ -51,7 +53,7 @@ module.exports = app => {
 
         res.status(err.status || 500);
         
-        return res.json({msg: err.message});
+        return res.json(errorMessageWrapper( err.message));
     });
 
 

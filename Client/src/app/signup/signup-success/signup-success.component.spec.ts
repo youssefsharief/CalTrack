@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 import { SignupSuccessComponent } from 'app/signup/signup-success/signup-success.component';
 import { SignupModule } from 'app/signup/signup.module';
+import { AppModule } from 'app/app.module';
 
 
 describe('SignupSuccess Component', () => {
@@ -15,7 +16,7 @@ describe('SignupSuccess Component', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [SignupModule],
+            imports: [SignupModule, AppModule],
             providers: [Location],
 
         });
@@ -34,7 +35,7 @@ describe('SignupSuccess Component', () => {
         fixture.nativeElement.querySelector('a').click();
         tick()
         expect(location.path()).toBe('')
-    }))
+    })
 
 
 })

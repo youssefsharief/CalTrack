@@ -8,6 +8,7 @@ import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/my-logins/change-my-password-using-old-password/change-my-password-using-old-password.component';
 import { MyLoginsModule } from 'app/my-logins/my-logins.module';
+import { AppModule } from 'app/app.module';
 
 describe('ChangeMyPasswordUsingOldPassword Component', () => {
     let comp: ChangeMyPasswordUsingOldPasswordComponent;
@@ -15,7 +16,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
     let dataService: DataService
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MyLoginsModule],
+            imports: [MyLoginsModule, AppModule],
             providers: [
                 { provide: DataService, useValue: {} },
                 SnackBarService,

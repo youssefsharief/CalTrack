@@ -71,7 +71,7 @@ describe('Signup Component', () => {
         router.navigateByUrl('/my-profile');
         tick()
         expect(comp).toBeTruthy()
-    }))
+    })
 
     it('should build successfully', () => {
         expect(comp).toBeTruthy()
