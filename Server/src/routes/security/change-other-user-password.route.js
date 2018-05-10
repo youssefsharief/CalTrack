@@ -1,5 +1,6 @@
 
 const getUserById = require('data-layer/user/get-user-by-id.db')
+const successMessage = require('services/utility').successMessageWrapper
 
 
 module.exports = async (req, res, next) => {
@@ -7,7 +8,7 @@ module.exports = async (req, res, next) => {
     if(!user) return next({nF: 'User'})
     user.password = req.body.newPassword
     await user.save().catch(e => next(e))
-    return res.json({ success: 'User password has changed successfully' })
+    return res.json(successMessage)
 }
 
 

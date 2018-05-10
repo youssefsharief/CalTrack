@@ -64,7 +64,7 @@ const getTodaysIntake = require('./records/get-todays-intake.route')
 const { verifyUser } = require('core/authentication')
 const Authorize = require('core/authorization')
 const Recaptcha = require('express-recaptcha').Recaptcha;
-const recaptcha = new Recaptcha(process.env.captchaSiteKey, process.env.captchaSecretKey);
+const recaptcha = process.env.NODE_ENV === 'testing' ? new Recaptcha( process.env.captchaTestingSiteKey, process.env.captchaTestingSecretKey) : new Recaptcha( process.env.captchaSiteKey, process.env.captchaSecretKey)
 
 
 
@@ -87,7 +87,7 @@ router.post('/users/recovery_code', validateUpdatePasswordByRecoveryCode, update
 router.put('/users/:id/info', verifyUser, validateUpdateInfo, Authorize.allowSelfAdminAndManager, updateUserInfo)
 router.delete('/users/:id', verifyUser, Authorize.allowAdminAndManager, removeUser)
 router.get('/users/', verifyUser, Authorize.preventRegularUsers, getUsers)
-router.get('/users/:id', verifyUser, Authorize.allowSelfAndAdminOnly, getUser)
+router.get('/users/:id', verifyUser, Authorize.allowSelfAdminAndManager, getUser)
 
 router.get('/users/:id/meals', verifyUser, Authorize.allowSelfAndAdminOnly, getUserRecords)
 router.post('/users/:id/meals', verifyUser, validateAddRecord, Authorize.allowSelfAndAdminOnly, addRecord)
@@ -108,9 +108,9 @@ router.post('/connect/google', verifyUser,  passport.authenticate('googleToken',
 router.post('/connect/local', verifyUser,  validateConnectLocalLogin, connectLocalLogin);
 router.post('/connect/local/secure', verifyUser,  validateConnectLocalLogin, connectLocalLoginSecurely);
 
-router.post('/disconnect/facebook', verifyUser,  ensureHavingAtleast2Accounts, disconnectFacebook);
-router.post('/disconnect/google', verifyUser,  ensureHavingAtleast2Accounts, disconnectGoogle);
-router.post('/disconnect/local', verifyUser,  ensureHavingAtleast2Accounts, disconnectLocalLogin);
+router.post('/disconnect/facebook', verifyUser,  Authorize.allowSelfAdminAndManager, ensureHavingAtleast2Accounts, disconnectFacebook);
+router.post('/disconnect/google', verifyUser,  Authorize.allowSelfAdminAndManager, ensureHavingAtleast2Accounts, disconnectGoogle);
+router.post('/disconnect/local', verifyUser,  Authorize.allowSelfAdminAndManager, ensureHavingAtleast2Accounts, disconnectLocalLogin);
 
 router.get('/users/:id/meals/calories_today', verifyUser, Authorize.allowSelfAdminAndManager, getTodaysIntake);
 router.get('/users/:id/meals/:mealId', verifyUser, Authorize.allowSelfAndAdminOnly, getUserRecord);

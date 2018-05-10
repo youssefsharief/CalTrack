@@ -15,6 +15,4 @@ export class LoginsComponent {
     @Output() connectFacebook = new EventEmitter()
     @Output() connectGoogle = new EventEmitter()
     @Output() disconnectLocalLogin = new EventEmitter()
-    @Output() changePasswordClick= new EventEmitter()
-
 }

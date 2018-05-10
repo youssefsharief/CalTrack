@@ -16,7 +16,7 @@
                     </a>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-link" *ngIf="user.email" (click)="changePasswordClick.emit()">Change Password</button>
+                    <button class="btn btn-link" *ngIf="user.email" routerLink="/my-logins/password">Change Password</button>
                 </td>
                 <ng-container *ngIf="isPersonal">
                     <td class="text-center">
