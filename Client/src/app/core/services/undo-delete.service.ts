@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
 import { SnackBarService } from 'app/core/services/snackbar.service';
-import { Subject } from 'rxjs/Subject';
+import { MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 
 @Injectable()
 export class UndoDeleteService {
 
     private oldItems: any[]
     private label: string
-    private snackBarRef: any
-    private undo$ = <any>new Subject()
+    private snackBarRef: MatSnackBarRef<SimpleSnackBar>
 
-    constructor(private sb: SnackBarService) {
-
-    }
+    constructor(private sb: SnackBarService) {  }
 
     init(oldItems, label) {
         this.oldItems = oldItems
         this.label = label
-        this.snackBarRef = this.sb.snackBar.open(`Deleteing ${label} in 2 seconds`, 'Undo', { duration: 2000 });
-        this.listenToDismissal()
-        return this.undo$
+        this.snackBarRef = this.sb.snackBar.open(`Deleteing ${label} .....`, 'Undo', { duration: 2000 });
+        return this.listenToDismissal()
     }
 
 
     private listenToDismissal() {
-        this.snackBarRef.afterDismissed().subscribe(info => {
+        return this.snackBarRef.afterDismissed().map(info => {
             if (info.dismissedByAction) {
-                this.undo$.next(this.oldItems)
+                return this.oldItems
             } else {
-                this.undo$.next(false)
+                return false
             }
         });
     }
