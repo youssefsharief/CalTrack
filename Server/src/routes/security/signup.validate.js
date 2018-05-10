@@ -4,7 +4,7 @@ const errorMessageWrapper = require('services/utility').errorMessageWrapper
 
 module.exports = (req, res, next) => {
     if (req.recaptcha.error) {
-        return res.status(400).json(errorMessageWrapper( 'No captcha' ))
+        return res.status(400).json(errorMessageWrapper('No captcha'))
     }
     const schema = Joi.object().keys({
         name: Joi.string().min(3).max(20).required().label('name'),
