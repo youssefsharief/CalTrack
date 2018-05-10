@@ -34,7 +34,7 @@ describe("Users endpoint", function () {
 			request.get('/users/')
 				.set({ 'Authorization': `Bearer ${token}` })
 				.end((err, res) => {
-					request.get(`/users/${res.body.users[0]._id}`)
+					request.get(`api/users/${res.body.users[0]._id}`)
 						.set({ 'Authorization': `Bearer ${token}` })
 						.end((err, res) => {
 							expect(res.body.user_id).toBeTruthy()

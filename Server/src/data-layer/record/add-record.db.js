@@ -4,5 +4,5 @@ module.exports = (userId, newMeal) => {
     return usersModel.findOneAndUpdate(
         { _id: userId },
         { $push: { meals: newMeal } },
-        { new: true })
+        { new: true }).select('-meals')
 }

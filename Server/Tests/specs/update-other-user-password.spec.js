@@ -47,7 +47,7 @@ describe("Users endpoint", function () {
 
 
         it("should update password and be able to login afterwards", function (done) {
-            request.put(`/users/${id}/password`)
+            request.put(`api/users/${id}/password`)
                 .set({ 'Authorization': `Bearer ${adminToken}` })
                 .send(updatePasswordPayload)
                 .end((err, res) => {
@@ -63,7 +63,7 @@ describe("Users endpoint", function () {
         })
 
         it("should return 404 if no id is provided", function (done) {
-            request.put(`/users/password`)
+            request.put(`api/users/password`)
                 .set({ 'Authorization': `Bearer ${adminToken}` })
                 .send(updatePasswordPayload)
                 .end((err, res) => {
