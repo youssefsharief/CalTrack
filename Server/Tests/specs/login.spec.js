@@ -12,7 +12,7 @@ describe("Users endpoint", function () {
 	afterAll(() => {
 		server.close()
 	})
-	fdescribe("Logging in", function () {
+	describe("Logging in", function () {
 		const newUser = {
 			name: faker.name.firstName(),
 			email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,

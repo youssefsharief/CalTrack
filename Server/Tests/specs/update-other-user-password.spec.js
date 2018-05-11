@@ -1,13 +1,15 @@
 const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
-const { adminCredentials } = require('constants/credentials')
+const API = require('helpers/api-calls')
 
 
 let server, request
 
 describe("Users endpoint", function () {
+    let api;
     beforeAll(() => {
         [server, request] = setup()
+        api = new API(request)
     })
     afterAll(() => {
         server.close()
@@ -28,48 +30,21 @@ describe("Users endpoint", function () {
         }
         let user
         let id
-        let adminToken
-        beforeAll((done) => {
-            request.post('/api/users').send(newUser).end((err, res) => {
-                request.post('/api/users/login').send(loginPayload).end((err, res) => {
-                    user = res.body.user
-                    id = user._id
-                    request.post('/api/users/login').send(adminCredentials).end((err, res) => {
-                        adminToken = res.body.token
-                        done();
-                    })
-                })
-            })
+        let token
+        beforeAll(async () => {
+            const res = await api.signup(newUser)
+            user = res.body.user
+            id = user._id
+            token = res.body.token
 
-
+            // const res = await api.login(loginPayload)
         })
 
-
-
-        it("should update password and be able to login afterwards", function (done) {
-            request.put(`/api/users/${id}/password`)
-                .set({ 'Authorization': `Bearer ${adminToken}` })
-                .send(updatePasswordPayload)
-                .end((err, res) => {
-                    expect(res.status).toBe(200)
-                    request.post('/api/users/login').send(loginPayload).end((err, res) => {
-                        expect(res.status).toBe(401)
-                        request.post('/api/users/login').send({ email: loginPayload.email, password: updatePasswordPayload.newPassword }).end((err, res) => {
-                            expect(res.status).toBe(200)
-                            done();
-                        })
-                    })
-                })
+        it("should update password and be able to login afterwards", async () => {
+            await api.updatePassword(id, token, updatePasswordPayload).expect(200)
+            await api.login(loginPayload).expect(401)
+            await api.login({ email: loginPayload.email, password: updatePasswordPayload.newPassword }).expect(200)
         })
 
-        it("should return 404 if no id is provided", function (done) {
-            request.put(`/api/users/password`)
-                .set({ 'Authorization': `Bearer ${adminToken}` })
-                .send(updatePasswordPayload)
-                .end((err, res) => {
-                    expect(res.status).toBe(404)
-                    done();
-                })
-        })
     })
 })

@@ -48,8 +48,7 @@ describe("Users endpoint", function () {
                     id = loginRes.body.user._id
                     return api.addRecord(id, userToken, newMeal)
                 }).then(() =>
-                    api.getRecords(id, userToken)).then(res => {
-                        expect(res.status).toBe(200)
+                    api.getRecords(id, userToken)).expect(200).then(res => {
                         mealId = res.body.meals[0]._id
                         done()
                     }).catch(err => { throw err })

@@ -1,12 +1,15 @@
 const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
+const API = require('helpers/api-calls')
 
 
 let server, request
 
 describe("Users endpoint", function () {
+    let api;
     beforeAll(() => {
         [server, request] = setup()
+        api = new API(request)
     })
     afterAll(() => {
         server.close()
@@ -29,46 +32,18 @@ describe("Users endpoint", function () {
         }
         let token
         let user
-        beforeAll((done) => {
-            request.post('/api/users').send(newUser).end((err, res) => {
-                request.post('/api/users/login').send(loginPayload).end((err, res) => {
-                    token = res.body.token
-                    user = res.body.user
-                    done();
-                })
-            })
+        beforeAll(async () => {
+            const res = await api.signup(newUser).then(() => api.login(loginPayload))
+            token = res.body.token
+            user = res.body.user
         })
 
-        it("should not allow unauthenticated users", function (done) {
-            request.put(`/api/users/${user._id}/info`).send(updatedInfoPayload).end((err, res) => {
-                expect(res.status).toBe(401)
-                done();
-            })
+        fit("should update", async () => {
+            const res = await api.updateInfo(user._id, token, updatedInfoPayload).catch(err => { throw err })
+            expect(res.status).toBe(200)
+            expect(res.body.name).toBe(updatedInfoPayload.name)
+            expect(res.body.maxCalories).toBe(updatedInfoPayload.maxCalories)
+            expect(res.body.isTrackingDisplayed).toBe(updatedInfoPayload.isTrackingDisplayed)
         })
-
-
-        it("should update", function (done) {
-            request.put(`/api/users/${user._id}/info`)
-            .set({'Authorization': `Bearer ${token}`})
-            .send(updatedInfoPayload)
-            .end((err, res) => {
-                if (err) throw err
-                expect(res.status).toBe(200)
-                expect(res.body.name).toBe(updatedInfoPayload.name)
-                expect(res.body.maxCalories).toBe(updatedInfoPayload.maxCalories)
-                expect(res.body.isTrackingDisplayed).toBe(updatedInfoPayload.isTrackingDisplayed)
-                done();
-            })
-        })
-        it("should return 404 if no id is provided", function (done) {
-            request.put(`/api/users/info`)
-            .set({'Authorization': `Bearer ${token}`})
-            .send(updatedInfoPayload)
-            .end((err, res) => {
-                expect(res.status).toBe(404)
-                done();
-            })
-        })
-
     })
 })

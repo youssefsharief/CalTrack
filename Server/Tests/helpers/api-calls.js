@@ -1,14 +1,18 @@
-module.exports = class ApiCalls{
+module.exports = class ApiCalls {
 
-    constructor (request) {
+    constructor(request) {
         this.request = request;
     }
-    login (payload) {
+    login(payload) {
         return this.request.post('/api/users/login').send(payload)
-    } 
+    }
 
     signup(payload) {
         return this.request.post('/api/users').send(payload)
+    }
+
+    updateInfo(id, token, payload) {
+        return this.request.put(`/api/users/${id}/info`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
     }
 
     addRecord(id, token, payload) {
@@ -20,7 +24,7 @@ module.exports = class ApiCalls{
     }
 
     updateRecord(id, mealId, userToken, updatedMeal) {
-        return this.request.put(`/api/users/${id}/meals/${mealId}`).set({ 'Authorization': `Bearer ${userToken}` }) .send(updatedMeal)
+        return this.request.put(`/api/users/${id}/meals/${mealId}`).set({ 'Authorization': `Bearer ${userToken}` }).send(updatedMeal)
     }
 
     deleteRecord(id, token, mealId) {
@@ -31,6 +35,10 @@ module.exports = class ApiCalls{
         return this.request.patch(`/api/users/${userId}/role`).set({ 'Authorization': `Bearer ${userToken}` }).send({ role })
     }
 
+    updatePassword(id, token, payload) {
+        return this.request.put(`/api/users/${id}/password`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
+    }
 
-    
+
+
 }
