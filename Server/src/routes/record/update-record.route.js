@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
         name: req.body.name,
         numOfCalories,
         date: getDateIgnoringTimezone(req.body.date)
-    }).catch(err => next(err)).then((x) => {
-        return !x ? next({ nF: 'Meal' }) : res.status(200).json(successMessage)
-    })
+    }).then((user) => {
+        return user ? res.status(200).json(successMessage) : next({ nF: 'Meal' })
+    }).catch(err => next(err))
 }

@@ -6,6 +6,5 @@ module.exports = (req, res, next) => {
         name: req.body.name,
         maxCalories: req.body.maxCalories,
         isTrackingDisplayed: req.body.isTrackingDisplayed
-    }).then((user) => user ? res.status(200).json(user) : next({ nF: 'User' }))
-        .catch(err => next(err))
+    }).then((user) => user ? res.status(200).json(user) : next({ nF: 'User' })).catch(err => next(err))
 }

@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
     const user = req.body
     user.active = true
     return addNewUser(user, ROLES.regular).then(user => {
-        return res.status(200).json({ user: clearUnneededDataFromPayload(user), token: getToken(user._id, user.role) })
+        return res.status(201).json({ user: clearUnneededDataFromPayload(user), token: getToken(user._id, user.role) })
     }).catch(e => next(e))
 }
 

@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     try{
         const addedUser = await addNewUser(user, ROLES.regular)
         await mailer.sendActivationCode(user.email, user.activationCode)
-        return res.status(200).json(clearUnneededDataFromPayload(addedUser))
+        return res.status(201).json(clearUnneededDataFromPayload(addedUser))
     } catch(e) {
         global.log.error(e)
         

@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const passport = require('passport')
 
-const addRecord = require('./records/add-record.route')
-const removeRecord = require('./records/remove-record.route')
-const updateRecord = require('./records/update-record.route')
-const validateUpdateRecord = require('./records/update-record.validate')
-const validateAddRecord = require('./records/add-record.validate')
+const addRecord = require('./record/add-record.route')
+const removeRecord = require('./record/remove-record.route')
+const updateRecord = require('./record/update-record.route')
+const validateUpdateRecord = require('./record/update-record.validate')
+const validateAddRecord = require('./record/add-record.validate')
 const getUser = require('./user/get-user.route')
 
 
@@ -42,8 +42,8 @@ const changeOtherUserPassword = require('./security/change-other-user-password.r
 const validatechangeOtherUserPassword = require('./security/change-other-user-password.validate')
 
 
-const getUserRecords = require('./records/get-user-records.route')
-const getUserRecord = require('./records/get-user-record.route')
+const getUserRecords = require('./record/get-user-records.route')
+const getUserRecord = require('./record/get-user-record.route')
 
 const googleSignin = require('./security/social-login/google-signin.route')
 const facebookSignin = require('./security/social-login/facebook-signin.route')
@@ -59,7 +59,7 @@ const disconnectGoogle = require('./security/social-login/disconnect-google.rout
 const disconnectLocalLogin = require('./security/disconnect-local-login.route')
 const validateSocialLogin = require('./security/social-login/social-login.validate')
 const ensureHavingAtleast2Accounts = require('./security/ensure-having-2-accounts.validate')
-const getTodaysIntake = require('./records/get-todays-intake.route')
+const getTodaysIntake = require('./record/get-todays-intake.route')
 
 const { verifyUser } = require('core/authentication')
 const Authorize = require('core/authorization')
