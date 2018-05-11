@@ -1,17 +1,18 @@
 const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
+const API = require('helpers/api-calls')
 
 describe("Users endpoint", function () {
+    let api;
     beforeAll(() => {
         [server, request] = setup()
-
+        api = new API(request)
     })
     afterAll(() => {
         server.close()
     })
     describe("delete meal", function () {
-
         const newUser = {
             name: faker.name.firstName(),
             email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
@@ -31,53 +32,24 @@ describe("Users endpoint", function () {
         let userToken
         let mealId
         beforeAll((done) => {
-            request.post('/api/users').send(newUser).end((err, res) => {
+            request.post('/api/users').send(newUser).then(res => {
                 id = res.body.user._id
                 done()
             })
         })
         describe("Acting as same user", function () {
-            beforeAll((done) => {
-                request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
+            beforeEach((done) => {
+                return api.login(newUserCredentials).then(res => {
                     userToken = res.body.token
-                    request.post(`/api/users/${id}/meals`)
-                        .set({ 'Authorization': `Bearer ${userToken}` })
-                        .send(newMeal)
-                        .end((err, res) => {
-                            mealId = res.body.user_id
-                                done();
-                            
-                        })
-                })
+                    return api.addRecord(id, userToken, newMeal)
+                }).then(() => api.getRecords(id, userToken)).then(res=>{
+                    mealId = res.body.meals[0]._id
+                    done()
+                }).catch(err => { throw err })
             })
-
-            it("should delete successfully ", function (done) {
-                request.delete(`/api/users/${id}/meals/${mealId}`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .end((err, res) => {
-                        expect(res.status).toEqual(200)
-                        done();
-                    })
+            it("should delete successfully ", async () => {
+                await api.deleteRecord(id, userToken, mealId).expect(200)
             })
-
-            it("should respond by 404 error when id is not provided ", function (done) {
-                request.delete(`/api/users/${id}/meals/`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .end((err, res) => {
-                        expect(res.status).toEqual(404)
-                        done();
-                    })
-            })
-
-            it("should respond by 400 error when wrong id is provided ", function (done) {
-                request.delete(`/api/users/${id}/meals/1`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .end((err, res) => {
-                        expect(res.status).toEqual(422)
-                        done();
-                    })
-            })
-
         })
 
 

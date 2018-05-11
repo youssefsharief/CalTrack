@@ -4,7 +4,6 @@ const errorMessageWrapper = require('services/utility').errorMessageWrapper
 module.exports = app => {
 
     app.use(function (err, req, res, next) {
-        console.log(err)
         if (err.oauthError) {
             return res.status(err.oauthError.statusCode).json(errorMessageWrapper('Invalid OAUth token'))
         }

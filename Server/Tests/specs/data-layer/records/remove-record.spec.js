@@ -29,10 +29,6 @@ describe("Users endpoint", function () {
                 date: Date.now()
             }
             addRecord(id, newRecord).then(x => {
-                expect(x.meals.length).toBe(1)
-                expect(x.meals[0].name).toBe(newRecord.name)
-                expect(x.meals[0].date).toBeTruthy()
-                expect(x.meals[0].numOfCalories).toBe(newRecord.numOfCalories)
                 done()
             })
         })
@@ -45,9 +41,5 @@ describe("Users endpoint", function () {
             done()
         })
     })
-
-
-
-
 
 })

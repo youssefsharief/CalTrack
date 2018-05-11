@@ -1,12 +1,15 @@
 const { setup } = require('Tests/helpers/requestsSpecHelper')
 const faker = require('faker')
-const { adminCredentials, managerCredentials} = require('constants/credentials')
+const { adminCredentials, managerCredentials } = require('constants/credentials')
+const API = require('helpers/api-calls')
 
 let server, request
 
 describe("Users endpoint", function () {
+    let api;
     beforeAll(() => {
         [server, request] = setup()
+        api = new API(request)
     })
     afterAll(() => {
         server.close()
@@ -16,14 +19,14 @@ describe("Users endpoint", function () {
         let newUserId
         beforeAll((done) => {
             // Login as super admin
-            
+
             const newUser = {
                 name: faker.name.firstName(),
                 email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
                 meals: [],
                 password: '456565654ds'
             }
-            request.post('/api/users').send(newUser).end((err, res) => {
+            api.signup(newUser).then(res => {
                 newUserId = res.body.user._id
                 done();
             })
@@ -31,108 +34,44 @@ describe("Users endpoint", function () {
 
         describe('Acting as an admin', () => {
             beforeAll((done) => {
-                request.post('/api/users/login').send(adminCredentials).end((err, res) => {
+                api.login(adminCredentials).then(res => {
                     adminToken = res.body.token
                     done()
                 })
             })
-            it("should not allow unauthenticated users", function (done) {
-                request.patch(`/api/users/${newUserId}/role`).send({ role: 'manager' }).end((err, res) => {
-                    expect(res.status).toBe(401)
-                    done();
-                })
+            it("should not allow unauthenticated users", async ()=> {
+                await api.updateRole(newUserId, 'dsad', 'manager').expect(401)
             })
 
-
-            it("should update role as manager ", function (done) {
-                request.patch(`/api/users/${newUserId}/role`)
-                    .set({ 'Authorization': `Bearer ${adminToken}` })
-                    .send({ role: 'manager' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(200)
-                        done();
-                    })
+            it("should update role as manager ", async ()=> {
+                await api.updateRole(newUserId, adminToken, 'manager').expect(200)
             })
 
-            it("should update role as admin ", function (done) {
-                request.patch(`/api/users/${newUserId}/role`)
-                    .set({ 'Authorization': `Bearer ${adminToken}` })
-                    .send({ role: 'admin' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(200)
-                        done();
-                    })
+            it("should update role as admin ", async ()=> {
+                await api.updateRole(newUserId, adminToken, 'admin').expect(200)
             })
 
-            it("should update role as regular ", function (done) {
-                request.patch(`/api/users/${newUserId}/role`)
-                    .set({ 'Authorization': `Bearer ${adminToken}` })
-                    .send({ role: 'regular' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(200)
-                        done();
-                    })
+            it("should update role as regular ", async ()=> {
+                await api.updateRole(newUserId, adminToken, 'regular').expect(200)
             })
 
-            it("should return 404 if no id is provided", function (done) {
-                request.patch(`/api/users/role`)
-                    .set({ 'Authorization': `Bearer ${adminToken}` })
-                    .send({ role: 'manager' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(404)
-                        done();
-                    })
+            it("should return 422 if no id is provided", async () => {
+                await api.updateRole(null, adminToken, 'admin').expect(422)
             })
         })
-
-
 
         describe('Acting as a manager', () => {
             let managerToken
             beforeAll((done) => {
-                request.post('/api/users/login').send(managerCredentials).end((err, res) => {
+                api.login(managerCredentials).then(res => {
                     managerToken = res.body.token
                     done()
                 })
             })
-            it("should not allow unauthenticated users", function (done) {
-                request.patch(`/api/users/${newUserId}/role`).send({ role: 'manager' }).end((err, res) => {
-                    expect(res.status).toBe(401)
-                    done();
-                })
+
+            it("should not update role ", async ()=> {
+                await api.updateRole(newUserId, managerToken, 'regular').expect(403)
             })
-
-
-            it("should not update role as manager ", function (done) {
-                request.patch(`/api/users/${newUserId}/role`)
-                    .set({ 'Authorization': `Bearer ${managerToken}` })
-                    .send({ role: 'manager' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(403)
-                        done();
-                    })
-            })
-
-            it("should not update role as admin ", function (done) {
-                request.patch(`/api/users/${newUserId}/role`)
-                    .set({ 'Authorization': `Bearer ${managerToken}` })
-                    .send({ role: 'admin' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(403)
-                        done();
-                    })
-            })
-
-            it("should not update role as regular ", function (done) {
-                request.patch(`/api/users/${newUserId}/role`)
-                    .set({ 'Authorization': `Bearer ${managerToken}` })
-                    .send({ role: 'regular' })
-                    .end((err, res) => {
-                        expect(res.status).toBe(403)
-                        done();
-                    })
-            })
-
         })
     })
 })

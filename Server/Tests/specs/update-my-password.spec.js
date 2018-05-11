@@ -36,7 +36,7 @@ describe("Users endpoint", function () {
 
 
         it("should update password and be able to login afterwards", function (done) {
-            request.put(`/password`)
+            request.put(`/api/password`)
                 .set({ 'Authorization': `Bearer ${token}` })
                 .send(updatePasswordPayload)
                 .end((err, res) => {
@@ -52,13 +52,14 @@ describe("Users endpoint", function () {
         })
 
         it("should throw error in case old password provided is wrong", function (done) {
-            request.put(`/password`)
+            request.put(`/api/password`)
                 .set({ 'Authorization': `Bearer ${token}` })
                 .send({
                     oldPassword: 'sddddddas',
                     newPassword: '1234567b'
                 })
                 .end((err, res) => {
+                    if (err) throw err
                     expect(res.status).toBe(400)
                     done()
                 })

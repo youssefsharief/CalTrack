@@ -1,12 +1,14 @@
 const { setup } = require('Tests/helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
+const API = require('helpers/api-calls')
 
 
 describe("Users endpoint", function () {
+    let api;
     beforeAll(() => {
         [server, request] = setup()
-
+        api = new API(request)
     })
     afterAll(() => {
         server.close()
@@ -26,7 +28,7 @@ describe("Users endpoint", function () {
         }
         const newUser2 = {
             name: faker.name.firstName(),
-            email: faker.internet.email(), 
+            email: faker.internet.email(),
             maxCalories: 2000, isTrackingDisplayed: true,
             meals: [],
             password: '3223565689re'
@@ -43,77 +45,41 @@ describe("Users endpoint", function () {
         let id
         let userToken
         beforeAll((done) => {
-            request.post('/api/users').send(newUser).end((err, res) => {
-                id = res.body.user_id
-                request.post('/api/users').send(newUser2).end((err, res) => {
-                    done()
-                })
-            })
+            api.signup(newUser).then(res => {
+                id = res.body.user._id
+                return api.signup(newUser2)
+            }).then(() => done())
         })
         describe("Acting as same user", function () {
-
             beforeAll((done) => {
-                request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
+                api.login(newUserCredentials).then(res => {
                     userToken = res.body.token
                     done()
                 })
             })
 
             it("should add successfully ", function (done) {
-                request.post(`/api/users/${id}/meals`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newMeal)
-                    .end((err, res) => {
-                        expect(res.status).toEqual(200)
-                        expect(res.body.meals[0].name).toBe(newMeal.name)
-                        expect(res.body.meals[0].date).toBeTruthy()
-                        expect(res.body.meals[0].numOfCalories).toBe(newMeal.numOfCalories)
-                        done();
-                    })
+                api.addRecord(id, userToken, newMeal).then(res => {
+                    expect(res.status).toEqual(200)
+                    done();
+                })
             })
-
-            it("should respond by 404 error when id is not provided ", function (done) {
-                request.post(`/api/users/meals`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newMeal)
-                    .end((err, res) => {
-                        expect(res.status).toEqual(404)
-                        done();
-                    })
-            })
-
         })
-
-
 
         describe("Acting as different user", function () {
             beforeAll((done) => {
-                request.post('/api/users/login').send(newUser2Credentials).end((err, res) => {
+                api.login(newUser2Credentials).then(res => {
                     userToken = res.body.token
                     done()
                 })
             })
 
             it("should not be allowed to add ", function (done) {
-                request.post(`/api/users/${id}/meals`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newMeal)
-                    .end((err, res) => {
-                        expect(res.status).toEqual(403)
-                        done();
-                    })
-            })
-
-            it("should respond by 404 error when id is not provided ", function (done) {
-                request.post(`/api/users/meals`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newMeal)
-                    .end((err, res) => {
-                        expect(res.status).toEqual(404)
-                        done();
-                    })
+                api.addRecord(id, userToken, newMeal).then(res => {
+                    expect(res.status).toEqual(403)
+                    done();
+                })
             })
         })
-
     })
 })

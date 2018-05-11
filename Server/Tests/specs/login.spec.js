@@ -1,111 +1,78 @@
 const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
+const API = require('helpers/api-calls')
 
 describe("Users endpoint", function () {
+	let api;
 	beforeAll(() => {
 		[server, request] = setup()
+		api = new API(request)
 	})
 	afterAll(() => {
-        server.close()
+		server.close()
 	})
-	describe("Logging in", function () {
+	fdescribe("Logging in", function () {
 		const newUser = {
 			name: faker.name.firstName(),
 			email: faker.internet.email(), maxCalories: 2000, isTrackingDisplayed: true,
-			meals:[],
+			meals: [],
 			password: '456565654ds'
 		}
-        const loginPayload = {
-            email : newUser.email,
-            password: newUser.password
-        }
+		const loginPayload = {
+			email: newUser.email,
+			password: newUser.password
+		}
 
 		beforeAll((done) => {
-            request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(200)
-				expect(res.body.name).toBe(newUser.name)
-				expect(res.body.email).toBe(newUser.email)
-                expect(res.body.role).toBe('regular')
+			api.signup(newUser).then(()=> {
 				done();
 			})
-            
-        })
 
-		it("should login", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.status).toEqual(200)
-				done();
-			})
 		})
 
-		it("should not login with wrong credentials", function (done) {
-			request.post('/api/users/login').send({
-				email: 'randomEmail@test33.com',
-				password: '454ds65ds8ew'
-			}).end((err, res) => {
-				expect(res.status).toBe(401)
-				done();
-			})
+		it("should login", async () => {
+			await api.login(loginPayload).expect(200)
 		})
 
-		it("should have token", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.token).toBeTruthy()
-				done();
-			})
+		it("should not login with wrong credentials", async () => {
+			await api.login({ email: 'randomEmail@test33.com', password: '454ds65ds8ew' }).expect(401)
 		})
-		it("should have user object", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user).toBeTruthy()
-				done();
-			})
+
+		it("should have token", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.token).toBeTruthy()
 		})
-		it("should have name", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user).toBeTruthy()
-				done();
-			})
+		it("should have user object", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.user).toBeTruthy()
 		})
-		it("should have email", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user.email).toBe(newUser.email)
-				done();
-			})
+		it("should have name", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.user.name).toBeTruthy()
 		})
-		it("should have _id", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user._id).toBeTruthy()
-				done();
-			})
+		it("should have email", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.user.email).toBe(newUser.email)
 		})
-		it("should have role", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user.role).toBe('regular')
-				done();
-			})
+		it("should have _id", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.user._id).toBeTruthy()
 		})
-		it("should have meals", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user.meals.length).toBe(newUser.meals.length)
-				done();
-			})
+		it("should have role", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.user.role).toBe('regular')
 		})
-		it("should not have password in response", function (done) {
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.body.user.password).toBeFalsy()
-				done();
-			})
+		it("should not have password in response", async () => {
+			const res = await api.login(loginPayload)
+			expect(res.body.user.password).toBeFalsy()
 		})
-		it("should not login in case password is incorrect", function (done) {
+		it("should not login in case password is incorrect", async () => {
 			loginPayload.password = '12236565rew'
-			request.post('/api/users/login').send(loginPayload).end((err, res) => {
-				expect(res.status).toEqual(401)
-				done();
-			})
+			await api.login(loginPayload).expect(401)
 		})
-		
-		
 
-    })
+
+
+	})
 })

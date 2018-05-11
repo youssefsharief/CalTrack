@@ -1,14 +1,17 @@
 const { setup } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 let server, request
+const API = require('helpers/api-calls')
 
 describe("Users endpoint", function () {
-	beforeAll(() => {
-		[server, request] = setup()
-	})
-	afterAll(() => {
+    let api;
+    beforeAll(() => {
+        [server, request] = setup()
+        api = new API(request)
+    })
+    afterAll(() => {
         server.close()
-	})
+    })
 	describe("Sign up", function () {
 		const newUser = {
 			name: faker.name.firstName(),
@@ -17,72 +20,41 @@ describe("Users endpoint", function () {
 			password: '456565654ds'
 		}
 
-		it("should add user", function (done) {
-			request.post('/api/users').send(newUser).end((err, res) => {
-				
-				// expect(res.status).toEqual(200)
-				// expect(res.body.name).toBe(newUser.name)
-				// expect(res.body.email).toBe(newUser.email)
-				// expect(res.body.role).toBe('regular')
-				done();
-			})
+		it("should add user", async ()=> {
+			await api.signup(newUser).expect(201)
 		})
-		it("should not allow duplicate emails", function (done) {
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(409)
-				done();
-			})
+		it("should not allow duplicate emails", async ()=> {
+			await api.signup(newUser).expect(409)
 		})
-		it("should respond by error message in case password have no letter", function (done) {
+		it("should respond by error message in case password have no letter", async ()=> {
 			newUser.password = '12236565'
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
 		
-		it("should respond by error message in case password have no number", function (done) {
+		it("should respond by error message in case password have no number", async ()=> {
 			newUser.password = 'herogymisthe'
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
-		it("should respond by error message in case password is not lengthy enough", function (done) {
+		it("should respond by error message in case password is not lengthy enough", async ()=> {
 			newUser.password = 'i5o'
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
 
-		it("should respond by error message in case name is not provided", function (done) {
+		it("should respond by error message in case name is not provided", async ()=> {
 			newUser.name = undefined
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
-		it("should respond by error message in case email is not provided", function (done) {
+		it("should respond by error message in case email is not provided", async ()=> {
 			newUser.email = undefined
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
-		it("should respond by error message in case password is not provided", function (done) {
+		it("should respond by error message in case password is not provided", async ()=> {
 			newUser.password = undefined
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
-		it("should respond by error message in case email do not have the appropriate format", function (done) {
+		it("should respond by error message in case email do not have the appropriate format", async ()=> {
 			newUser.email = 'thisIsNOTanEmail'
-			request.post('/api/users').send(newUser).end((err, res) => {
-				expect(res.status).toEqual(422)
-				done();
-			})
+			await api.signup(newUser).expect(422)
 		})
 
         

@@ -24,7 +24,8 @@ describe("Users endpoint", function () {
         }
         const updatedInfoPayload = {
             name: faker.name.firstName(),
-            email: faker.internet.email()
+            maxCalories: 3000,
+            isTrackingDisplayed: true
         }
         let token
         let user
@@ -39,7 +40,7 @@ describe("Users endpoint", function () {
         })
 
         it("should not allow unauthenticated users", function (done) {
-            request.put(`api/users/${user._id}/info`).send(updatedInfoPayload).end((err, res) => {
+            request.put(`/api/users/${user._id}/info`).send(updatedInfoPayload).end((err, res) => {
                 expect(res.status).toBe(401)
                 done();
             })
@@ -47,31 +48,24 @@ describe("Users endpoint", function () {
 
 
         it("should update", function (done) {
-            request.put(`api/users/${user._id}/info`)
+            request.put(`/api/users/${user._id}/info`)
             .set({'Authorization': `Bearer ${token}`})
             .send(updatedInfoPayload)
             .end((err, res) => {
+                if (err) throw err
                 expect(res.status).toBe(200)
                 expect(res.body.name).toBe(updatedInfoPayload.name)
-                expect(res.body.email).toBe(updatedInfoPayload.email)
+                expect(res.body.maxCalories).toBe(updatedInfoPayload.maxCalories)
+                expect(res.body.isTrackingDisplayed).toBe(updatedInfoPayload.isTrackingDisplayed)
                 done();
             })
         })
         it("should return 404 if no id is provided", function (done) {
-            request.put(`api/users/info`)
+            request.put(`/api/users/info`)
             .set({'Authorization': `Bearer ${token}`})
             .send(updatedInfoPayload)
             .end((err, res) => {
                 expect(res.status).toBe(404)
-                done();
-            })
-        })
-        it("should not allow other regular users to update", function (done) {
-            request.put(`api/users/${user._id}/info`)
-            .set({'Authorization': `Bearer x${token}`})
-            .send(updatedInfoPayload)
-            .end((err, res) => {
-                expect(res.status).toBe(401)
                 done();
             })
         })

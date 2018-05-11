@@ -1,10 +1,13 @@
 const { setup } = require('helpers/requestsSpecHelper')
+const API = require('helpers/api-calls')
 const faker = require('faker')
 let server, request
 
 describe("Users endpoint", function () {
+    let api;
     beforeAll(() => {
         [server, request] = setup()
+        api = new API(request)
     })
     afterAll(() => {
         server.close()
@@ -34,67 +37,38 @@ describe("Users endpoint", function () {
         let id
         let userToken
         let mealId
-        beforeAll((done) => {
-            request.post('/api/users').send(newUser).end((err, res) => {
-                id = res.body.user_id
-                done()
-            })
+        beforeAll(async () => {
+            const res = await api.signup(newUser)
+            id = res.body.user_id
         })
         describe("Acting as same user", function () {
             beforeAll((done) => {
-                request.post('/api/users/login').send(newUserCredentials).end((err, res) => {
-                    userToken = res.body.token
-                    id = res.body.user._id
-                    request.post(`/api/users/${id}/meals`).set({ 'Authorization': `Bearer ${userToken}` }).send(newMeal).end((err, res) => {
-                            request.get(`/api/users/${id}/meals`).set({ 'Authorization': `Bearer ${userToken}` }).end((err, res) => {
-                                done();
-                            })
-                        })
-                })
+                api.login(newUserCredentials).then(loginRes => {
+                    userToken = loginRes.body.token
+                    id = loginRes.body.user._id
+                    return api.addRecord(id, userToken, newMeal)
+                }).then(() =>
+                    api.getRecords(id, userToken)).then(res => {
+                        expect(res.status).toBe(200)
+                        mealId = res.body.meals[0]._id
+                        done()
+                    }).catch(err => { throw err })
             })
 
-            fit("should update successfully ", function (done) {
-                request.put(`api/users/${id}/meals/${mealId}`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(updatedMeal)
-                    .end((err, res) => {
-                        if(err) throw err
-                        request.get(`/api/users/${id}/meals`)
-                            .set({ 'Authorization': `Bearer ${userToken}` })
-                            .end((err, res) => {
-                                // expect(res.body.meals).toBeTruthy()
-                                // expect(res.body.meals[0]).toBeTruthy()
-                                // expect(res.body.meals[0].name).toBe(updatedMeal.name)
-                                // expect(res.body.meals[0].numOfCalories).toBe(updatedMeal.numOfCalories)
-                                // console.log(res.body.meals)
-                                done();
-                            })
-
-                    })
+            it("should update successfully ", async () => {
+                await api.updateRecord(id, mealId, userToken, updatedMeal).expect(200)
+                const res = await api.getRecords(id, userToken).expect(200)
+                expect(res.body.meals).toBeTruthy()
+                expect(res.body.meals[0]).toBeTruthy()
+                expect(res.body.meals[0].name).toBe(updatedMeal.name)
+                expect(res.body.meals[0].numOfCalories).toBe(updatedMeal.numOfCalories)
             })
 
-            it("should respond by 404 error when id is not provided ", function (done) {
-                request.put(`api/users/${id}/meals/`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newMeal)
-                    .end((err, res) => {
-                        expect(res.status).toEqual(404)
-                        done();
-                    })
+            it("should respond by 422 error when wrong id is provided ", async () => {
+                await api.updateRecord(id, '1', userToken, updatedMeal).expect(422)
             })
-
-            it("should respond by 400 error when wrong id is provided ", function (done) {
-                request.put(`api/users/${id}/meals/1`)
-                    .set({ 'Authorization': `Bearer ${userToken}` })
-                    .send(newMeal)
-                    .end((err, res) => {
-                        expect(res.status).toEqual(422)
-                        done();
-                    })
-            })
-
         })
-
-
     })
 })
+
+
