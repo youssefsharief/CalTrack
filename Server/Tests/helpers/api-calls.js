@@ -42,7 +42,7 @@ module.exports = {
         return request.get(`/api/users/${id}/meals/${mealId}`).set({ 'Authorization': `Bearer ${token}` })
     },
 
-    updateRecord(id, mealId, userToken, updatedMeal) {
+    updateRecord(id, userToken, mealId, updatedMeal) {
         return request.put(`/api/users/${id}/meals/${mealId}`).set({ 'Authorization': `Bearer ${userToken}` }).send(updatedMeal)
     },
 
@@ -58,7 +58,7 @@ module.exports = {
         return request.patch(`/api/users/${userId}/role`).set({ 'Authorization': `Bearer ${userToken}` }).send({ role })
     },
 
-    updatePassword(id, token, payload) {
+    updateOtherUserPassword(id, token, payload) {
         return request.put(`/api/users/${id}/password`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
     },
 

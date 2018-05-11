@@ -39,26 +39,28 @@ describe("User endpoint", function () {
 				managerToken = (await api.login(managerCredentials)).body.token
 			})
 
-			describe('activating user administratively', ()=>{
+			describe('activating user administratively', () => {
 				let res
-				beforeAll(async ()=>{
+				beforeAll(async () => {
 					res = await api.activateUserAdministratively(id, adminToken).expect(200)
 				})
-				it('should activate user', ()=>{
+				it('should activate user', () => {
 					expect(res.body).toBeTruthy()
 				})
 			})
 
+			describe('changing user password as admin', () => {
+				beforeEach(async () => {
+					await signUpForAUser()
+				})
 
-			// describe('inviting a user', ()=>{
-			// 	let res
-			// 	beforeAll(async ()=>{
-			// 		res = await api.inviteUser(adminToken, {email: 'asd@sa.com', url: 'https://dad.com'}).expect(200)
-			// 	})
-			// 	it('should activate user', ()=>{
-			// 		expect(res.body).toBeTruthy()
-			// 	})
-			// })
+				it('user should change password successfully', async () => {
+					await api.login({ email: user.email, password: user.password }).expect(200)
+					await api.login({ email: user.email, password: '123456789v' }).expect(401)
+					await api.updateOtherUserPassword(id, adminToken, { newPassword: '123456789v' }).expect(200)
+					await api.login({ email: user.email, password: '123456789v' }).expect(200)
+				})
+			})
 
 
 			describe('Getting Users', () => {

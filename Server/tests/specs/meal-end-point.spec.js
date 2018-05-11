@@ -1,10 +1,9 @@
-const { adminCredentials, managerCredentials } = require('../constants/credentials')
 const api = require('../helpers/api-calls')
 const payload = require('../helpers/payload-factory-utility')
 
 
 describe("User endpoint", function () {
-    let id, adminToken, managerToken, id2, userToken, user
+    let id, userToken, user
 
     const signUpForAUser = async () => {
         user = payload.newUser()
@@ -28,8 +27,8 @@ describe("User endpoint", function () {
                 expect(res.body).toBeTruthy()
             })
 
-            describe('getting todays caloric intake', ()=>{
-                it('should get correct number of calories', async ()=>{
+            describe('getting todays caloric intake', () => {
+                it('should get correct number of calories', async () => {
                     const res = await api.getTodaysIntake(id, userToken).expect(200)
                     expect(res.body).toBe(meal.numOfCalories)
                 })
@@ -54,31 +53,26 @@ describe("User endpoint", function () {
                 })
 
                 describe('updating record', () => {
-                    let res
                     const meal2 = payload.newMeal()
-                    // beforeAll(async ()=>{
-                    //     console.log(id, userToken, meal2)
-                    //     res = await api.updateRecord(id, userToken, meal2)
-                    // })
-                    // fit('should update successfully', () => {
-                    //     expect(res.body).toBeTruthy()
-                    // })
+                    beforeAll(async () => {
+                        await api.updateRecord(id, userToken, mealId, meal2).expect(200)
+                    })
 
-                    // describe('getting a record', () => {
-                    //     let res3
-                    //     beforeAll(async ()=>{
-                    //         res3 = await api.getRecord(id, userToken, mealId).expect(200)
-                    //     })
-                    //     it('should get successfully', () => {
-                    //         expect(res3).toBeTruthy()
-                    //     })
-                    //     it('should have name property', () => {
-                    //         expect(res3.body.name).toBe(meal2.name)
-                    //     })
-                    //     it('should have calories property', () => {
-                    //         expect(res3.body.calories).toBe(meal2.calories)
-                    //     })
-                    // })
+                    describe('getting a record', () => {
+                        let res3
+                        beforeAll(async () => {
+                            res3 = await api.getRecord(id, userToken, mealId).expect(200)
+                        })
+                        it('should get successfully', () => {
+                            expect(res3).toBeTruthy()
+                        })
+                        it('should have correct name', () => {
+                            expect(res3.body.name).toBe(meal2.name)
+                        })
+                        it('should have correct calories', () => {
+                            expect(res3.body.calories).toBe(meal2.calories)
+                        })
+                    })
 
                     describe('deleting record', () => {
                         beforeAll(async () => {
@@ -88,15 +82,8 @@ describe("User endpoint", function () {
                             await api.getRecord(id, userToken, mealId).expect(404)
                         })
                     })
-
                 })
             })
-
-
-
-
         })
-
-
     })
 })

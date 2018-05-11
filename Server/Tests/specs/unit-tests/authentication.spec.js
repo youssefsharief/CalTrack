@@ -33,7 +33,7 @@ const toBeSpied = {
 const next = () => toBeSpied.authorized()
 
 
-describe('Authentication', () => {
+xdescribe('Authentication', () => {
     beforeAll(()=>{
         process.env.secret = 'correct'
     })
