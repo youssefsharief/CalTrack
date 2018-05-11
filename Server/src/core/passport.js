@@ -5,7 +5,7 @@ var GoogleTokenStrategy = require('passport-google-id-token');
 passport.use('facebookToken', new FacebookTokenStrategy({
     clientID: process.env.facebookClientId,
     clientSecret: process.env.facebookClientSecret,
-}, async (accessToken, refreshToken, profile, done) => {
+}, (accessToken, refreshToken, profile, done) => {
     try {
         done(null, profile)
     } catch (error) {
@@ -16,7 +16,7 @@ passport.use('facebookToken', new FacebookTokenStrategy({
 passport.use('googleToken', new GoogleTokenStrategy({
     clientID: process.env.googleClientId,
     clientSecret: process.env.googleClientSecret
-}, async (parsedToken, googleId, done) => {
+}, (parsedToken, googleId, done) => {
     try {
         done(null, parsedToken)
     } catch (error) {

@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_PATH=./src node ./src/bin/www",
-    "coverage": "cross-env NODE_PATH=./;./src/;./Tests/ npm run nodemon-test-istanbul",
-    "test": " cross-env CAPTCHA_DISABLED=true NODE_PATH=./;./src/;./Tests/ npm run nodemon-test",
+    "coverage": "cross-env NODE_PATH=./;./src/;./tests/ npm run nodemon-test-istanbul",
+    "test": " cross-env CAPTCHA_DISABLED=true NODE_PATH=./;./src/;./tests/ npm run nodemon-test",
     "nodemon-test": "nodemon  --exec  jasmine JASMINE_CONFIG_PATH=jasmine.json ",
     "nodemon-test-istanbul": "nodemon --exec istanbul cover node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
     "dev": "cross-env NODE_PATH=./src nodemon --verbose ./src/bin/www"
@@ -42,6 +42,7 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.2",
     "@types/jasmine": "^2.8.2",
     "cross-env": "^5.1.4",
     "faker": "^4.1.0",

@@ -1,10 +1,10 @@
 {
-  "spec_dir": "./tests/specs/",
+  "spec_dir": "tests",
   "spec_files": [
     "**/*.spec.js"
   ],
   "helpers": [
-    "./tests/helpers/jasmineSpcHelper.js"
+    "helpers/**/*.js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false

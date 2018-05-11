@@ -140,7 +140,7 @@ export class DataService {
     }
 
     disconnectLocalLogin() {
-        return this.http.delete<User>(`connections/local`, )
+        return this.http.delete<User>(`connections/local`)
     }
 
     getTodaysIntake(userId): Observable<number> {
