@@ -6,7 +6,6 @@ import { SnackBarService } from '../core/services/snackbar.service';
 import { User } from '../shared/models/user.model';
 import { PublicInfoService } from '../core/services/public.info.service';
 import { passwordPattern } from 'app/shared/config/constants';
-import { isCaptchaEnabled } from 'app/shared/config/settings';
 import { AuthService } from 'app/core/services/auth.service';
 
 @Component({
@@ -14,7 +13,6 @@ import { AuthService } from 'app/core/services/auth.service';
 })
 export class SignupComponent implements OnInit {
     form: FormGroup
-    isCaptchaEnabled = isCaptchaEnabled
 
     constructor(private fb: FormBuilder,
         private dataService: DataService,
@@ -38,9 +36,7 @@ export class SignupComponent implements OnInit {
             maxCalories: [2250, Validators.compose([Validators.required, Validators.min(500), Validators.max(8000)])],
             isTrackingDisplayed: [true],
         }
-        if (this.isCaptchaEnabled) {
-            group['g-recaptcha-response'] = [null, Validators.required]
-        }
+        group['g-recaptcha-response'] = [null, Validators.required]
         this.form = this.fb.group(group, { validator: this.areEqual })
     }
 

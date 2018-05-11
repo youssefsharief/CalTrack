@@ -116,31 +116,31 @@ export class DataService {
     }
 
     connectFacebook(access_token: string) {
-        return this.http.post<User>(`connect/facebook`, { access_token }, )
+        return this.http.post<User>(`connections/facebook`, { access_token }, )
     }
 
     connectGoogle(access_token: string) {
-        return this.http.post<User>(`connect/google`, { access_token }, )
+        return this.http.post<User>(`connections/google`, { access_token }, )
     }
 
     disconnectFacebook() {
-        return this.http.post<User>(`disconnect/facebook`, { }, )
+        return this.http.delete<User>(`connections/facebook`)
     }
 
     disconnectGoogle() {
-        return this.http.post<User>(`disconnect/google`, { }, )
+        return this.http.delete<User>(`connections/google`)
     }
 
     connectLocalLogin(payload) {
-        return this.http.post<User>(`connect/local`, payload, )
+        return this.http.post<User>(`connections/local`, payload, )
     }
 
     connectLocalLoginSecurely(payload) {
-        return this.http.post<User>(`connect/local/secure`, payload, )
+        return this.http.post<User>(`connections/local/secure`, payload, )
     }
 
     disconnectLocalLogin() {
-        return this.http.post<User>(`disconnect/local`, {}, )
+        return this.http.delete<User>(`connections/local`, )
     }
 
     getTodaysIntake(userId): Observable<number> {
