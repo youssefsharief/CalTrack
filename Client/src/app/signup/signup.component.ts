@@ -49,6 +49,7 @@ export class SignupComponent implements OnInit {
         delete payload.confirmPassword
         this.dataService.signup(payload).subscribe(
             data => {
+                this.authService.saveToken(data.token)
                 this.authService.saveProfile(data.user)
                 this.router.navigate(['my-profile'])
             },
