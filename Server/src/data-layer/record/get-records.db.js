@@ -49,9 +49,9 @@ module.exports = (userId, limit, skip, startDate, endDate, startTime, endTime) =
         {
             $facet: {
                 meals: [
+                    { $sort : { date : -1 } },
                     { $skip: skip },
                     { $limit: limit },
-                    { $sort : { date : -1 } }
                 ],
                 pageInfo: [
                     { $group: { _id: null, count: { $sum: 1 } } },
