@@ -108,6 +108,7 @@ describe('Signup Component', () => {
                 const nameElement = name.nativeElement
                 nameElement.value = 'YYYY'
                 nameElement.dispatchEvent(new Event('input'));
+                comp.form.get('g-recaptcha-response').setValue(true)
                 fixture.detectChanges();
             })
             it('form should be valid', () => {
@@ -137,6 +138,7 @@ describe('Signup Component', () => {
                 const nameElement = name.nativeElement
                 nameElement.value = 'YY'
                 nameElement.dispatchEvent(new Event('input'));
+                comp.form.get('g-recaptcha-response').setValue(true)
                 fixture.detectChanges();
             })
             it('form should be invalid', () => {
@@ -171,6 +173,7 @@ describe('Signup Component', () => {
                 const nameElement = name.nativeElement
                 nameElement.value = 'YYYY'
                 nameElement.dispatchEvent(new Event('input'));
+                comp.form.get('g-recaptcha-response').setValue(true)
                 fixture.detectChanges();
             })
             it('form should be invalid', () => {
@@ -206,6 +209,7 @@ describe('Signup Component', () => {
                 const nameElement = name.nativeElement
                 nameElement.value = 'YYYY'
                 nameElement.dispatchEvent(new Event('input'));
+                comp.form.get('g-recaptcha-response').setValue(true)
                 fixture.detectChanges();
             })
             it('form should be invalid', () => {
@@ -240,6 +244,7 @@ describe('Signup Component', () => {
                 const nameElement = name.nativeElement
                 nameElement.value = 'YYYY'
                 nameElement.dispatchEvent(new Event('input'));
+                comp.form.get('g-recaptcha-response').setValue(true)
                 fixture.detectChanges();
             })
             it('form should be invalid', () => {
@@ -275,6 +280,7 @@ describe('Signup Component', () => {
             const nameElement = name.nativeElement
             nameElement.value = 'YYYY'
             nameElement.dispatchEvent(new Event('input'));
+            comp.form.get('g-recaptcha-response').setValue(true)
         })
 
         describe('Normal Signup', () => {
@@ -318,7 +324,8 @@ describe('Signup Component', () => {
                     const spy = spyOn(dataService, 'signupSecurely').and.callThrough()
                     fixture.debugElement.query(By.css('#secure-signup-button')).nativeElement.click()
                     fixture.detectChanges()
-                    expect(spy).toHaveBeenCalledWith(Object({ name: 'YYYY', email: 'aadsdjhk@daom.com', password: '22323435fgt3', maxCalories: 2250, isTrackingDisplayed: true }))
+                    expect(spy).toHaveBeenCalledWith(Object({ name: 'YYYY', email: 'aadsdjhk@daom.com', password: '22323435fgt3', maxCalories: 2250,
+                     isTrackingDisplayed: true, 'g-recaptcha-response': true }))
                 })
 
             })

@@ -50,15 +50,18 @@ describe("User endpoint", function () {
 			})
 
 			describe('changing user password as admin', () => {
-				beforeEach(async () => {
-					await signUpForAUser()
+				let newUser, newUserId
+				beforeAll(async () => {
+					newUser = payload.newUser()
+					const res = await api.signup(newUser).expect(201)
+					newUserId = res.body.user._id
 				})
 
-				it('user should change password successfully', async () => {
-					await api.login({ email: user.email, password: user.password }).expect(200)
-					await api.login({ email: user.email, password: '123456789v' }).expect(401)
-					await api.updateOtherUserPassword(id, adminToken, { newPassword: '123456789v' }).expect(200)
-					await api.login({ email: user.email, password: '123456789v' }).expect(200)
+				it('user should change password successfully', async ()=>{
+					await api.login({email: newUser.email, password: newUser.password}).expect(200)
+					await api.login({email: newUser.email, password: '123456789v'}).expect(401)
+					await api.updateOtherUserPassword(newUserId, adminToken, {newPassword: '123456789v'}).expect(200)
+					await api.login({email: newUser.email, password: '123456789v'}).expect(200)
 				})
 			})
 

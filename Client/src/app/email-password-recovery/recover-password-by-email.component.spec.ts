@@ -20,7 +20,7 @@ describe('RecoverPassworByEmail Component', () => {
     let location: Location
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ EmailPasswordRecoveryModule, AppModule ],
+            imports: [EmailPasswordRecoveryModule, AppModule],
             providers: [
                 { provide: DataService, useValue: {} },
                 SnackBarService,
@@ -118,11 +118,12 @@ describe('RecoverPassworByEmail Component', () => {
                 expect(spy).toHaveBeenCalledWith('fahjlkh@hfjdf.com')
             })
 
-        describe('Scenario: Error', () => {
-            it('should handle Error', () => {
-                dataService.forgottenPassword = (email) => Observable.throw('Ok')
-                fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
-                expect(comp).toBeTruthy()
+            describe('Scenario: Error', () => {
+                it('should handle Error', () => {
+                    dataService.forgottenPassword = (email) => Observable.throw('Ok')
+                    fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()
+                    expect(comp).toBeTruthy()
+                })
             })
         })
     })
