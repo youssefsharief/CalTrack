@@ -1,9 +1,11 @@
 import {  element, by, $, $$} from 'protractor';
 
 export class Layout {
-    static myMealsTab = () => $$('li').first()
-    static myProfileTab = () => element(by.cssContainingText('a', 'My profile'));
-    static usersTab = () => element(by.cssContainingText('a', 'Users'));
+    static myRecordsTab = () => $('#myRecordsTab')
+    static myProfileTab = () => $('#myProfileTab')
+    static usersTab = () => $('#usersTab')
+    static myLoginsTab = () => $('#myLoginsTab')
+    static inviteUserTab = () => $('#inviteUserTab')
 }
 
 

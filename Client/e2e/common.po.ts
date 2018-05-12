@@ -4,4 +4,5 @@ export class CommonPage {
     static plusIcon = () => $('.fa-plus')
     static editIcons = () => $$('.fa-edit')
     static lastRowCloumns = () => $$('tr').last().$$('td')
+    static columns = () => $$('tr')
 }

@@ -8,19 +8,19 @@
     <div class="collapse navbar-collapse" *ngIf="authService.isAuthenticated()">
         <ul class="navbar-nav mr-auto" >
             <li class="nav-item">
-                <a routerLinkActive="active" routerLink='/my-meals' class="nav-link">My meals</a>
+                <a routerLinkActive="active" id="myRecordsTab" routerLink='/my-meals' class="nav-link">My meals</a>
             </li>
             <li class="nav-item">
-                <a routerLinkActive="active" routerLink='/my-profile' class="nav-link">My profile</a>
+                <a routerLinkActive="active" id="myProfileTab" routerLink='/my-profile' class="nav-link">My profile</a>
             </li>
             <li *ngIf="authService.isAtleastManager()" class="nav-item">
-                <a routerLinkActive="active" routerLink='/users' class="nav-link">Users</a>
+                <a routerLinkActive="active" id="usersTab" routerLink='/users' class="nav-link">Users</a>
             </li>
             <li *ngIf="authService.isAdmin()" class="nav-item">
-                <a routerLinkActive="active" routerLink='/invite' class="nav-link">Invite a User</a>
+                <a routerLinkActive="active" id="inviteUserTab" routerLink='/invite' class="nav-link">Invite a User</a>
             </li>
             <li class="nav-item">
-                <a routerLinkActive="active" routerLink='/my-logins' class="nav-link">My logins</a>
+                <a routerLinkActive="active" id="myLoginsTab" routerLink='/my-logins' class="nav-link">My logins</a>
             </li>
         </ul>
         <app-progress-bar *ngIf="authService.getProfile().isTrackingDisplayed"></app-progress-bar>

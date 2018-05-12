@@ -16,3 +16,6 @@
 [0413/165252.356:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
 [0413/165252.356:ERROR:exception_snapshot_win.cc(88)] thread ID 4292 not found in process
 [0413/165252.356:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed
+[0512/175054.450:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0512/175054.451:ERROR:exception_snapshot_win.cc(88)] thread ID 17876 not found in process
+[0512/175054.451:WARNING:crash_report_exception_handler.cc(62)] ProcessSnapshotWin::Initialize failed

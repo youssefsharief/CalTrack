@@ -2,7 +2,7 @@
    <div class="progress-bar" role="progressbar" [ngClass]="ngClass" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': width}">
       <!-- <small >60% complete</small> -->
       <span id="text" class="justify-content-center d-flex position-absolute w-100">
-         <span *ngIf="authService.getProfile().maxCalories - caloriesConsumed > 0">
+         <span *ngIf="authService.getProfile().maxCalories - caloriesConsumed >= 0">
             {{(authService.getProfile().maxCalories - caloriesConsumed) | number: '1.0-0' }} Calories Left </span>
          <span *ngIf="authService.getProfile().maxCalories - caloriesConsumed < 0">
             {{ (caloriesConsumed - authService.getProfile().maxCalories) | number: '1.0-0' }} Calories Over </span>
