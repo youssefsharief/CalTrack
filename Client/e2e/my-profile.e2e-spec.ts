@@ -16,7 +16,7 @@ describe('My Profile', () => {
             Layout.myProfileTab().click()
         })
 
-        it('should update', () => {
+        fit('should update', () => {
             InfoFormPage.clearFormName()
             const randomName: string = Math.random().toString(36).substring(7)
             InfoFormPage.submitForm(randomName)

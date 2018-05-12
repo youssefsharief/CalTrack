@@ -12,7 +12,7 @@ import { AppModule } from 'app/app.module';
 import { MyLoginsComponent } from 'app/my-logins/my-logins.component';
 import { MyLoginsModule } from 'app/my-logins/my-logins.module';
 
-describe('MyMeals Component', () => {
+describe('MyLogins Component', () => {
     let comp: MyLoginsComponent;
     let fixture: ComponentFixture<MyLoginsComponent>;
     let location: Location
@@ -24,7 +24,7 @@ describe('MyMeals Component', () => {
             name: 'W',
             email: 'assad@sjdeir.com',
         },
-        token: 'aaaa'
+        token: 'bbb'
     }
     const dataServiceStub = {
         connectGoogle() {

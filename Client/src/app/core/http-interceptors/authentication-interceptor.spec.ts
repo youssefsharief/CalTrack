@@ -20,7 +20,10 @@ describe('Auth interceptor', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule, AppModule],
-            providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, ]
+            providers: [
+                { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+                { provide: AuthService, useValue: { getToken() { return 'er' } } },
+            ]
         });
         const injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
@@ -33,14 +36,14 @@ describe('Auth interceptor', () => {
         let req: TestRequest;
         beforeEach(() => {
             dummy = 'ok';
-            service.changeMyPasswordUsingRecoveryCode({ recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e' }).subscribe()
+            service.changeMyPasswordUsingRecoveryCode({ recoveryCode: 'sss', newPassword: 'qqq', email: 'asda@e' }).subscribe()
             req = httpMock.expectOne(req => req.method === 'POST');
         })
         afterEach(() => {
             req.flush(dummy);
         })
         it('should have appropriate headers ', () => {
-            expect(req.request.headers.get('Authorization')).toBe('Bearer null')
+            expect(req.request.headers.get('Authorization')).toBe('Bearer er')
         });
     });
     afterEach(() => {

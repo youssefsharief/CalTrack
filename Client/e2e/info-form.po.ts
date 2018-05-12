@@ -9,7 +9,7 @@ export class InfoFormPage {
     }
 
     static clearFormName() {
-        $('input[formControlName=name]').clear()
+        $('input[name="name"]').clear()
     }
 }
 
