@@ -1,9 +1,4 @@
 
-In Order for the client side to run, you need use https/
-Use this repo to generate ssl keys, then add the keys in a folder called ssl in ssl folder so that it would be used for both the Node.js backend repo for running the https server and for the clinet side to 
-be used for the dev server
-
-https://github.com/RubenVermeulen/generate-trusted-ssl-certificate
 
 
 
@@ -42,42 +37,78 @@ For tests to work you need to have saved credentials for the database for the an
 
 ## Configuration
 
+## SSL 
+
+In rrder for the client side to run, you need use https/
+Use this repo to generate ssl keys, then add the keys in a folder called ssl in ssl folder so that it would be used for both the Node.js backend repo for running the https server and for the clinet side to 
+be used for the dev server
+
+https://github.com/RubenVermeulen/generate-trusted-ssl-certificate
+
+
+
 1. Add a .env file in the `Server` folder. This file would contain all configuration that are not allowed to be shared
 
 ### Database Setup
 1. Setup 2 MongoDb databases for production and testing then enter the url in the `.env` file as `mongodbMealURI` and `mongodbMealMockURI` respectively
 2. Add indexes to the database to ensire high performance running the following commands
-    1. db.users.ensureIndex({"meals.date" : 1})
-    2. db.users.ensureIndex({"meals._id" : 1})
-    3. db.users.ensureIndex({"googleId" : 1})
-    4. db.users.ensureIndex({"facebookId" : 1})
+    * db.users.ensureIndex({"meals.date" : 1})
+    * db.users.ensureIndex({"meals._id" : 1})
+    * db.users.ensureIndex({"googleId" : 1})
+    * db.users.ensureIndex({"facebookId" : 1})
 
+### Mailer Config
+1. Add `mailerUser` (sender email address) and `mailerPass` (sender email password) to the `.env` file 
 
+### Nutritionix Api Config
+1. Go to developer.nutritionix.com and signup for an account to get your app id and app key
+2. Add `nutritionixAppId` and `nutritionixAppKey` with their corresponding values to the `.env` file 
 
 ### Social Sign in Setup
 
 #### Facebook
 1. Go to https://developers.facebook.com/apps/ and add a Facebook Login product
 2. Add the following Valid OAuth Redirect URIs
-    1. https://localhost:4400/   for the the dev server
-    2. https://caltrack-meals.herokuapp.com/  for the hosted app
-    3. https://localhost:3001/  to test serving from the same backend server locally
+    * https://localhost:4400/   for the the dev server
+    * https://caltrack-meals.herokuapp.com/  for the hosted app
+    * https://localhost:3001/  to test serving from the same backend server locally
 3. Add to the `.env` file the clientId and clientSecret using the following props respectively: `facebookClientId` and `facebookClientSecret`
 
-### Google
+#### Google
 1. Go to https://console.developers.google.com/apis/credentials
 2. Add the same urls as hown above in "Authorized Javascript origins" section
 3. Add to the `.env` file the clientId and clientSecret using the following props respectively: `googleClientId` and `googleClientSecret`
 
+### Google Recaptcha
+1. Go to https://www.google.com/recaptcha/admin#list and signup for api keys
+2. Add to the `.env` file the site key and secret key using the following props respectively: `captchaSiteKey` and `captchaSecretKey`
 
+### Local Json Web Token
+1. Add `secret` to the `.env` for jwt 
 
+### All `.env` file properties
+* NODE_ENV
+* facebookClientId
+* facebookClientSecret
+* googleClientId
+* googleClientSecret
+* mailerPass
+* mailerUser
+* mongodbMealMockURI
+* mongodbMealURI
+* nutritionixAppId
+* nutritionixAppKey
+* secret
+* captchaSiteKey
+* captchaSecretKey
 
 ## Backend
 
 ### Testing
 1. Add NODE_ENV="testing" to your `.env` file or replace the current NODE_ENV value. This is to ensure `Google Recaptcha` would not fail our tests
-2. 
 
+
+Client side
 
 ## Build
 

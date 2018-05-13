@@ -47,8 +47,10 @@ const ensureHavingAtleast2Accounts = require('./security/ensure-having-2-account
 const getTodaysIntake = require('./record/get-todays-intake.route')
 const { verifyUser } = require('core/authentication')
 const Authorize = require('core/authorization')
+const recaptchaTestingConfig = require('../config/recaptcha-testing.config')
 const Recaptcha = require('express-recaptcha').Recaptcha;
-const recaptcha = process.env.NODE_ENV === 'testing' ? new Recaptcha( process.env.captchaTestingSiteKey, process.env.captchaTestingSecretKey) : new Recaptcha( process.env.captchaSiteKey, process.env.captchaSecretKey)
+const recaptcha = process.env.NODE_ENV === 'testing' ? new Recaptcha(recaptchaTestingConfig.captchaTestingSiteKey, recaptchaTestingConfig.captchaTestingSecretKey)
+    : new Recaptcha(process.env.captchaSiteKey, process.env.captchaSecretKey)
 
 
 
@@ -82,10 +84,10 @@ router.put('/users/:id/meals/:mealId', verifyUser, validateUpdateRecord, Authori
 
 router.post('/oauth/facebook', passport.authenticate('facebookToken', { session: false }), validateSocialLogin, facebookSignin);
 router.post('/oauth/google', passport.authenticate('googleToken', { session: false }), validateSocialLogin, googleSignin);
-router.patch('/connections/facebook', verifyUser,  passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
-router.patch('/connections/google', verifyUser,  passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
-router.patch('/connections/local', verifyUser,  validateConnectLocalLogin, connectLocalLogin);
-router.patch('/connections/local/secure', verifyUser,  validateConnectLocalLogin, connectLocalLoginSecurely);
+router.patch('/connections/facebook', verifyUser, passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
+router.patch('/connections/google', verifyUser, passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
+router.patch('/connections/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
+router.patch('/connections/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
 router.patch('/connections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
 router.patch('/connections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
 router.patch('/connections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
