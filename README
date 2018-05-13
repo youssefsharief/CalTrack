@@ -1,6 +1,0 @@
-
-In Order for the client side to run, you need use https/
-Use this repo to generate ssl keys, then add the keys in a folder called ssl in ssl folder so that it would be used for both the Node.js backend repo for running the https server and for the clinet side to 
-be used for the dev server
-
-https://github.com/RubenVermeulen/generate-trusted-ssl-certificate
