@@ -9,7 +9,7 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
 import { CoreModule } from 'app/core/core.module';
-import { SocialLoginModule } from 'angularx-social-login';
+// import { SocialLoginModule } from 'angularx-social-login';
 import { AppModule } from 'app/app.module';
 
 let httpMock: HttpTestingController;
