@@ -26,6 +26,7 @@ export class MealsComponent implements OnInit {
     startTime: string
     endTime: string;
     currentPage: number
+    areFilterOptionsDisplayed = false
 
     constructor(
         private mealsService: SelectedMealService,

@@ -1,54 +1,64 @@
 <app-title>{{title}} </app-title>
 
-<div class="row">
-    <app-default-input-layout class="col-md-4 mr-5" label="Date">
-        <input type="text" placeholder="Date Range" class="form-control form-control-sm" bsDaterangepicker [(ngModel)]="bsRangeValue"
-            [bsConfig]="{containerClass: 'theme-red' }">
-    </app-default-input-layout>
-    <app-default-input-layout class="col-md-3" label="From:">
-        <timepicker name="startTime" [(ngModel)]="startTime"></timepicker>
-    </app-default-input-layout>
+<ng-container>
+    <button class="btn btn-sm btn-outline-default mb-4" (click)="areFilterOptionsDisplayed=!areFilterOptionsDisplayed">
+        <span *ngIf="!areFilterOptionsDisplayed"> Show Filter Options </span>
+        <span *ngIf="areFilterOptionsDisplayed"> Hide Filter Options </span>
+    </button>
 
-    <app-default-input-layout class="col-md-3" label="To:">
-        <timepicker name="endTime" [(ngModel)]="endTime"></timepicker>
-    </app-default-input-layout>
-</div>
-<button class="btn btn-default" id="resetFilterButton" (click)="resetFilters()">Reset Filters</button>
-<button class="btn btn-default" id="searchFilterButton" (click)="fetchConsideringPaging()">Search</button>
+    <ng-container *ngIf="areFilterOptionsDisplayed">
+        <div class="row">
+            <app-default-input-layout class="col-md-4 mr-5" label="Date">
+                <input type="text" placeholder="Date Range" class="form-control form-control-sm" bsDaterangepicker [(ngModel)]="bsRangeValue"
+                    [bsConfig]="{containerClass: 'theme-red' }">
+            </app-default-input-layout>
+            <app-default-input-layout class="col-md-3" label="From:">
+                <timepicker name="startTime" [(ngModel)]="startTime"></timepicker>
+            </app-default-input-layout>
 
-<h3 class="panel-title">
-    <a title="Add New Meal" id="addButton" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
-</h3>
-<table id="mealsTable" class="table table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Calories</th>
-            <th class="text-center">Update</th>
-            <th class="text-center">Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of meals">
-            <td>{{item.name}}</td>
-            <td>{{item.date.replace('Z', '') | date:'mediumDate'}}</td>
-            <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
-            <td>{{item.numOfCalories | number: '1.0-1'}}</td>
-            <td class="text-center">
-                <a class="link" id="editButton" (click)="onEditMealClick(item)">
-                    <i class="fa fa-edit text-warning"> </i>
-                </a>
-            </td>
-            <td class="text-center ">
-                <a class="link" (click)="onDeleteClick(item)">
-                    <i class="fa fa-trash text-danger"> </i>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<div class="col-md-12">
-    <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="fetchMeals($event)" [maxSize]="10"></pagination>
-</div>
+            <app-default-input-layout class="col-md-3" label="To:">
+                <timepicker name="endTime" [(ngModel)]="endTime"></timepicker>
+            </app-default-input-layout>
+        </div>
+        <button class="btn btn-sm btn-default" id="resetFilterButton" (click)="resetFilters()">Reset Filters</button>
+        <button class="btn btn-sm btn-default" id="searchFilterButton" (click)="fetchConsideringPaging()">Search</button>
+    </ng-container>
+
+    <h3 class="panel-title">
+        <a title="Add New Meal" id="addButton" (click)="onAddClick()" class="text-info pull-right fa fa-plus link"></a>
+    </h3>
+
+    <table id="mealsTable" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Calories</th>
+                <th class="text-center">Update</th>
+                <th class="text-center">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of meals">
+                <td>{{item.name}}</td>
+                <td>{{item.date.replace('Z', '') | date:'mediumDate'}}</td>
+                <td>{{item.date.replace('Z', '') | date:'shortTime'}}</td>
+                <td>{{item.numOfCalories | number: '1.0-1'}}</td>
+                <td class="text-center">
+                    <a class="link" id="editButton" (click)="onEditMealClick(item)">
+                        <i class="fa fa-edit text-warning"> </i>
+                    </a>
+                </td>
+                <td class="text-center ">
+                    <a class="link" (click)="onDeleteClick(item)">
+                        <i class="fa fa-trash text-danger"> </i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-md-12">
+        <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="fetchMeals($event)" [maxSize]="10"></pagination>
+    </div>
+</ng-container>

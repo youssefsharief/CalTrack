@@ -1,2 +1,5 @@
+
+<!-- <button *ngIf="meals.length" class="btn btn-default" routerLink="my-meals/add">Add your first meal</button> -->
+
 <app-meals [userId]="userId" title="My meals" (addClicked)="onAddClicked()"
  (editClicked)="onEditClicked($event)" ></app-meals>

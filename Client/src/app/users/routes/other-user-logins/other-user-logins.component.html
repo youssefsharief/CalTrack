@@ -1,1 +1,3 @@
-<app-logins *ngIf="user" [user]="user" (changePasswordClick) = "navigateToChangeOtherUserPassword()"></app-logins>
+<app-logins *ngIf="user" [user]="user" (changePasswordClick) = "navigateToChangeOtherUserPassword()">
+        <button class="btn btn-link"  [routerLink]="['/users', user._id, 'password']">Change {{user.name}}'s Password</button>
+</app-logins>

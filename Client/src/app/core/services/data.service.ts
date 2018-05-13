@@ -124,15 +124,15 @@ export class DataService {
     }
 
     disconnectFacebook() {
-        return this.http.patch<User>(`connections/facebook`, {})
+        return this.http.patch<User>(`disconnections/facebook`, {})
     }
 
     disconnectGoogle() {
-        return this.http.patch<User>(`connections/google`, {})
+        return this.http.patch<User>(`disconnections/google`, {})
     }
 
     disconnectLocalLogin() {
-        return this.http.patch<User>(`connections/local`, {})
+        return this.http.patch<User>(`disconnections/local`, {})
     }
 
     connectLocalLogin(payload) {

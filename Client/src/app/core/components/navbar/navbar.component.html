@@ -5,10 +5,13 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" *ngIf="authService.isAuthenticated()">
+    <div class="collapse navbar-collapse" *ngIf="authService.isAuthenticated()" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" >
             <li class="nav-item">
-                <a routerLinkActive="active" id="myRecordsTab" routerLink='/my-meals' class="nav-link">My meals</a>
+                <a routerLinkActive="active" id="myRecordsTab"  [routerLinkActiveOptions]="{exact: true}" routerLink='/my-meals' class="nav-link">My meals</a>
+            </li>
+            <li class="nav-item">
+                <a routerLinkActive="active" routerLink='/my-meals/add' class="nav-link">Add a meal</a>
             </li>
             <li class="nav-item">
                 <a routerLinkActive="active" id="myProfileTab" routerLink='/my-profile' class="nav-link">My profile</a>

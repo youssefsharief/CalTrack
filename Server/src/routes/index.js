@@ -88,9 +88,9 @@ router.patch('/connections/facebook', verifyUser, passport.authenticate('faceboo
 router.patch('/connections/google', verifyUser, passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
 router.patch('/connections/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
 router.patch('/connections/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
-router.patch('/connections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
-router.patch('/connections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
-router.patch('/connections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
+router.patch('/disconnections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
+router.patch('/disconnections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
+router.patch('/disconnections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
 
 
 
