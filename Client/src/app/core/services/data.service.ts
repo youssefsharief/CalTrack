@@ -88,11 +88,11 @@ export class DataService {
     }
 
     changePasswordUsingOldPassword({ oldPassword, newPassword }: { oldPassword: string, newPassword: string }): Observable<any> {
-        return this.http.put('password', { oldPassword, newPassword }, )
+        return this.http.patch('password', { oldPassword, newPassword }, )
     }
 
     changeOtherUserPassword(id: string, newPassword: string) {
-        return this.http.put(`users/${id}/password`, { newPassword }, )
+        return this.http.patch(`users/${id}/password`, { newPassword }, )
     }
 
     changeMyPasswordUsingRecoveryCode({ recoveryCode, email, newPassword }: { recoveryCode: string, email: string, newPassword: string }) {
@@ -100,7 +100,7 @@ export class DataService {
     }
 
     activateUserAdministratively(id: string) {
-        return this.http.patch(`activation/administration/${id}`, {}, )
+        return this.http.patch(`users/${id}/activation`, {}, )
     }
 
     inviteUser(email: string, url: string) {
@@ -116,40 +116,37 @@ export class DataService {
     }
 
     connectFacebook(access_token: string) {
-        return this.http.post<User>(`connections/facebook`, { access_token }, )
+        return this.http.patch<User>(`connections/facebook`, { access_token }, )
     }
 
     connectGoogle(access_token: string) {
-        return this.http.post<User>(`connections/google`, { access_token }, )
+        return this.http.patch<User>(`connections/google`, { access_token }, )
     }
 
     disconnectFacebook() {
-        return this.http.delete<User>(`connections/facebook`)
+        return this.http.patch<User>(`connections/facebook`, {})
     }
 
     disconnectGoogle() {
-        return this.http.delete<User>(`connections/google`)
-    }
-
-    connectLocalLogin(payload) {
-        return this.http.post<User>(`connections/local`, payload, )
-    }
-
-    connectLocalLoginSecurely(payload) {
-        return this.http.post<User>(`connections/local/secure`, payload, )
+        return this.http.patch<User>(`connections/google`, {})
     }
 
     disconnectLocalLogin() {
-        return this.http.delete<User>(`connections/local`)
+        return this.http.patch<User>(`connections/local`, {})
     }
+
+    connectLocalLogin(payload) {
+        return this.http.patch<User>(`connections/local`, payload, )
+    }
+
+    connectLocalLoginSecurely(payload) {
+        return this.http.patch<User>(`connections/local/secure`, payload, )
+    }
+
 
     getTodaysIntake(userId): Observable<number> {
         return this.http.get<number>(`users/${userId}/meals/calories_today`)
     }
-
-    // recaptchaTest(response) {
-    //     return this.http.post(`test`, {['g-recaptcha-response']: response})
-    // }
 
 }
 

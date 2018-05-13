@@ -23,7 +23,7 @@ const validateUpdateMyPassword = require('./security/update-my-password.validate
 const signupSecurely = require('./security/secure-signup/signup-secure.route')
 const activateMyAccount = require('./security/secure-signup/activate-my-account.route')
 const validateActivateMyAccount = require('./security/secure-signup/activate-my-account.validate')
-const activateUserAdministratively = require('./security/secure-signup/activate-user-administratively.route')
+const activateUserAdministratively = require('./security/secure-signup/activate-user.route')
 const sendMeRecoveryCode = require('./security/reset-password/send-me-recovery-code.route')
 const validateSendMeRecoveryCode = require('./security/reset-password/send-me-recovery-code.validate')
 const updatePasswordByRecoveryCode = require('./security/reset-password/update-password-by-recovery-code.route')
@@ -57,11 +57,11 @@ require('core/passport')
 router.post('/users/', recaptcha.middleware.verify, validateSignup, signup)
 router.post('/users/secure', recaptcha.middleware.verify, validateSignup, signupSecurely)
 router.post('/activation', validateActivateMyAccount, activateMyAccount)
-router.patch('/activation/administration/:id', verifyUser, Authorize.allowAdminAndManager, activateUserAdministratively)
+router.patch('/users/:id/activation', verifyUser, Authorize.allowAdminAndManager, activateUserAdministratively)
 
 router.post('/users/login', validateLogin, login)
-router.put('/password', verifyUser, validateUpdateMyPassword, updateMyPassword)
-router.put('/users/:id/password', verifyUser, validatechangeOtherUserPassword, Authorize.allowAdminAndManager, changeOtherUserPassword)
+router.patch('/password', verifyUser, validateUpdateMyPassword, updateMyPassword)
+router.patch('/users/:id/password', verifyUser, validatechangeOtherUserPassword, Authorize.allowAdminAndManager, changeOtherUserPassword)
 
 router.post('/password_recovery_requests', validateSendMeRecoveryCode, sendMeRecoveryCode)
 router.post('/users/recovery_code', validateUpdatePasswordByRecoveryCode, updatePasswordByRecoveryCode)
@@ -82,13 +82,13 @@ router.put('/users/:id/meals/:mealId', verifyUser, validateUpdateRecord, Authori
 
 router.post('/oauth/facebook', passport.authenticate('facebookToken', { session: false }), validateSocialLogin, facebookSignin);
 router.post('/oauth/google', passport.authenticate('googleToken', { session: false }), validateSocialLogin, googleSignin);
-router.post('/connections/facebook', verifyUser,  passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
-router.post('/connections/google', verifyUser,  passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
-router.post('/connections/local', verifyUser,  validateConnectLocalLogin, connectLocalLogin);
-router.post('/connections/local/secure', verifyUser,  validateConnectLocalLogin, connectLocalLoginSecurely);
-router.delete('/connections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
-router.delete('/connections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
-router.delete('/connections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
+router.patch('/connections/facebook', verifyUser,  passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
+router.patch('/connections/google', verifyUser,  passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
+router.patch('/connections/local', verifyUser,  validateConnectLocalLogin, connectLocalLogin);
+router.patch('/connections/local/secure', verifyUser,  validateConnectLocalLogin, connectLocalLoginSecurely);
+router.patch('/connections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
+router.patch('/connections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
+router.patch('/connections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
 
 
 

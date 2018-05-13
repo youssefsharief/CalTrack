@@ -249,7 +249,7 @@ describe('ApiService: DataService', () => {
         beforeEach(() => {
             dummy = 'ok';
             service.changePasswordUsingOldPassword({ oldPassword: 'a', newPassword: 'w' }).subscribe()
-            req = httpMock.expectOne(req => req.method === 'PUT');
+            req = httpMock.expectOne(req => req.method === 'PATCH');
         })
         afterEach(() => {
             req.flush(dummy);
@@ -269,7 +269,7 @@ describe('ApiService: DataService', () => {
         beforeEach(() => {
             dummy = 'ok';
             service.changeOtherUserPassword('a', 'w').subscribe()
-            req = httpMock.expectOne(req => req.method === 'PUT');
+            req = httpMock.expectOne(req => req.method === 'PATCH');
         })
         afterEach(() => {
             req.flush(dummy);
@@ -314,7 +314,7 @@ describe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/activation/administration/a')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/a/activation')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({}))

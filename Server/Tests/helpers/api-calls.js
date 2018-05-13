@@ -59,15 +59,15 @@ module.exports = {
     },
 
     updateOtherUserPassword(id, token, payload) {
-        return request.put(`/api/users/${id}/password`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
+        return request.patch(`/api/users/${id}/password`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
     },
 
     updateMyPassword(id, token, payload) {
-        return request.put(`/api/password`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
+        return request.patch(`/api/password`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
     },
 
     activateUserAdministratively(id, token) {
-        return request.patch(`/api/activation/administration/${id}`).set({ 'Authorization': `Bearer ${token}` })
+        return request.patch(`/api/users/${id}/activation`).set({ 'Authorization': `Bearer ${token}` })
     },
 
     inviteUser(token, payload){
@@ -75,7 +75,7 @@ module.exports = {
     },
 
     connectFacebook(token, payload) {
-        return request.put(`/api/oauth`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
+        return request.patch(`/api/oauth`).set({ 'Authorization': `Bearer ${token}` }).send(payload)
     },
 
     getTodaysIntake(id, token) {
