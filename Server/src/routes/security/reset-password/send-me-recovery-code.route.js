@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
         const user = await saveRecoveryCodeToDb(req.body.email, code)
         if(!user) return res.status(404).json(errorMessageWrapper( 'This email does not exist'))
         await mailer.sendEmailWithCode(req.body.email, code)
-        return res.send({ success: 'An email has probably been sent with your recovery code' })
+        return res.send({ success: 'Please check your email for your recovery code' })
     } catch (e) {
         return next(e)
     }

@@ -236,7 +236,7 @@ describe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/password_recovery_requests')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/recovery_code_requests')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ email: 'saa@' }))
@@ -295,7 +295,7 @@ describe('ApiService: DataService', () => {
             req.flush(dummy);
         })
         it('should have appropriate url ', () => {
-            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/recovery_code')
+            expect(req.request.urlWithParams).toBe('https://localhost:3001/api/recovery_code')
         });
         it('should have appropriate body ', () => {
             expect(req.request.body).toEqual(Object({ recoveryCode: 'aaa', newPassword: 'qqq', email: 'aaa@e' }))

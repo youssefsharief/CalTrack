@@ -84,7 +84,7 @@ export class DataService {
     }
 
     forgottenPassword(email: string): Observable<any> {
-        return this.http.post('password_recovery_requests', { email })
+        return this.http.post('recovery_code_requests', { email })
     }
 
     changePasswordUsingOldPassword({ oldPassword, newPassword }: { oldPassword: string, newPassword: string }): Observable<any> {
@@ -96,7 +96,7 @@ export class DataService {
     }
 
     changeMyPasswordUsingRecoveryCode({ recoveryCode, email, newPassword }: { recoveryCode: string, email: string, newPassword: string }) {
-        return this.http.post('users/recovery_code', { recoveryCode, email, newPassword }, )
+        return this.http.post('recovery_code', { recoveryCode, email, newPassword }, )
     }
 
     activateUserAdministratively(id: string) {

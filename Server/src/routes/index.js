@@ -63,8 +63,8 @@ router.post('/users/login', validateLogin, login)
 router.patch('/password', verifyUser, validateUpdateMyPassword, updateMyPassword)
 router.patch('/users/:id/password', verifyUser, validatechangeOtherUserPassword, Authorize.allowAdminAndManager, changeOtherUserPassword)
 
-router.post('/password_recovery_requests', validateSendMeRecoveryCode, sendMeRecoveryCode)
-router.post('/users/recovery_code', validateUpdatePasswordByRecoveryCode, updatePasswordByRecoveryCode)
+router.post('/recovery_code_requests', validateSendMeRecoveryCode, sendMeRecoveryCode)
+router.post('/recovery_code', validateUpdatePasswordByRecoveryCode, updatePasswordByRecoveryCode)
 
 router.put('/users/:id/info', verifyUser, validateUpdateInfo, Authorize.allowSelfAdminAndManager, updateUserInfo)
 router.delete('/users/:id', verifyUser, Authorize.allowAdminAndManager, removeUser)

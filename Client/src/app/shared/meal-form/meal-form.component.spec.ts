@@ -63,7 +63,7 @@ describe('MealFormComponentt', () => {
             it('error message should appear', () => {
                 fixture.detectChanges()
                 const y = fixture.debugElement.queryAll(By.css('p[test-id="errorMessage"]'));
-                expect(y[0].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[0].nativeElement.innerHTML).toContain('Please enter')
                 expect(y[0].properties.hidden).toBeFalsy();
             })
 
@@ -103,7 +103,7 @@ describe('MealFormComponentt', () => {
             it('error message should appear', () => {
                 fixture.detectChanges()
                 const y = fixture.debugElement.queryAll(By.css('p[test-id="errorMessage"]'));
-                expect(y[1].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[1].nativeElement.innerHTML).toContain('Please enter')
                 expect(y[1].properties.hidden).toBeFalsy();
             })
 

@@ -96,7 +96,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
             it('error message should appear', () => {
                 fixture.detectChanges()
                 const y = fixture.debugElement.queryAll(By.css('p.text-danger'));
-                expect(y[1].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[1].nativeElement.innerHTML).toContain('Please enter')
                 expect(y[1].properties.hidden).toBeFalsy();
             })
             it('submit button should be disabled', () => {
@@ -126,7 +126,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
             it('error message should appear', () => {
                 fixture.detectChanges()
                 const y = fixture.debugElement.queryAll(By.css('p.text-danger'));
-                expect(y[2].nativeElement.innerHTML).toContain('Please Enter')
+                expect(y[2].nativeElement.innerHTML).toContain('Please enter')
                 expect(y[2].properties.hidden).toBeFalsy();
             })
             it('submit button should be disabled', () => {
