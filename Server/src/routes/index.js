@@ -84,13 +84,13 @@ router.put('/users/:id/meals/:mealId', verifyUser, validateUpdateRecord, Authori
 
 router.post('/oauth/facebook', passport.authenticate('facebookToken', { session: false }), validateSocialLogin, facebookSignin);
 router.post('/oauth/google', passport.authenticate('googleToken', { session: false }), validateSocialLogin, googleSignin);
-router.patch('/connections/facebook', verifyUser, passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
-router.patch('/connections/google', verifyUser, passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
-router.patch('/connections/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
-router.patch('/connections/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
-router.patch('/disconnections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
-router.patch('/disconnections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
-router.patch('/disconnections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
+router.post('/connections/facebook', verifyUser, passport.authenticate('facebookToken', { session: false }), validateSocialLogin, connectFacebook);
+router.post('/connections/google', verifyUser, passport.authenticate('googleToken', { session: false }), validateSocialLogin, connectGoogle);
+router.post('/connections/local', verifyUser, validateConnectLocalLogin, connectLocalLogin);
+router.post('/connections/local/secure', verifyUser, validateConnectLocalLogin, connectLocalLoginSecurely);
+router.delete('/connections/facebook', verifyUser, ensureHavingAtleast2Accounts, disconnectFacebook);
+router.delete('/connections/google', verifyUser, ensureHavingAtleast2Accounts, disconnectGoogle);
+router.delete('/connections/local', verifyUser, ensureHavingAtleast2Accounts, disconnectLocalLogin);
 
 
 

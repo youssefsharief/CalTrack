@@ -1,6 +1,8 @@
 <app-title>{{title}} </app-title>
 
-<ng-container>
+<div id="emptyMealsText" *ngIf="meals && !meals.length"> {{emptyMealsText}} </div>
+
+<ng-container *ngIf="meals && meals.length">
     <button class="btn btn-sm btn-outline-default mb-4" (click)="areFilterOptionsDisplayed=!areFilterOptionsDisplayed">
         <span *ngIf="!areFilterOptionsDisplayed"> Show Filter Options </span>
         <span *ngIf="areFilterOptionsDisplayed"> Hide Filter Options </span>

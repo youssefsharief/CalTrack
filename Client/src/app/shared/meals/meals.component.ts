@@ -17,10 +17,10 @@ import { UndoDeleteService } from 'app/core/services/undo-delete.service';
 export class MealsComponent implements OnInit {
     @Input() userId: string
     @Input() title: string
+    @Input() emptyMealsText: string
     @Output() addClicked = new EventEmitter()
     @Output() editClicked = new EventEmitter()
-    meals: Meal[] = []
-    oldMeals: Meal[] = []
+    meals: Meal[]
     totalItems: number
     bsRangeValue: string
     startTime: string
@@ -62,7 +62,7 @@ export class MealsComponent implements OnInit {
             endDate: this.bsRangeValue ? this.dateUtilityService.convertDateToMediumDate(this.bsRangeValue[1]) : null,
             startTime: this.dateUtilityService.convertDateToMediumTime(this.startTime),
             endTime: this.dateUtilityService.convertDateToMediumTime(this.endTime),
-            skip: (page - 1) * 10
+            skip: (page - 1) * 10 || 0
         }).subscribe(
             data => {
                 this.meals = data.meals

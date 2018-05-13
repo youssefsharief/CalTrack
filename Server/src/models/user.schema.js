@@ -23,6 +23,7 @@ const usersSchema = new Schema({
     facebookId: { type: String, required: false, trim: true, index: true, unique: true, sparse: true },
     googleEmail: { type: String, required: false },
     facebookEmail: { type: String, required: false },
+    new: { type: Boolean, required: true, default: false },
 });
 
 module.exports = usersSchema

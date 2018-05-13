@@ -13,7 +13,7 @@ export class DataService {
     ) { }
 
     login(item: UserCredentials) {
-        return this.http.post<{ token: string, user: User }>('users/login', item, )
+        return this.http.post<{ token: string, user: User }>('users/login', item )
     }
 
     signup(item: User) {
@@ -29,7 +29,7 @@ export class DataService {
     }
 
     updateUserInfo(id: string, data) {
-        return this.http.put(`users/${id}/info`, data, )
+        return this.http.put(`users/${id}/info`, data )
     }
 
     deleteUser(id: string) {
@@ -88,61 +88,60 @@ export class DataService {
     }
 
     changePasswordUsingOldPassword({ oldPassword, newPassword }: { oldPassword: string, newPassword: string }): Observable<any> {
-        return this.http.patch('password', { oldPassword, newPassword }, )
+        return this.http.patch('password', { oldPassword, newPassword } )
     }
 
     changeOtherUserPassword(id: string, newPassword: string) {
-        return this.http.patch(`users/${id}/password`, { newPassword }, )
+        return this.http.patch(`users/${id}/password`, { newPassword } )
     }
 
     changeMyPasswordUsingRecoveryCode({ recoveryCode, email, newPassword }: { recoveryCode: string, email: string, newPassword: string }) {
-        return this.http.post('recovery_code', { recoveryCode, email, newPassword }, )
+        return this.http.post('recovery_code', { recoveryCode, email, newPassword } )
     }
 
     activateUserAdministratively(id: string) {
-        return this.http.patch(`users/${id}/activation`, {}, )
+        return this.http.patch(`users/${id}/activation`, {} )
     }
 
     inviteUser(email: string, url: string) {
-        return this.http.post(`users/invite`, { email, url }, )
+        return this.http.post(`users/invite`, { email, url } )
     }
 
     oAuthFacebook(access_token: string) {
-        return this.http.post<{ token: string, user: User }>(`oauth/facebook`, { access_token }, )
+        return this.http.post<{ token: string, user: User }>(`oauth/facebook`, { access_token } )
     }
 
     oAuthGoogle(access_token: string) {
-        return this.http.post<{ token: string, user: User }>(`oauth/google`, { access_token }, )
+        return this.http.post<{ token: string, user: User }>(`oauth/google`, { access_token } )
     }
 
     connectFacebook(access_token: string) {
-        return this.http.patch<User>(`connections/facebook`, { access_token }, )
+        return this.http.post<User>(`connections/facebook`, { access_token } )
     }
 
     connectGoogle(access_token: string) {
-        return this.http.patch<User>(`connections/google`, { access_token }, )
-    }
-
-    disconnectFacebook() {
-        return this.http.patch<User>(`disconnections/facebook`, {})
-    }
-
-    disconnectGoogle() {
-        return this.http.patch<User>(`disconnections/google`, {})
-    }
-
-    disconnectLocalLogin() {
-        return this.http.patch<User>(`disconnections/local`, {})
+        return this.http.post<User>(`connections/google`, { access_token } )
     }
 
     connectLocalLogin(payload) {
-        return this.http.patch<User>(`connections/local`, payload, )
+        return this.http.post<User>(`connections/local`, payload )
     }
 
     connectLocalLoginSecurely(payload) {
-        return this.http.patch<User>(`connections/local/secure`, payload, )
+        return this.http.post<User>(`connections/local/secure`, payload )
     }
 
+    disconnectFacebook() {
+        return this.http.delete<User>(`connections/facebook`)
+    }
+
+    disconnectGoogle() {
+        return this.http.delete<User>(`connections/google`)
+    }
+
+    disconnectLocalLogin() {
+        return this.http.delete<User>(`connections/local`)
+    }
 
     getTodaysIntake(userId): Observable<number> {
         return this.http.get<number>(`users/${userId}/meals/calories_today`)

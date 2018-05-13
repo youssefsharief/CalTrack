@@ -1,11 +1,11 @@
-// .table {
-//     td,
-//     tr {
-//         text-align: center;
-//     }
-// }
-
 timepicker {
     display: block;
     margin-top: -29px;
+}
+
+#emptyMealsText {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
