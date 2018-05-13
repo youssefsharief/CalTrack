@@ -11,9 +11,7 @@ export class MealFormPage {
 
     static async clearForm() {
         await $('input[formControlName=name]').clear()
-        await $('input[formControlName=date]').clear()
         await $('input[formControlName=numOfCalories]').clear()
-        await $('button[type=submit]').click()
     }
 }
 
