@@ -38,6 +38,7 @@ export class ActivateAfterSignupComponent implements OnInit {
     submit({ activationCode, email }) {
         this.dataService.activateFromBackEnd(activationCode, email).subscribe(
             data => {
+                this.authService.saveToken(data.token)
                 this.authService.saveProfile(data.user)
                 this.router.navigate(['my-profile'])
             },

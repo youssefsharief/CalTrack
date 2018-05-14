@@ -1,17 +1,16 @@
 <div class="jumbotron">
     <h1>Activation</h1>
-    <p>You have registerd successfully. Please check your email for an activation code </p>
+    <p>You have registerd successfully. Please check your email for an activation code. If you did not find an email, please send an email to sharief@aucegypt.edu to activate your account </p>
 </div>
 
 
 <form [formGroup]="form" *ngIf="form">
-
     <app-email-input-layout [isDisplayingErrorMessage]="form.get('email').dirty && form.get('email').invalid">
         <input type="email" name="email" class="form-control" formControlName="email">
     </app-email-input-layout>
 
-    <app-code-input-layout [isDisplayingErrorMessage]="form.get('activationCode').dirty && form.get('activationCode').invalid">
-        <input type="text" label="Activation Code" name="activationCode" class="form-control" formControlName="activationCode">
+    <app-code-input-layout label="Activation Code" [isDisplayingErrorMessage]="form.get('activationCode').dirty && form.get('activationCode').invalid">
+        <input type="text" name="activationCode" class="form-control" formControlName="activationCode">
     </app-code-input-layout>
 
     <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="submit(form.value)">Activate</button>
