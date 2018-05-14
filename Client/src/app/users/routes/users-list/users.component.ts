@@ -88,7 +88,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     private deleteFromBackend(userId) {
         this.dataService.deleteUser(userId).subscribe(
-            data => this.fetchUsers({ page: this.currentPage }),
+            data => {},
             error => this.fetchUsers({ page: this.currentPage }),
         )
     }

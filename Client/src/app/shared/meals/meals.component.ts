@@ -99,7 +99,7 @@ export class MealsComponent implements OnInit {
     private deleteFromBackend(mealId) {
         this.dataService.deleteMeal(this.userId, mealId).subscribe(
             data => {
-                this.fetchMeals({ page: this.currentPage })
+                // this.fetchMeals({ page: this.currentPage })
                 this.caloriesTrackingSubjectService.updated$.next()
             },
             error => this.fetchMeals({ page: this.currentPage })
