@@ -50,7 +50,7 @@ export class ChangeOtherUserPasswordComponent implements OnInit {
                 this.buildForm()
             },
             error => {
-                this.sb.emitErrorSnackBar(error)
+                this.sb.emitErrorSnackBar(error.msg)
                 this.buildForm()
             }
         )

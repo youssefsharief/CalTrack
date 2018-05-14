@@ -20,9 +20,12 @@ export class AppComponent implements OnInit {
 
   private refreshUserProfileAfterRouteChange() {
     this.router.events.filter(event => (event instanceof NavigationEnd)).subscribe((routeData: NavigationEnd) => {
-      const excludedRoutes = ['/signup', '/signup/activate', '/signup/success', '/login', '/email_password_recovery',
-        '/email_password_recovery/submit_new_password', '/email_password_recovery/password_recovered_successfully']
-      if (!excludedRoutes.includes(routeData.urlAfterRedirects)) {
+      // const excludedRoutes = ['/signup', '/signup/activate', '/signup/success', '/login', '/email_password_recovery',
+      //   '/email_password_recovery/submit_new_password', '/email_password_recovery/password_recovered_successfully']
+        const includedRoutes = ['/users', '/my-meals', '/my-meals/add', '/my-profile', '/invite',
+        '/my-logins', '/my-logins/add-local-login', '/my-logins/password', ]
+
+      if (includedRoutes.includes(routeData.urlAfterRedirects)) {
         this.fetchForData()
       }
     })

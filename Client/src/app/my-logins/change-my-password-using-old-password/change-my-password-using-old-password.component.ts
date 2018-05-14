@@ -39,7 +39,7 @@ export class ChangeMyPasswordUsingOldPasswordComponent implements OnInit {
                 this.sb.emitSuccessSnackBar('Your password has been updated successfully')
                 this.buildForm()
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     let loginErr = new Error('Email or/and password are wrong')
     return getUserByEmail(req.body.email).then(user => {
         if (!user) return res.status(401).json(errorMessageWrapper(loginErr.message))
-        if (!user.active) return res.status(403).json(errorMessageWrapper("Your account is not activated yet"))
+        if (!user.active) return res.status(400).json({code: 1, msg: "Your account is not activated yet"})
         return comparePassword(req.body.password, user.password).then(ok => {
             if (!ok) return res.status(401).json(errorMessageWrapper(loginErr.message))
             return res.status(200).json({ user: clearUnneededDataFromPayload(user), token: getToken(user._id, user.role) })
@@ -17,3 +17,4 @@ module.exports = (req, res, next) => {
 }
 
 
+// youssef.sherif@thoughtdesign.com.au

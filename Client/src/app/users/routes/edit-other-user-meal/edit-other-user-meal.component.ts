@@ -52,7 +52,7 @@ export class EditOtherUserMealComponent implements OnInit {
                 this.sb.emitSuccessSnackBar()
                 this.navigateBack()
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

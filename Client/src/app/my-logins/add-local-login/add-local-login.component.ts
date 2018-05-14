@@ -46,7 +46,7 @@ export class AddLocalLoginComponent implements OnInit {
                 this.sb.emitSuccessSnackBar('Connected Successfully')
                 this.router.navigate(['my-logins'])
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 
@@ -58,7 +58,7 @@ export class AddLocalLoginComponent implements OnInit {
                 this.router.navigate(['/signup/activate'])
             },
             error => {
-                this.sb.emitErrorSnackBar(error)
+                this.sb.emitErrorSnackBar(error.msg)
             }
         )
     }

@@ -29,7 +29,7 @@ export class InviteUserComponent implements OnInit {
             data => {
                 this.sb.emitSuccessSnackBar('Email has been sent successfully')
             },
-            error => this.sb.emitWarnSnackBar(error)
+            error => this.sb.emitWarnSnackBar(error.msg)
         )
     }
 }

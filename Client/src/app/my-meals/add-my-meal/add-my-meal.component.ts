@@ -26,7 +26,7 @@ export class AddMyMealComponent {
                 this.caloriesTrackingSubjectService.updated$.next()
                 this.router.navigate(['/my-meals'])
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

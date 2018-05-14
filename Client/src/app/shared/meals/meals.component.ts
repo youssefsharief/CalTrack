@@ -48,7 +48,7 @@ export class MealsComponent implements OnInit {
                     this.isEmpty = true
                 }
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
             )
     }
 
@@ -78,7 +78,7 @@ export class MealsComponent implements OnInit {
                 this.meals = data.meals
                 this.totalItems = data.count
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
             )
     }
 

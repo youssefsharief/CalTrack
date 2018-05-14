@@ -51,7 +51,7 @@ export class EditMyMealComponent implements OnInit {
                 this.navigateBack()
                 this.caloriesTrackingSubjectService.updated$.next()
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

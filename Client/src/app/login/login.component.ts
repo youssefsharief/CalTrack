@@ -40,7 +40,12 @@ export class LoginComponent implements OnInit {
                 this.authService.saveProfile(data.user)
                 this.router.navigate(['my-profile'])
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => {
+                this.sb.emitErrorSnackBar(error.msg)
+                if (error.code === 1) {
+                    this.router.navigate(['signup/activate'])
+                }
+            }
         )
     }
 

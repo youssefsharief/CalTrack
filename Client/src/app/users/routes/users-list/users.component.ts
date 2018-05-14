@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit, OnDestroy {
                 this.users = data.users
                 this.totalItems = data.count
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 
@@ -112,7 +112,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     onActivateClick(item) {
         this.dataService.activateUserAdministratively(item._id).subscribe(
             data => item.active = true,
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

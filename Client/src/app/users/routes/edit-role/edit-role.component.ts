@@ -28,7 +28,7 @@ export class EditRoleComponent implements OnInit {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/users'])
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

@@ -32,7 +32,7 @@ export class AddOtherUserMealComponent implements OnInit {
                 this.sb.emitSuccessSnackBar()
                 this.router.navigate(['/users/', this.user._id, 'meals' ])
             },
-            error => this.sb.emitErrorSnackBar(error)
+            error => this.sb.emitErrorSnackBar(error.msg)
         )
     }
 

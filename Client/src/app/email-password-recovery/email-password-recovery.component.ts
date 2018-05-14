@@ -30,7 +30,7 @@ export class EmailPasswordRecoveryComponent implements OnInit {
                 this.router.navigate(['/email_password_recovery/submit_new_password'])
             },
             error => {
-                this.sb.emitErrorSnackBar(error)
+                this.sb.emitErrorSnackBar(error.msg)
             },
         )
     }

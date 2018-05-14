@@ -42,7 +42,7 @@ export class NewPasswordAndRecoveryCodeSubmissionComponent implements OnInit {
             data => {
                 this.router.navigate(['/password_recovered_successfully'])
             },
-            (err) => this.sb.emitErrorSnackBar(err)
+            (err) => this.sb.emitErrorSnackBar(err.msg)
         )
     }
 

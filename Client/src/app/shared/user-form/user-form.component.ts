@@ -39,7 +39,7 @@ export class UserFormComponent implements OnInit {
                 this.edited.emit(data)
             },
             error => {
-                this.sb.emitErrorSnackBar(error)
+                this.sb.emitErrorSnackBar(error.msg)
             }
         )
     }
