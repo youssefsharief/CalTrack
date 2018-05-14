@@ -14,7 +14,7 @@ function getToken(_id, role) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') { 
         const token = req.headers.authorization.split(' ')[1] 
         jwt.verify(token, process.env.secret, function (err, decoded) {
-            if (err) return res.status(401).json(errorMessageWrapper('Failed to authenticate token.'));
+            if (err) return res.status(401).json(errorMessageWrapper('Failed to authenticate. Please sign in'));
             req.decoded = decoded;
             next();
         });
