@@ -110,6 +110,8 @@ describe('Meals Component', () => {
         })
         describe('resetting filters', () => {
             beforeEach(() => {
+                fixture.nativeElement.querySelector('#filterOptionsToggle').click()
+                fixture.detectChanges()
                 fixture.nativeElement.querySelector('#resetFilterButton').click()
             })
             it('date should be erased', () => {
@@ -125,8 +127,9 @@ describe('Meals Component', () => {
             it('fetching should be called once', () => {
                 comp.currentPage = 1
                 const spy = spyOn(dataService, 'getMeals').and.callThrough()
-                fixture.nativeElement.querySelector('#searchFilterButton').click()
+                fixture.nativeElement.querySelector('#filterOptionsToggle').click()
                 fixture.detectChanges()
+                fixture.nativeElement.querySelector('#searchFilterButton').click()
                 expect(spy).toHaveBeenCalledTimes(1)
             })
         })
