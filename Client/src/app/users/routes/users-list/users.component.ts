@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     }
 
     public fetchUsers({ page }) {
-        this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 }).debounceTime(50000)
+        this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 })
         .subscribe(
             data => {
                 this.users = data.users
