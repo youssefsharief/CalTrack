@@ -25,7 +25,7 @@ export class InviteUserComponent implements OnInit {
     }
 
     onSubmit() {
-        this.dataService.inviteUser(this.form.value.email, `${window.location.origin}/signup`).subscribe(
+        this.dataService.inviteUser(this.form.value.email, `${window.location.origin}/signup?email=${this.form.value.email}`).subscribe(
             data => {
                 this.sb.emitSuccessSnackBar('Email has been sent successfully')
             },

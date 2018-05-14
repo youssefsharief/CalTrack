@@ -34,8 +34,5 @@ export class OtherUserMealsComponent implements OnInit {
         this.router.navigate(['users', this.user._id, 'meals', item._id])
     }
 
-    title() {
-        return `${this.user.name}'s Meals`
-    }
 
 }

@@ -7,6 +7,7 @@ import { User } from '../shared/models/user.model';
 import { PublicInfoService } from '../core/services/public.info.service';
 import { passwordPattern } from 'app/shared/config/constants';
 import { AuthService } from 'app/core/services/auth.service';
+import 'rxjs/add/operator/first'
 
 @Component({
     templateUrl: 'signup.component.html',
@@ -19,12 +20,18 @@ export class SignupComponent implements OnInit {
         private sb: SnackBarService,
         private router: Router,
         private publicInfoService: PublicInfoService,
-        private authService: AuthService
+        private authService: AuthService,
+        private route: ActivatedRoute
     ) {
     }
 
     ngOnInit() {
         this.buildForm()
+        this.getEmailFromParams()
+    }
+
+    private getEmailFromParams() {
+        this.route.queryParams.first().subscribe(data => this.form.get('email').setValue(data['email']))
     }
 
     private buildForm() {

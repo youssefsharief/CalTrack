@@ -25,9 +25,10 @@ export class MealsComponent implements OnInit {
     bsRangeValue: string
     startTime: string
     endTime: string;
-    currentPage: number
+    currentPage = 1
     areFilterOptionsDisplayed = false
-
+    isEmpty: boolean
+    
     constructor(
         private mealsService: SelectedMealService,
         private dataService: DataService,
@@ -39,7 +40,16 @@ export class MealsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.fetchMeals({ page: 1 })
+        this.dataService.getMeals(this.userId, { }).subscribe(
+            data => {
+                this.meals = data.meals
+                this.totalItems = data.count
+                if (this.meals.length === 0) {
+                    this.isEmpty = true
+                }
+            },
+            error => this.sb.emitErrorSnackBar(error)
+            )
     }
 
     fetchConsideringPaging() {

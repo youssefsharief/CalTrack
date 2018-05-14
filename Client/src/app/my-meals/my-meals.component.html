@@ -1,5 +1,7 @@
+<app-title> My meals </app-title>
 
 
 
-<app-meals emptyMealsText="You have no meals yet :(" [userId]="userId" title="My meals" (addClicked)="onAddClicked()"
- (editClicked)="onEditClicked($event)" ></app-meals>
+<app-meals emptyMealsText="You have no meals yet :(" [userId]="userId" (addClicked)="onAddClicked()" (editClicked)="onEditClicked($event)">
+    <button class="btn btn-default" [routerLink]="['/my-meals', 'add']">Add meal</button>
+</app-meals>

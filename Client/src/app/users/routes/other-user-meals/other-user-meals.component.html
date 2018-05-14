@@ -1,3 +1,6 @@
-<app-meals [emptyMealsText]="user.name +  ' have no meals :(' " *ngIf="user && user._id" [title]="title()" [userId]="user._id" [title]="title()" (addClicked)="onAddClicked()"
-    (editClicked)="onEditClicked($event)">
-</app-meals>
+<ng-container *ngIf="user && user.name">
+    <app-title> {{user.name}}'s Meals </app-title>
+    <app-meals [emptyMealsText]="user.name +  ' have no meals :(' " [userId]="user._id" (addClicked)="onAddClicked()" (editClicked)="onEditClicked($event)">
+        <button class="btn btn-default" [routerLink]="['/users', user._id, 'meals', 'add']">Add meal</button>
+    </app-meals>
+</ng-container>

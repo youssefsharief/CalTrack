@@ -33,12 +33,12 @@
                 <td>{{item.role}}</td>
                 <td class="text-center">
                     <a id="loginsButton" class="link" (click)="onLoginsClick(item)">
-                        <i class="fa fa-key  text-default"> </i>
+                        <i class="fa fa-key  text-primary"> </i>
                     </a>
                 </td>
                 <td class="text-center">
                     <a id="updateUserInfoButton" class="link" (click)="onUpdateClick(item)">
-                        <i class="fa fa-edit  text-default"> </i>
+                        <i class="fa fa-edit  text-warning"> </i>
                     </a>
                 </td>
                 <td class="text-center" *ngIf="!item.active">
@@ -53,7 +53,7 @@
                 </td>
                 <td *ngIf="isAdmin()" class="text-center">
                     <a id="mealsButton" class="link" (click)="onMealsClick(item)">
-                        <i class="fa fa-clock-o text-warning"> </i>
+                        <i class="fa fa-cutlery text-warning"> </i>
                     </a>
                 </td>
                 <td class="text-center">

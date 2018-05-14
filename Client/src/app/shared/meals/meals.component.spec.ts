@@ -64,16 +64,16 @@ describe('Meals Component', () => {
     })
 
     describe('initial markup', () => {
-        it('Name should be displayed', () => {
+        it('name should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[0].innerHTML).toBe('CairoRegular')
         })
-        it('Date should be displayed', () => {
+        it('date should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[1].innerHTML).toBeTruthy()
         })
-        it('Gmt meal difference should be displayed', () => {
+        it('time should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[3].innerHTML).toBe('2')
         })
-        it('clock should be displayed', () => {
+        it('cutlery should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toBeTruthy();
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[2].innerHTML).toContain(':');
         })
