@@ -6,7 +6,7 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+describe("Removing a user", function () {
     beforeAll(() => {
         connectToDb()
     })

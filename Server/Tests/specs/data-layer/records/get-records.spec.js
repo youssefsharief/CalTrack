@@ -6,7 +6,7 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+describe("Getting records", function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -26,7 +26,7 @@ describe("Users endpoint", function () {
         })
     })
 
-    describe("Adding records ", function () {
+    describe("Adding a testing records ", function () {
         beforeEach((done) => {
             const meals = []
             for (let i = 0; i < 50; i++) {

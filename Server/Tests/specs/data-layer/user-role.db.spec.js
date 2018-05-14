@@ -6,7 +6,7 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+describe("User role", function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -27,7 +27,7 @@ describe("Users endpoint", function () {
 
 
 
-    it("should Update and get user role ", async function (done) {
+    it("should update and get new user role successfully", async function (done) {
         const newRole = 'manager'
         expect(await updateUserRole(id, newRole)).toBeTruthy()
         expect(await getUserRoleById(id)).toBe(newRole)

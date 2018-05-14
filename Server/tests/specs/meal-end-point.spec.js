@@ -2,7 +2,7 @@ const api = require('../helpers/api-calls')
 const payload = require('../helpers/payload-factory-utility')
 
 
-describe("User endpoint", function () {
+describe("Meal endpoint", function () {
     let id, userToken, user
 
     const signUpForAUser = async () => {
@@ -12,7 +12,7 @@ describe("User endpoint", function () {
         userToken = res.body.token
     }
 
-    describe('one user is enough', () => {
+    describe('Signing up for a user', () => {
         beforeAll(async () => {
             await signUpForAUser()
         })
@@ -34,14 +34,14 @@ describe("User endpoint", function () {
                 })
             })
 
-            describe('Extracting mealId', () => {
+            describe('Meal CRUD', () => {
                 let res2, mealId
                 beforeAll(async () => {
                     res2 = await api.getRecords(id, userToken).expect(200)
                     mealId = res2.body.meals[0]._id
                 })
-                describe('getting records', () => {
-                    it('should have count', () => {
+                describe('getting records schema', () => {
+                    it('should have count property', () => {
                         expect(res2.body.count).toBeTruthy()
                     })
                     it('should have name property', () => {

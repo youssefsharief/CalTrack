@@ -7,7 +7,7 @@ const getUserByEmail = require('src/data-layer/user/get-user-by-email')
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+describe("Recovery code", function () {
     beforeAll(() => {
         connectToDb()
     })

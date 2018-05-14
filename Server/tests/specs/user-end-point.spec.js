@@ -8,18 +8,18 @@ describe("User endpoint", function () {
 
 	const signUpForAUser = async () => {
 		user = payload.newUser()
-		const res = await api.signup(user).catch(err => { throw err })
+		const res = await api.signup(user).expect(201).catch(err => { throw err })
 		id = res.body.user._id
 		userToken = res.body.token
 	}
 
-	describe('one user is enough', () => {
+	describe('signup up a regular user', () => {
 		beforeAll(async () => {
 			await signUpForAUser()
 		})
 		describe('changing my password', () => {
 			it("should respond successfully", async () => {
-				await api.updateMyPassword(id, userToken, { oldPassword: user.password, newPassword: '1234567a' }).expect(200)
+				await api.updateMyPassword(id, userToken, { oldPassword: '456565654ds', newPassword: '1234567a' }).expect(200)
 			})
 			it("should not accept invalid passwords", async () => {
 				await api.updateMyPassword(id, userToken, { oldPassword: user.password, newPassword: '122' }).expect(422)
@@ -27,13 +27,13 @@ describe("User endpoint", function () {
 		})
 
 		describe('activating account from backend', () => {
-			it("should respond with 422 in invalid code is provided", async () => {
+			it("should respond with 422 if invalid code is provided", async () => {
 				await api.activateFromBackEnd({ email: user.email, code: '111111111111' }).expect(422)
 			})
 		})
 
 
-		describe('Loggin in an admin and a manager', () => {
+		describe('Logging in an admin and a manager', () => {
 			beforeAll(async () => {
 				adminToken = (await api.login(adminCredentials)).body.token
 				managerToken = (await api.login(managerCredentials)).body.token
@@ -57,7 +57,7 @@ describe("User endpoint", function () {
 					newUserId = res.body.user._id
 				})
 
-				it('user should change password successfully', async ()=>{
+				it('admin should change password successfully', async ()=>{
 					await api.login({email: newUser.email, password: newUser.password}).expect(200)
 					await api.login({email: newUser.email, password: '123456789v'}).expect(401)
 					await api.updateOtherUserPassword(newUserId, adminToken, {newPassword: '123456789v'}).expect(200)
@@ -77,7 +77,7 @@ describe("User endpoint", function () {
 				it("should get users successfully as a manager", async () => {
 					await api.getUsers(managerToken).expect(200)
 				})
-				describe('properties', () => {
+				describe('user schema', () => {
 					it("should have count property", () => {
 						expect(res.body.count).toBeTruthy()
 					})
@@ -102,13 +102,13 @@ describe("User endpoint", function () {
 				beforeAll(async () => {
 					res = await api.getUserDetails(id, adminToken).expect(200)
 				})
-				it("should get users successfully as an admin", () => {
+				it("should get user details successfully as an admin", () => {
 					expect(res).toBeTruthy()
 				})
-				it("should get users successfully as a manager", async () => {
+				it("should get user details successfully as a manager", async () => {
 					await api.getUsers(managerToken).expect(200)
 				})
-				describe('properties', () => {
+				describe('user schema', () => {
 					it("should have name property", () => {
 						expect(res.body.name).toBe(user.name)
 					})
@@ -149,7 +149,6 @@ describe("User endpoint", function () {
 				newUser.password = 'i5o'
 				await api.signup(newUser).expect(422)
 			})
-
 			it("should respond by error message in case name is not provided", async () => {
 				newUser.name = undefined
 				await api.signup(newUser).expect(422)
@@ -168,7 +167,7 @@ describe("User endpoint", function () {
 			})
 		})
 
-		describe('delete user', () => {
+		describe('deleting user', () => {
 			beforeEach(async () => {
 				await signUpForAUser()
 			})
@@ -258,15 +257,15 @@ describe("User endpoint", function () {
 					await api.updateRole(id, 'dsad', 'manager').expect(401)
 				})
 
-				it("should update role as manager ", async () => {
+				it("should update role to manager ", async () => {
 					await api.updateRole(id, adminToken, 'manager').expect(200)
 				})
 
-				it("should update role as admin ", async () => {
+				it("should update role to admin ", async () => {
 					await api.updateRole(id, adminToken, 'admin').expect(200)
 				})
 
-				it("should update role as regular ", async () => {
+				it("should update role to regular", async () => {
 					await api.updateRole(id, adminToken, 'regular').expect(200)
 				})
 
@@ -275,7 +274,7 @@ describe("User endpoint", function () {
 				})
 			})
 			describe('Acting as a manager', () => {
-				it("should not update role ", async () => {
+				it("should not be authorised update role ", async () => {
 					await api.updateRole(id, managerToken, 'regular').expect(403)
 				})
 			})
