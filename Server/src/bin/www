@@ -17,14 +17,14 @@ const options = {
   cert: fs.readFileSync('../ssl/server.crt')
 };
 
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV !== 'production') {
-  console.log('not in production')
-  const server = https.createServer(options, app).listen(3001);
-  server.listen(port);
-} else {
-  console.log('in production')
-}
+// console.log(process.env.NODE_ENV)
+// if (process.env.NODE_ENV !== 'production') {
+//   console.log('not in production')
+//   const server = https.createServer(options, app).listen(3001);
+//   server.listen(port);
+// } else {
+//   console.log('in production')
+// }
 
 
 if (argv.t) {
