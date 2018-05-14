@@ -1,62 +1,62 @@
-#!/usr/bin/env node
-require('dotenv').config()
-process.on('unhandledRejection', up => { throw up })
+// #!/usr/bin/env node
+// require('dotenv').config()
+// process.on('unhandledRejection', up => { throw up })
 
-const argv = require('minimist')(process.argv.slice(2))
+// const argv = require('minimist')(process.argv.slice(2))
 
-const app = require('app');
-const db = require('core/dbConnection.js')
-const port = normalizePort(process.env.PORT || '3001');
-const https = require('https');
-const fs = require('fs');
+// const app = require('app');
+// const db = require('core/dbConnection.js')
+// const port = normalizePort(process.env.PORT || '3001');
+// const https = require('https');
+// const fs = require('fs');
 
-app.set('port', port);
+// app.set('port', port);
 
-const options = {
-  key: fs.readFileSync('../ssl/server.key'),
-  cert: fs.readFileSync('../ssl/server.crt')
-};
+// const options = {
+//   key: fs.readFileSync('../ssl/server.key'),
+//   cert: fs.readFileSync('../ssl/server.crt')
+// };
 
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV !== 'production') {
-  console.log('not in production')
-  const server = https.createServer(options, app).listen(3001);
-  server.listen(port);
-} else {
-  console.log('in production')
-}
-
-
-if (argv.t) {
-  db.connectToTestDb()
-}
-else {
-  db.connectToOriginalDb()
-}
-
-/**
- * Listen on provided port, on all network interfaces.
- */
+// console.log(process.env.NODE_ENV)
+// if (process.env.NODE_ENV !== 'production') {
+//   console.log('not in production')
+//   const server = https.createServer(options, app).listen(3001);
+//   server.listen(port);
+// } else {
+//   console.log('in production')
+// }
 
 
+// if (argv.t) {
+//   db.connectToTestDb()
+// }
+// else {
+//   db.connectToOriginalDb()
+// }
+
+// /**
+//  * Listen on provided port, on all network interfaces.
+//  */
 
 
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
 
 
-module.exports = {
-}
+// function normalizePort(val) {
+//   const port = parseInt(val, 10);
+
+//   if (isNaN(port)) {
+//     // named pipe
+//     return val;
+//   }
+
+//   if (port >= 0) {
+//     // port number
+//     return port;
+//   }
+
+//   return false;
+// }
+
+
+// module.exports = {
+// }
