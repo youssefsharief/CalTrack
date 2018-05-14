@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 mongoose.Promise = Promise
 function connectToOriginalDb(){
     return mongoose.connect(process.env.mongodbMealURI, { useMongoClient: true});

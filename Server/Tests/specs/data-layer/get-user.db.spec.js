@@ -5,7 +5,7 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Users endpoint", function () {
+describe('users endpoint', function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -23,7 +23,7 @@ describe("Users endpoint", function () {
         })
     })
 
-    it("should GET user by email ", function (done) {
+    it('should GET user by email ', function (done) {
         getUserByEmail(payload.email).then(x => {
             expect(x.email).toBe(payload.email)
             expect(x.name).toBe(payload.name)
@@ -31,7 +31,7 @@ describe("Users endpoint", function () {
         }).catch(err => { throw err })
     })
 
-    it("should GET all users ", function (done) {
+    it('should GET all users ', function (done) {
         const getUserQuery = new GetUserQuery(10, 0, '')
         getUserQuery.getUsers().then(x => {
             expect(x.length).toBeTruthy()
@@ -42,7 +42,7 @@ describe("Users endpoint", function () {
         }).catch(err => { throw err })
     })
 
-    it("should GET regular users only ", function (done) {
+    it('should GET regular users only ', function (done) {
         const getUserQuery = new GetUserQuery(10, 0, 'regular')
         getUserQuery.getUsers().then(x => {
             expect(x.length).toBeTruthy()
@@ -52,7 +52,7 @@ describe("Users endpoint", function () {
         }).catch(err => { throw err })
     })
 
-    it("should GET all users count", function (done) {
+    it('should GET all users count', function (done) {
         const getUserQuery = new GetUserQuery(10, 0, '')
         getUserQuery.getUsersCount().then(x => {
             expect(Number.isInteger(x)).toBe(true)
@@ -62,7 +62,7 @@ describe("Users endpoint", function () {
     })
 
 
-    it("should GET regular users count ", function (done) {
+    it('should GET regular users count ', function (done) {
         const getUserQuery = new GetUserQuery(10, 0, 'regular')
         getUserQuery.getUsersCount().then(x => {
             expect(Number.isInteger(x)).toBe(true)

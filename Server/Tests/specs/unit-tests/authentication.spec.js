@@ -33,7 +33,7 @@ const toBeSpied = {
 const next = () => toBeSpied.authorized()
 
 
-xdescribe('Authentication', () => {
+xdescribe('authentication', () => {
     beforeAll(()=>{
         process.env.secret = 'correct'
     })
@@ -41,7 +41,7 @@ xdescribe('Authentication', () => {
         process.env = env;
     });
 
-    it("should authenticate token successfully ", function () {
+    it('should authenticate token successfully ', function () {
         const token = getToken('123', 'role')
         const req = new MockRequest(token)
         const res = new MockResponse()
@@ -51,7 +51,7 @@ xdescribe('Authentication', () => {
     })
 
 
-    it("should not authenticate token if secret is wrong ", function () {
+    it('should not authenticate token if secret is wrong ', function () {
         const req = new MockRequest('wrong')
         const res = new MockResponse()
         const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')

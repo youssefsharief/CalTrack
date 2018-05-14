@@ -2,7 +2,7 @@ const api = require('../helpers/api-calls')
 const payload = require('../helpers/payload-factory-utility')
 
 
-describe("Meal endpoint", function () {
+describe('meal endpoint', function () {
     let id, userToken, user
 
     const signUpForAUser = async () => {
@@ -12,12 +12,12 @@ describe("Meal endpoint", function () {
         userToken = res.body.token
     }
 
-    describe('Signing up for a user', () => {
+    describe('signing up for a user', () => {
         beforeAll(async () => {
             await signUpForAUser()
         })
 
-        describe('Adding a record to user', () => {
+        describe('adding a record to user', () => {
             let res
             const meal = payload.newMeal()
             beforeAll(async () => {
@@ -34,7 +34,7 @@ describe("Meal endpoint", function () {
                 })
             })
 
-            describe('Meal CRUD', () => {
+            describe('meal CRUD', () => {
                 let res2, mealId
                 beforeAll(async () => {
                     res2 = await api.getRecords(id, userToken).expect(200)

@@ -28,7 +28,7 @@ const configure = () => {
         },
         transports: [
             new (winston.transports.Console)({
-                level: 'error', colorize: "all", prettyPrint: true,
+                level: 'error', colorize: 'all', prettyPrint: true,
             })
         ]
     });

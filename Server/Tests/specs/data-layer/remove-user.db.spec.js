@@ -6,7 +6,7 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Removing a user", function () {
+describe('removing a user', function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -26,7 +26,7 @@ describe("Removing a user", function () {
         })
     })
 
-    it("should remove user ", async function (done) {
+    it('should remove user ', async function (done) {
         const user = await getUser(payload.email)
         expect(user).toBeTruthy()
         await removeUser(id)

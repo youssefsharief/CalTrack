@@ -5,7 +5,7 @@ const { connectToDb } = require('helpers/requestsSpecHelper')
 const faker = require('faker')
 
 
-describe("Adding a record", function () {
+describe('adding a record', function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -25,7 +25,7 @@ describe("Adding a record", function () {
         })
     })
 
-    it("should add new record successfully", function (done) {
+    it('should add new record successfully', function (done) {
         const newMeal = {
             name: 'meal1',
             numOfCalories: 600,

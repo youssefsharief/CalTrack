@@ -7,7 +7,7 @@ const getUserByEmail = require('src/data-layer/user/get-user-by-email')
 const faker = require('faker')
 
 
-describe("Recovery code", function () {
+describe('recovery code', function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -27,7 +27,7 @@ describe("Recovery code", function () {
         })
     })
 
-    it("should save recovery code ", async function (done) {
+    it('should save recovery code ', async function (done) {
         const res = await saveRecoveryCode(payload.email, generateRandomCode())
         expect(res).toBeTruthy()
         const user = await getUserByEmail(payload.email)

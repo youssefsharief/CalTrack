@@ -4,7 +4,7 @@ const { allowAdminAndManager, allowAdminOnly, allowSelfAdminAndManager, allowSel
 const { admin, manager, regular } = require('src/config/rolesConstants')
 const proxyquire = require('proxyquire')
 
-xdescribe("Auth", function () {
+xdescribe('auth', function () {
 
     class MockRequest {
         constructor(paramsId, decodedId, role) {
@@ -36,7 +36,7 @@ xdescribe("Auth", function () {
 
 
     describe('allowed admin only', () => {
-        it("should authorize admin successfully ", function () {
+        it('should authorize admin successfully ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '123', admin)
@@ -44,7 +44,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize manager ", function () {
+        it('should not authorize manager ', function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -53,7 +53,7 @@ xdescribe("Auth", function () {
         })
 
 
-        it("should not authorize self ", function () {
+        it('should not authorize self ', function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '123', regular)
@@ -61,7 +61,7 @@ xdescribe("Auth", function () {
             expect(spyNotAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize other user ", function () {
+        it('should not authorize other user ', function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '13', regular)
@@ -73,7 +73,7 @@ xdescribe("Auth", function () {
 
 
     describe('allowed admin and self only', () => {
-        it("should authorize admin successfully ", function () {
+        it('should authorize admin successfully ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', admin)
@@ -81,7 +81,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize manager ", function () {
+        it('should not authorize manager ', function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -90,7 +90,7 @@ xdescribe("Auth", function () {
         })
 
 
-        it("should authorize self ", function () {
+        it('should authorize self ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '123', regular)
@@ -98,7 +98,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize other user ", function () {
+        it('should not authorize other user ', function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '13', regular)
@@ -109,7 +109,7 @@ xdescribe("Auth", function () {
 
 
     describe('allowed manager and admin', () => {
-        it("should authorize admin successfully ", function () {
+        it('should authorize admin successfully ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', admin)
@@ -117,7 +117,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should authorize manager ", async function () {
+        it('should authorize manager ', async function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -130,7 +130,7 @@ xdescribe("Auth", function () {
         })
 
 
-        it("should not authorize self ", async function () {
+        it('should not authorize self ', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '123', regular)
@@ -142,7 +142,7 @@ xdescribe("Auth", function () {
             expect(spyNotAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize other user ", async function () {
+        it('should not authorize other user ', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '13', regular)
@@ -154,7 +154,7 @@ xdescribe("Auth", function () {
             expect(spyNotAuthorized).toHaveBeenCalled()
         })
 
-        it("manager should not lookup managers ", async function () {
+        it('manager should not lookup managers ', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '13', manager)
@@ -167,7 +167,7 @@ xdescribe("Auth", function () {
         })
 
 
-        it("manager should not lookup admins ", async function () {
+        it('manager should not lookup admins ', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '13', manager)
@@ -190,7 +190,7 @@ xdescribe("Auth", function () {
 
 
     describe('allowed manager and admin', () => {
-        it("should authorize admin successfully ", function () {
+        it('should authorize admin successfully ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', admin)
@@ -198,7 +198,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should authorize manager to lookup regular users", async function () {
+        it('should authorize manager to lookup regular users', async function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -210,7 +210,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize manager to lookup other managers", async function () {
+        it('should not authorize manager to lookup other managers', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -223,7 +223,7 @@ xdescribe("Auth", function () {
         })
 
 
-        it("should not authorize manager to lookup other admins", async function () {
+        it('should not authorize manager to lookup other admins', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -235,7 +235,7 @@ xdescribe("Auth", function () {
             expect(spyNotAuthorized).toHaveBeenCalled()
         })
 
-        it("should authorize admin to lookup any user", async function () {
+        it('should authorize admin to lookup any user', async function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', admin)
@@ -257,7 +257,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalledTimes(3)
         })
 
-        it("should not authorize self ", async function () {
+        it('should not authorize self ', async function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '123', regular)
@@ -275,7 +275,7 @@ xdescribe("Auth", function () {
 
 
     describe('prevent regular users', () => {
-        it("should authorize admin successfully ", function () {
+        it('should authorize admin successfully ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', admin)
@@ -283,7 +283,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should authorize manager successfully ", function () {
+        it('should authorize manager successfully ', function () {
             const spyAuthorized = spyOn(toBeSpied, 'authorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', manager)
@@ -291,7 +291,7 @@ xdescribe("Auth", function () {
             expect(spyAuthorized).toHaveBeenCalled()
         })
 
-        it("should not authorize regular users ", function () {
+        it('should not authorize regular users ', function () {
             const spyNotAuthorized = spyOn(toBeSpied, 'notAuthorized')
             const res = new MockResponse()
             const req = new MockRequest('123', '1253', regular)

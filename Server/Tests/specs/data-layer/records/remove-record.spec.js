@@ -6,7 +6,7 @@ const faker = require('faker')
 const getRecord = require('data-layer/record/get-record.db')
 
 
-describe("Removing a record", function () {
+describe('removing a record', function () {
     beforeAll(() => {
         connectToDb()
     })
@@ -34,7 +34,7 @@ describe("Removing a record", function () {
         })
     })
 
-    it("should delete record successfully", async function (done) {      
+    it('should delete record successfully', async function (done) {      
         await deleteRecord(id, mealId)
         getRecord(id, mealId).then(x => {
             expect(x).toBeFalsy()
