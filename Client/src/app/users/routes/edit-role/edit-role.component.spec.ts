@@ -13,7 +13,7 @@ import { UsersModule } from 'app/users/users.module';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { AppModule } from 'app/app.module';
 
-describe('EditRoleComponent', () => {
+describe('EditRole Component', () => {
     let comp: EditRoleComponent;
     let fixture: ComponentFixture<EditRoleComponent>;
     let sb: SnackBarService
@@ -63,7 +63,7 @@ describe('EditRoleComponent', () => {
             expect(spy).toHaveBeenCalledWith('123', { role: 'regular' })
         })
 
-        it('should call dataservice wtih manager role', () => {
+        it('should call datas ervice wtih manager role', () => {
             const spy = spyOn(dataService, 'assignRole').and.callThrough()
             const select = fixture.nativeElement.querySelector('select')
             select.value = 'manager'
@@ -72,7 +72,7 @@ describe('EditRoleComponent', () => {
             expect(spy).toHaveBeenCalledWith('123', { role: 'manager' })
         })
 
-        it('should call dataservice wtih admin role', () => {
+        it('should call data service wtih admin role', () => {
             const spy = spyOn(dataService, 'assignRole').and.callThrough()
             const select = fixture.nativeElement.querySelector('select')
             select.value = 'admin'
@@ -81,7 +81,7 @@ describe('EditRoleComponent', () => {
             expect(spy).toHaveBeenCalledWith('123', { role: 'admin' })
         })
 
-        it('should not call dataservice wtih unknown role', () => {
+        it('should not call data service wtih unknown role', () => {
             const spy = spyOn(dataService, 'assignRole').and.callThrough()
             const select = fixture.nativeElement.querySelector('select')
             select.value = 'oo'
@@ -104,7 +104,7 @@ describe('EditRoleComponent', () => {
         })
     })
 
-    describe('Error scenario', () => {
+    describe('error scenario', () => {
         it('should handle error', () => {
             dataService.assignRole = () => Observable.throw('Error')
             const select = fixture.nativeElement.querySelector('select')

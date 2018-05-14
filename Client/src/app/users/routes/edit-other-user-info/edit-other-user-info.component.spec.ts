@@ -41,7 +41,7 @@ describe('EditOtherUserInfo Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const name = fixture.debugElement.query(By.css('input[name="name"]'));
             const nameElement = name.nativeElement
@@ -57,7 +57,7 @@ describe('EditOtherUserInfo Component', () => {
             isTrackingDisplayedElement.dispatchEvent(new Event('change'));
         })
 
-        describe('Edit other user info endpoint', () => {
+        describe('edit other user info endpoint', () => {
             let spy;
             beforeEach(() => {
                 dataService.updateUserInfo = (id, payload) => Observable.of('ok')

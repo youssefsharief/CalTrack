@@ -11,7 +11,7 @@ import { MealFormComponent } from 'app/shared/meal-form/meal-form.component';
 import { DateUtilityService } from 'app/core/services/date-utility.service';
 import { DatePipe } from '@angular/common';
 
-describe('MealFormComponentt', () => {
+describe('MealForm Componentt', () => {
     let comp: MealFormComponent;
     let fixture: ComponentFixture<MealFormComponent>;
 
@@ -29,7 +29,7 @@ describe('MealFormComponentt', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Form validation', () => {
+    describe('form validation', () => {
         describe('invalid name', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
@@ -141,7 +141,7 @@ describe('MealFormComponentt', () => {
                 expect(fixture.nativeElement.querySelector('button[type="submit"][disabled]')).toBeFalsy()
             })
 
-            describe('Submitting', () => {
+            describe('submitting', () => {
                 it('should call output', () => {
                     const spy = spyOn(comp.submitted, 'emit')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

@@ -45,8 +45,8 @@ describe('ActivateAfterSignupComponent Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Initial markup', () => {
-        describe('Form Validation', () => {
+    describe('initial markup', () => {
+        describe('form validation', () => {
             describe('form initially', () => {
                 it('should be invalid', () => {
                     expect(comp.form.invalid).toBe(true)
@@ -61,7 +61,7 @@ describe('ActivateAfterSignupComponent Component', () => {
         })
     })
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('valid email and activation code', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
@@ -135,7 +135,7 @@ describe('ActivateAfterSignupComponent Component', () => {
             })
         })
     })
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
             const emailInputElement = emailInput.nativeElement
@@ -147,7 +147,7 @@ describe('ActivateAfterSignupComponent Component', () => {
             activationCodeInputElement.dispatchEvent(new Event('input'));
         })
 
-        describe('Scenario: Success', () => {
+        describe('success scenario', () => {
             it('should call the right function', () => {
                 dataService.activateFromBackEnd = (activationCode, email) => Observable.of(<{ token: string, user: User }>{})
                 fixture.detectChanges();
@@ -160,7 +160,7 @@ describe('ActivateAfterSignupComponent Component', () => {
             })
         })
 
-        describe('Scenario: Error', () => {
+        describe('error scenario', () => {
             beforeEach(() => {
                 const err = {
                     status: 400,

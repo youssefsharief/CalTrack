@@ -63,7 +63,7 @@ describe('Meals Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Initial Markup', () => {
+    describe('initial markup', () => {
         it('Name should be displayed', () => {
             expect(fixture.nativeElement.querySelectorAll('#mealsTable td')[0].innerHTML).toBe('CairoRegular')
         })

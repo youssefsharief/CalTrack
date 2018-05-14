@@ -66,7 +66,7 @@ describe('Login Component', () => {
     })
 
 
-    describe('Initial Html', () => {
+    describe('route initially', () => {
         it('jumbotron should not appear', () => {
             expect(fixture.debugElement.query(By.css('jumbotron'))).toBeFalsy();
         })
@@ -83,7 +83,7 @@ describe('Login Component', () => {
         })
     })
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('valid email and password', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
@@ -154,7 +154,7 @@ describe('Login Component', () => {
     })
 
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
             const emailInputElement = emailInput.nativeElement
@@ -168,7 +168,7 @@ describe('Login Component', () => {
 
 
 
-        describe('Scenario: Error', () => {
+        describe('error scenario', () => {
             describe('403', () => {
                 beforeEach(() => {
                     const err = {

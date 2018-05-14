@@ -71,7 +71,7 @@ describe('OtherUserMeal Component', () => {
     })
 
 
-    describe('on Add Clicked', () => {
+    describe('on add clicked', () => {
         it('should call router', () => {
             const spy = spyOn(router, 'navigate')
             comp.onAddClicked()
@@ -79,7 +79,7 @@ describe('OtherUserMeal Component', () => {
         });
     })
 
-    describe('on Edit Clicked', () => {
+    describe('on edit clicked', () => {
         it('should call router', () => {
             const spy = spyOn(router, 'navigate')
             comp.onEditClicked(<Meal>{})

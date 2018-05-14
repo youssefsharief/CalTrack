@@ -46,7 +46,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Route initially', () => {
+    describe('route initially', () => {
         it('form should exist', () => {
             expect(fixture.debugElement.query(By.css('button[type="submit"]'))).toBeTruthy()
         })
@@ -62,7 +62,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
     })
 
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('valid email, recovery code, password, and confirm passsword', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
@@ -229,7 +229,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
             })
         })
     })
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
             const emailInputElement = emailInput.nativeElement
@@ -250,7 +250,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
             fixture.detectChanges();
         })
 
-        describe('Scenario: Success', () => {
+        describe('success scenario', () => {
             beforeEach(() => {
                 dataService.changeMyPasswordUsingRecoveryCode = ({recoveryCode, newPassword, email}) => Observable.of('Ok')
             })
@@ -262,7 +262,7 @@ describe('NewPasswordAndRecoveryCodeSubmission Component', () => {
             })
         })
 
-        describe('Scenario: Error', () => {
+        describe('error scenario', () => {
             it('should handle Error', () => {
                 dataService.changeMyPasswordUsingRecoveryCode = ({recoveryCode, newPassword, email}) => Observable.throw('EE')
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

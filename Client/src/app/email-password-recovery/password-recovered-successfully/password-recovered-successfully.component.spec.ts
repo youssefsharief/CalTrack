@@ -9,7 +9,7 @@ import { EmailPasswordRecoveryModule } from 'app/email-password-recovery/email-p
 import { CoreModule } from 'app/core/core.module';
 import { AppRoutingModule } from 'app/app-routing.module';
 
-describe('passwordRecoveredSuccessfully Component', () => {
+describe('Password Recovered Successfully Component', () => {
     let comp: PasswordRecoveredSuccessfullyComponent;
     let fixture: ComponentFixture<PasswordRecoveredSuccessfullyComponent>;
     let location: Location

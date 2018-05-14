@@ -31,7 +31,7 @@ describe('Auth interceptor', () => {
         service = injector.get(DataService);
     });
 
-    describe('intercept HTTP requests', () => {
+    describe('intercepting HTTP requests', () => {
         let dummy;
         let req: TestRequest;
         beforeEach(() => {

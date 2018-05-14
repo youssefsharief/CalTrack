@@ -19,10 +19,10 @@ describe('Service: Snack bar Service', () => {
 
 
 
-    it('should emit error snack bar when message argumnet is not provided', () => {
+    it('should emit error snack bar when message argument is not provided', () => {
         service.emitErrorSnackBar()
     });
-    it('should emit error snack bar when message argumnet provided', () => {
+    it('should emit error snack bar when message argument provided', () => {
         service.emitErrorSnackBar('Error!')
     });
     it('should emit error snack bar when action text is not provided', () => {
@@ -43,16 +43,16 @@ describe('Service: Snack bar Service', () => {
 
 
 
-    it('should emit Success snack bar when message argumnet is not provided', () => {
+    it('should emit success snack bar when message argument is not provided', () => {
         service.emitSuccessSnackBar()
     });
-    it('should emit Success snack bar when message argumnet provided', () => {
+    it('should emit success snack bar when message argument provided', () => {
         service.emitSuccessSnackBar('Success!')
     });
-    it('should emit Success snack bar when action text is not provided', () => {
+    it('should emit success snack bar when action text is not provided', () => {
         service.emitSuccessSnackBar(null)
     });
-    it('should emit Success snack bar when action text is provided', () => {
+    it('should emit success snack bar when action text is provided', () => {
         service.emitSuccessSnackBar(null, 'Ok')
     });
 
@@ -61,10 +61,10 @@ describe('Service: Snack bar Service', () => {
 
     });
 
-    it('should emit Success snack bar when config is provided', () => {
+    it('should emit success snack bar when config is provided', () => {
         service.emitSuccessSnackBar(null, null)
     });
-    it('should emit Success snack bar when config is not provided', () => {
+    it('should emit success snack bar when config is not provided', () => {
         service.emitSuccessSnackBar(null, null)
     });
 

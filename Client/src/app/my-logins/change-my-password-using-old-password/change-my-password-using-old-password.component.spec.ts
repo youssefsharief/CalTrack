@@ -10,7 +10,7 @@ import { ChangeMyPasswordUsingOldPasswordComponent } from 'app/my-logins/change-
 import { MyLoginsModule } from 'app/my-logins/my-logins.module';
 import { AppModule } from 'app/app.module';
 
-describe('ChangeMyPasswordUsingOldPassword Component', () => {
+describe('Change MyPassword Using Old Password Component', () => {
     let comp: ChangeMyPasswordUsingOldPasswordComponent;
     let fixture: ComponentFixture<ChangeMyPasswordUsingOldPasswordComponent>;
     let dataService: DataService
@@ -32,7 +32,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Route initially', () => {
+    describe('route initially', () => {
         it('form should exist', () => {
             expect(fixture.debugElement.query(By.css('button[type="submit"]'))).toBeTruthy()
         })
@@ -48,7 +48,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
     })
 
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('valid password, new password, and confirm passsword', () => {
             beforeEach(() => {
                 const oldPasswordInput = fixture.debugElement.query(By.css('input[name="oldPassword"]'));
@@ -135,7 +135,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
         })
     })
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const oldPasswordInput = fixture.debugElement.query(By.css('input[name="oldPassword"]'));
             const oldPasswordInputElement = oldPasswordInput.nativeElement
@@ -152,7 +152,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
             fixture.detectChanges();
         })
 
-        describe('Scenario: Success', () => {
+        describe('success scenario', () => {
             beforeEach(() => {
                 dataService.changePasswordUsingOldPassword = ({ oldPassword, newPassword }) => Observable.of('Ok')
             })
@@ -164,7 +164,7 @@ describe('ChangeMyPasswordUsingOldPassword Component', () => {
             })
         })
 
-        describe('Scenario: Error', () => {
+        describe('error scenario', () => {
             it('should handle Error', () => {
                 dataService.changePasswordUsingOldPassword = ({ oldPassword, newPassword }) => Observable.of('Ok')
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

@@ -55,8 +55,8 @@ describe('EditMyMeal Component', () => {
         it('should build successfully', () => {
             expect(comp).toBeTruthy()
         })
-        describe('Add my meal endpoint', () => {
-            describe('Success Scenario', () => {
+        describe('add my meal endpoint', () => {
+            describe('success scenario', () => {
                 beforeEach(() => {
                     dataService.updateMeal = (id, payload) => Observable.of('ok')
                 })
@@ -71,7 +71,7 @@ describe('EditMyMeal Component', () => {
                     })
                 })
             })
-            describe('Error Scenario', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     dataService.updateMeal = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

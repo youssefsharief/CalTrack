@@ -42,7 +42,7 @@ describe('AddMyMeal Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
             const nameInputElement = nameInput.nativeElement
@@ -60,7 +60,7 @@ describe('AddMyMeal Component', () => {
         })
 
         describe('Add my meal endpoint', () => {
-            describe('Success Scenario', () => {
+            describe('success scenario', () => {
                 beforeEach(() => {
                     dataService.addMeal = (id, payload) => Observable.of('ok')
                 })
@@ -82,7 +82,7 @@ describe('AddMyMeal Component', () => {
                     expect(comp).toBeTruthy()
                 })
             })
-            describe('Error Scenario', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     dataService.addMeal = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

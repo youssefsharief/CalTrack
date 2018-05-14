@@ -57,7 +57,7 @@ describe('EditOtherUserMeal Component', () => {
             selectedUserService.getUserWithProbableDataFetch = () => Observable.of(u)
             fixture.detectChanges()
         })
-        describe('Submitting Form', () => {
+        describe('submitting form', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameInputElement = nameInput.nativeElement
@@ -73,7 +73,7 @@ describe('EditOtherUserMeal Component', () => {
                 numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
-            describe('Success Scenario', () => {
+            describe('success scenario', () => {
                 beforeEach(() => {
                     dataService.updateMeal = (id, payload) => Observable.of('ok')
                 })
@@ -95,7 +95,7 @@ describe('EditOtherUserMeal Component', () => {
 
 
             })
-            describe('Error Scenario', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     dataService.updateMeal = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

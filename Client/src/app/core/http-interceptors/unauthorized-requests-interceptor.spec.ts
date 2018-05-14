@@ -11,7 +11,7 @@ import { CoreModule } from 'app/core/core.module';
 
 let service: UnAuthorizedRequestsInterceptor;
 let sb: SnackBarService;
-describe('UnAuthorizedRequestsInterceptor', () => {
+describe('UnAuthorized Requests Interceptor', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [LoginModule, RouterTestingModule, SharedModule],
@@ -22,7 +22,7 @@ describe('UnAuthorizedRequestsInterceptor', () => {
         sb = injector.get(SnackBarService);
     });
 
-    describe('intercept HTTP requests', () => {
+    describe('intercepting HTTP requests', () => {
         let req: HttpRequest<any>;
         let next: HttpHandler;
         beforeEach(() => {

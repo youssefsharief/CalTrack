@@ -15,7 +15,7 @@ import { AddOtherUserMealComponent } from 'app/users/routes/add-other-user-meal/
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule } from 'app/core/core.module';
 
-describe('AddOtherUserMeal Component', () => {
+describe('Add Other User Meal Component', () => {
     let comp: AddOtherUserMealComponent;
     let fixture: ComponentFixture<AddOtherUserMealComponent>;
     let location: Location
@@ -53,7 +53,7 @@ describe('AddOtherUserMeal Component', () => {
             selectedUserService.getUserWithProbableDataFetch = () => Observable.of(u)
             fixture.detectChanges()
         })
-        describe('Submitting Form', () => {
+        describe('submitting form', () => {
             beforeEach(() => {
                 const nameInput = fixture.debugElement.query(By.css('input[name="name"]'));
                 const nameInputElement = nameInput.nativeElement
@@ -65,7 +65,7 @@ describe('AddOtherUserMeal Component', () => {
                 numOfCaloriesElement.dispatchEvent(new Event('input'));
                 fixture.detectChanges();
             })
-            describe('Success Scenario', () => {
+            describe('success scenario', () => {
                 beforeEach(() => {
                     const user = <User>{}
                     dataService.addMeal = (id, payload) => Observable.of(user)
@@ -91,7 +91,7 @@ describe('AddOtherUserMeal Component', () => {
                 })
 
             })
-            describe('Error Scenario', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     dataService.addMeal = (id, payload) => Observable.throw('Error')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

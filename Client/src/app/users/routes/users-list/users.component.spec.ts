@@ -37,7 +37,7 @@ describe('Users Component', () => {
         router = TestBed.get(Router);
     })
 
-    describe('Users not retrieved successfully', () => {
+    describe('users not retrieved successfully', () => {
         beforeEach(() => {
             dataService.getUsers = () => Observable.throw('E')
             fixture.detectChanges()
@@ -46,7 +46,7 @@ describe('Users Component', () => {
             expect(comp).toBeTruthy()
         })
     })
-    describe('Users retrieved successfully', () => {
+    describe('users retrieved successfully', () => {
         beforeEach(() => {
             const users = <User[]>[{ _id: '11', name: 'YYasd', email: 'asddl@kfdl.com', role: 'regular' }]
             const data = { users, count: 111 }
@@ -58,7 +58,7 @@ describe('Users Component', () => {
             expect(spy).toHaveBeenCalledWith(Object({ roleFilter: undefined, searchTerm: undefined, skip: 0 }))
         })
 
-        describe('Admin authorizations', () => {
+        describe('admin authorizations', () => {
             describe('is admin', () => {
                 beforeEach(() => {
                     authService.getRole = () => 'admin'
@@ -88,8 +88,8 @@ describe('Users Component', () => {
             })
         })
 
-        describe('Delete user', () => {
-            describe('Scenario: Success', () => {
+        describe('delete user', () => {
+            describe('success scenario', () => {
                 beforeEach(() => {
                     fixture.detectChanges()
                     dataService.deleteUser = (id) => Observable.of('ok')
@@ -102,7 +102,7 @@ describe('Users Component', () => {
                 })
             })
 
-            describe('Scenario: Error', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     fixture.detectChanges()
                     dataService.deleteUser = (id) => Observable.throw('E')
@@ -113,14 +113,14 @@ describe('Users Component', () => {
             })
         })
 
-        describe('Activate user', () => {
+        describe('activate user', () => {
             describe('markup before activation', () => {
                 it('user should appear unactivated', () => {
                     expect(fixture.nativeElement.querySelector('#activatedIcon')).toBeFalsy()
                 })
             })
-            describe('Activate user api', () => {
-                describe('Scenario: Success', () => {
+            describe('activate user api', () => {
+                describe('success scenario', () => {
                     beforeEach(() => {
                         dataService.activateUserAdministratively = (id) => Observable.of('ok')
                         fixture.detectChanges()
@@ -132,7 +132,7 @@ describe('Users Component', () => {
                     })
                 })
 
-                describe('Scenario: Error', () => {
+                describe('error scenario', () => {
                     beforeEach(() => {
                         dataService.activateUserAdministratively = (id) => Observable.throw('E')
                         fixture.detectChanges()
@@ -147,11 +147,11 @@ describe('Users Component', () => {
         })
 
 
-        describe('Pagination', () => {
+        describe('pagination', () => {
             beforeEach(() => {
                 fixture.detectChanges()
             })
-            describe('Moving to the next page', () => {
+            describe('moving to the next page', () => {
                 it('getUsers api method should have been called with the right arguments', () => {
                     const spy = spyOn(dataService, 'getUsers').and.callThrough()
                     fixture.nativeElement.querySelectorAll('.page-item a')[11].click()

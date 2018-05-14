@@ -73,8 +73,8 @@ describe('Signup Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Initial markup', () => {
-        describe('Form Validation', () => {
+    describe('initial markup', () => {
+        describe('form validation', () => {
             describe('form initially', () => {
                 it('should be invalid', () => {
                     expect(comp.form.invalid).toBe(true)
@@ -89,7 +89,7 @@ describe('Signup Component', () => {
         })
     })
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('valid email, password, confirm passsword, and name', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
@@ -262,7 +262,7 @@ describe('Signup Component', () => {
         })
     })
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
             const emailInputElement = emailInput.nativeElement
@@ -284,7 +284,7 @@ describe('Signup Component', () => {
         })
 
         describe('Normal Signup', () => {
-            describe('Scenario: Success', () => {
+            describe('success scenario', () => {
                 it('should successfully post', () => {
                     dataService.signup = (data) => Observable.of({ user, token: 'aaaa' })
                     fixture.detectChanges();
@@ -292,7 +292,7 @@ describe('Signup Component', () => {
                 })
             })
 
-            describe('Scenario: Error', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     const err = {
                         status: 400,
@@ -311,7 +311,7 @@ describe('Signup Component', () => {
         })
 
         describe('Secure Signup', () => {
-            describe('Scenario: Success', () => {
+            describe('success scenario', () => {
                 beforeEach(() => {
                     dataService.signupSecurely = (data) => Observable.of(user)
                 })
@@ -330,7 +330,7 @@ describe('Signup Component', () => {
 
             })
 
-            describe('Scenario: Error', () => {
+            describe('error scenario', () => {
                 beforeEach(() => {
                     const err = { status: 400, json() { return { error: 'thats an error' } } }
                     dataService.signupSecurely = (data) => Observable.throw(err)

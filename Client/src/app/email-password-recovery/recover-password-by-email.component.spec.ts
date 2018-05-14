@@ -13,7 +13,7 @@ import { EmailPasswordRecoveryModule } from 'app/email-password-recovery/email-p
 import { EmailPasswordRecoveryComponent } from 'app/email-password-recovery/email-password-recovery.component';
 import { AppModule } from 'app/app.module';
 
-describe('RecoverPassworByEmail Component', () => {
+describe('Recover Password By Email Component', () => {
     let comp: EmailPasswordRecoveryComponent;
     let fixture: ComponentFixture<EmailPasswordRecoveryComponent>;
     let dataService: DataService
@@ -39,7 +39,7 @@ describe('RecoverPassworByEmail Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Route initially', () => {
+    describe('route initially', () => {
         it('form should exist', () => {
             expect(fixture.debugElement.query(By.css('button[type="submit"]'))).toBeTruthy()
         })
@@ -55,7 +55,7 @@ describe('RecoverPassworByEmail Component', () => {
     })
 
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('valid email', () => {
             beforeEach(() => {
                 const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
@@ -98,7 +98,7 @@ describe('RecoverPassworByEmail Component', () => {
 
     })
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             const emailInput = fixture.debugElement.query(By.css('input[name="email"]'));
             const emailInputElement = emailInput.nativeElement
@@ -107,7 +107,7 @@ describe('RecoverPassworByEmail Component', () => {
             fixture.detectChanges();
         })
 
-        describe('Scenario: Success', () => {
+        describe('success scenario', () => {
             beforeEach(() => {
                 dataService.forgottenPassword = (email) => Observable.of('Ok')
             })
@@ -118,7 +118,7 @@ describe('RecoverPassworByEmail Component', () => {
                 expect(spy).toHaveBeenCalledWith('fahjlkh@hfjdf.com')
             })
 
-            describe('Scenario: Error', () => {
+            describe('error scenario', () => {
                 it('should handle Error', () => {
                     dataService.forgottenPassword = (email) => Observable.throw('Ok')
                     fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

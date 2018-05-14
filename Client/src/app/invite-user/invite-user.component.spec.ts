@@ -27,7 +27,7 @@ describe('InviteUser Component', () => {
         dataService = fixture.debugElement.injector.get(DataService)
     });
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         beforeEach(() => {
             fixture.detectChanges();
         })
@@ -74,8 +74,8 @@ describe('InviteUser Component', () => {
                 expect(y[0].properties.hidden).toBeTruthy();
             })
 
-            describe('Submitting Form', () => {
-                describe('Success Scenario', () => {
+            describe('submitting form', () => {
+                describe('success scenario', () => {
                     beforeEach(() => {
                         dataService.inviteUser = (id, payload) => Observable.of('ok')
                     })
@@ -94,7 +94,7 @@ describe('InviteUser Component', () => {
                         })
                     })
                 })
-                describe('Error Scenario', () => {
+                describe('error scenario', () => {
                     beforeEach(() => {
                         dataService.inviteUser = (id, payload) => Observable.throw('Error')
                         fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

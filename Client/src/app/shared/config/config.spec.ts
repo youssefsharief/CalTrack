@@ -1,7 +1,7 @@
 import { passwordPattern } from 'app/shared/config/constants';
 
 
-describe('Config', () => {
+describe('config', () => {
     describe('password regex', () => {
         it('should not accept small passwords', () => {
             expect(passwordPattern.test('123fd')).toBe(false)

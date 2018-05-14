@@ -43,7 +43,7 @@ describe('ChangeOtherUserPassword Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Route initially', () => {
+    describe('route initially', () => {
         describe('User found', () => {
             beforeEach(() => {
                 fixture.detectChanges();
@@ -67,7 +67,7 @@ describe('ChangeOtherUserPassword Component', () => {
     })
 
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         beforeEach(() => {
             fixture.detectChanges();
         })
@@ -145,7 +145,7 @@ describe('ChangeOtherUserPassword Component', () => {
         })
     })
 
-    describe('Submitting Form', () => {
+    describe('submitting form', () => {
         beforeEach(() => {
             fixture.detectChanges();
         })
@@ -161,7 +161,7 @@ describe('ChangeOtherUserPassword Component', () => {
             fixture.detectChanges();
         })
 
-        describe('Scenario: Success', () => {
+        describe('success scenario', () => {
             beforeEach(() => {
                 dataService.changeOtherUserPassword = (userId, newPwassword) => Observable.of('Ok')
             })
@@ -173,7 +173,7 @@ describe('ChangeOtherUserPassword Component', () => {
             })
         })
 
-        describe('Scenario: Error', () => {
+        describe('error scenario', () => {
             it('should handle Error', () => {
                 dataService.changeOtherUserPassword = (userId, newPwassword) => Observable.of('Ok')
                 fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement.click()

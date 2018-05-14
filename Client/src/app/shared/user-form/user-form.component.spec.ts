@@ -33,8 +33,8 @@ describe('User Form Component', () => {
         expect(comp).toBeTruthy()
     })
 
-    describe('Initial markup', () => {
-        describe('Form Validation', () => {
+    describe('initial markup', () => {
+        describe('form validation', () => {
             describe('form initially', () => {
                 it('form should be valid', () => {
                     expect(comp.form.invalid).toBe(false)
@@ -47,7 +47,7 @@ describe('User Form Component', () => {
         })
     })
 
-    describe('Form Validation', () => {
+    describe('form validation', () => {
         describe('invalid name', () => {
             beforeEach(() => {
                 const name = fixture.debugElement.query(By.css('input[name="name"]'));
@@ -140,9 +140,9 @@ describe('User Form Component', () => {
 
             describe('adding max numOfCalories', () => {
 
-                describe('Submitting Form', () => {
-                    describe('EditUser', () => {
-                        describe('Scenario: Success', () => {
+                describe('submitting form', () => {
+                    describe('editing user', () => {
+                        describe('success scenario', () => {
                             let spy;
                             beforeEach(() => {
                                 dataService.updateUserInfo = (id, payload) => Observable.of('ok')
@@ -156,7 +156,7 @@ describe('User Form Component', () => {
 
                         })
 
-                        describe('Scenario: Error', () => {
+                        describe('error scenario', () => {
                             beforeEach(() => {
                                 const err = {
                                     status: 400,

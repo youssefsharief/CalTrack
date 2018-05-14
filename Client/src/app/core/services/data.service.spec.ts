@@ -65,7 +65,7 @@ describe('ApiService: DataService', () => {
         });
     });
 
-    describe('activate from backen', () => {
+    describe('activate from backend', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
             service.activateFromBackEnd('s', 'a').subscribe()
@@ -95,15 +95,6 @@ describe('ApiService: DataService', () => {
         });
     });
 
-    describe('delete user', () => {
-        it('should have appropriate url ', () => {
-            const dummy = 'ok';
-            service.deleteUser('s').subscribe()
-            const req = httpMock.expectOne({ method: 'DELETE', url: 'https://localhost:3001/api/users/s' });
-            req.flush(dummy);
-        });
-    });
-
     describe('get users', () => {
         it('should have appropriate url ', () => {
             const dummy = 'ok';
@@ -122,7 +113,6 @@ describe('ApiService: DataService', () => {
             expect(req.request.urlWithParams).toBe('https://localhost:3001/api/users/1/meals?skip=10&startDate=aa&endDate=dsa')
             req.flush(dummy);
         });
-
     });
 
     describe('Get user details', () => {
