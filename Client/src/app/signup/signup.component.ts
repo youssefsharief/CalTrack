@@ -61,7 +61,10 @@ export class SignupComponent implements OnInit {
                 this.authService.saveProfile(data.user)
                 this.router.navigate(['my-profile'])
             },
-            error => this.sb.emitErrorSnackBar(error.msg)
+            error => {
+                this.form.get('g-recaptcha-response').reset()
+                this.sb.emitErrorSnackBar(error.msg)
+            }
         )
     }
 
@@ -75,6 +78,7 @@ export class SignupComponent implements OnInit {
                 this.router.navigate(['/signup/activate'])
             },
             error => {
+                this.form.get('g-recaptcha-response').reset()
                 this.sb.emitErrorSnackBar(error.msg)
             }
         )
