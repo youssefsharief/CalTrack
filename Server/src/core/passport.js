@@ -20,7 +20,6 @@ passport.use('googleToken', new GoogleTokenStrategy({
     try {
         done(null, parsedToken)
     } catch (error) {
-        console.log(error)
         done(error, false, error.message);
     }
 }));

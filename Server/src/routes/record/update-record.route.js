@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     const numOfCalories = req.body.numOfCalories ? req.body.numOfCalories : await getNutriCalories(req.body.name)
     return updateRecord(req.params.id, req.params.mealId, {
         name: req.body.name,
-        numOfCalories,
+        numOfCalories: numOfCalories || null,
         date: getDateIgnoringTimezone(req.body.date)
     }).then((user) => {
         return user ? res.status(200).json(successMessage) : next({ nF: 'Meal' })

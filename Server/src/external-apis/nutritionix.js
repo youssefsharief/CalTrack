@@ -9,6 +9,6 @@ const nutritionix = new NutritionixClient({
 module.exports = {
     getNutriCalories(food) {
         return nutritionix.natural(food).then(data => data.results[0].nutrients.find(item=> item.usda_tag==='ENERC_KCAL').value)
-            .catch((err) => (console.log(err)));
+            .catch((err) => console.log(err));
     }
 } 
