@@ -36,7 +36,6 @@ describe('users endpoint', function () {
         getUserQuery.getUsers().then(x => {
             expect(x.length).toBeTruthy()
             expect(x[0].name).toBeTruthy()
-            expect(x[0].email).toBeTruthy()
             expect(x[0].role).toBeTruthy()
             done()
         }).catch(err => { throw err })
@@ -47,7 +46,6 @@ describe('users endpoint', function () {
         getUserQuery.getUsers().then(x => {
             expect(x.length).toBeTruthy()
             expect(x[0].name).toBeTruthy()
-            expect(x[0].email).toBeTruthy()
             done()
         }).catch(err => { throw err })
     })
