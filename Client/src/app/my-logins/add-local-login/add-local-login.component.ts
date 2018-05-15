@@ -55,7 +55,7 @@ export class AddLocalLoginComponent implements OnInit {
             data => {
                 this.publicInfoService.setEmail(this.form.value.email)
                 this.publicInfoService.setPass(this.form.value.password)
-                this.router.navigate(['/signup/activate'])
+                this.sb.emitWarnSnackBar('Remember you need to activate your account before logging in using this account')
             },
             error => {
                 this.sb.emitErrorSnackBar(error.msg)

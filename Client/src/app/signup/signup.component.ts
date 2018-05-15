@@ -11,6 +11,7 @@ import 'rxjs/add/operator/first'
 
 @Component({
     templateUrl: 'signup.component.html',
+    styleUrls: ['signup.component.scss']
 })
 export class SignupComponent implements OnInit {
     form: FormGroup

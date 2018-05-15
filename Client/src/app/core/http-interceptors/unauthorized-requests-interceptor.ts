@@ -30,13 +30,4 @@ export class UnAuthorizedRequestsInterceptor implements HttpInterceptor {
             }
         });
     }
-
-    // private getMessage(res: HttpErrorResponse) {
-    //     if (res.error instanceof Error) {
-    //         return res.error.message ? res.error.message : res.error.toString()
-    //     } else {
-    //         return res.message ? res.message : res.toString();
-    //     }
-    // }
-
 }

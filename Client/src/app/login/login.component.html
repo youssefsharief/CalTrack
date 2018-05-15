@@ -14,14 +14,16 @@
         <input type="password" name="password" class="form-control" formControlName="password">
     </app-password-input-layout>
     <app-submit-button [isDisabled]="!form.valid"></app-submit-button>
+    <app-social-sign-in class="pull-right"></app-social-sign-in>
 </form>
 <hr>
-<button class="btn btn-default mb-4" id="forget-password-button" routerLink="/email_password_recovery">Forgotten password?</button>
-<br class="mb-4">
 
-<div class="mb-4">
+
+<div class="mb-4 mt-2">
+    <button class="btn btn-default mb-4" id="forget-password-button" routerLink="/email_password_recovery">Forgotten password?</button>
+</div>
+
+<div class="mb-2">
     <span>Do not have an account?</span>
     <button class="btn btn-default " id="signup-button" routerLink="/signup">Sign Up</button>
 </div>
-
-<app-social-sign-in></app-social-sign-in>

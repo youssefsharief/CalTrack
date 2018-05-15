@@ -7,6 +7,7 @@ module.exports = async (req, res, next) => {
     const user = await getUserById(req.decoded._id).catch(err => next(err))
     if (!user) return next({ nF: 'User' })
     user.activationCode = generateRandomCode()
+    user.active = false
     user.email = req.body.email
     user.password = req.body.password
     const updatedUser = await user.save().catch(e => next(e))

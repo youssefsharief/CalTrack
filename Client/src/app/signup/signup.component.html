@@ -29,13 +29,14 @@
     <div class="mb-4 mt-4">
         <button class="btn btn-default" [disabled]="!form.valid" type="submit" (click)="signup()">Signup</button>
         <button class="btn btn-default" id="secure-signup-button" [disabled]="!form.valid" type="submit" (click)="signupSecurely()">Signup securely</button>
+        <app-social-sign-in class="pull-right"></app-social-sign-in>
     </div>
 </form>
 
-<app-social-sign-in></app-social-sign-in>
+<hr>
 
 
-<div class="mt-4">
+<div class="mt-4 app-buttom">
     <span>Already have an account?</span>
     <button class="btn btn-default" routerLink="/login">Login</button>
 </div>

@@ -9,10 +9,10 @@ import { User } from 'app/shared/models/user.model';
 
 @Component({
     templateUrl: 'login.component.html',
+    styleUrls: ['login.component.scss']
 })
 export class LoginComponent implements OnInit {
     form: FormGroup
-    isRegisteredButNotActive: boolean
     constructor(
         private fb: FormBuilder,
         private dataService: DataService,
