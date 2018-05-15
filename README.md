@@ -86,6 +86,7 @@ For Production: Run `npm run prod` to build the project in the public directory 
 Run `npm t` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ### Running end-to-end tests
+You might need to update webdriver manager before running tests by running `npm run update-wd`
 1. Run `npm start`
 2. Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
