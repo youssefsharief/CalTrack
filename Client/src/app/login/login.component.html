@@ -1,10 +1,3 @@
-<div class="jumbotron" *ngIf="isRegisteredButNotActive">
-    <h1>Oh Oh</h1>
-    <p>Your account is registered but it is not active yet. Please check your email for activation code. If you did not find
-        the email in our inbox or spam folder, send an email to admin@test.com for support
-    </p>
-</div>
-
 <app-title>Login</app-title>
 <form (ngSubmit)="onSubmit(form.value)" [formGroup]="form" *ngIf="form">
     <app-email-input-layout [isDisplayingErrorMessage]="form.get('email').dirty && form.get('email').invalid">
