@@ -19,7 +19,7 @@ export class UnAuthorizedRequestsInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).catch((res: HttpErrorResponse) => {
             if ((res.status === 401 || res.status === 403) && !res.error.code) {
-                this.sb.emitErrorSnackBar(res.error);
+                this.sb.emitErrorSnackBar('Please sign in');
                 this.router.navigate(['login'])
                 return Observable.of(null);
             } else {
