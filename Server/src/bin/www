@@ -26,13 +26,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-if (argv.t) {
-    db.connectToTestDb()
-}
-else {
-    db.connectToOriginalDb()
-}
 
+db.connectToOriginalDb()
 
 function normalizePort(val) {
     const port = parseInt(val, 10);
