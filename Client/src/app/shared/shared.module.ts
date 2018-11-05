@@ -2,7 +2,7 @@ import { RouterModule } from '@angular/router';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
@@ -19,7 +19,7 @@ import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
     ReactiveFormsModule,
     AlertModule.forRoot(),
     TypeaheadModule.forRoot(),
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     MatSnackBarModule,
     NgProgressModule,
@@ -30,7 +30,7 @@ import { SharedTrimmedModule } from 'app/shared/shared-trimmed.module';
   providers: [],
   exports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

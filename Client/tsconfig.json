@@ -1,5 +1,6 @@
 {
   "compileOnSave": false,
+  "preserveWhitespaces": "off",
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "baseUrl": "src",
@@ -18,6 +19,7 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "module": "es2015"
   }
 }
