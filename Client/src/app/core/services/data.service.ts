@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { UserCredentials } from 'app/shared/models/userCredentials';
 import { User } from 'app/shared/models/user.model';
 import { Meal } from 'app/shared/models/meal.model';

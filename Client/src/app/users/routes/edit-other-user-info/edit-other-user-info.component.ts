@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { User } from 'app/shared/models/user.model';
+import { first, flatMap } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'edit-other-user-info.component.html',
@@ -15,7 +16,7 @@ export class EditOtherUserInfoComponent implements OnInit {
     ) {  }
 
     ngOnInit() {
-        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).first().subscribe(data =>  this.user = data )
+        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).pipe(first()).subscribe(data =>  this.user = data )
     }
 
 }

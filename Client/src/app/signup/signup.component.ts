@@ -7,7 +7,7 @@ import { User } from '../shared/models/user.model';
 import { PublicInfoService } from '../core/services/public.info.service';
 import { passwordPattern } from 'app/shared/config/constants';
 import { AuthService } from 'app/core/services/auth.service';
-import 'rxjs/add/operator/first'
+import { first } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'signup.component.html',
@@ -32,7 +32,9 @@ export class SignupComponent implements OnInit {
     }
 
     private getEmailFromParams() {
-        this.route.queryParams.first().subscribe(data => this.form.get('email').setValue(data['email']))
+        this.route.queryParams.pipe(
+            first()
+        ).subscribe(data => this.form.get('email').setValue(data['email']))
     }
 
     private buildForm() {

@@ -4,6 +4,7 @@ import { User } from 'app/shared/models/user.model';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
+import { first } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'edit-role.component.html',
@@ -19,7 +20,7 @@ export class EditRoleComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).first().subscribe(user => this.user = user)
+        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).pipe(first()).subscribe(user => this.user = user)
     }
 
     onAssignClick() {

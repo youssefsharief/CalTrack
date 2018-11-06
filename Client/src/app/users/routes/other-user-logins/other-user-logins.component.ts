@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'app/shared/models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { first } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'other-user-logins.component.html',
@@ -16,7 +17,7 @@ export class OtherUserLoginsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).first().subscribe(
+        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).pipe(first()).subscribe(
             data => this.user = data,
             error => this.router.navigate(['users'])
         )

@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { DataService } from 'app/core/services/data.service';
-import 'rxjs/add/operator/first'
-import 'rxjs/add/operator/switchMap'
-import 'rxjs/add/operator/do'
 import { User } from 'app/shared/models/user.model';
+import { of, Observable } from 'rxjs';
+import { first, switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class SelectedUserService {
@@ -25,9 +22,14 @@ export class SelectedUserService {
 
     public getUserWithProbableDataFetch(params: Observable<any>): Observable<User> {
         if (this.selectedUser) {
-            return Observable.of(this.selectedUser)
+            return of(this.selectedUser)
         } else {
-            return params.first().switchMap(data => this.dataService.getUserDetails(data.id).first().do(user => this.selectedUser = user))
+            return params.pipe(
+                first(),
+                switchMap(data => this.dataService.getUserDetails(data.id)),
+                first(),
+                tap(user => this.selectedUser = user)
+            )
         }
     }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { MatSnackBarRef, SimpleSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UndoDeleteService {
@@ -19,12 +20,12 @@ export class UndoDeleteService {
     }
 
 
-    private listenToDismissal() {
+    private listenToDismissal(): Observable<any[]> {
         return this.snackBarRef.afterDismissed().map(info => {
             if (info.dismissedByAction) {
                 return this.oldItems
             } else {
-                return false
+                return []
             }
         });
     }

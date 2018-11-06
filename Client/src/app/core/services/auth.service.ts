@@ -10,6 +10,7 @@ export class AuthService {
     constructor(
         private libAuthService: LibAuthService
     ) {}
+
     public saveToken(token): void {
         window.localStorage.setItem('id_token', token)
     }

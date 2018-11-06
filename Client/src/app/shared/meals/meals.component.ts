@@ -7,6 +7,7 @@ import { DateUtilityService } from 'app/core/services/date-utility.service';
 import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
 import { Meal } from 'app/shared/models/meal.model';
 import { UndoDeleteService } from 'app/core/services/undo-delete.service';
+import { first } from 'rxjs/operators'
 
 @Component({
     selector: 'app-meals',
@@ -83,9 +84,9 @@ export class MealsComponent implements OnInit {
     }
 
     onDeleteClick(item) {
-        this.undoDeleteService.init(this.meals, 'Meal').first().subscribe(
+        this.undoDeleteService.init(this.meals, 'Meal').pipe(first()).subscribe(
             oldItems => {
-                if (oldItems) {
+                if (oldItems.length) {
                     this.meals = oldItems
                     this.ref.detectChanges()
                 } else {

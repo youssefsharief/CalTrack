@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Meal } from 'app/shared/models/meal.model';
+// import { Injectable } from '@angular/core';
+// import { Meal } from 'app/shared/models/meal.model';
 
-@Injectable()
-export class SelectedMealService {
+// @Injectable()
+// export class SelectedMealService {
 
-    private savedMeal: Meal
+//     private savedMeal: Meal
 
-    public saveSelectedMeal(meal: Meal): void {
-        this.savedMeal = meal;
-    }
+//     public saveSelectedMeal(meal: Meal): void {
+//         this.savedMeal = meal;
+//     }
 
-    public getSelectedMeal(): Meal {
-        return this.savedMeal
-    }
+//     public getSelectedMeal(): Meal {
+//         return this.savedMeal
+//     }
 
 
-}
+// }

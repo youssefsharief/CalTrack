@@ -7,6 +7,7 @@ import { passwordPattern } from 'app/shared/config/constants';
 import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
+import { first } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'change-other-user-password.component.html',
@@ -26,7 +27,7 @@ export class ChangeOtherUserPasswordComponent implements OnInit {
 
     ngOnInit() {
         this.buildForm()
-        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).first().subscribe(
+        this.selectedUserService.getUserWithProbableDataFetch(this.route.params).pipe(first()).subscribe(
             data => this.user = data,
             error =>  this.router.navigate(['users'])
         )

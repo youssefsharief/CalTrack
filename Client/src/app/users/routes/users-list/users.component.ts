@@ -1,7 +1,7 @@
-import { Subject } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { roles } from 'app/shared/config/constants';
 import { AdminClaimsService } from 'app/core/services/admin-claims.service';
 import { User } from 'app/shared/models/user.model';
@@ -10,6 +10,7 @@ import { AuthService } from 'app/core/services/auth.service';
 import { DataService } from 'app/core/services/data.service';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
 import { UndoDeleteService } from 'app/core/services/undo-delete.service';
+import { first } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'users.component.html',
@@ -38,7 +39,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.fetchUsers({ page: 1 })
         this.searchSubscription =
-            this.keyUp$.debounceTime(400).distinctUntilChanged().subscribe(() => {
+            this.keyUp$.pipe(
+                debounceTime(400),
+                distinctUntilChanged()
+            ).subscribe(() => {
                 this.fetchConsideringPaging()
             })
     }
@@ -53,13 +57,13 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     public fetchUsers({ page }) {
         this.dataService.getUsers({ roleFilter: this.roleFilter, searchTerm: this.searchTerm, skip: (page - 1) * 10 })
-        .subscribe(
-            data => {
-                this.users = data.users
-                this.totalItems = data.count
-            },
-            error => this.sb.emitErrorSnackBar(error.msg)
-        )
+            .subscribe(
+                data => {
+                    this.users = data.users
+                    this.totalItems = data.count
+                },
+                error => this.sb.emitErrorSnackBar(error.msg)
+            )
     }
 
     isAdmin() {
@@ -73,9 +77,9 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 
     onDeleteClick(item) {
-        this.undoDeleteService.init(this.users, 'User').first().subscribe(
+        this.undoDeleteService.init(this.users, 'User').pipe(first()).subscribe(
             oldItems => {
-                if (oldItems) {
+                if (oldItems.length) {
                     this.users = oldItems
                     this.ref.detectChanges()
                 } else {
@@ -88,7 +92,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     private deleteFromBackend(userId) {
         this.dataService.deleteUser(userId).subscribe(
-            data => {},
+            data => { },
             error => this.fetchUsers({ page: this.currentPage }),
         )
     }

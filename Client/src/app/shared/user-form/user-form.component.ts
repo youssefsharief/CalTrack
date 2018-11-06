@@ -1,6 +1,5 @@
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';

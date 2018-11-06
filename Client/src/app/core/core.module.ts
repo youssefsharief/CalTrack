@@ -5,7 +5,7 @@ import { SnackBarService } from './services/snackbar.service';
 import { AuthGuardService } from './services/auth.guard.service';
 import { PublicInfoService } from './services/public.info.service';
 import { AuthService } from './services/auth.service';
-import { SelectedMealService } from './services/selected-meal.service';
+// import { SelectedMealService } from './services/selected-meal.service';
 import { DataService } from './services/data.service';
 import { AdminClaimsService } from './services/admin-claims.service';
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -54,7 +54,7 @@ export function getTimepickerConfig(): TimepickerConfig {
     providers: [
         AuthService,
         SnackBarService,
-        SelectedMealService,
+        // SelectedMealService,
         DataService,
         AdminClaimsService,
         AuthGuardService,

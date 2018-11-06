@@ -7,7 +7,7 @@ import { DataService } from 'app/core/services/data.service';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { SelectedMealService } from 'app/core/services/selected-meal.service';
 import { SelectedUserService } from 'app/users/services/selectedUser.service';
-import 'rxjs/add/operator/first'
+import { first, flatMap } from 'rxjs/operators'
 
 @Component({
     templateUrl: 'edit-other-user-meal.component.html',
@@ -33,10 +33,12 @@ export class EditOtherUserMealComponent implements OnInit {
                     this.user = user
                     this.meal = this.mealsService.getSelectedMeal()
                     if (!this.meal) {
-                        this.route.params.first().flatMap(data => this.dataService.getMeal(this.user._id, data.mealId))
-                            .subscribe((
-                                data => this.meal = data
-                            ))
+                        this.route.params.pipe(
+                            first(),
+                            flatMap((data: any) => this.dataService.getMeal(this.user._id, data.mealId))
+                        ).subscribe((
+                            data => this.meal = data
+                        ))
                     }
                 } else {
                     this.router.navigate(['/users/'])

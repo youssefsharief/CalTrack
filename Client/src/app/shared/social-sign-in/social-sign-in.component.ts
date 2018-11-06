@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AuthService as LibAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { DataService } from 'app/core/services/data.service';
 import { User } from 'app/shared/models/user.model';
 import { Router } from '@angular/router';

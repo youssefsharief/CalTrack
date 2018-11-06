@@ -9,6 +9,11 @@ import { SocialLoginModule } from 'angularx-social-login';
 import { socialLoginConfig } from 'app/shared/config/social-login.config';
 import { AuthServiceConfig } from 'angularx-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CoreModule,
     HttpClientModule,
     SocialLoginModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot(),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   bootstrap: [AppComponent]
 })

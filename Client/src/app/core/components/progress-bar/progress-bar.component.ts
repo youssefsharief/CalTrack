@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DataService } from 'app/core/services/data.service';
 import { AuthService } from 'app/core/services/auth.service';
 import { CaloriesTrackingSubjectService } from 'app/core/services/calories-tracking-subject.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-progress-bar',

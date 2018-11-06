@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
+import { of } from 'rxjs';
 import { SnackBarService } from 'app/core/services/snackbar.service';
 import { DataService } from 'app/core/services/data.service';
 import { SharedModule } from 'app/shared/shared.module';
@@ -41,7 +39,7 @@ describe('OtherUserMeal Component', () => {
         },
 
         getMeals() {
-            return Observable.of('a')
+            return of('a')
         }
     }
 
