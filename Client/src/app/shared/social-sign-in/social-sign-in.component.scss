@@ -1,71 +1,36 @@
-.btn.white {
-    color: white;
-    &:hover {
-        color: white;
-    }
-}
-
-.ssoButtonsHolder {
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-flow: row nowrap;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    margin-top: 1.25em;
-    margin-right: 4px;
-}
-
-.ssoButtonContainer:first-child {
-    padding-right: .5em;
-}
-
-.ssoButtonContainer {
-    flex: 0 1 50%;
-}
-
-.ssoButton {
-    display: inline-block;
-    height: 3em;
-    line-height: 3em;
-    position: relative;
-    padding: 0;
-    width: 100%;
-    border-radius: .2em;
-    border-width: 2px;
-    border-style: solid;
-    color: #fff;
-    font-weight: 300;
-    font-size: .8125em;
-    text-align: left;
-    overflow: hidden;
+.customBtn {
+  display: inline-block;
+  background: white;
+  color: #444;
+  width: 190px;
+  border-radius: 5px;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px grey;
+  white-space: nowrap;
+  &:hover {
     cursor: pointer;
-    transition: all .3s;
-    a {
-        font-family: nyt-franklin, arial, helvetica, sans-serif;
-    }
+  }
 }
 
-.ssoButtonFacebook {
-    background-color: #3c5a99;
-    border-color: #3c5a99;
+span.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+  &.facebook{
+    background: url('../../../assets/f_logo_RGB-Blue_58.png') no-repeat;
+    background-size: 58% 58%;
+    background-position: 50% 50%;
+  }
+  &.google{
+    background: url('../../../assets/g-normal.png') transparent 5px 50% no-repeat;
+  }
 }
 
-.ssoButtonGoogle {
-    background-color: #4285f4 !important;
-    border-color: #4285f4;
-}
-
-.fa-google {
-    background-color: #4285f4 !important;
-    border-color: #4285f4;
-}
-
-.btn.btn-social.btn-google.btn-lg {
-    background-color: #4285f4 !important;
-    border-color: #4285f4;
-    &:hover {
-        background-color: #3367d6;
-        border-color: #3367d6;
-    }
+span.buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
