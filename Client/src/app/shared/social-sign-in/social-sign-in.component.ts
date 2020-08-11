@@ -14,8 +14,7 @@ import { SnackBarService } from 'app/core/services/snackbar.service';
     styleUrls: ['social-sign-in.component.scss']
 })
 
-export class SocialSignInComponent implements OnDestroy {
-    socialAuthListener$: Subscription
+export class SocialSignInComponent {
 
     constructor(
         private libAuthService: LibAuthService,
@@ -24,22 +23,6 @@ export class SocialSignInComponent implements OnDestroy {
         private authService: AuthService,
         private sb: SnackBarService
     ) { }
-
-    listenToSocialAuth() {
-        this.socialAuthListener$ = this.libAuthService.authState.subscribe((user) => {
-            if (user && user.authToken) {
-                const sub = user.provider === 'FACEBOOK' ? this.dataService.oAuthFacebook(user.authToken) : this.dataService.oAuthGoogle(user.idToken)
-                sub.subscribe(
-                    data => {
-                        this.saveUserDataLocallyAndProceedToProfile(data);
-                    },
-                    error => {
-                        console.log(error)
-                    }
-                )
-            }
-        });
-    }
 
     private saveUserDataLocallyAndProceedToProfile(data: { user: User, token: string }) {
         this.authService.saveToken(data.token)
@@ -64,11 +47,5 @@ export class SocialSignInComponent implements OnDestroy {
                 error => this.sb.emitErrorSnackBar('Sorry.. An error occurred while you are trying to login')
             );
         })
-    }
-
-    ngOnDestroy() {
-        if (this.socialAuthListener$) {
-            this.socialAuthListener$.unsubscribe();
-        }
     }
 }
