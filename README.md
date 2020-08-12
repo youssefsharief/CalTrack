@@ -4,10 +4,6 @@
 ## Configuration
 Add a .env file in the `Server` folder. This file would contain all non-shareable config.
 
-### SSL 
-In order for the social login to work client side, https is needed. Use this repo https://github.com/RubenVermeulen/generate-trusted-ssl-certificate to generate ssl keys, then add the keys to a `ssl` folder in the root folder so that it would be used for both the Node.js backend repo for running the https server and for the client side to be used for the angular cli webpack's dev server
-
-
 ### Database Setup
 1. Setup MongoDb databases for production and testing then enter the url in the `.env` file as `mongodbMealURI` and `mongodbMealMockURI` respectively
 2. Add indexes to the database to ensure high performance running the following commands

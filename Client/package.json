@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4400 --ssl true --sslKey ../ssl/server.key --sslCert ../ssl/server.crt --deleteOutputPath=false",
+    "start": "ng serve --port 4400 --deleteOutputPath=false",
     "prod-watch": "ng build --watch -prod -aot ",
     "prod": "ng build -prod -aot",
     "test": "ng test -sm=false",

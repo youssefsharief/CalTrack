@@ -5,25 +5,11 @@ process.on('unhandledRejection', up => { throw up })
 const app = require('app');
 const db = require('core/dbConnection.js')
 const port = normalizePort(process.env.PORT || '3001');
-const https = require('https');
 const http = require('http');
-const fs = require('fs');
 
 app.set('port', port);
 
-if (process.env.NODE_ENV !== 'production') {
-    const options = {
-        key: fs.readFileSync('../ssl/server.key'),
-        cert: fs.readFileSync('../ssl/server.crt')
-    };
-    const server = https.createServer(options, app).listen(3001);
-    server.listen(port);
-} else {
-    const server = http.createServer(app).listen(port);
-    server.listen(port);
-}
-
-
+http.createServer(app).listen(port);
 
 db.connectToOriginalDb()
 
